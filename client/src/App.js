@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.less";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Map from "./Map";
+import Uploader from "./Uploader";
 import { Layout } from "antd";
 
 const { Header, Footer, Content } = Layout;
@@ -19,7 +21,10 @@ class App extends Component {
                 justifyContent: "center",
                 alignItems: "center"
               }}
-            />
+            >
+              <Route exact path="/" component={Map} />
+              <Route exact path="/upload" component={Uploader} />
+            </Content>
           </Layout>
           <Footer style={{ textAlign: "center" }}>Malmo Civic Labs</Footer>
         </Layout>
