@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Steps, Button, message } from "antd";
 import Uploader from "./Uploader";
 import Map from "./Map";
+import Info from "./Info";
 
 const Step = Steps.Step;
 const steps = [
@@ -51,7 +52,7 @@ class Report extends Component {
           ))}
         </Steps>
         <div className="steps-content">
-          {current === 0 ? <Map /> : <Uploader />}
+          {current === 0 ? <Map /> : <Info />}
         </div>
         <div className="steps-action">
           {current < steps.length - 1 && (
