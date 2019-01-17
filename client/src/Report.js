@@ -38,6 +38,19 @@ class Report extends Component {
     this.setState({ current });
   }
 
+  renderStep(step) {
+    switch (step) {
+      case 0:
+        return <Map />;
+      case 1:
+        return <Uploader />;
+      case 2:
+        return <Info />;
+      default:
+        return <Map />;
+    }
+  }
+
   render() {
     const { current } = this.state;
     return (
@@ -51,9 +64,7 @@ class Report extends Component {
             />
           ))}
         </Steps>
-        <div className="steps-content">
-          {current === 0 ? <Map /> : <Info />}
-        </div>
+        <div className="steps-content">{this.renderStep(current)}</div>
         <div className="steps-action">
           {current < steps.length - 1 && (
             <Button type="primary" onClick={() => this.next()}>
