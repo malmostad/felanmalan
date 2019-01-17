@@ -3,12 +3,15 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
-
+import { connect } from "react-redux";
+import { reportAdd } from "./redux/actions";
 mapboxgl.accessToken =
   "pk.eyJ1IjoibGx1ZnQiLCJhIjoiY2pvdWgzOWZoMTgzdTN3bzlvd3dzdXZnZSJ9.SmEygWmfwXWgJN4ZzrU3mA";
 
 class Map extends Component {
   componentDidMount() {
+    // is there a better way to do this?
+    const props = this.props;
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: "mapbox://styles/mapbox/streets-v9",
@@ -24,7 +27,7 @@ class Map extends Component {
         trackUserLocation: false
       }).on("geolocate", function(location) {
         const { longitude, latitude } = location.coords;
-        console.log(`${longitude},${latitude}`);
+        props.reportAdd({ coordinates: { longitude, latitude } });
       })
     );
     this.map.addControl(
@@ -37,7 +40,7 @@ class Map extends Component {
         const coords = event.result.geometry.coordinates;
         const longitude = coords[0];
         const latitude = coords[1];
-        console.log(`${longitude},${latitude}`);
+        props.reportAdd({ coordinates: { longitude, latitude } });
       })
     );
   }
@@ -55,4 +58,7 @@ class Map extends Component {
   }
 }
 
-export default Map;
+export default connect(
+  undefined,
+  { reportAdd }
+)(Map);
