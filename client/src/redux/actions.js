@@ -1,13 +1,6 @@
-import { CREATE_SURVEY, CHARTS_GET } from "./action-types";
+import { REPORT_ADD } from "./action-types";
 
-export const createSurvey = survey => ({
-  type: CREATE_SURVEY,
-  payload: survey
+export const reportAdd = step => ({
+  type: REPORT_ADD,
+  payload: step
 });
-
-export const getChart = (formId, reportId) => {
-  return {
-    type: CHARTS_GET,
-    payload: { formId, reportId }
-  };
-};
