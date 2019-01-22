@@ -6,11 +6,13 @@ import { reportAdd } from "./redux/actions";
 const { TextArea } = Input;
 
 class Info extends Component {
-  handleSubmit = e => {
+  onChange = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.reportAdd(values);
+      } else if (err.email && values.message) {
+        this.props.reportAdd({ message: values.message });
       }
     });
   };
@@ -30,7 +32,7 @@ class Info extends Component {
     return (
       <Form
         style={{ paddingLeft: "50px", maxWidth: "800px" }}
-        onSubmit={this.handleSubmit}
+        onChange={this.onChange}
         className="login-form"
       >
         <Form.Item {...formItemLayout} label="Email">
