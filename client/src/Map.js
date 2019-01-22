@@ -14,7 +14,7 @@ class Map extends Component {
     const props = this.props;
     let map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: "mapbox://styles/mapbox/streets-v9",
+      style: "mapbox://styles/mapbox/streets-v11",
       center: [13.003365, 55.6051458],
       zoom: 13
     });
@@ -28,7 +28,8 @@ class Map extends Component {
       }).on("geolocate", function(location) {
         const { longitude, latitude } = location.coords;
         props.reportAdd({ coordinates: { longitude, latitude } });
-      })
+      }),
+      "bottom-right"
     );
     map.addControl(
       // localize https://www.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-limit-region/
@@ -42,9 +43,13 @@ class Map extends Component {
         const latitude = coords[1];
         this.map.getSource("single-point").setData(event.result.geometry);
         props.reportAdd({ coordinates: { longitude, latitude } });
-      })
+      }),
+      "top-left"
     );
     map.on("load", function() {
+      //fix resizing properly
+      // https://github.com/mapbox/mapbox-gl-js/issues/3265
+      map.resize();
       map.addSource("single-point", {
         type: "geojson",
         data: {
@@ -72,9 +77,8 @@ class Map extends Component {
   render() {
     const style = {
       width: "100%",
-      height: "500px"
+      height: "100%"
     };
-
     return <div style={style} ref={el => (this.mapContainer = el)} />;
   }
 }
