@@ -10,7 +10,6 @@ class Info extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        debugger;
         this.props.reportAdd(values);
         console.log("Received values of form: ", values);
       }
