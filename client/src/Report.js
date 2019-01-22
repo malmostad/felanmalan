@@ -3,8 +3,8 @@ import { Steps, Button, message, Layout } from "antd";
 import Uploader from "./Uploader";
 import Map from "./Map";
 import Info from "./Info";
-const { Header, Footer, Sider, Content } = Layout;
 
+const { Sider, Content } = Layout;
 const Step = Steps.Step;
 const steps = [
   {
@@ -12,8 +12,8 @@ const steps = [
     description: "Pick the location you'd like to report"
   },
   {
-    title: "Photos",
-    description: "Add photos to you report"
+    title: "Photo",
+    description: "Add a photo to you report"
   },
   {
     title: "Additional Info",
@@ -104,7 +104,7 @@ class Report extends Component {
                 type="primary"
                 onClick={() => message.success("Processing complete!")}
               >
-                Done
+                Submit
               </Button>
             )}
           </div>
