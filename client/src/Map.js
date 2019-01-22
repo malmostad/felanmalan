@@ -49,6 +49,7 @@ class Map extends Component {
     map.on("load", function() {
       //fix resizing properly
       // https://github.com/mapbox/mapbox-gl-js/issues/3265
+      // hide element and make visible here
       map.resize();
       map.addSource("single-point", {
         type: "geojson",
