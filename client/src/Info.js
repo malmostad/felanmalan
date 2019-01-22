@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input } from "antd";
 import { connect } from "react-redux";
 import { reportAdd } from "./redux/actions";
 
@@ -11,16 +11,29 @@ class Info extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.reportAdd(values);
-        console.log("Received values of form: ", values);
       }
     });
   };
 
   render() {
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 8 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 }
+      }
+    };
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item label="Email">
+      <Form
+        style={{ paddingLeft: "50px", maxWidth: "800px" }}
+        onSubmit={this.handleSubmit}
+        className="login-form"
+      >
+        <Form.Item {...formItemLayout} label="Email">
           {getFieldDecorator("email", {
             rules: [
               {
@@ -30,15 +43,10 @@ class Info extends Component {
             ]
           })(<Input />)}
         </Form.Item>
-        <Form.Item label="Additional Information about the Report">
+        <Form.Item {...formItemLayout} label="Problem description">
           {getFieldDecorator("message")(
             <TextArea autosize={{ minRows: 4, maxRows: 6 }} />
           )}
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Add
-          </Button>
         </Form.Item>
       </Form>
     );
