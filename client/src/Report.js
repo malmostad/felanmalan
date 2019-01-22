@@ -57,11 +57,9 @@ class Report extends Component {
     return (
       <Layout>
         <Layout>
-          <Sider
-            style={{ minWidth: "400px !important", backgroundColor: "white" }}
-          >
+          <Sider width="250" style={{ backgroundColor: "white" }}>
             <Steps
-              style={{ padding: "20px" }}
+              style={{ padding: "0 25px" }}
               direction="vertical"
               current={current}
             >
@@ -76,67 +74,43 @@ class Report extends Component {
           </Sider>
 
           <Content>
-            <div className="steps-content">{this.renderStep(current)}</div>
+            <div style={{ height: "100%" }}>{this.renderStep(current)}</div>
           </Content>
         </Layout>
-        <Footer>
-          <div className="steps-action" style={{ padding: "30px" }}>
+        <div
+          className="steps-action"
+          style={{
+            paddingTop: "30px",
+            display: "flex",
+            justifyContent: "flex-end"
+          }}
+        >
+          <div>
+            {current > 0 && (
+              <Button onClick={() => this.prev()}>Previous</Button>
+            )}
             {current < steps.length - 1 && (
-              <Button type="primary" onClick={() => this.next()}>
+              <Button
+                style={{ marginLeft: 8 }}
+                type="primary"
+                onClick={() => this.next()}
+              >
                 Next
               </Button>
             )}
             {current === steps.length - 1 && (
               <Button
+                style={{ marginLeft: 8 }}
                 type="primary"
                 onClick={() => message.success("Processing complete!")}
               >
                 Done
               </Button>
             )}
-            {current > 0 && (
-              <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                Previous
-              </Button>
-            )}
           </div>
-        </Footer>
+        </div>
       </Layout>
     );
-    // return (
-    //   <div style={{ width: "100%" }}>
-    //     <Steps direction="vertical" current={current}>
-    //       {steps.map(item => (
-    //         <Step
-    //           key={item.title}
-    //           description={item.description}
-    //           title={item.title}
-    //         />
-    //       ))}
-    //     </Steps>
-    // <div className="steps-content">{this.renderStep(current)}</div>;
-    //     <div className="steps-action">
-    //       {current < steps.length - 1 && (
-    //         <Button type="primary" onClick={() => this.next()}>
-    //           Next
-    //         </Button>
-    //       )}
-    //       {current === steps.length - 1 && (
-    //         <Button
-    //           type="primary"
-    //           onClick={() => message.success("Processing complete!")}
-    //         >
-    //           Done
-    //         </Button>
-    //       )}
-    //       {current > 0 && (
-    //         <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-    //           Previous
-    //         </Button>
-    //       )}
-    //     </div>
-    //   </div>
-    // );
   }
 }
 

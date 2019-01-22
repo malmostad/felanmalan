@@ -15,10 +15,8 @@ class App extends Component {
           <Layout>
             <Content
               style={{
-                padding: "0 50px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
+                padding: "50px",
+                display: "flex"
               }}
             >
               <Route exact path="/" component={Report} />
