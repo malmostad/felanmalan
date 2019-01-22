@@ -10,7 +10,7 @@ class Uploader extends Component {
     const props = this.props;
     const config = {
       name: "file",
-      multiple: true,
+      multiple: false,
       action: "photos",
       onChange(info) {
         const status = info.file.status;
@@ -31,11 +31,10 @@ class Uploader extends Component {
           <Icon type="inbox" />
         </p>
         <p className="ant-upload-text">
-          Click or drag file to this area to upload
+          Click or drag picture to this area to upload
         </p>
         <p className="ant-upload-hint">
-          Support for a single or bulk upload. Strictly prohibit from uploading
-          company data or other band files
+          Strictly prohibited from uploading company data or other band files.
         </p>
       </Dragger>
     );
