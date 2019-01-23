@@ -19,14 +19,46 @@ class Map extends Component {
       zoom: 13
     });
 
+    const marker = new mapboxgl.Marker({
+      draggable: true
+    });
+
+    marker.on("dragend", () => {
+      const coords = marker.getLngLat();
+      const longitude = coords.lng;
+      const latitude = coords.lat;
+      props.reportAdd({ coordinates: { longitude, latitude } });
+    });
+
+    let isSingleClick = false;
+    map.on("dblclick", event => {
+      isSingleClick = false;
+    });
+    map.on("click", event => {
+      isSingleClick = true;
+      setTimeout(() => {
+        if (isSingleClick) {
+          marker.setLngLat([event.lngLat.lng, event.lngLat.lat]).addTo(map);
+          isSingleClick = false;
+        }
+      }, 400);
+    });
+
+    map.addControl(
+      new mapboxgl.NavigationControl({ showCompass: false }),
+      "bottom-right"
+    );
+
     map.addControl(
       new mapboxgl.GeolocateControl({
+        showUserLocation: false,
         positionOptions: {
           enableHighAccuracy: true
         },
         trackUserLocation: false
       }).on("geolocate", function(location) {
         const { longitude, latitude } = location.coords;
+        marker.setLngLat([longitude, latitude]).addTo(map);
         props.reportAdd({ coordinates: { longitude, latitude } });
       }),
       "bottom-right"
@@ -41,11 +73,12 @@ class Map extends Component {
         const coords = event.result.geometry.coordinates;
         const longitude = coords[0];
         const latitude = coords[1];
-        this.map.getSource("single-point").setData(event.result.geometry);
+        marker.setLngLat(coords).addTo(map);
         props.reportAdd({ coordinates: { longitude, latitude } });
       }),
       "top-left"
     );
+
     map.on("load", function() {
       //fix resizing properly
       // https://github.com/mapbox/mapbox-gl-js/issues/3265
