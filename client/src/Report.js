@@ -102,7 +102,10 @@ class Report extends Component {
               <Button
                 style={{ marginLeft: 8 }}
                 type="primary"
-                onClick={() => message.success("Processing complete!")}
+                onClick={() => {
+                  this.setState({ current: 0 });
+                  message.success("Thanks for reporting!");
+                }}
               >
                 Submit
               </Button>
