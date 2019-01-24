@@ -3,7 +3,8 @@ import { Steps, Button, message, Layout } from "antd";
 import Uploader from "./Uploader";
 import Map from "./Map";
 import Info from "./Info";
-
+import TrackingService from "./TrackingService";
+const { track } = TrackingService;
 const { Sider, Content } = Layout;
 const Step = Steps.Step;
 const steps = [
@@ -42,10 +43,13 @@ class Report extends Component {
   renderStep(step) {
     switch (step) {
       case 0:
+        track("Map");
         return <Map />;
       case 1:
+        track("Image Uploader");
         return <Uploader />;
       case 2:
+        track("Description");
         return <Info />;
       default:
         return <Map />;
@@ -103,6 +107,7 @@ class Report extends Component {
                 style={{ marginLeft: 8 }}
                 type="primary"
                 onClick={() => {
+                  track("Submit Report");
                   this.setState({ current: 0 });
                   message.success("Thanks for reporting!");
                 }}

@@ -5,6 +5,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
 import { connect } from "react-redux";
 import { reportAdd } from "./redux/actions";
+import TrackingService from "./TrackingService";
+const { track } = TrackingService;
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoibGx1ZnQiLCJhIjoiY2pvdWgzOWZoMTgzdTN3bzlvd3dzdXZnZSJ9.SmEygWmfwXWgJN4ZzrU3mA";
 
@@ -57,6 +60,7 @@ class Map extends Component {
         },
         trackUserLocation: false
       }).on("geolocate", function(location) {
+        track("Location from current position");
         const { longitude, latitude } = location.coords;
         marker.setLngLat([longitude, latitude]).addTo(map);
         props.reportAdd({ coordinates: { longitude, latitude } });
@@ -70,6 +74,7 @@ class Map extends Component {
         country: "SE",
         proximity: { latitude: 13.003365, longitude: 55.6051458 }
       }).on("result", event => {
+        track("Location from Search");
         const coords = event.result.geometry.coordinates;
         const longitude = coords[0];
         const latitude = coords[1];
