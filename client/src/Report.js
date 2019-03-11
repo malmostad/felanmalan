@@ -121,5 +121,5 @@ class Report extends Component {
     );
   }
 }
-
+// add loading of state here
 export default Report;
