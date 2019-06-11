@@ -28,6 +28,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "react-scripts test",
+    "eslint": "eslint src/*.js src/**/*.js"
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +41,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "1.18.2"
+  }
 }
