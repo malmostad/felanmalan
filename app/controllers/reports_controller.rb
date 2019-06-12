@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ReportsController < ApplicationController
+class ReportsController < ApiController
   # before_action :set_report, only: [:show, :update, :destroy]
 
   # GET /reports
