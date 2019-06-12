@@ -80,7 +80,6 @@ class Map extends Component {
         mapboxgl: mapboxgl,
         proximity: { latitude: 13.003365, longitude: 55.6051458 }
       }).on("result", event => {
-        console.log("FROM GEO", event);
         track("Location from Search");
         const coords = event.result.geometry.coordinates;
         const longitude = coords[0];
@@ -116,9 +115,6 @@ class Map extends Component {
     });
     this.map = map;
   }
-  onMapLoad = () => {
-    console.log("yo");
-  };
   componentWillUnmount() {
     this.map.remove();
   }
