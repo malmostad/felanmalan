@@ -8,8 +8,7 @@ export async function createReport(report) {
       body: JSON.stringify(report)
     });
     if (response.ok) {
-      const json = await response.json();
-      return json;
+      return await response.json();
     }
     throw new Error(`API call failed: ${response.statusText}`);
   } catch (error) {
