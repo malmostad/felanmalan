@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, message, Layout, Form, Input } from "antd";
+import { Button, Layout, Form, Input } from "antd";
 import { connect } from "react-redux";
 import { reportAdd, createReport } from "../redux/actions";
 import { Link } from "react-router-dom";
