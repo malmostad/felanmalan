@@ -51,12 +51,11 @@ class ReportsController < ApiController
   def report_params
     params.require(:report).permit(
       :image_token,
-      :images,
       :email,
       :description,
       :latitude,
       :longitude,
-      :float
+      images: []
     )
   end
 end
