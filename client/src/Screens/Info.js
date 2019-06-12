@@ -16,8 +16,8 @@ class Info extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.reportAdd(values);
-      } else if (err.email && values.message) {
-        this.props.reportAdd({ message: values.message });
+      } else if (err.email && values.description) {
+        this.props.reportAdd({ description: values.description });
       }
     });
   };
@@ -56,7 +56,7 @@ class Info extends Component {
             })(<Input />)}
           </Form.Item>
           <Form.Item {...formItemLayout} label="Problem description">
-            {getFieldDecorator("message")(
+            {getFieldDecorator("description")(
               <TextArea autosize={{ minRows: 4, maxRows: 6 }} />
             )}
           </Form.Item>

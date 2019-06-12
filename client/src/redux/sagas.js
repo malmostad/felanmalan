@@ -10,7 +10,7 @@ import * as Api from "./api";
 export function* createReport() {
   const state = yield select();
   try {
-    const report = yield call(Api.createReport, state);
+    const report = yield call(Api.createReport, { report: state });
     yield put({ type: CREATE_REPORT_SUCCESS, payload: report });
   } catch (error) {
     yield put({ type: CREATE_REPORT_FAILURE, payload: error });
