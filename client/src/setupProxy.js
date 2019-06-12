@@ -4,4 +4,5 @@ module.exports = function(app) {
   app.use(proxy("/photos", { target: "http://localhost:3001/" }));
   app.use(proxy("/sign-up", { target: "http://localhost:3001/" }));
   app.use(proxy("/sign-out", { target: "http://localhost:3001/" }));
+  app.use(proxy("/reports", { target: "http://localhost:3001/" }));
 };
