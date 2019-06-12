@@ -19,7 +19,7 @@
     "react-geolocation": "^1.0.4",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1",
+    "react-scripts": "3.0.1",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
     "redux-saga": "^0.16.2"
@@ -27,7 +27,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "react-scripts test",
+    "eslint": "eslint src/*.js src/**/*.js"
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +41,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "1.18.2"
+  }
 }
