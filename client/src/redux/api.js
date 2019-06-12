@@ -11,7 +11,7 @@ export async function createReport(report) {
       const json = await response.json();
       return json;
     }
-    throw new Error(`API called failed: ${response.statusText}`);
+    throw new Error(`API call failed: ${response.statusText}`);
   } catch (error) {
     throw new Error(error);
   }
