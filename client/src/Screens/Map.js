@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import mapboxgl from "mapbox-gl";
+import { Link } from "react-router-dom";
+import { Layout, Button } from "antd";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
 import { connect } from "react-redux";
-import { reportAdd } from "./redux/actions";
-import TrackingService from "./TrackingService";
+
+// start using module resolver?
+import { reportAdd } from "../redux/actions";
+import TrackingService from "../TrackingService";
 const { track } = TrackingService;
 
 mapboxgl.accessToken =
@@ -17,6 +21,7 @@ class Map extends Component {
     const props = this.props;
     let map = new mapboxgl.Map({
       container: this.mapContainer,
+      marker: true,
       style: "mapbox://styles/mapbox/streets-v11",
       center: [13.003365, 55.6051458],
       zoom: 13
@@ -30,6 +35,7 @@ class Map extends Component {
       const coords = marker.getLngLat();
       const longitude = coords.lng;
       const latitude = coords.lat;
+      console.log("drag end", coords);
       props.reportAdd({ coordinates: { longitude, latitude } });
     });
 
@@ -54,11 +60,11 @@ class Map extends Component {
 
     map.addControl(
       new mapboxgl.GeolocateControl({
-        showUserLocation: false,
+        showUserLocation: true,
         positionOptions: {
           enableHighAccuracy: true
         },
-        trackUserLocation: false
+        trackUserLocation: true
       }).on("geolocate", function(location) {
         track("Location from current position");
         const { longitude, latitude } = location.coords;
@@ -72,8 +78,10 @@ class Map extends Component {
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         country: "SE",
+        mapboxgl: mapboxgl,
         proximity: { latitude: 13.003365, longitude: 55.6051458 }
       }).on("result", event => {
+        console.log("FROM GEO", event);
         track("Location from Search");
         const coords = event.result.geometry.coordinates;
         const longitude = coords[0];
@@ -85,6 +93,7 @@ class Map extends Component {
     );
 
     map.on("load", function() {
+      console.log("LOAD");
       //fix resizing properly
       // https://github.com/mapbox/mapbox-gl-js/issues/3265
       // hide element and make visible here
@@ -109,6 +118,9 @@ class Map extends Component {
     });
     this.map = map;
   }
+  onMapLoad = () => {
+    console.log("yo");
+  };
   componentWillUnmount() {
     this.map.remove();
   }
@@ -116,9 +128,19 @@ class Map extends Component {
   render() {
     const style = {
       width: "100%",
-      height: "100%"
+      height: "400px", // for now fix later
+      minHeight: "400px"
     };
-    return <div style={style} ref={el => (this.mapContainer = el)} />;
+    return (
+      <Layout>
+        <div style={style} ref={el => (this.mapContainer = el)} />
+        <div>
+          <Button type="primary">
+            <Link to="/photo">Next</Link>
+          </Button>
+        </div>
+      </Layout>
+    );
   }
 }
 
