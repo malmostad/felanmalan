@@ -35,8 +35,7 @@ class Map extends Component {
       const coords = marker.getLngLat();
       const longitude = coords.lng;
       const latitude = coords.lat;
-      console.log("drag end", coords);
-      props.reportAdd({ coordinates: { longitude, latitude } });
+      props.reportAdd({ longitude, latitude });
     });
 
     let isSingleClick = false;
@@ -69,7 +68,7 @@ class Map extends Component {
         track("Location from current position");
         const { longitude, latitude } = location.coords;
         marker.setLngLat([longitude, latitude]).addTo(map);
-        props.reportAdd({ coordinates: { longitude, latitude } });
+        props.reportAdd({ longitude, latitude });
       }),
       "bottom-right"
     );
@@ -87,13 +86,12 @@ class Map extends Component {
         const longitude = coords[0];
         const latitude = coords[1];
         marker.setLngLat(coords).addTo(map);
-        props.reportAdd({ coordinates: { longitude, latitude } });
+        props.reportAdd({ longitude, latitude });
       }),
       "top-left"
     );
 
     map.on("load", function() {
-      console.log("LOAD");
       //fix resizing properly
       // https://github.com/mapbox/mapbox-gl-js/issues/3265
       // hide element and make visible here

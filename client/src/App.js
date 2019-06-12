@@ -46,7 +46,8 @@ class App extends Component {
 }
 
 function mapStateToProps(state = {}) {
-  const { sendingState = "none" } = state;
+  const { ui = {} } = state;
+  const { sendingState = "none" } = ui;
   return { sendingState };
 }
 

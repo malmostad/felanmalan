@@ -8,10 +8,10 @@ import {
 import * as Api from "./api";
 
 export function* createReport() {
-  const state = yield select();
+  const { report } = yield select();
   try {
-    const report = yield call(Api.createReport, { report: state });
-    yield put({ type: CREATE_REPORT_SUCCESS, payload: report });
+    const createdReport = yield call(Api.createReport, { report });
+    yield put({ type: CREATE_REPORT_SUCCESS, payload: createdReport });
   } catch (error) {
     yield put({ type: CREATE_REPORT_FAILURE, payload: error });
   }

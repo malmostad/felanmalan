@@ -30,7 +30,6 @@ class ReportSteps extends Component {
   }
 
   render() {
-    const { current } = this.state;
     const { location = {} } = this.props;
     const { pathname = "" } = location;
     return (
