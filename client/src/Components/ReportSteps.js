@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Steps, Layout } from "antd";
-const { Sider } = Layout;
+import { Steps } from "antd";
 const Step = Steps.Step;
 const steps = [
   {

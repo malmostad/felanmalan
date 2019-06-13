@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Layout, Button } from "antd";
 
 import mapboxgl from "mapbox-gl";
@@ -78,6 +78,9 @@ class Map extends Component {
             this.getUserLocation(onLoad);
           }
         });
+    } else {
+      // safari doesnt have the Permission API
+      this.getUserLocation(onLoad);
     }
   };
   onGeoCodeResult = event => {
@@ -95,6 +98,9 @@ class Map extends Component {
   };
 
   getUserLocation = (onLoad = false) => {
+    if (!navigator.geolocation) {
+      return;
+    }
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,

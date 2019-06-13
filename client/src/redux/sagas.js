@@ -9,7 +9,6 @@ import {
 
 import * as Api from "./api";
 
-console.log(process.env);
 export function* createReport() {
   const { report } = yield select();
   try {
