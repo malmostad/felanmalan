@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Layout, Button } from "antd";
 
 import mapboxgl from "mapbox-gl";
@@ -43,7 +43,7 @@ class Map extends Component {
     this.currentLocation = new mapboxgl.Marker(outer);
 
     map.on("dragend", this.onMapDragEnd);
-    // localize https://www.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-limit-region/
+    map.on("zoomend", this.onMapDragEnd);
     const geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
       marker: false,
@@ -110,22 +110,36 @@ class Map extends Component {
   };
   onSuccessCurrentPosition = (pos, onLoad) => {
     const coordinates = pos.coords;
-    let flyOptions = {
-      center: [coordinates.longitude, coordinates.latitude]
-    };
+    const center = [coordinates.longitude, coordinates.latitude];
+    let flyOptions = { center };
     if (onLoad) {
+      // if got user position on page load zoom in abit.
       flyOptions.zoom = 16;
     }
 
-    this.currentLocation
-      .setLngLat([coordinates.longitude, coordinates.latitude])
-      .addTo(this.map);
+    this.currentLocation.setLngLat(center).addTo(this.map);
     this.props.getAddress(coordinates);
+    this.setState({ hasGeoLocation: true });
     this.map.flyTo(flyOptions);
   };
+
   onErrorCurrentPosition = data => {
-    console.log("error", data);
+    this.setState({ hasGeoLocation: false });
   };
+
+  onNextClick = () => {
+    const center = this.map.getCenter();
+    const coordinates = {
+      longitude: center.lng,
+      latitude: center.lat
+    };
+    this.props.reportAdd(coordinates);
+    const { history } = this.props;
+    history.push({
+      pathname: "/photo"
+    });
+  };
+
   componentWillUnmount() {
     this.map.remove();
   }
@@ -141,7 +155,7 @@ class Map extends Component {
           <div>{this.state.address}</div>
           <div ref={el => (this.geoCoderContainer = el)} />
         </ErrorReportHeader>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={styles.currenLocationButtonHolder}>
           {this.state.hasGeoLocation ? (
             <Button
               type="primary"
@@ -154,9 +168,17 @@ class Map extends Component {
         </div>
         <img alt="marker" src="./pin.svg" style={styles.markerStyle} />
         <div style={styles.map} ref={el => (this.mapContainer = el)} />
-        <div style={{position: 'absolute', bottom: '10px', zIndex: 100, right: '10px'}}>
-          <Button type="primary">
-            <Link to="/photo">Next</Link>
+        {/* this is going to be moved and totatly remade, leave for now */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "10px",
+            zIndex: 100,
+            right: "10px"
+          }}
+        >
+          <Button type="primary" onClick={this.onNextClick}>
+            Next
           </Button>
         </div>
       </Layout>
@@ -173,6 +195,10 @@ const styles = {
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     zIndex: 100
+  },
+  currenLocationButtonHolder: {
+    display: "flex",
+    justifyContent: "flex-end"
   },
   map: {
     width: "100%",
@@ -209,4 +235,4 @@ function mapStateToProps(state = {}) {
 export default connect(
   mapStateToProps,
   { reportAdd, getAddress }
-)(Map);
+)(withRouter(Map));
