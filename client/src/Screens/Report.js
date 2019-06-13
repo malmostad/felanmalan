@@ -76,7 +76,6 @@ class Report extends Component {
               ))}
             </Steps>
           </Sider>
-
           <Content>
             <div style={{ height: "100%" }}>{this.renderStep(current)}</div>
           </Content>
