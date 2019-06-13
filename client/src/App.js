@@ -27,9 +27,7 @@ class App extends Component {
     return (
       <Router>
         <Layout style={{ minHeight: "100vh" }}>
-          <Header />
           <Layout>
-            <ReportSteps />
             <Content>
               <Switch>
                 <Route path="/photo" component={Uploader} />
