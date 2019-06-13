@@ -7,7 +7,7 @@ import App from "./App";
 const store = createStore(() => {});
 jest.mock("@mapbox/mapbox-gl-geocoder", () => {
   class MapboxGeocoder {
-    on() { }
+    on() {}
     onAdd() {
       return "<div/>";
     }
