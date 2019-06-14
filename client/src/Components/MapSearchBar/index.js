@@ -9,6 +9,17 @@ const defaultCoordinates = {
   longitude: 13.003365,
   latitude: 55.6051458
 };
+const styles = {
+  searchBar: {
+    position: "absolute",
+    top: "15px",
+    display: "flex",
+    justifyContent: "center",
+    width: "calc(100% - 30px)",
+    margin: "0 15px",
+    zIndex: 98
+  }
+};
 
 class MapSearchBar extends Component {
   render() {
@@ -46,15 +57,5 @@ class MapSearchBar extends Component {
     }
   };
 }
-const styles = {
-  searchBar: {
-    position: "absolute",
-    top: "15px",
-    display: "flex",
-    justifyContent: "center",
-    width: "calc(100% - 30px)",
-    margin: "0 15px"
-  }
-};
 // add loading of state here
 export default MapSearchBar;

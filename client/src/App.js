@@ -7,6 +7,9 @@ import { Route, Switch } from "react-router-dom";
 import Uploader from "./Screens/Uploader";
 import Map from "./Screens/Map";
 import Info from "./Screens/Info";
+import Steps from "Components/Steps";
+import BottomBar from "Components/BottomBar";
+import NextButton from "Components/NextButton";
 
 const { Content } = Layout;
 
@@ -26,15 +29,22 @@ class App extends Component {
     return (
       <Router>
         <Layout style={{ minHeight: "100vh" }}>
-          <Layout>
-            <Content>
-              <Switch>
-                <Route path="/photo" component={Uploader} />
-                <Route path="/info" component={Info} />
-                <Route component={Map} />
-              </Switch>
-            </Content>
-          </Layout>
+          <Content>
+            <Switch>
+              <Route path="/photo" component={Uploader} />
+              <Route path="/info" component={Info} />
+              <Route component={Map} />
+            </Switch>
+            <BottomBar>
+              <Steps />
+              <Route
+                path="/photo"
+                render={() => <NextButton text="Next" to="/info" />}
+              />
+              <Route exact path="/" render={() => <NextButton to="/photo" />} />
+              <Route exact path="/info" render={() => <a href="/">Submit</a>} />
+            </BottomBar>
+          </Content>
         </Layout>
       </Router>
     );

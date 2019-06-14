@@ -6,6 +6,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+import "./Map.css";
 import MapOverlay from "Components/MapOverlay";
 // import ReportSteps from "Components/ReportSteps";
 // import NextButton from "Components/NextButton";
@@ -161,9 +162,12 @@ class Map extends Component {
             onClick={this.getUserLocation}
           />
         ) : null}
-        <img alt="marker" src="./pin.svg" style={styles.markerStyle} />
         <div style={styles.map} ref={el => (this.mapContainer = el)} />
-        <MapSearchBar address={address} ref={el => (this.geoCoderContainer = el)} />
+        <img alt="marker" src="./pin.svg" style={styles.markerStyle} />
+        <MapSearchBar
+          address={address}
+          ref={el => (this.geoCoderContainer = el)}
+        />
       </Layout>
     );
   }
@@ -219,7 +223,7 @@ const styles = {
     zIndex: 100
   },
   markerStyle: {
-    position: "absolute",
+    position: "fixed",
     zIndex: "98",
     top: "calc(50% - 15px)",
     left: "calc(50% - 15px)",
