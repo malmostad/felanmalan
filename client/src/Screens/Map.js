@@ -1,16 +1,19 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Layout, Button } from "antd";
 
 import mapboxgl from "mapbox-gl";
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
-import "@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
 import { connect } from "react-redux";
-import ErrorReportHeader from "../Components/Header";
+import { CSSTransition } from "react-transition-group";
+// import ErrorReportHeader from "../Components/Header";
+import MapOverlay from "Components/MapOverlay";
+import ReportSteps from "Components/ReportSteps";
+import NextButton from "Components/NextButton";
+import MapSearchBar from "Components/MapSearchBar";
 
 // start using module resolver?
-import { reportAdd, getAddress } from "../redux/actions";
+import { reportAdd, getAddress, onMapScreenClicked } from "../redux/actions";
 import TrackingService from "../TrackingService";
 const { track } = TrackingService;
 
@@ -27,8 +30,6 @@ class Map extends Component {
     userCoordinates: {}
   };
   componentDidMount() {
-    // fetch user locaion on start
-    this.askForLocation(true);
     let map = new mapboxgl.Map({
       container: this.mapContainer,
       style: "mapbox://styles/mapbox/streets-v11",
@@ -44,27 +45,9 @@ class Map extends Component {
 
     map.on("dragend", this.onMapDragEnd);
     map.on("zoomend", this.onMapDragEnd);
-    const geocoder = new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      marker: false,
-      country: "SE",
-      mapboxgl: mapboxgl,
-      proximity: {
-        latitude: defaultCoordinates.latitude,
-        longitude: defaultCoordinates.longitude
-      }
-    }).on("result", this.onGeoCodeResult);
-    if (geocoder) {
-      this.geoCoderContainer.appendChild(geocoder.onAdd(map));
-    }
-    this.geocoder = geocoder;
+    this.geoCoderContainer.onGo(map);
 
     this.map = map;
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.address && nextProps.address !== this.props.address) {
-      this.geocoder.setInput(nextProps.address);
-    }
   }
 
   askForLocation = (onLoad = false) => {
@@ -149,49 +132,62 @@ class Map extends Component {
   componentWillUnmount() {
     this.map.remove();
   }
+  onMapScreenClicked = () => {
+    const { onMapScreenClicked } = this.props;
+    this.askForLocation(true);
+    onMapScreenClicked();
+  };
 
   render() {
+    const { mapScreenClicked } = this.props;
     return (
       <Layout>
-        <ErrorReportHeader
-          style={styles.header}
-          title="Plats"
-          description="Markera ut den plats där du vill rapportera ett fel"
+        <CSSTransition
+          unmountOnExit
+          className="overlay"
+          classNames="overlay"
+          timeout={500}
+          in={!mapScreenClicked}
         >
-          <div>{this.state.address}</div>
-          <div ref={el => (this.geoCoderContainer = el)} />
-        </ErrorReportHeader>
-        <div style={styles.currenLocationButtonHolder}>
-          {this.state.hasGeoLocation ? (
-            <Button
-              type="primary"
-              shape="circle"
-              size="large"
-              style={styles.currentLocationButton}
-              onClick={this.getUserLocation}
-            />
-          ) : null}
-        </div>
+          <MapOverlay onClick={this.onMapScreenClicked} />
+        </CSSTransition>
+        {this.state.hasGeoLocation ? (
+          <Button
+            type="primary"
+            shape="circle"
+            size="large"
+            style={styles.currentLocationButton}
+            onClick={this.getUserLocation}
+          />
+        ) : null}
         <img alt="marker" src="./pin.svg" style={styles.markerStyle} />
         <div style={styles.map} ref={el => (this.mapContainer = el)} />
-        {/* this is going to be moved and totatly remade, leave for now */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "10px",
-            zIndex: 100,
-            right: "10px"
-          }}
-        >
-          <Button type="primary" onClick={this.onNextClick}>
-            Next
-          </Button>
-        </div>
+        <MapSearchBar ref={el => (this.geoCoderContainer = el)} />
       </Layout>
     );
   }
 }
 const styles = {
+  searchBar: {
+    position: "absolute",
+    top: "15px",
+    display: "flex",
+    justifyContent: "center",
+    width: "calc(100% - 30px)",
+    margin: "0 15px"
+  },
+  bottomBar: {
+    justifyContent: "center",
+    display: "flex",
+    position: "absolute",
+    alignItems: "center",
+    bottom: 0,
+    height: "70px",
+    padding: "5px 10px",
+    width: "100%",
+    backgroundColor: "white",
+    zIndex: "100"
+  },
   currentLocationButton: {
     backgroundImage: "url('./current-location.svg')",
     backgroundSize: "45%",
@@ -200,15 +196,14 @@ const styles = {
     margin: "20px 15px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    zIndex: 100
-  },
-  currenLocationButtonHolder: {
-    display: "flex",
-    justifyContent: "flex-end"
+    zIndex: 98,
+    bottom: "0",
+    right: "10px",
+    position: "absolute"
   },
   map: {
     width: "100%",
-    position: "absolute",
+    position: "fixed",
     top: 0,
     bottom: 0
   },
@@ -224,7 +219,7 @@ const styles = {
   },
   markerStyle: {
     position: "absolute",
-    zIndex: "100",
+    zIndex: "98",
     top: "calc(50% - 15px)",
     left: "calc(50% - 15px)",
     width: "30px",
@@ -234,11 +229,11 @@ const styles = {
 
 function mapStateToProps(state = {}) {
   const { ui = {} } = state;
-  const { address = false } = ui;
-  return { address };
+  const { address = false, mapScreenClicked = false } = ui;
+  return { address, mapScreenClicked };
 }
 
 export default connect(
   mapStateToProps,
-  { reportAdd, getAddress }
+  { reportAdd, getAddress, onMapScreenClicked }
 )(withRouter(Map));
