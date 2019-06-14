@@ -27,7 +27,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "react-scripts test",
+    "test": "NODE_PATH=src/ react-scripts test",
     "eslint": "eslint src/*.js src/**/*.js"
   },
   "eslintConfig": {
