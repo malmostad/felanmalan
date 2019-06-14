@@ -7,9 +7,8 @@ import { Route, Switch } from "react-router-dom";
 import Uploader from "./Screens/Uploader";
 import Map from "./Screens/Map";
 import Info from "./Screens/Info";
-import ReportSteps from "./Components/ReportSteps";
 
-const { Header, Footer, Content } = Layout;
+const { Footer, Content } = Layout;
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
@@ -27,9 +26,7 @@ class App extends Component {
     return (
       <Router>
         <Layout style={{ minHeight: "100vh" }}>
-          <Header />
           <Layout>
-            <ReportSteps />
             <Content>
               <Switch>
                 <Route path="/photo" component={Uploader} />

@@ -15,3 +15,17 @@ export async function createReport(report) {
     throw new Error(error);
   }
 }
+
+export async function getAddress(coordinates) {
+  const accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+  const response = await fetch(
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${coordinates.longitude},${coordinates.latitude}.json?types=address&access_token=${accessToken}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
+  return response.json();
+}

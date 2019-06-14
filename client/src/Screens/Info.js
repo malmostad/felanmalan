@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { reportAdd, createReport } from "../redux/actions";
 import { Link } from "react-router-dom";
 import TrackingService from "../TrackingService";
+import ErrorReportHeader from "../Components/Header";
 const { track } = TrackingService;
 
 const { TextArea } = Input;
@@ -40,6 +41,10 @@ class Info extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Layout>
+        <ErrorReportHeader
+          title="Foto"
+          description="Lägg till ett foto till din rapport för att göra det lättare för våra förvaltare att hitta problemet."
+        />
         <Form
           style={{ paddingLeft: "50px", maxWidth: "800px" }}
           onChange={this.onChange}

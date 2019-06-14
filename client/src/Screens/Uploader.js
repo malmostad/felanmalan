@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Layout, Upload, Icon, message } from "antd";
 import { connect } from "react-redux";
 import { photoUploaded } from "../redux/actions";
+import ErrorReportHeader from "../Components/Header";
 import { Link } from "react-router-dom";
 
 const Dragger = Upload.Dragger;
@@ -30,6 +31,10 @@ class Uploader extends Component {
     };
     return (
       <Layout>
+        <ErrorReportHeader
+          title="Foto"
+          description="Lägg till ett foto till din rapport för att göra det lättare för våra förvaltare att hitta problemet."
+        />
         <Dragger {...config}>
           <p className="ant-upload-drag-icon">
             <Icon type="inbox" />

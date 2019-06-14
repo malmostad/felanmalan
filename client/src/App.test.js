@@ -5,6 +5,15 @@ import { Provider } from "react-redux";
 import App from "./App";
 
 const store = createStore(() => {});
+jest.mock("@mapbox/mapbox-gl-geocoder", () => {
+  class MapboxGeocoder {
+    on() {}
+    onAdd() {
+      return "<div/>";
+    }
+  }
+  return MapboxGeocoder;
+});
 
 it("renders without crashing", () => {
   const div = document.createElement("div");

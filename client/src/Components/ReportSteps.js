@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Steps, Layout } from "antd";
-const { Sider } = Layout;
+import { Steps } from "antd";
 const Step = Steps.Step;
 const steps = [
   {
@@ -33,18 +32,16 @@ class ReportSteps extends Component {
     const { location = {} } = this.props;
     const { pathname = "" } = location;
     return (
-      <Sider width="250" style={{ backgroundColor: "white" }}>
-        <Steps style={{ padding: "0 25px" }} direction="vertical">
-          {steps.map(item => (
-            <Step
-              status={item.path === pathname ? "process" : "wait"}
-              key={item.title}
-              description={item.description}
-              title={item.title}
-            />
-          ))}
-        </Steps>
-      </Sider>
+      <Steps style={{ padding: "0 25px" }} direction="horizontal">
+        {steps.map(item => (
+          <Step
+            status={item.path === pathname ? "process" : "wait"}
+            key={item.title}
+            description={item.description}
+            title={item.title}
+          />
+        ))}
+      </Steps>
     );
   }
 }

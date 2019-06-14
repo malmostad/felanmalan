@@ -1,144 +1,244 @@
 import React, { Component } from "react";
-import mapboxgl from "mapbox-gl";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Layout, Button } from "antd";
+
+import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
 import { connect } from "react-redux";
+import ErrorReportHeader from "../Components/Header";
 
 // start using module resolver?
-import { reportAdd } from "../redux/actions";
+import { reportAdd, getAddress } from "../redux/actions";
 import TrackingService from "../TrackingService";
 const { track } = TrackingService;
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoibGx1ZnQiLCJhIjoiY2pvdWgzOWZoMTgzdTN3bzlvd3dzdXZnZSJ9.SmEygWmfwXWgJN4ZzrU3mA";
+const defaultCoordinates = {
+  longitude: 13.003365,
+  latitude: 55.6051458
+};
+
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 class Map extends Component {
+  state = {
+    hasGeoLocation: true,
+    userCoordinates: {}
+  };
   componentDidMount() {
-    // is there a better way to do this?
-    const props = this.props;
+    // fetch user locaion on start
+    this.askForLocation(true);
     let map = new mapboxgl.Map({
       container: this.mapContainer,
-      marker: true,
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [13.003365, 55.6051458],
+      center: [defaultCoordinates.longitude, defaultCoordinates.latitude],
       zoom: 13
     });
 
-    const marker = new mapboxgl.Marker({
-      draggable: true
-    });
+    const outer = document.createElement("div");
+    const el = document.createElement("div");
+    el.className = "pulsating-circle";
+    outer.append(el);
+    this.currentLocation = new mapboxgl.Marker(outer);
 
-    marker.on("dragend", () => {
-      const coords = marker.getLngLat();
-      const longitude = coords.lng;
-      const latitude = coords.lat;
-      props.reportAdd({ longitude, latitude });
-    });
+    map.on("dragend", this.onMapDragEnd);
+    map.on("zoomend", this.onMapDragEnd);
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      marker: false,
+      country: "SE",
+      mapboxgl: mapboxgl,
+      proximity: {
+        latitude: defaultCoordinates.latitude,
+        longitude: defaultCoordinates.longitude
+      }
+    }).on("result", this.onGeoCodeResult);
+    if (geocoder) {
+      this.geoCoderContainer.appendChild(geocoder.onAdd(map));
+    }
+    this.geocoder = geocoder;
 
-    let isSingleClick = false;
-    map.on("dblclick", event => {
-      isSingleClick = false;
-    });
-    map.on("click", event => {
-      isSingleClick = true;
-      setTimeout(() => {
-        if (isSingleClick) {
-          marker.setLngLat([event.lngLat.lng, event.lngLat.lat]).addTo(map);
-          isSingleClick = false;
-        }
-      }, 400);
-    });
-
-    map.addControl(
-      new mapboxgl.NavigationControl({ showCompass: false }),
-      "bottom-right"
-    );
-
-    map.addControl(
-      new mapboxgl.GeolocateControl({
-        showUserLocation: true,
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        trackUserLocation: true
-      }).on("geolocate", function(location) {
-        track("Location from current position");
-        const { longitude, latitude } = location.coords;
-        marker.setLngLat([longitude, latitude]).addTo(map);
-        props.reportAdd({ longitude, latitude });
-      }),
-      "bottom-right"
-    );
-    map.addControl(
-      // localize https://www.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-limit-region/
-      new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        country: "SE",
-        mapboxgl: mapboxgl,
-        proximity: { latitude: 13.003365, longitude: 55.6051458 }
-      }).on("result", event => {
-        track("Location from Search");
-        const coords = event.result.geometry.coordinates;
-        const longitude = coords[0];
-        const latitude = coords[1];
-        marker.setLngLat(coords).addTo(map);
-        props.reportAdd({ longitude, latitude });
-      }),
-      "top-left"
-    );
-
-    map.on("load", function() {
-      //fix resizing properly
-      // https://github.com/mapbox/mapbox-gl-js/issues/3265
-      // hide element and make visible here
-      map.resize();
-      map.addSource("single-point", {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: []
-        }
-      });
-
-      map.addLayer({
-        id: "point",
-        source: "single-point",
-        type: "circle",
-        paint: {
-          "circle-radius": 10,
-          "circle-color": "#007cbf"
-        }
-      });
-    });
     this.map = map;
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.address && nextProps.address !== this.props.address) {
+      this.geocoder.setInput(nextProps.address);
+    }
+  }
+
+  askForLocation = (onLoad = false) => {
+    if (window.navigator.permissions) {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then(PermissionStatus => {
+          if (PermissionStatus.state === "denied") {
+            this.setState({ hasGeoLocation: false });
+          } else {
+            this.getUserLocation(onLoad);
+          }
+        });
+    } else {
+      // safari doesnt have the Permission API
+      this.getUserLocation(onLoad);
+    }
+  };
+  onGeoCodeResult = event => {
+    track("Location from Search");
+    const coords = event.result.geometry.coordinates;
+    this.map.flyTo({ center: [coords[0], coords[1]] });
+  };
+  onMapDragEnd = () => {
+    const center = this.map.getCenter();
+    const coordinates = {
+      longitude: center.lng,
+      latitude: center.lat
+    };
+    this.props.getAddress(coordinates);
+  };
+
+  getUserLocation = (onLoad = false) => {
+    if (!navigator.geolocation) {
+      return;
+    }
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        this.onSuccessCurrentPosition(pos, onLoad);
+      },
+      this.onErrorCurrentPosition,
+      options
+    );
+  };
+  onSuccessCurrentPosition = (pos, onLoad) => {
+    const coordinates = pos.coords;
+    const center = [coordinates.longitude, coordinates.latitude];
+    let flyOptions = { center };
+    if (onLoad) {
+      // if got user position on page load zoom in abit.
+      flyOptions.zoom = 16;
+    }
+
+    this.currentLocation.setLngLat(center).addTo(this.map);
+    this.props.getAddress(coordinates);
+    this.setState({ hasGeoLocation: true });
+    this.map.flyTo(flyOptions);
+  };
+
+  onErrorCurrentPosition = data => {
+    this.setState({ hasGeoLocation: false });
+  };
+
+  onNextClick = () => {
+    const center = this.map.getCenter();
+    const coordinates = {
+      longitude: center.lng,
+      latitude: center.lat
+    };
+    this.props.reportAdd(coordinates);
+    const { history } = this.props;
+    history.push({
+      pathname: "/photo"
+    });
+  };
+
   componentWillUnmount() {
     this.map.remove();
   }
 
   render() {
-    const style = {
-      width: "100%",
-      height: "400px", // for now fix later
-      minHeight: "400px"
-    };
     return (
       <Layout>
-        <div style={style} ref={el => (this.mapContainer = el)} />
-        <div>
-          <Button type="primary">
-            <Link to="/photo">Next</Link>
+        <ErrorReportHeader
+          style={styles.header}
+          title="Plats"
+          description="Markera ut den plats där du vill rapportera ett fel"
+        >
+          <div>{this.state.address}</div>
+          <div ref={el => (this.geoCoderContainer = el)} />
+        </ErrorReportHeader>
+        <div style={styles.currenLocationButtonHolder}>
+          {this.state.hasGeoLocation ? (
+            <Button
+              type="primary"
+              shape="circle"
+              size="large"
+              style={styles.currentLocationButton}
+              onClick={this.getUserLocation}
+            />
+          ) : null}
+        </div>
+        <img alt="marker" src="./pin.svg" style={styles.markerStyle} />
+        <div style={styles.map} ref={el => (this.mapContainer = el)} />
+        {/* this is going to be moved and totatly remade, leave for now */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "10px",
+            zIndex: 100,
+            right: "10px"
+          }}
+        >
+          <Button type="primary" onClick={this.onNextClick}>
+            Next
           </Button>
         </div>
       </Layout>
     );
   }
 }
+const styles = {
+  currentLocationButton: {
+    backgroundImage: "url('./current-location.svg')",
+    backgroundSize: "45%",
+    backgroundColor: "white",
+    borderColor: "white",
+    margin: "20px 15px",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    zIndex: 100
+  },
+  currenLocationButtonHolder: {
+    display: "flex",
+    justifyContent: "flex-end"
+  },
+  map: {
+    width: "100%",
+    position: "absolute",
+    top: 0,
+    bottom: 0
+  },
+  boxStyle: {
+    zIndex: 3,
+    position: "absolute",
+    bottom: 0,
+    width: "100%"
+  },
+  header: {
+    backgroundColor: "white",
+    zIndex: 100
+  },
+  markerStyle: {
+    position: "absolute",
+    zIndex: "100",
+    top: "calc(50% - 15px)",
+    left: "calc(50% - 15px)",
+    width: "30px",
+    height: "30px"
+  }
+};
+
+function mapStateToProps(state = {}) {
+  const { ui = {} } = state;
+  const { address = false } = ui;
+  return { address };
+}
 
 export default connect(
-  undefined,
-  { reportAdd }
-)(Map);
+  mapStateToProps,
+  { reportAdd, getAddress }
+)(withRouter(Map));
