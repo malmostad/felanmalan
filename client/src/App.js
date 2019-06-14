@@ -8,7 +8,7 @@ import Uploader from "./Screens/Uploader";
 import Map from "./Screens/Map";
 import Info from "./Screens/Info";
 
-const { Footer, Content } = Layout;
+const { Content } = Layout;
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {

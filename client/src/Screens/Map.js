@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Layout, Button } from "antd";
 
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
-// import ErrorReportHeader from "../Components/Header";
 import MapOverlay from "Components/MapOverlay";
-import ReportSteps from "Components/ReportSteps";
-import NextButton from "Components/NextButton";
+// import ReportSteps from "Components/ReportSteps";
+// import NextButton from "Components/NextButton";
 import MapSearchBar from "Components/MapSearchBar";
 
 // start using module resolver?
@@ -130,7 +129,9 @@ class Map extends Component {
   };
 
   componentWillUnmount() {
-    this.map.remove();
+    if (this.map) {
+      this.map.remove();
+    }
   }
   onMapScreenClicked = () => {
     const { onMapScreenClicked } = this.props;
@@ -139,7 +140,7 @@ class Map extends Component {
   };
 
   render() {
-    const { mapScreenClicked } = this.props;
+    const { mapScreenClicked, address } = this.props;
     return (
       <Layout>
         <CSSTransition
@@ -162,7 +163,7 @@ class Map extends Component {
         ) : null}
         <img alt="marker" src="./pin.svg" style={styles.markerStyle} />
         <div style={styles.map} ref={el => (this.mapContainer = el)} />
-        <MapSearchBar ref={el => (this.geoCoderContainer = el)} />
+        <MapSearchBar address={address} ref={el => (this.geoCoderContainer = el)} />
       </Layout>
     );
   }

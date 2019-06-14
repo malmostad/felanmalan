@@ -40,7 +40,10 @@ class MapSearchBar extends Component {
   }
 
   onGeoCodeResult = event => {
-    console.log('YOOO');
+    const { onGeoCodeResult = false } = this.props;
+    if (onGeoCodeResult) {
+      onGeoCodeResult(event);
+    }
   };
 }
 const styles = {
@@ -51,7 +54,7 @@ const styles = {
     justifyContent: "center",
     width: "calc(100% - 30px)",
     margin: "0 15px"
-  },
+  }
 };
 // add loading of state here
 export default MapSearchBar;
