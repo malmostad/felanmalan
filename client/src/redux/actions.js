@@ -2,7 +2,8 @@ import {
   CREATE_REPORT,
   REPORT_ADD,
   PHOTO_UPLOAD_SUCCESS,
-  GET_ADDRESS
+  GET_ADDRESS,
+  UI_MAP_SCREEN_CLICKED
 } from "./action-types";
 
 export const reportAdd = step => ({
@@ -23,3 +24,6 @@ export const createReport = payload => ({
 export function getAddress(coordinates) {
   return { type: GET_ADDRESS, payload: coordinates };
 }
+export const onMapScreenClicked = () => {
+  return { type: UI_MAP_SCREEN_CLICKED };
+};
