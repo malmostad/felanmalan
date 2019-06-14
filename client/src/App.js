@@ -35,7 +35,6 @@ class App extends Component {
               </Switch>
             </Content>
           </Layout>
-          <Footer style={{ textAlign: "center" }}>Malmo Civic Labs</Footer>
         </Layout>
       </Router>
     );
