@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./PhotoItem.module.css";
+import moduleStyles from "./PhotoItem.module.css";
 
 class PhotoItem extends Component {
   onClick = () => {
@@ -9,13 +9,15 @@ class PhotoItem extends Component {
     }
   };
   renderUploading = () => {
-    return <div className={styles.uploading}>Uploading...</div>;
+    return <div className={moduleStyles.uploading}>Uploading...</div>;
   };
   renderImage = () => {
     const { uuid = false, previewDataURL = false } = this.props;
     return (
       <div>
-        <img key={uuid} src={previewDataURL} alt={uuid} />
+        {previewDataURL ? (
+          <img key={uuid} src={previewDataURL} alt={uuid} />
+        ) : null}
         <div
           onClick={() => {
             this.onRemoveImage(uuid);
@@ -28,10 +30,10 @@ class PhotoItem extends Component {
   };
 
   render() {
-    const { isUploading = false, uuid = false, children = null } = this.props;
+    const { isUploading = false, uuid = false, children = null, style = {} } = this.props;
     return (
-      <div className={styles.photoItem} key={uuid}>
-        <div className={styles.photoItemContent}>
+      <div className={moduleStyles.photoItem} key={uuid} style={style}>
+        <div className={moduleStyles.photoItemContent}>
           {isUploading ? this.renderUploading() : null}
           {uuid ? this.renderImage() : null}
           {children ? children : null}

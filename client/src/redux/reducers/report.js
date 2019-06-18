@@ -1,6 +1,7 @@
 import {
   REPORT_ADD,
   PHOTO_UPLOAD_SUCCESS,
+  GET_ADDRESS_SUCCESS,
   PHOTO_REMOVED
 } from "../action-types";
 
@@ -11,6 +12,9 @@ const initialState = {
 };
 const reportReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ADDRESS_SUCCESS:
+      const { payload = {} } = action;
+      return { ...state, address: payload.address };
     case PHOTO_REMOVED: {
       const { uuid = -1 } = action;
       const { images = [] } = state;

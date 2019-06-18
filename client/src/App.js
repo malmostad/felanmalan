@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Layout, message } from "antd";
 import { connect } from "react-redux";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { createReport } from "redux/actions";
 

@@ -111,9 +111,12 @@ class Photos extends Component {
               ) : null}
             </div>
           </div>
-          <p>
-            Fotot ska göra det lättare för våra förvaltare att hitta där problemet uppstått.
-          </p>
+          <div className="content">
+            <p className={styles.infoText}>
+              Fotot ska göra det lättare för våra förvaltare<br />
+              att hitta där problemet uppstått.
+            </p>
+          </div>
         </div>
       </div>
     );

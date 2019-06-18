@@ -22,9 +22,9 @@ class ScreenTitle extends Component {
         <div className={styles.screenTitleHolder}>
           <Logo />
           <h1 className={styles.screenTitle}>
-            { !strongTextLast && <strong className="boldText">{titleStrong}</strong> }
+            {!strongTextLast && <strong className="boldText">{titleStrong}</strong>}
             {title}
-            { strongTextLast && <strong className="boldText">{titleStrong}</strong> }
+            {strongTextLast && <strong className="boldText">{titleStrong}</strong>}
           </h1>
           {children}
         </div>
