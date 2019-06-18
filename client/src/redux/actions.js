@@ -12,9 +12,10 @@ export const reportAdd = step => ({
   payload: step
 });
 
-export const photoUploaded = uuid => ({
+export const photoUploaded = (uuid, previewDataURL) => ({
   type: PHOTO_UPLOAD_SUCCESS,
-  uuid
+  uuid,
+  previewDataURL
 });
 
 export const photoRemoved = uuid => ({

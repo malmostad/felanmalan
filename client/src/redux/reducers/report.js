@@ -5,7 +5,8 @@ import {
 } from "../action-types";
 
 const initialState = {
-  images: []
+  images: [],
+  previews: []
   // TODO user default location as start long, lat
 };
 const reportReducer = (state = initialState, action) => {
@@ -19,11 +20,12 @@ const reportReducer = (state = initialState, action) => {
       };
     }
     case PHOTO_UPLOAD_SUCCESS: {
-      const { uuid = -1 } = action;
-      const { images = [] } = state;
+      const { uuid = -1, previewDataURL = -1 } = action;
+      const { images = [], previews = [] } = state;
       return {
         ...state,
-        images: [...images, uuid]
+        images: [...images, uuid],
+        previews: [...previews, { uuid, previewDataURL }]
       };
     }
     case REPORT_ADD:

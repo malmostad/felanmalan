@@ -4,13 +4,14 @@
 }
 .ant-upload.ant-upload-select-picture-card,
 .ant-upload-list-picture-card .ant-upload-list-item {
-  width: 180px;
-  height: 180px;
+  width: 100px;
+  height: 100px;
   padding: 0;
   overflow: hidden;
   border: none;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
+  transition: none;
 }
 .ant-upload.ant-upload-select-picture-card {
   background: #F8F8FA;
@@ -18,5 +19,27 @@
   background-image: url('./plus.svg');
   background-repeat: no-repeat;
   background-position: center center;
+  transition: none;
 
+}
+.ant-upload-list-picture-card .ant-upload-list-item-actions,
+.ant-upload-list-picture-card .ant-upload-list-item-info {
+  transition: none;
+}
+..ant-upload-list-picture .ant-upload-list-item-name, .ant-upload-list-picture-card .ant-upload-list-item-name {
+  transition: none;
+  display: none;
+}
+
+@media screen and (min-width: 640px) {
+  .ant-upload.ant-upload-select-picture-card,
+  .ant-upload-list-picture-card .ant-upload-list-item {
+    width: 180px;
+    height: 180px;
+  }
+}
+.ant-upload.ant-upload-select {
+  background: green;
+  height: 100%;
+  width: 100%;
 }

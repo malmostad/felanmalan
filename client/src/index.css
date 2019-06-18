@@ -81,6 +81,7 @@ label {
 }
 
 textarea {
+  font-size: 16px;
   min-height: 200px;
   border: none;
   background: #F8F8FA;
@@ -88,16 +89,9 @@ textarea {
   border-radius: 5px;
   padding: 10px;
 }
-input {
-  border: none;
-  background: none;
-  border-bottom: solid 1px $divider;
-  display: block;
-  width: 100%;
-  margin: 20px;
-}
 .content {
   margin: 25px auto;
+  padding: 0 30px;
   width: 100%;
   max-width: $contentMaxWidth;
 }

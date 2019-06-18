@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import { Upload } from "antd";
 import { connect } from "react-redux";
 import { photoUploaded, photoRemoved } from "redux/actions";
-import styles from "./Photos.module.css";
 import FullScreenTitle from "Components/FullScreenTitle";
 import ScreenTitle from "Components/ScreenTitle";
 import PhotosOverlay from "Components/PhotosOverlay";
+import PhotoItem from "Components/PhotoItem";
 import UploadButton from "./upload-button.svg";
+import { previewImage } from "utils";
+import Plus from "./plus.svg";
+
+import styles from "./Photos.module.css";
 import "./Uploader.override.css";
 
 const Dragger = Upload.Dragger;
@@ -18,18 +22,38 @@ class Photos extends Component {
       fileList: []
     };
   }
-  onPhotoChange = ({ file, fileList }) => {
+  onPhotoChange = async ({ file, fileList }) => {
     const status = file.status;
-    if (status === "done") {
-      this.props.photoUploaded(file.response.id);
+    if (status === "uploading") {
+      this.setState({
+        fileList: [
+          ...this.state.fileList.filter(uid => uid !== file.uid),
+          file.uid
+        ]
+      });
     }
-    this.setState({ fileList });
+    if (status === "done") {
+      try {
+        const dataURL = await previewImage(file.originFileObj);
+        this.props.photoUploaded(file.response.id, dataURL);
+      } catch (error) {
+        this.props.photoUploaded(file.response.id, -1);
+      }
+      this.setState({
+        fileList: this.state.fileList.filter(uid => uid !== file.uid)
+      });
+    }
+  };
+  onPreviewFile = file => {
+    console.log(file);
+    return previewImage(file);
   };
   onRemoveImage = file => {
     const { response } = file;
     const { id = "" } = response;
     this.props.photoRemoved(id);
   };
+  // TODO: add progress on upload
   render() {
     const config = {
       name: "file",
@@ -37,9 +61,13 @@ class Photos extends Component {
       multiple: true,
       onChange: this.onPhotoChange
     };
-    const { images = [], aPhotoUploaded = false } = this.props;
+    const { images = [], aPhotoUploaded = false, previews = [] } = this.props;
     const { fileList = [] } = this.state;
-    const uploadButton = <div />;
+    const imageItems = previews.concat(
+      fileList.map(item => {
+        return { uuid: item, isUploading: true };
+      })
+    );
     const showOverlay =
       !(images.length !== 0 || fileList.length !== 0) && !aPhotoUploaded;
     return (
@@ -69,19 +97,23 @@ class Photos extends Component {
           />
           <div className={styles.photosContentHolder}>
             <div className={styles.photosContent}>
-              <Upload
-                {...config}
-                listType="picture-card"
-                fileList={fileList}
-                onRemove={this.onRemoveImage}
-              >
-                {fileList.length >= 3 ? null : uploadButton}
-              </Upload>
-              <p>
-                Fotot ska göra det lättare för våra förvaltare att hitta där problemet uppstått.
-              </p>
+              {imageItems.map(preview => (
+                <PhotoItem key={preview.uuid} {...preview} />
+              ))}
+              {imageItems.length < 4 ? (
+                <PhotoItem>
+                  <Upload {...config} listType="none">
+                    <div className={styles.photoUploadButton}>
+                      <img src={Plus} alt="Lägg till bild" />
+                    </div>
+                  </Upload>
+                </PhotoItem>
+              ) : null}
             </div>
           </div>
+          <p>
+            Fotot ska göra det lättare för våra förvaltare att hitta där problemet uppstått.
+          </p>
         </div>
       </div>
     );
@@ -90,9 +122,9 @@ class Photos extends Component {
 
 function mapStateToProps(state = {}) {
   const { report = {}, ui = {} } = state;
-  const { images = [] } = report;
+  const { images = [], previews = [] } = report;
   const { aPhotoUploaded = false } = ui;
-  return { images, aPhotoUploaded };
+  return { images, aPhotoUploaded, previews };
 }
 
 export default connect(
