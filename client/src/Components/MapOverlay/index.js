@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./MapOverlay.module.css";
-import Logo from "Images/logo.svg";
+import FullScreenTitle from "Components/FullScreenTitle";
 
 class MapOverlay extends Component {
   onClick = () => {
@@ -17,13 +17,10 @@ class MapOverlay extends Component {
         onClick={this.onClick}
         onTouchStart={this.onClick}
       >
-        <div className="screenTitleHolder">
-          <img src={Logo} alt="Malmö stad" />
-          <h1 className="screenTitle">
-            <strong className="boldText">Markera ut platsen </strong>
-            där du vill rapportera ett fel
-          </h1>
-        </div>
+        <FullScreenTitle
+          titleStrong="Markera ut platsen "
+          title="där du vill rapportera ett fel"
+        />
       </div>
     );
   }

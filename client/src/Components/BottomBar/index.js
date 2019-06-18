@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./BottomBar.module.css";
-import { Colors } from 'GlobalStyles';
+import * as GlobalStyles from "GlobalStyles";
 
 class BottomBar extends Component {
   render() {
@@ -8,7 +8,7 @@ class BottomBar extends Component {
     return (
       <div
         className={styles.bottomBarOuter}
-        style={{ backgroundColor: Colors.mainColor }}
+        style={{ backgroundColor: GlobalStyles.mainColor }}
       >
         <div className={styles.bottomBarInner}>{children}</div>
       </div>

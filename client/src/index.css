@@ -69,28 +69,42 @@ code {
     transform: scale(.8);
   }
 }
-.screenTitleHolder {
-  max-width: 600px;
-  self-align: center;
-}
-.screenTitle {
-  max-width: 30rem;
-  font-weight: lighter;
-  letter-spacing: 0.2px;
-  text-align: left;
-  color: #FFE5E6;
-  font-size: 40px;
-  line-height: 40px;
-  margin-top: 30px;
-}
-@media screen and (min-width: 640px) {
-  .screenTitle {
-    max-width: 40rem;
-    font-size: 80px;
-    line-height: 80px;
-  }
-}
 .boldText {
   font-weight: bold;
+}
+label {
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 16px;
+  color: $mainColor;
+  margin-bottom: 5px;
+}
+
+textarea {
+  min-height: 200px;
+  border: none;
+  background: #F8F8FA;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  padding: 10px;
+}
+input {
+  border: none;
+  background: none;
+  border-bottom: solid 1px $divider;
+  display: block;
+  width: 100%;
+  margin: 20px;
+}
+.content {
+  margin: 25px auto;
+  width: 100%;
+  max-width: $contentMaxWidth;
+}
+@media screen and (min-width: 800px) {
+  .content {
+    margin: 60px auto;
+    width: 100%;
+  }
 }
 

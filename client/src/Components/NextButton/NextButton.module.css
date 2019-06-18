@@ -1,6 +1,16 @@
 .nextButton {
-  color: #B4B4BD;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .nextButton img {
   margin-left: 5px;
+}
+.nextButton svg {
+  height: 12px;
+  margin-left: 5px;
+}
+.nextButton svg path {
+  stroke: white;
 }

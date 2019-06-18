@@ -4,6 +4,7 @@
 }
 .overlay-exit-done {
   opacity: 0;
+  display: none;
 }
 .overlay-exit-active {
   opacity: 0;

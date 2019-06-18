@@ -3,10 +3,12 @@ import {
   CREATE_REPORT_SUCCESS,
   CREATE_REPORT,
   GET_ADDRESS_SUCCESS,
-  UI_MAP_SCREEN_CLICKED
+  UI_MAP_SCREEN_CLICKED,
+  PHOTO_UPLOAD_SUCCESS
 } from "../action-types";
 
 const initialState = {
+  aPhotoUploaded: false,
   mapScreenClicked: false,
   sendingState: "none",
   address: false
@@ -14,6 +16,8 @@ const initialState = {
 
 const uiReducer = (state = initialState, action) => {
   switch (action.type) {
+    case PHOTO_UPLOAD_SUCCESS:
+      return { ...state, aPhotoUploaded: true };
     case UI_MAP_SCREEN_CLICKED:
       return { ...state, mapScreenClicked: true };
     case CREATE_REPORT:
