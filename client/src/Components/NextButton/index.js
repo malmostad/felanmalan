@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import styles from "./NextButton.module.css";
 import { ReactComponent as NextArrow } from "./next.svg";
 
@@ -14,7 +14,7 @@ class NextButton extends Component {
       onSubmit();
     }
   };
-  render() {
+  renderLink = () => {
     const { to = "/", text = null, active = true } = this.props;
     return (
       <Link
@@ -27,6 +27,10 @@ class NextButton extends Component {
         <NextArrow />
       </Link>
     );
+  };
+  render() {
+    const { path = "/" } = this.props;
+    return <Route exact path={path} render={this.renderLink} />;
   }
 }
 // add loading of state here

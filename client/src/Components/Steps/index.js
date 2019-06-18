@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./Steps.module.css";
 import { withRouter } from "react-router-dom";
 
+// TODO: move out to a more global place
 const steps = [
   {
     title: "Location",

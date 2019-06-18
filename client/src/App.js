@@ -32,10 +32,16 @@ class App extends Component {
   }
 
   render() {
-    const { createReport, email, phone, description } = this.props;
+    const {
+      createReport,
+      email,
+      phone,
+      description,
+      mapScreenClicked
+    } = this.props;
     return (
       <Router>
-        <Layout style={{ minHeight: "100vh" }}>
+        <Layout>
           <Content>
             <Switch>
               <Route path="/photo" component={Photos} />
@@ -46,41 +52,26 @@ class App extends Component {
             </Switch>
             <BottomBar>
               <Steps />
-              <Route
-                exact
-                path="/"
-                render={() => <NextButton text="Nästa steg" to="/photo" />}
+              <NextButton
+                text="Nästa steg"
+                active={mapScreenClicked}
+                to="/photo"
               />
-              <Route
-                path="/photo"
-                render={() => {
-                  return <NextButton text="Nästa steg" to="/info" />;
-                }}
-              />
-              <Route
-                exact
+              <NextButton path="/photo" text="Nästa steg" to="/info" />
+              <NextButton
                 path="/info"
-                render={() => (
-                  <NextButton
-                    text="Nästa steg"
-                    to="/contact-info"
-                    active={description.length > 0}
-                  />
-                )}
+                text="Nästa steg"
+                to="/contact-info"
+                active={description.length > 0}
               />
-              <Route
-                exact
+              <NextButton
+                text="Skicka felanmälan"
                 path="/contact-info"
-                render={() => (
-                  <NextButton
-                    text="Skicka felanmälan"
-                    to="/done"
-                    active={email.length > 0 || phone.length > 0}
-                    onSubmit={() => {
-                      createReport();
-                    }}
-                  />
-                )}
+                to="/done"
+                active={email.length > 0 || phone.length > 0}
+                onSubmit={() => {
+                  createReport();
+                }}
               />
             </BottomBar>
           </Content>
@@ -93,8 +84,8 @@ class App extends Component {
 function mapStateToProps(state = {}) {
   const { ui = {}, report = {} } = state;
   const { images = [], description = "", email = "", phone = "" } = report;
-  const { sendingState = "none" } = ui;
-  return { sendingState, images, description, email, phone };
+  const { sendingState = "none", mapScreenClicked } = ui;
+  return { sendingState, images, description, email, phone, mapScreenClicked };
 }
 
 export default connect(

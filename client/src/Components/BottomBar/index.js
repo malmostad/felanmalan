@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import styles from "./BottomBar.module.css";
 import * as GlobalStyles from "GlobalStyles";
+import { withRouter } from "react-router-dom";
 
 class BottomBar extends Component {
   render() {
-    const { children = null } = this.props;
+    const { children = null, location = {} } = this.props;
+    const { pathname = "" } = location;
+    if (pathname === "/done") {
+      return null;
+    }
     return (
       <div
         className={styles.bottomBarOuter}
@@ -15,4 +20,4 @@ class BottomBar extends Component {
     );
   }
 }
-export default BottomBar;
+export default withRouter(BottomBar);
