@@ -2,6 +2,7 @@ import {
   CREATE_REPORT,
   REPORT_ADD,
   PHOTO_UPLOAD_SUCCESS,
+  PHOTO_REMOVED,
   GET_ADDRESS,
   UI_MAP_SCREEN_CLICKED
 } from "./action-types";
@@ -13,6 +14,11 @@ export const reportAdd = step => ({
 
 export const photoUploaded = uuid => ({
   type: PHOTO_UPLOAD_SUCCESS,
+  uuid
+});
+
+export const photoRemoved = uuid => ({
+  type: PHOTO_REMOVED,
   uuid
 });
 
