@@ -14,6 +14,10 @@ const steps = [
   {
     title: "Additional Info",
     path: "/info"
+  },
+  {
+    title: "Contact info",
+    path: "/contact-info"
   }
 ];
 
