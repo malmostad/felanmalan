@@ -19,8 +19,7 @@ class NextButton extends Component {
     return (
       <Link
         onClick={this.onClick}
-        className={styles.nextButton}
-        style={{ opacity: active ? 1 : 0.5 }}
+        className={`${styles.nextButton} ${!active ? styles.disabled : ""}`}
         to={to}
       >
         {text}

@@ -14,3 +14,7 @@
 .nextButton svg path {
   stroke: white;
 }
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

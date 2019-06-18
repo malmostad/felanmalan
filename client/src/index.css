@@ -102,3 +102,15 @@ textarea {
   }
 }
 
+.overlay-exit {
+  opacity: 1;
+  transition: opacity 400ms;
+}
+.overlay-exit-done {
+  opacity: 0;
+  display: none;
+}
+.overlay-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}

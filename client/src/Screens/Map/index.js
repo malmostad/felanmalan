@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Layout, Button } from "antd";
-
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 import { connect } from "react-redux";
+import mapboxgl from "mapbox-gl";
 import { CSSTransition } from "react-transition-group";
-import "./Map.css";
+import TrackingService from "TrackingService";
+
 import MapOverlay from "Components/MapOverlay";
-// import ReportSteps from "Components/ReportSteps";
-// import NextButton from "Components/NextButton";
 import MapSearchBar from "Components/MapSearchBar";
 
-// start using module resolver?
-import { reportAdd, getAddress, onMapScreenClicked } from "../redux/actions";
-import TrackingService from "../TrackingService";
+import styles from "./Map.module.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+import Pin from "./pin.svg";
+
+import { reportAdd, getAddress, onMapScreenClicked } from "redux/actions";
+
 const { track } = TrackingService;
 
 const defaultCoordinates = {
@@ -153,17 +153,21 @@ class Map extends Component {
         >
           <MapOverlay onClick={this.onMapScreenClicked} />
         </CSSTransition>
-        {this.state.hasGeoLocation ? (
+        { true ? (
           <Button
             type="primary"
             shape="circle"
             size="large"
-            style={styles.currentLocationButton}
+            className={styles.currentLocationButton}
             onClick={this.getUserLocation}
           />
         ) : null}
-        <div style={styles.map} ref={el => (this.mapContainer = el)} />
-        <img alt="marker" src="./pin.svg" style={styles.markerStyle} />
+        <div
+          style={{ position: "fixed" }}
+          className={styles.map}
+          ref={el => (this.mapContainer = el)}
+        />
+        <img alt="marker" src={Pin} className={styles.markerStyle} />
         <MapSearchBar
           address={address}
           ref={el => (this.geoCoderContainer = el)}
@@ -172,65 +176,6 @@ class Map extends Component {
     );
   }
 }
-const styles = {
-  searchBar: {
-    position: "absolute",
-    top: "15px",
-    display: "flex",
-    justifyContent: "center",
-    width: "calc(100% - 30px)",
-    margin: "0 15px"
-  },
-  bottomBar: {
-    justifyContent: "center",
-    display: "flex",
-    position: "absolute",
-    alignItems: "center",
-    bottom: 0,
-    height: "70px",
-    padding: "5px 10px",
-    width: "100%",
-    backgroundColor: "white",
-    zIndex: "100"
-  },
-  currentLocationButton: {
-    backgroundImage: "url('./current-location.svg')",
-    backgroundSize: "45%",
-    backgroundColor: "white",
-    borderColor: "white",
-    margin: "20px 15px",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    zIndex: 98,
-    bottom: "0",
-    right: "10px",
-    position: "absolute"
-  },
-  map: {
-    width: "100%",
-    position: "fixed",
-    top: 0,
-    bottom: 0
-  },
-  boxStyle: {
-    zIndex: 3,
-    position: "absolute",
-    bottom: 0,
-    width: "100%"
-  },
-  header: {
-    backgroundColor: "white",
-    zIndex: 100
-  },
-  markerStyle: {
-    position: "fixed",
-    zIndex: "98",
-    top: "calc(50% - 15px)",
-    left: "calc(50% - 15px)",
-    width: "30px",
-    height: "30px"
-  }
-};
 
 function mapStateToProps(state = {}) {
   const { ui = {} } = state;

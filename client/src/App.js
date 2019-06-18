@@ -50,7 +50,7 @@ class App extends Component {
               <Route path="/done" component={Done} />
               <Route component={Map} />
             </Switch>
-            <BottomBar>
+            <BottomBar disabled={!mapScreenClicked}>
               <Steps />
               <NextButton
                 text="Nästa steg"
