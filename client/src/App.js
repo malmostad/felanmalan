@@ -12,6 +12,7 @@ import Done from "Screens/Done";
 import Info from "Screens/Info";
 import ContactInfo from "Screens/ContactInfo";
 
+import LoadingIndicator from "Components/LoadingIndicator";
 import Steps from "Components/Steps";
 import BottomBar from "Components/BottomBar";
 import NextButton from "Components/NextButton";
@@ -34,6 +35,8 @@ class App extends Component {
   render() {
     const {
       createReport,
+      loading,
+      loadingMessage = false,
       email,
       phone,
       description,
@@ -52,6 +55,7 @@ class App extends Component {
             </Switch>
             <BottomBar disabled={!mapScreenClicked}>
               <Steps />
+              {loading && <LoadingIndicator message={loadingMessage} />}
               <NextButton
                 text="Nästa steg"
                 active={mapScreenClicked}
@@ -84,8 +88,22 @@ class App extends Component {
 function mapStateToProps(state = {}) {
   const { ui = {}, report = {} } = state;
   const { images = [], description = "", email = "", phone = "" } = report;
-  const { sendingState = "none", mapScreenClicked } = ui;
-  return { sendingState, images, description, email, phone, mapScreenClicked };
+  const {
+    sendingState = "none",
+    mapScreenClicked,
+    loading,
+    loadingMessage = false
+  } = ui;
+  return {
+    sendingState,
+    images,
+    description,
+    email,
+    phone,
+    mapScreenClicked,
+    loading,
+    loadingMessage
+  };
 }
 
 export default connect(

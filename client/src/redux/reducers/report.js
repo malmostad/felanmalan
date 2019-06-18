@@ -5,10 +5,15 @@ import {
   PHOTO_REMOVED
 } from "../action-types";
 
+// TODO: make this configurable
+const defaultCoordinates = {
+  longitude: 13.003365,
+  latitude: 55.6051458
+};
 const initialState = {
+  ...defaultCoordinates,
   images: [],
   previews: []
-  // TODO user default location as start long, lat
 };
 const reportReducer = (state = initialState, action) => {
   switch (action.type) {

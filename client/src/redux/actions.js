@@ -4,7 +4,9 @@ import {
   PHOTO_UPLOAD_SUCCESS,
   PHOTO_REMOVED,
   GET_ADDRESS,
-  UI_MAP_SCREEN_CLICKED
+  UI_MAP_SCREEN_CLICKED,
+  UI_LOADING_STOP,
+  UI_LOADING_START
 } from "./action-types";
 
 export const reportAdd = step => ({
@@ -33,4 +35,10 @@ export function getAddress(coordinates) {
 }
 export const onMapScreenClicked = () => {
   return { type: UI_MAP_SCREEN_CLICKED };
+};
+export const uiLoadingStart = message => {
+  return { type: UI_LOADING_START, message };
+};
+export const uiLoadingStop = message => {
+  return { type: UI_LOADING_STOP };
 };
