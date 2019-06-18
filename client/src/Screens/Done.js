@@ -10,7 +10,7 @@ class Done extends Component {
     const { description, address } = this.props;
     return (
       <Layout>
-        <ScreenTitle titleStrong="skickats" title="Felanmälan har " />
+        <ScreenTitle strongTextLast={true} titleStrong="skickats" title="Felanmälan har " />
         <Layout className="content">
           {address && <p>{address}</p>}
           <p>{description}</p>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Layout } from "antd";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import { reportAdd } from "redux/actions";
 import ScreenTitle from "Components/ScreenTitle";
@@ -8,34 +9,56 @@ import FormItem from "Components/FormItem";
 
 class ContactInfo extends Component {
   state = {
-    email: ""
+    email: "",
+    phone: ""
   };
+
+  componentWillReceiveProps(nextProps) {
+    // TODO: move out to error message and redirect component
+    const { sendingState: currentSendingState } = this.props;
+    if (currentSendingState === "pending") {
+      if (nextProps.sendingState === "none") {
+        this.props.history.push("/done");
+      }
+    }
+  }
   componentDidMount() {
     const { description } = this.props;
     this.setState({
       description
     });
   }
-  onEmailChange = event => {
-    // throttle??
-    // this.props.reportAdd({ email: event.target.value });
-    this.setState({
-      email: event.target.value
-    });
+  onEmailChange = (event, valid) => {
+    const { reportAdd } = this.props;
+    // TODO: fix better solution for this
+    const email = event.target.value;
+    this.setState({ email });
+    if (valid) {
+      return reportAdd({ email });
+    }
+    reportAdd({ email: "" });
   };
   onPhoneNumberChange = event => {
-    this.setState({
-      phone: event.target.value
-    });
+    const { reportAdd } = this.props;
+    // TODO: fix better solution for this
+    const phone = event.target.value;
+    this.setState({ phone });
+    reportAdd({ phone });
   };
-  onSubmit = () => {
-    // go yo
+
+  onSubmit = event => {
+    event.preventDefault();
+    const { reportAdd } = this.props;
+    const { phone = "", email = "" } = this.state;
+    if (phone.length > 0 || email.length > 0) {
+      reportAdd({ phone, email });
+    }
   };
 
   render() {
     return (
       <Layout>
-        <ScreenTitle titleStrong="kontaktuppgifter" title="Lämna dina " />
+        <ScreenTitle strongTextLast={true} titleStrong="kontaktuppgifter" title="Lämna dina " />
         <Layout className="content">
           <form onSubmit={this.onSubmit}>
             <FormItem
@@ -59,12 +82,13 @@ class ContactInfo extends Component {
 }
 
 function mapStateToProps(state = {}) {
-  const { report = {} } = state;
+  const { report = {}, ui } = state;
   const { email, phone } = report;
-  return { email, phone };
+  const { sendingState = "none" } = ui;
+  return { email, phone, sendingState };
 }
 
 export default connect(
   mapStateToProps,
   { reportAdd }
-)(ContactInfo);
+)(withRouter(ContactInfo));

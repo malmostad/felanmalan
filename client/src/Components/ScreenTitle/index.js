@@ -11,14 +11,20 @@ class ScreenTitle extends Component {
   };
 
   render() {
-    const { titleStrong = "", title = "", children = null } = this.props;
+    const {
+      titleStrong = "",
+      title = "",
+      children = null,
+      strongTextLast = false
+    } = this.props;
     return (
       <div className={styles.screenTitleBg}>
         <div className={styles.screenTitleHolder}>
           <Logo />
           <h1 className={styles.screenTitle}>
-            <strong className="boldText">{titleStrong}</strong>
+            { !strongTextLast && <strong className="boldText">{titleStrong}</strong> }
             {title}
+            { strongTextLast && <strong className="boldText">{titleStrong}</strong> }
           </h1>
           {children}
         </div>

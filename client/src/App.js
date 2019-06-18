@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Layout, message } from "antd";
 import { connect } from "react-redux";
-import { Route, Switch, browserHistory } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import { createReport } from "redux/actions";
+
 import Photos from "Screens/Photos";
-// import Uploader from "./Screens/Uploader";
 import Map from "Screens/Map";
 import Done from "Screens/Done";
 import Info from "Screens/Info";
 import ContactInfo from "Screens/ContactInfo";
+
 import Steps from "Components/Steps";
 import BottomBar from "Components/BottomBar";
 import NextButton from "Components/NextButton";
@@ -19,7 +20,6 @@ const { Content } = Layout;
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     const { sendingState: currentSendingState } = this.props;
     if (currentSendingState === "pending") {
       if (nextProps.sendingState === "none") {
