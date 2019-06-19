@@ -6,9 +6,13 @@ import {
 } from "../action-types";
 
 // TODO: make this configurable
+const {
+  REACT_APP_DEFAULT_LONGITUDE = 13.003365,
+  REACT_APP_DEFAULT_LATITUDE = 55.6051458
+} = process.env;
 const defaultCoordinates = {
-  longitude: 13.003365,
-  latitude: 55.6051458
+  longitude: REACT_APP_DEFAULT_LONGITUDE,
+  latitude: REACT_APP_DEFAULT_LATITUDE
 };
 const initialState = {
   ...defaultCoordinates,

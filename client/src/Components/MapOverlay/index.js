@@ -18,7 +18,7 @@ class MapOverlay extends Component {
         onTouchStart={this.onClick}
       >
         <FullScreenTitle
-          titleStrong="Markera ut platsen "
+          titleStrong="Markera ut platsen " // intentionally trailing whitespace
           title="där du vill rapportera ett fel"
         />
       </div>

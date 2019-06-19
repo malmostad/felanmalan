@@ -5,9 +5,7 @@ import styles from "./FullScreenTitle.module.css";
 class FullScreenTitle extends Component {
   onClick = () => {
     const { onClick = false } = this.props;
-    if (onClick) {
-      onClick();
-    }
+    onClick && onClick();
   };
 
   render() {

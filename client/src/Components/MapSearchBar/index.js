@@ -5,9 +5,14 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
 import "./mapbox-gl-geocoder.css";
 
+const {
+  REACT_APP_DEFAULT_LONGITUDE = 13.003365,
+  REACT_APP_DEFAULT_LATITUDE = 55.6051458
+} = process.env;
+
 const defaultCoordinates = {
-  longitude: 13.003365,
-  latitude: 55.6051458
+  longitude: REACT_APP_DEFAULT_LONGITUDE,
+  latitude: REACT_APP_DEFAULT_LATITUDE
 };
 const styles = {
   searchBar: {
@@ -39,10 +44,7 @@ class MapSearchBar extends Component {
       marker: false,
       country: "SE",
       mapboxgl: mapboxgl,
-      proximity: {
-        latitude: defaultCoordinates.latitude,
-        longitude: defaultCoordinates.longitude
-      }
+      proximity: defaultCoordinates
     }).on("result", this.onGeoCodeResult);
     if (geocoder) {
       this.geoCoderContainer.appendChild(geocoder.onAdd(map));

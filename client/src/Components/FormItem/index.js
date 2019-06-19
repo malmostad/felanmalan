@@ -26,7 +26,6 @@ class InputItem extends Component {
     if (type === "phone") {
       this.setState({ valid });
     }
-    // this.setState({ valid: true });
     this.onHandleChange(event, valid);
   };
 

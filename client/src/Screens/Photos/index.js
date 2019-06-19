@@ -13,6 +13,7 @@ import Plus from "./plus.svg";
 import styles from "./Photos.module.css";
 import "./Uploader.override.css";
 
+const MAX_AMOUNT_OF_IMAGES = 3;
 const Dragger = Upload.Dragger;
 
 class Photos extends Component {
@@ -100,7 +101,7 @@ class Photos extends Component {
               {imageItems.map(preview => (
                 <PhotoItem key={preview.uuid} {...preview} />
               ))}
-              {imageItems.length < 4 ? (
+              {imageItems.length <= MAX_AMOUNT_OF_IMAGES ? (
                 <PhotoItem>
                   <Upload {...config} listType="none">
                     <div className={styles.photoUploadButton}>

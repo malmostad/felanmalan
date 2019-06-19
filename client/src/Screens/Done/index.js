@@ -6,13 +6,14 @@ import styles from "./Done.module.css";
 import ScreenTitle from "Components/ScreenTitle";
 import PhotoItem from "Components/PhotoItem";
 
+const MAX_IMAGE_WIDTH_PERCENT = 90;
 class Done extends Component {
   renderImages = () => {
     const { previews = [] } = this.props;
     if (previews.length === 0) {
       return null;
     }
-    const imageWidth = 90 / previews.length;
+    const imageWidth = MAX_IMAGE_WIDTH_PERCENT / previews.length;
     return (
       <div className={styles.imageHolder}>
         {previews.map(preview => (
@@ -33,7 +34,7 @@ class Done extends Component {
         <ScreenTitle
           strongTextLast={true}
           titleStrong="skickats"
-          title="Felanmälan har "
+          title="Felanmälan har " // intentionally trailing whitespace
         >
           <p className={styles.doneDescription}>
             Din felanmälan är nu skickad och vi kommer att se över din rapport så snart som möjligt. Om du uppgav din mail i förra steget så kommer du att få ett mail men en länk till ditt ärende.
