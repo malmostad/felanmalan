@@ -112,9 +112,9 @@ class Photos extends Component {
               ))}
               <PhotoItem hide={imageItems.length >= MAX_AMOUNT_OF_IMAGES}>
                 <Upload {...config} listType="none">
-                  <div className={styles.photoUploadButton}>
+                  <button className={styles.photoUploadButton}>
                     <img src={Plus} alt="Lägg till bild" />
-                  </div>
+                  </button>
                 </Upload>
               </PhotoItem>
             </div>
