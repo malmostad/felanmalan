@@ -20,14 +20,17 @@
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "3.0.1",
+    "react-transition-group": "^4.1.1",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
+    "redux-localstorage-simple": "^2.1.6",
     "redux-saga": "^0.16.2"
   },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "react-scripts test",
+    "test": "NODE_PATH=src/ react-scripts test",
+    "eslint:vim": "eslint --report-unused-disable-directives",
     "eslint": "eslint src/*.js src/**/*.js"
   },
   "eslintConfig": {
@@ -43,6 +46,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "prettier": "1.18.2"
+    "postcss-simple-vars": "^5.0.2",
+    "prettier": "1.18.2",
+    "webpack-bundle-analyzer": "^3.3.2"
   }
 }

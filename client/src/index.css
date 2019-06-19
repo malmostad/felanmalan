@@ -69,3 +69,48 @@ code {
     transform: scale(.8);
   }
 }
+.boldText {
+  font-weight: bold;
+}
+label {
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 16px;
+  color: $mainColor;
+  margin-bottom: 5px;
+}
+
+textarea {
+  font-size: 16px;
+  min-height: 200px;
+  border: none;
+  background: #F8F8FA;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  padding: 10px;
+}
+.content {
+  margin: 25px auto;
+  padding: 0 30px;
+  width: 100%;
+  max-width: $contentMaxWidth;
+}
+@media screen and (min-width: 800px) {
+  .content {
+    margin: 60px auto;
+    width: 100%;
+  }
+}
+
+.overlay-exit {
+  opacity: 1;
+  transition: opacity 400ms;
+}
+.overlay-exit-done {
+  opacity: 0;
+  display: none;
+}
+.overlay-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}

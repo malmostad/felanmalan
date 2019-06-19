@@ -1,0 +1,60 @@
+.searchBar {
+  position: absolute;
+  top: 15px;
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 30px);
+  margin: 0 15px;
+}
+.bottomBar {
+  justify-content: center;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  bottom: 0;
+  height: 70px;
+  padding: 5px 10px;
+  width: 100%;
+  background-cColor: white;
+  z-index: 100;
+}
+.currentLocationButton {
+  background-image: url('./current-location.svg');
+  background-size: 45%;
+  background-color: white;
+  border-color: white;
+  margin: 20px 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 98;
+  bottom: 50px;
+  right: 10px;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.map {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+.boxStyle {
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.header {
+  background-olor: white;
+  zIndex: 100;
+}
+.markerStyle {
+  position: fixed;
+  z-index: 98;
+  top: calc(50% - 30px);
+  left: calc(50% - 15px);
+  width: 30px;
+  height: 30px
+}

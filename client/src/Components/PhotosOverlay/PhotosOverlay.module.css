@@ -1,0 +1,23 @@
+.photosOverlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $mainColor;
+  background-image: url('./tall.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  top: 0px;
+  bottom: 0px;
+  padding-bottom: 60px;
+  z-index: 100;
+}
+@media (orientation: landscape) {
+  .photosOverlay {
+    background-image: url('./wide.svg');
+  }
+}

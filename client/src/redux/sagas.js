@@ -11,8 +11,12 @@ import * as Api from "./api";
 
 export function* createReport() {
   const { report } = yield select();
+  // TODO: clean up data
+  const { previews, address, ...props } = report;
   try {
-    const createdReport = yield call(Api.createReport, { report });
+    const createdReport = yield call(Api.createReport, {
+      report: { ...props }
+    });
     yield put({ type: CREATE_REPORT_SUCCESS, payload: createdReport });
   } catch (error) {
     yield put({ type: CREATE_REPORT_FAILURE, payload: error });
@@ -37,8 +41,13 @@ function* watchGetAddress() {
 
 function extractClosestAddress(records) {
   // TODO: Cover edge cases
+  // use place_name??
+  const {
+    text = "",
+    address = ""
+  } = records.features[0];
   return {
-    address: `${records.features[0].text} ${records.features[0].address}`
+    address: `${text} ${address}`
   };
 }
 

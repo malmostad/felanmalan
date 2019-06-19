@@ -1,0 +1,38 @@
+.screenTitleBg {
+  background-color: $secondColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.screenTitleHolder {
+  padding: 10px 30px;
+  max-width: 640px;
+}
+.screenTitleHolder svg {
+  width: 42px;
+}
+.screenTitleHolder svg path {
+  fill: $mainColor;
+}
+.screenTitle {
+  font-weight: lighter;
+  letter-spacing: 0.2px;
+  text-align: left;
+  color: $mainColor;
+  font-size: 37px;
+  line-height: 40px;
+  margin-top: 0px;
+}
+@media screen and (min-width: 640px) {
+  .screenTitle {
+    font-size: 47cx;
+    line-height: 80px;
+  }
+  .screenTitleHolder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
