@@ -15,6 +15,9 @@
 .screenTitleHolder svg path {
   fill: $mainColor;
 }
+.screenTitleHolder svg circle {
+  stroke: $mainColor;
+}
 .screenTitle {
   font-weight: lighter;
   letter-spacing: 0.2px;
