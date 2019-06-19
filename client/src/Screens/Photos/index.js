@@ -120,15 +120,13 @@ class Photos extends Component {
                   {...preview}
                 />
               ))}
-              {imageItems.length < MAX_AMOUNT_OF_IMAGES ? (
-                <PhotoItem>
-                  <Upload {...config} listType="none">
-                    <div className={styles.photoUploadButton}>
-                      <img src={Plus} alt="Lägg till bild" />
-                    </div>
-                  </Upload>
-                </PhotoItem>
-              ) : null}
+              <PhotoItem hide={imageItems.length >= MAX_AMOUNT_OF_IMAGES}>
+                <Upload {...config} listType="none">
+                  <div className={styles.photoUploadButton}>
+                    <img src={Plus} alt="Lägg till bild" />
+                  </div>
+                </Upload>
+              </PhotoItem>
             </div>
           </div>
           <div className="content">
