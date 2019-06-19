@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { Upload } from "antd";
 import { connect } from "react-redux";
 import { photoUploaded, photoRemoved, uiHideTouchCatcher } from "redux/actions";
-import FullScreenTitle from "Components/FullScreenTitle";
 import ScreenTitle from "Components/ScreenTitle";
 import PhotosOverlay from "Components/PhotosOverlay";
 import PhotoItem from "Components/PhotoItem";
-import UploadButton from "./upload-button.svg";
 import { previewImage } from "utils";
 import Plus from "./plus.svg";
 
@@ -14,14 +12,20 @@ import styles from "./Photos.module.css";
 import "./Uploader.override.css";
 
 const MAX_AMOUNT_OF_IMAGES = 3;
-const Dragger = Upload.Dragger;
 
 class Photos extends Component {
   constructor() {
     super();
     this.state = {
+      startWithOverlay: true,
       fileList: []
     };
+  }
+  componentDidMount() {
+    const { aPhotoUploaded, previews } = this.props;
+    if (aPhotoUploaded || previews.length > 0) {
+      this.setState({ startWithOverlay: false });
+    }
   }
   onPhotoChange = async ({ file, fileList, event }) => {
     const status = file.status;
@@ -55,6 +59,7 @@ class Photos extends Component {
     const { uiHideTouchCatcher } = this.props;
     uiHideTouchCatcher && uiHideTouchCatcher();
   };
+
   // TODO: add progress on upload
   render() {
     const config = {
@@ -72,7 +77,7 @@ class Photos extends Component {
       previews = []
     } = this.props;
 
-    const { fileList = [] } = this.state;
+    const { fileList = [], startWithOverlay } = this.state;
     const imageItems = previews.concat(
       fileList.map(item => {
         return { uuid: item, isUploading: true };
@@ -88,24 +93,9 @@ class Photos extends Component {
             className={styles.touchCatcher}
           />
         )}
-        <PhotosOverlay show={showOverlay}>
-          <Dragger {...config}>
-            <FullScreenTitle
-              titleStrong="Lägg till foton "
-              title="på problemet och platsen"
-            />
-            <div className={styles.uploadArea}>
-              <img
-                className={styles.uploadButton}
-                src={UploadButton}
-                alt="Upload"
-              />
-              <p className={styles.uploadText}>
-                Klicka eller dra bild hit för att starta uppladdning
-              </p>
-            </div>
-          </Dragger>
-        </PhotosOverlay>
+        {startWithOverlay && (
+          <PhotosOverlay config={config} show={showOverlay} />
+        )}
         <div>
           <ScreenTitle
             titleStrong="Lägg till foton "
