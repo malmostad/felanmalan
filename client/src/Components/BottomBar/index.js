@@ -7,7 +7,7 @@ class BottomBar extends Component {
     const { children = null, location = {}, disabled = false } = this.props;
     const { pathname = "" } = location;
     const style = {};
-    if (disabled) {
+    if (disabled && pathname === "/") {
       style.pointerEvents = "none";
     }
     if (pathname === "/done") {

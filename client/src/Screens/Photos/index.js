@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Upload } from "antd";
 import { connect } from "react-redux";
-import { photoUploaded, photoRemoved } from "redux/actions";
+import { photoUploaded, photoRemoved, uiHideTouchCatcher } from "redux/actions";
 import FullScreenTitle from "Components/FullScreenTitle";
 import ScreenTitle from "Components/ScreenTitle";
 import PhotosOverlay from "Components/PhotosOverlay";
@@ -23,7 +23,7 @@ class Photos extends Component {
       fileList: []
     };
   }
-  onPhotoChange = async ({ file, fileList }) => {
+  onPhotoChange = async ({ file, fileList, event }) => {
     const status = file.status;
     if (status === "uploading") {
       this.setState({
@@ -46,23 +46,32 @@ class Photos extends Component {
     }
   };
   onPreviewFile = file => {
-    console.log(file);
     return previewImage(file);
   };
-  onRemoveImage = file => {
-    const { response } = file;
-    const { id = "" } = response;
-    this.props.photoRemoved(id);
+  onRemoveImage = uuid => {
+    this.props.photoRemoved(uuid);
+  };
+  onTouchStart = () => {
+    const { uiHideTouchCatcher } = this.props;
+    uiHideTouchCatcher && uiHideTouchCatcher();
   };
   // TODO: add progress on upload
   render() {
     const config = {
+      accept: 'accept="image/*"',
       name: "file",
       action: "photos",
       multiple: true,
-      onChange: this.onPhotoChange
+      onChange: this.onPhotoChange,
+      showUploadList: false
     };
-    const { images = [], aPhotoUploaded = false, previews = [] } = this.props;
+    const {
+      touchCatcher = false,
+      images = [],
+      aPhotoUploaded = false,
+      previews = []
+    } = this.props;
+
     const { fileList = [] } = this.state;
     const imageItems = previews.concat(
       fileList.map(item => {
@@ -73,6 +82,12 @@ class Photos extends Component {
       !(images.length !== 0 || fileList.length !== 0) && !aPhotoUploaded;
     return (
       <div>
+        {touchCatcher && (
+          <div
+            onTouchStart={this.onTouchStart}
+            className={styles.touchCatcher}
+          />
+        )}
         <PhotosOverlay show={showOverlay}>
           <Dragger {...config}>
             <FullScreenTitle
@@ -99,9 +114,13 @@ class Photos extends Component {
           <div className={styles.photosContentHolder}>
             <div className={styles.photosContent}>
               {imageItems.map(preview => (
-                <PhotoItem key={preview.uuid} {...preview} />
+                <PhotoItem
+                  onRemoveImage={this.onRemoveImage}
+                  key={preview.uuid}
+                  {...preview}
+                />
               ))}
-              {imageItems.length <= MAX_AMOUNT_OF_IMAGES ? (
+              {imageItems.length < MAX_AMOUNT_OF_IMAGES ? (
                 <PhotoItem>
                   <Upload {...config} listType="none">
                     <div className={styles.photoUploadButton}>
@@ -127,11 +146,11 @@ class Photos extends Component {
 function mapStateToProps(state = {}) {
   const { report = {}, ui = {} } = state;
   const { images = [], previews = [] } = report;
-  const { aPhotoUploaded = false } = ui;
-  return { images, aPhotoUploaded, previews };
+  const { aPhotoUploaded = false, touchCatcher = false } = ui;
+  return { images, aPhotoUploaded, previews, touchCatcher };
 }
 
 export default connect(
   mapStateToProps,
-  { photoUploaded, photoRemoved }
+  { photoUploaded, photoRemoved, uiHideTouchCatcher }
 )(Photos);
