@@ -30,7 +30,7 @@ class PhotoItem extends Component {
     return (
       <div className={moduleStyles.uploading}>
         <LoadingIndicator />
-        Uploading...
+        Laddar upp
       </div>
     );
   };
