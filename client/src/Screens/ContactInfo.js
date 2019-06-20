@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Layout } from "antd";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
+
 
 import { reportAdd } from "redux/actions";
 import ScreenTitle from "Components/ScreenTitle";
@@ -14,7 +15,6 @@ class ContactInfo extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    // TODO: move out to error message and redirect component
     const { sendingState: currentSendingState } = this.props;
     if (currentSendingState === "pending") {
       if (nextProps.sendingState === "none") {
@@ -48,10 +48,11 @@ class ContactInfo extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { reportAdd } = this.props;
+    const { reportAdd, onSubmit } = this.props;
     const { phone = "", email = "" } = this.state;
-    if (phone.length > 0 || email.length > 0) {
+    if (phone.length > 0 && email.length > 0) {
       reportAdd({ phone, email });
+      onSubmit && onSubmit();
     }
   };
 
@@ -74,6 +75,9 @@ class ContactInfo extends Component {
               type="phone"
               value={this.state.phone}
             />
+            <button style={{ display: "none" }} type="submit">
+              Skicka in felanmälan
+            </button>
           </form>
         </Layout>
       </Layout>
@@ -83,9 +87,9 @@ class ContactInfo extends Component {
 
 function mapStateToProps(state = {}) {
   const { report = {}, ui } = state;
-  const { email, phone } = report;
+  const { email, phone, longitude, latitude, description } = report;
   const { sendingState = "none" } = ui;
-  return { email, phone, sendingState };
+  return { email, phone, sendingState, longitude, latitude, description };
 }
 
 export default connect(
