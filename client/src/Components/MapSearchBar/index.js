@@ -75,7 +75,6 @@ class MapSearchBar extends Component {
     if (geocoder) {
       this.geoCoderContainer.appendChild(geocoder.onAdd(map));
     }
-    console.log(geocoder);
     this.geocoder = geocoder;
   }
 
