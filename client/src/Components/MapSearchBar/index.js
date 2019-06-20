@@ -45,18 +45,22 @@ class MapSearchBar extends Component {
     }
   }
   showLoading = () => {
+    // tradeoff for using mapbox searchbar
     this.geocoder._loadingEl.style.display = "block";
   };
 
   hideLoading = () => {
+    // tradeoff for using mapbox searchbar
     this.geocoder._loadingEl.style.display = "none";
   };
 
   showClear = () => {
+    // tradeoff for using mapbox searchbar
     this.geocoder._clearEl.style.display = "block";
   };
 
   hideClear = () => {
+    // tradeoff for using mapbox searchbar
     this.geocoder._clearEl.style.display = "none";
   };
 

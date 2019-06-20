@@ -14,13 +14,15 @@ import {
 
 export const reportAdd = step => ({
   type: REPORT_ADD,
-  payload: step
+  payload: step,
+  timestamp: Date.now()
 });
 
 export const photoUploaded = (uuid, previewDataURL) => ({
   type: PHOTO_UPLOAD_SUCCESS,
   uuid,
-  previewDataURL
+  previewDataURL,
+  timestamp: Date.now()
 });
 
 export const photoRemoved = uuid => ({
