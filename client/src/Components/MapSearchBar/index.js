@@ -34,10 +34,32 @@ class MapSearchBar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.loading && !this.props.loading) {
+      this.showLoading();
+    }
+    if (!nextProps.loading && this.props.loading) {
+      this.hideLoading();
+    }
     if (nextProps.address && nextProps.address !== this.props.address) {
       this.geocoder.setInput(nextProps.address);
     }
   }
+  showLoading = () => {
+    this.geocoder._loadingEl.style.display = "block";
+  };
+
+  hideLoading = () => {
+    this.geocoder._loadingEl.style.display = "none";
+  };
+
+  showClear = () => {
+    this.geocoder._clearEl.style.display = "block";
+  };
+
+  hideClear = () => {
+    this.geocoder._clearEl.style.display = "none";
+  };
+
   onGo(map) {
     const geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
@@ -49,6 +71,7 @@ class MapSearchBar extends Component {
     if (geocoder) {
       this.geoCoderContainer.appendChild(geocoder.onAdd(map));
     }
+    console.log(geocoder);
     this.geocoder = geocoder;
   }
 
@@ -59,5 +82,5 @@ class MapSearchBar extends Component {
     }
   };
 }
-// add loading of state here
+// connect and get loading state
 export default MapSearchBar;
