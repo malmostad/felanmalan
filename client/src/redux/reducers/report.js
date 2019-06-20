@@ -26,10 +26,11 @@ const reportReducer = (state = initialState, action) => {
       return { ...state, address: payload.address };
     case PHOTO_REMOVED: {
       const { uuid = -1 } = action;
-      const { images = [] } = state;
+      const { images = [], previews = [] } = state;
       return {
         ...state,
-        images: images.filter(id => id !== uuid)
+        images: images.filter(id => id !== uuid),
+        previews: previews.filter(preview => preview.uuid !== uuid)
       };
     }
     case PHOTO_UPLOAD_SUCCESS: {

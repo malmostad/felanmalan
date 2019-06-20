@@ -6,7 +6,9 @@ import {
   GET_ADDRESS,
   UI_MAP_SCREEN_CLICKED,
   UI_LOADING_STOP,
-  UI_LOADING_START
+  UI_LOADING_START,
+  UI_TOUCH_CATCHER_HIDE,
+  UI_TOUCH_CATCHER_SHOW
 } from "./action-types";
 
 export const reportAdd = step => ({
@@ -41,4 +43,10 @@ export const uiLoadingStart = message => {
 };
 export const uiLoadingStop = message => {
   return { type: UI_LOADING_STOP };
+};
+export const uiShowTouchCatcher = () => {
+  return { type: UI_TOUCH_CATCHER_SHOW };
+};
+export const uiHideTouchCatcher = () => {
+  return { type: UI_TOUCH_CATCHER_HIDE };
 };
