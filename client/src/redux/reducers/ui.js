@@ -50,9 +50,8 @@ const uiReducer = (state = initialState, action) => {
       const { payload = {} } = action;
       return { ...state, address: payload.address, loadingAddress: false };
     case CLEAR:
-      // Should we leave mapClicked and aPhotoUploaded on clear
-      // so the user only see the big green screens just once?
-      return { ...initialState };
+      const { mapScreenClicked, aPhotoUploaded } = state;
+      return { ...initialState, mapScreenClicked, aPhotoUploaded };
     default:
       return state;
   }
