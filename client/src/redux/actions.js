@@ -1,4 +1,5 @@
 import {
+  CLEAR,
   CREATE_REPORT,
   REPORT_ADD,
   PHOTO_UPLOAD_SUCCESS,
@@ -49,4 +50,7 @@ export const uiShowTouchCatcher = () => {
 };
 export const uiHideTouchCatcher = () => {
   return { type: UI_TOUCH_CATCHER_HIDE };
+};
+export const clear = () => {
+  return { type: CLEAR };
 };

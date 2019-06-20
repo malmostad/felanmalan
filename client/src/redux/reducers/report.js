@@ -1,4 +1,5 @@
 import {
+  CLEAR,
   REPORT_ADD,
   PHOTO_UPLOAD_SUCCESS,
   GET_ADDRESS_SUCCESS,
@@ -44,6 +45,10 @@ const reportReducer = (state = initialState, action) => {
     }
     case REPORT_ADD:
       return { ...state, ...action.payload };
+    case CLEAR:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }

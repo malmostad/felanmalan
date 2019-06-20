@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { Provider } from "react-redux";
+import { save, load } from "redux-localstorage-simple";
 
 import "./index.css";
 import App from "./App";
@@ -15,7 +16,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
+  load(),
+  composeWithDevTools(applyMiddleware(sagaMiddleware, save({ debounce: 500 })))
 );
 sagaMiddleware.run(rootSaga);
 

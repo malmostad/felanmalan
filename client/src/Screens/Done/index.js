@@ -2,14 +2,27 @@ import React, { Component } from "react";
 import { Layout } from "antd";
 import { connect } from "react-redux";
 
+import { clear } from "redux/actions";
 import styles from "./Done.module.css";
 import ScreenTitle from "Components/ScreenTitle";
 import PhotoItem from "Components/PhotoItem";
 
 const MAX_IMAGE_WIDTH_PERCENT = 90;
 class Done extends Component {
+  state = {
+    description: "",
+    address: "",
+    previews: []
+  };
+  componentDidMount() {
+    const { report, clear } = this.props;
+    this.setState({
+      ...report
+    });
+    clear();
+  }
   renderImages = () => {
-    const { previews = [] } = this.props;
+    const { previews = [] } = this.state;
     if (previews.length === 0) {
       return null;
     }
@@ -28,7 +41,7 @@ class Done extends Component {
     );
   };
   render() {
-    const { description, address } = this.props;
+    const { description = "" , address = "" } = this.state;
     return (
       <Layout>
         <ScreenTitle
@@ -55,10 +68,10 @@ class Done extends Component {
 
 function mapStateToProps(state = {}) {
   const { report = {} } = state;
-  return { ...report };
+  return { report };
 }
 
 export default connect(
   mapStateToProps,
-  undefined
+  { clear }
 )(Done);
