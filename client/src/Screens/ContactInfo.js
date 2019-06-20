@@ -3,7 +3,6 @@ import { Layout } from "antd";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 
-
 import { reportAdd } from "redux/actions";
 import ScreenTitle from "Components/ScreenTitle";
 import FormItem from "Components/FormItem";
@@ -23,9 +22,11 @@ class ContactInfo extends Component {
     }
   }
   componentDidMount() {
-    const { description } = this.props;
+    const { description, email = "", phone = "" } = this.props;
     this.setState({
-      description
+      description,
+      email,
+      phone
     });
   }
   onEmailChange = (event, valid) => {
