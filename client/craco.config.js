@@ -1,4 +1,4 @@
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const CracoAntDesignPlugin = require("craco-antd");
 const CracoLessPlugin = require("craco-less");
 const vars = require("postcss-simple-vars");
@@ -14,9 +14,9 @@ module.exports = {
       ]
     }
   },
-  webpack: {
-    plugins: [new BundleAnalyzerPlugin()]
-  },
+  // webpack: {
+  //   plugins: [new BundleAnalyzerPlugin()]
+  // },
   plugins: [
     {
       plugin: CracoAntDesignPlugin
@@ -27,7 +27,7 @@ module.exports = {
   ],
   jest: {
     configure: {
-      "moduleNameMapper": {
+      moduleNameMapper: {
         "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
       }
     }

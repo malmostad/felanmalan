@@ -24,7 +24,9 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
     "redux-localstorage-simple": "^2.1.6",
-    "redux-saga": "^0.16.2"
+    "redux-saga": "^0.16.2",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "postcss-simple-vars": "^5.0.2"
   },
   "scripts": {
     "start": "craco start",
@@ -46,8 +48,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "postcss-simple-vars": "^5.0.2",
-    "prettier": "1.18.2",
-    "webpack-bundle-analyzer": "^3.3.2"
+    "prettier": "1.18.2"
   }
 }

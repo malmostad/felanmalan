@@ -63,7 +63,7 @@ class Photos extends Component {
   // TODO: add progress on upload
   render() {
     const config = {
-      accept: 'accept="image/*"',
+      accept: "image/*",
       name: "file",
       action: "photos",
       multiple: true,

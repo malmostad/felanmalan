@@ -27,7 +27,7 @@ class PhotosOverlay extends Component {
                 titleStrong="Lägg till foton "
                 title="på problemet och platsen"
               />
-              <div className={styles.uploadArea}>
+              <button className={styles.uploadArea}>
                 <img
                   className={styles.uploadButton}
                   src={UploadButton}
@@ -36,7 +36,10 @@ class PhotosOverlay extends Component {
                 <p className={styles.uploadText}>
                   Klicka eller dra bild hit för att starta uppladdning
                 </p>
-              </div>
+                <p className={styles.uploadTextMobile}>
+                  Lägg till foto
+                </p>
+              </button>
             </Dragger>
           </div>
         </div>
