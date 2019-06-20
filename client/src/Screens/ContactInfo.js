@@ -51,7 +51,7 @@ class ContactInfo extends Component {
     event.preventDefault();
     const { reportAdd, onSubmit } = this.props;
     const { phone = "", email = "" } = this.state;
-    if (phone.length > 0 && email.length > 0) {
+    if (phone.length > 0 || email.length > 0) {
       reportAdd({ phone, email });
       onSubmit && onSubmit();
     }
@@ -77,7 +77,7 @@ class ContactInfo extends Component {
               label="E-post"
               type="email"
               value={this.state.email}
-              placeholder="Skriv ein e-postadress"
+              placeholder="Skriv din e-postadress"
             />
             <FormItem
               onChange={this.onPhoneNumberChange}
@@ -86,7 +86,7 @@ class ContactInfo extends Component {
               type="phone"
               value={this.state.phone}
             />
-            <button style={{ display: "none" }} type="submit">
+            <button style={{ visibility: "hidden" }} type="submit">
               Skicka in felanmälan
             </button>
           </form>
