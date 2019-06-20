@@ -57,9 +57,18 @@ class ContactInfo extends Component {
   };
 
   render() {
+    // make this more modular
+    const { longitude, latitude, description } = this.props;
+    if (!longitude || !latitude || !description) {
+      return <Redirect to="/" />;
+    }
     return (
       <Layout>
-        <ScreenTitle strongTextLast={true} titleStrong="kontaktuppgifter" title="Lämna dina " />
+        <ScreenTitle
+          strongTextLast={true}
+          titleStrong="kontaktuppgifter"
+          title="Lämna dina "
+        />
         <Layout className="content">
           <form onSubmit={this.onSubmit}>
             <FormItem
