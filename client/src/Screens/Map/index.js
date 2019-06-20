@@ -89,7 +89,7 @@ class Map extends Component {
     }
     const options = {
       enableHighAccuracy: true,
-      timeout: 5000,
+      timeout: 10000,
       maximumAge: 0
     };
     this.props.uiLoadingStart("Hämtar din position");
