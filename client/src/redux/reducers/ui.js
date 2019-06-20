@@ -6,12 +6,15 @@ import {
   UI_MAP_SCREEN_CLICKED,
   UI_LOADING_STOP,
   UI_LOADING_START,
+  UI_TOUCH_CATCHER_HIDE,
+  UI_TOUCH_CATCHER_SHOW,
   PHOTO_UPLOAD_SUCCESS
 } from "../action-types";
 
 const initialState = {
   aPhotoUploaded: false,
   mapScreenClicked: false,
+  touchCatcher: false,
   sendingState: "none",
   address: false,
   loading: false
@@ -19,6 +22,10 @@ const initialState = {
 
 const uiReducer = (state = initialState, action) => {
   switch (action.type) {
+    case UI_TOUCH_CATCHER_SHOW:
+      return { ...state, touchCatcher: true };
+    case UI_TOUCH_CATCHER_HIDE:
+      return { ...state, touchCatcher: false };
     case PHOTO_UPLOAD_SUCCESS:
       return { ...state, aPhotoUploaded: true };
     case UI_MAP_SCREEN_CLICKED:
