@@ -77,11 +77,12 @@ class ContactInfo extends Component {
               label="E-post"
               type="email"
               value={this.state.email}
-              placeholder="Din e-postaddress"
+              placeholder="Skriv ein e-postadress"
             />
             <FormItem
               onChange={this.onPhoneNumberChange}
               label="Telefonnummer"
+              placeholder="Skriv ditt telefonnummer"
               type="phone"
               value={this.state.phone}
             />
