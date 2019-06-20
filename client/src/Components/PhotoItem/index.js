@@ -15,11 +15,9 @@ class PhotoItem extends Component {
     const { touchCatcher } = this.props;
     if (nextProps.touchCatcher === false && touchCatcher) {
       // hiding touch catcher. probabley clicked
-      if (this.state.showRemove) {
-        this.setState({
-          showRemove: false
-        });
-      }
+      this.setState({
+        showRemove: false
+      });
     }
   }
   onRemoveImage = uuid => {
@@ -73,12 +71,19 @@ class PhotoItem extends Component {
     const {
       isUploading = false,
       uuid = false,
+      hide = false,
       children = null,
       style = {}
     } = this.props;
 
     return (
-      <div className={moduleStyles.photoItem} key={uuid} style={style}>
+      <div
+        className={`${moduleStyles.photoItem} ${
+          hide ? moduleStyles.hideItem : ""
+        }`}
+        key={uuid}
+        style={style}
+      >
         <div className={moduleStyles.photoItemContent}>
           {isUploading ? this.renderUploading() : null}
           {uuid ? this.renderImage() : null}

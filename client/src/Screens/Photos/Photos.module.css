@@ -1,22 +1,3 @@
-
-.uploadArea {
-  margin-bottom: 60px;
-  display: flex;
-  justify-content: center;
-  min-height: 230px;
-  align-items: center;
-  flex-direction: column;
-  background: $mainColor;
-  box-shadow: inset 0px 2px 10px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-}
-.uploadText {
-  padding: 0 10px;
-  color: white;
-}
-.uploadButton {
-  margin: 0 0 30px 0;
-}
 .photosContent {
   display: flex;
   padding: 60px 10px 0;
@@ -28,6 +9,7 @@
   justify-content: center;
 }
 .photoUploadButton {
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,11 +17,20 @@
   width: 100%;
   height: 100%;
   margin: 0;
+  cursor: pointer;
+}
+.photoUploadButton:hover {
+  background: #e8e8eA;
 }
 .photoUploadButton img {
+  transition: ease-out 300ms transform;
   width: 25px;
   height: 25px;
 }
+.photoUploadButton:hover img {
+  transform: scale(1.4);
+}
+
 .infoText {
   text-align: center;
 }

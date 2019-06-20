@@ -21,3 +21,52 @@
     background-image: url('./wide.svg');
   }
 }
+.uploadArea {
+  margin-top: 100px;
+  min-height: 45px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  background-color: $secondColor;
+  border-radius: 5px;
+}
+
+.uploadText {
+  display: none;
+}
+.uploadTextMobile {
+  color: $mainColor;
+  font-weight: bold;
+  display: block;
+}
+.uploadButton {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  .uploadText {
+    display: block;
+  }
+  .uploadTextMobile {
+    display: none;
+  }
+  .uploadArea {
+    border: none;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    min-height: 230px;
+    align-items: center;
+    flex-direction: column;
+    background: $mainColor;
+    box-shadow: inset 0px 2px 10px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  .uploadText {
+    padding: 0 10px;
+    color: white;
+  }
+  .uploadButton {
+    display: block;
+    margin: 0 0 30px 0;
+  }
+}
