@@ -1,4 +1,5 @@
 import {
+  CLEAR,
   CREATE_REPORT_FAILURE,
   CREATE_REPORT_SUCCESS,
   CREATE_REPORT,
@@ -44,6 +45,10 @@ const uiReducer = (state = initialState, action) => {
     case GET_ADDRESS_SUCCESS:
       const { payload = {} } = action;
       return { ...state, address: payload.address };
+    case CLEAR:
+      // Should we leave mapClicked and aPhotoUploaded on clear
+      // so the user only see the big green screens just once?
+      return { ...initialState };
     default:
       return state;
   }
