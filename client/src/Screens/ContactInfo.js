@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Layout } from "antd";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 import { reportAdd } from "redux/actions";
 import ScreenTitle from "Components/ScreenTitle";
@@ -14,7 +14,6 @@ class ContactInfo extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    // TODO: move out to error message and redirect component
     const { sendingState: currentSendingState } = this.props;
     if (currentSendingState === "pending") {
       if (nextProps.sendingState === "none") {
@@ -23,9 +22,11 @@ class ContactInfo extends Component {
     }
   }
   componentDidMount() {
-    const { description } = this.props;
+    const { description, email = "", phone = "" } = this.props;
     this.setState({
-      description
+      description,
+      email,
+      phone
     });
   }
   onEmailChange = (event, valid) => {
@@ -48,17 +49,27 @@ class ContactInfo extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { reportAdd } = this.props;
+    const { reportAdd, onSubmit } = this.props;
     const { phone = "", email = "" } = this.state;
     if (phone.length > 0 || email.length > 0) {
       reportAdd({ phone, email });
+      onSubmit && onSubmit();
     }
   };
 
   render() {
+    // make this more modular
+    const { longitude, latitude, description } = this.props;
+    if (!longitude || !latitude || !description) {
+      return <Redirect to="/" />;
+    }
     return (
       <Layout>
-        <ScreenTitle strongTextLast={true} titleStrong="kontaktuppgifter" title="Lämna dina " />
+        <ScreenTitle
+          strongTextLast={true}
+          titleStrong="kontaktuppgifter"
+          title="Lämna dina "
+        />
         <Layout className="content">
           <form onSubmit={this.onSubmit}>
             <FormItem
@@ -66,14 +77,18 @@ class ContactInfo extends Component {
               label="E-post"
               type="email"
               value={this.state.email}
-              placeholder="Din e-postaddress"
+              placeholder="Skriv din e-postadress"
             />
             <FormItem
               onChange={this.onPhoneNumberChange}
               label="Telefonnummer"
+              placeholder="Skriv ditt telefonnummer"
               type="phone"
               value={this.state.phone}
             />
+            <button style={{ visibility: "hidden" }} type="submit">
+              Skicka in felanmälan
+            </button>
           </form>
         </Layout>
       </Layout>
@@ -83,9 +98,9 @@ class ContactInfo extends Component {
 
 function mapStateToProps(state = {}) {
   const { report = {}, ui } = state;
-  const { email, phone } = report;
+  const { email, phone, longitude, latitude, description } = report;
   const { sendingState = "none" } = ui;
-  return { email, phone, sendingState };
+  return { email, phone, sendingState, longitude, latitude, description };
 }
 
 export default connect(

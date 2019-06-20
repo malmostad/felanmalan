@@ -4,10 +4,14 @@
   justify-content: center;
   align-items: center;
 }
-.nextButton img {
-  margin-left: 5px;
+.nextButton:hover {
+  color: $secondColor;
+}
+.nextButton:hover svg {
+  transform: scale(1.05) translateX(1px);
 }
 .nextButton svg {
+  transition: transform 300ms ease-out;
   height: 12px;
   margin-left: 5px;
 }

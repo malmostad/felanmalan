@@ -1,4 +1,5 @@
 import {
+  CLEAR,
   REPORT_ADD,
   PHOTO_UPLOAD_SUCCESS,
   GET_ADDRESS_SUCCESS,
@@ -17,6 +18,7 @@ const defaultCoordinates = {
 const initialState = {
   ...defaultCoordinates,
   images: [],
+  timestamp: -1,
   previews: []
 };
 const reportReducer = (state = initialState, action) => {
@@ -34,16 +36,22 @@ const reportReducer = (state = initialState, action) => {
       };
     }
     case PHOTO_UPLOAD_SUCCESS: {
-      const { uuid = -1, previewDataURL = -1 } = action;
+      const { uuid = -1, previewDataURL = -1, timestamp } = action;
       const { images = [], previews = [] } = state;
       return {
         ...state,
+        timestamp,
         images: [...images, uuid],
         previews: [...previews, { uuid, previewDataURL }]
       };
     }
     case REPORT_ADD:
-      return { ...state, ...action.payload };
+      const { timestamp = -1 } = action;
+      return { ...state, ...action.payload, timestamp };
+    case CLEAR:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }

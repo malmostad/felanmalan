@@ -12,7 +12,7 @@ import * as Api from "./api";
 export function* createReport() {
   const { report } = yield select();
   // TODO: clean up data
-  const { previews, address, ...props } = report;
+  const { timestamp, previews, address, ...props } = report;
   try {
     const createdReport = yield call(Api.createReport, {
       report: { ...props }

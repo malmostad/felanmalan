@@ -89,7 +89,7 @@ class Map extends Component {
     }
     const options = {
       enableHighAccuracy: true,
-      timeout: 5000,
+      timeout: 10000,
       maximumAge: 0
     };
     this.props.uiLoadingStart("Hämtar din position");
@@ -134,7 +134,7 @@ class Map extends Component {
   };
 
   render() {
-    const { mapScreenClicked, address } = this.props;
+    const { mapScreenClicked, address, loadingAddress = false } = this.props;
     return (
       <Layout>
         <CSSTransition
@@ -160,6 +160,7 @@ class Map extends Component {
         <img alt="marker" src={Pin} className={styles.markerStyle} />
         <MapSearchBar
           address={address}
+          loading={loadingAddress}
           ref={el => (this.geoCoderContainer = el)}
         />
       </Layout>
@@ -169,9 +170,13 @@ class Map extends Component {
 
 function mapStateToProps(state = {}) {
   const { ui = {}, report = {} } = state;
-  const { address = false, mapScreenClicked = false } = ui;
+  const {
+    address = false,
+    mapScreenClicked = false,
+    loadingAddress = false
+  } = ui;
   const { longitude = false, latitude = false } = report;
-  return { address, mapScreenClicked, longitude, latitude };
+  return { address, mapScreenClicked, longitude, latitude, loadingAddress };
 }
 
 export default connect(

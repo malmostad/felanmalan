@@ -49,7 +49,17 @@ class App extends Component {
             <Switch>
               <Route path="/photo" component={Photos} />
               <Route path="/info" component={Info} />
-              <Route path="/contact-info" component={ContactInfo} />
+              <Route
+                path="/contact-info"
+                render={props => (
+                  <ContactInfo
+                    {...props}
+                    onSubmit={() => {
+                      createReport();
+                    }}
+                  />
+                )}
+              />
               <Route path="/done" component={Done} />
               <Route component={Map} />
             </Switch>

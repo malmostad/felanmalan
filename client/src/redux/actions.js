@@ -1,4 +1,5 @@
 import {
+  CLEAR,
   CREATE_REPORT,
   REPORT_ADD,
   PHOTO_UPLOAD_SUCCESS,
@@ -13,13 +14,15 @@ import {
 
 export const reportAdd = step => ({
   type: REPORT_ADD,
-  payload: step
+  payload: step,
+  timestamp: Date.now()
 });
 
 export const photoUploaded = (uuid, previewDataURL) => ({
   type: PHOTO_UPLOAD_SUCCESS,
   uuid,
-  previewDataURL
+  previewDataURL,
+  timestamp: Date.now()
 });
 
 export const photoRemoved = uuid => ({
@@ -49,4 +52,7 @@ export const uiShowTouchCatcher = () => {
 };
 export const uiHideTouchCatcher = () => {
   return { type: UI_TOUCH_CATCHER_HIDE };
+};
+export const clear = () => {
+  return { type: CLEAR };
 };

@@ -58,7 +58,19 @@
 }
 .mapboxgl-ctrl-geocoder--icon-search {
   left: 20px;
-  top: 13px;
+  top: 17px;
+}
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--pin-right > * {
+  margin: 9px 5px;
+}
+@media screen and (min-width: 900px) {
+  .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--pin-right > * {
+    margin: 0;
+  }
+  .mapboxgl-ctrl-geocoder--icon-search {
+    left: 20px;
+    top: 13px;
+  }
 }
 .mapboxgl-ctrl-geocoder--icon-close {
   margin-top: 7px;

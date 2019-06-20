@@ -1,7 +1,9 @@
 import {
+  CLEAR,
   CREATE_REPORT_FAILURE,
   CREATE_REPORT_SUCCESS,
   CREATE_REPORT,
+  GET_ADDRESS,
   GET_ADDRESS_SUCCESS,
   UI_MAP_SCREEN_CLICKED,
   UI_LOADING_STOP,
@@ -12,6 +14,7 @@ import {
 } from "../action-types";
 
 const initialState = {
+  loadingAddress: false,
   aPhotoUploaded: false,
   mapScreenClicked: false,
   touchCatcher: false,
@@ -41,9 +44,14 @@ const uiReducer = (state = initialState, action) => {
       return { ...state, loading: true, loadingMessage: message };
     case UI_LOADING_STOP:
       return { ...state, loading: false, loadingMessage: false };
+    case GET_ADDRESS:
+      return { ...state, loadingAddress: true };
     case GET_ADDRESS_SUCCESS:
       const { payload = {} } = action;
-      return { ...state, address: payload.address };
+      return { ...state, address: payload.address, loadingAddress: false };
+    case CLEAR:
+      const { mapScreenClicked, aPhotoUploaded } = state;
+      return { ...initialState, mapScreenClicked, aPhotoUploaded };
     default:
       return state;
   }
