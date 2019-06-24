@@ -2,44 +2,45 @@ import React, { Component } from "react";
 import { Layout } from "antd";
 import { connect } from "react-redux";
 
-import { clear } from "redux/actions";
+import { fetchIssueStatus } from "redux/actions";
 import styles from "./Track.module.css";
 import FullScreenTitle from "Components/FullScreenTitle";
+import TrackCard from "Components/TrackCard";
+import LoadingIndicator from "Components/LoadingIndicator";
 
-const MAX_IMAGE_WIDTH_PERCENT = 90;
 class Track extends Component {
-  state = {
-    description: "",
-    address: "",
-    previews: []
-  };
   componentDidMount() {
-    const { report, clear } = this.props;
-    this.setState({
-      ...report
-    });
-    clear();
+    const { fetchIssueStatus } = this.props;
+    fetchIssueStatus();
   }
   render() {
-    const issueStatus = "pågående";
+    const { issueStatus } = this.props;
+    const { status = "", loading = false } = issueStatus;
     return (
       <Layout className={styles.background}>
-        <FullScreenTitle
-          strongTextLast={true}
-          titleStrong={issueStatus}
-          title="Ditt ärende är " // intentionally trailing whitespace
-        />
+        {loading ? (
+          <LoadingIndicator size={80} />
+        ) : (
+          <div>
+            <FullScreenTitle
+              strongTextLast={true}
+              titleStrong={status}
+              title="Ditt ärende är " // intentionally trailing whitespace
+            />
+            <TrackCard {...issueStatus} />
+          </div>
+        )}
       </Layout>
     );
   }
 }
 
 function mapStateToProps(state = {}) {
-  const { report = {} } = state;
-  return { report };
+  const { issueStatus = {} } = state;
+  return { issueStatus };
 }
 
 export default connect(
   mapStateToProps,
-  { clear }
+  { fetchIssueStatus }
 )(Track);

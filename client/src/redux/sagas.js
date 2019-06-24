@@ -4,7 +4,10 @@ import {
   CREATE_REPORT_SUCCESS,
   CREATE_REPORT_FAILURE,
   GET_ADDRESS,
-  GET_ADDRESS_SUCCESS
+  GET_ADDRESS_SUCCESS,
+  FETCH_ISSUE_STATUS,
+  FETCH_ISSUE_STATUS_FAILURE,
+  FETCH_ISSUE_STATUS_SUCCESS
 } from "./action-types";
 
 import * as Api from "./api";
@@ -42,15 +45,28 @@ function* watchGetAddress() {
 function extractClosestAddress(records) {
   // TODO: Cover edge cases
   // use place_name??
-  const {
-    text = "",
-    address = ""
-  } = records.features[0];
+  const { text = "", address = "" } = records.features[0];
   return {
     address: `${text} ${address}`
   };
 }
+export function* fetchIssueStatus(uuid) {
+  try {
+    const issueData = yield call(Api.fetchIssueStatus, uuid);
+    yield put({ type: FETCH_ISSUE_STATUS_SUCCESS, payload: issueData });
+  } catch (error) {
+    yield put({ type: FETCH_ISSUE_STATUS_FAILURE, payload: error });
+  }
+}
+
+function* watchFetchIssueStatus() {
+  yield takeEvery(FETCH_ISSUE_STATUS, fetchIssueStatus);
+}
 
 export default function* rootSaga() {
-  yield all([fork(watchCreateReport), fork(watchGetAddress)]);
+  yield all([
+    fork(watchCreateReport),
+    fork(watchGetAddress),
+    fork(watchFetchIssueStatus)
+  ]);
 }
