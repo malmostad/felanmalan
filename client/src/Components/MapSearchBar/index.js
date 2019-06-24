@@ -4,6 +4,7 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
 import "./mapbox-gl-geocoder.css";
+import styles from "./MapSearchBar.module.css"
 
 const {
   REACT_APP_DEFAULT_LONGITUDE = 13.003365,
@@ -14,22 +15,14 @@ const defaultCoordinates = {
   longitude: REACT_APP_DEFAULT_LONGITUDE,
   latitude: REACT_APP_DEFAULT_LATITUDE
 };
-const styles = {
-  searchBar: {
-    position: "absolute",
-    top: "15px",
-    display: "flex",
-    justifyContent: "center",
-    width: "calc(100% - 30px)",
-    margin: "0 15px",
-    zIndex: 98
-  }
-};
 
 class MapSearchBar extends Component {
   render() {
     return (
-      <div style={styles.searchBar} ref={el => (this.geoCoderContainer = el)} />
+      <div
+        className={styles.searchBar}
+        ref={el => (this.geoCoderContainer = el)}
+      />
     );
   }
 

@@ -30,7 +30,7 @@ class Info extends Component {
         <Layout className="content">
           <label>Beskrivning</label>
           <textarea
-            style={{fontSize: "16px"}}
+            style={{ fontSize: "16px" }}
             placeholder="Beskriv problemet du vill felanmäla..."
             onChange={this.onHandleChange}
             value={this.state.description}
