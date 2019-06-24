@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ReactComponent as Logo } from "Images/logo.svg";
 import styles from "./ScreenTitle.module.css";
+import FullScreenTitle from "Components/FullScreenTitle";
 
 class ScreenTitle extends Component {
   onClick = () => {
@@ -19,15 +20,15 @@ class ScreenTitle extends Component {
     } = this.props;
     return (
       <div className={styles.screenTitleBg}>
-        <div className={styles.screenTitleHolder}>
-          <Logo />
-          <h1 className={styles.screenTitle}>
-            {!strongTextLast && <strong className="boldText">{titleStrong}</strong>}
-            {title}
-            {strongTextLast && <strong className="boldText">{titleStrong}</strong>}
-          </h1>
+        <FullScreenTitle
+          screenTitleHolderStyle={styles.screenTitleHolder}
+          screenTitleStyle={styles.screenTitle}
+          title={title}
+          titleStrong={titleStrong}
+          strongTextLast={strongTextLast}
+        >
           {children}
-        </div>
+        </FullScreenTitle>
       </div>
     );
   }

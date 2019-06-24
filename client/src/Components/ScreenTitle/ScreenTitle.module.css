@@ -29,7 +29,6 @@
 }
 @media screen and (min-width: 640px) {
   .screenTitle {
-    font-size: 47cx;
     line-height: 80px;
   }
   .screenTitleHolder {
