@@ -33,7 +33,10 @@ class PhotoItem extends Component {
     );
   };
   onTouchStart = event => {
-    const { uiShowTouchCatcher = false } = this.props;
+    const { uiShowTouchCatcher = false, preventRemove = false } = this.props;
+    if (preventRemove) {
+      return;
+    }
     uiShowTouchCatcher && uiShowTouchCatcher();
     event.stopPropagation();
     event.preventDefault();
@@ -73,14 +76,17 @@ class PhotoItem extends Component {
       uuid = false,
       hide = false,
       children = null,
-      style = {}
+      style = {},
+      preventRemove = false
     } = this.props;
 
     return (
       <div
-        className={`${moduleStyles.photoItem} ${
-          hide ? moduleStyles.hideItem : ""
-        }`}
+        className={`
+          ${moduleStyles.photoItem}
+          ${hide ? moduleStyles.hideItem : ""}
+          ${preventRemove ? moduleStyles.noneRemoveable : ""}
+          `}
         key={uuid}
         style={style}
       >

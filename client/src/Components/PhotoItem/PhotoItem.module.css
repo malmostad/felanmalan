@@ -54,6 +54,9 @@
   .photoItem:hover .remove {
     display: flex;
   }
+  .noneRemoveable.photoItem:hover .remove {
+    display: none;
+  }
 }
 .remove:after {
   background-color: $mainColor;
