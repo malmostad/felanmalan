@@ -37,3 +37,18 @@
   color: $black;
   font-size: 17px;
 }
+.button {
+  align-self: center;
+  max-width: 300px;
+  padding: 10px;
+  font-weight: bold;
+  justify-content: center;
+  display: flex;
+  border-radius: 5px;
+  background: $mainColor;
+  color: $secondColor;
+  margin: 0 auto;
+}
+.button:hover {
+  color: $secondColor;
+}
