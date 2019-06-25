@@ -9,7 +9,8 @@ import {
   UI_LOADING_STOP,
   UI_LOADING_START,
   UI_TOUCH_CATCHER_HIDE,
-  UI_TOUCH_CATCHER_SHOW
+  UI_TOUCH_CATCHER_SHOW,
+  FETCH_ISSUE_STATUS
 } from "./action-types";
 
 export const reportAdd = step => ({
@@ -56,3 +57,7 @@ export const uiHideTouchCatcher = () => {
 export const clear = () => {
   return { type: CLEAR };
 };
+export const fetchIssueStatus = uuid => ({
+  type: FETCH_ISSUE_STATUS,
+  uuid
+});

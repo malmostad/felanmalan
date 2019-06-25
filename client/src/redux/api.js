@@ -29,3 +29,16 @@ export async function getAddress(coordinates) {
   );
   return response.json();
 }
+export async function fetchIssueStatus(uuid) {
+  // fetch current status and data about the issue
+  return new Promise(resovle => {
+    setTimeout(() => {
+      resovle({
+        status: "pågående",
+        description: "Det är ett hål i kullerstenen i rondellen på Kristianstadsgatan, är rädd att någon snubblar över det så det borde nog lagas.",
+        issueNumber: "#651974",
+        address: "Kristianstadsgatan 25B, Malmö"
+      });
+    }, 400);
+  });
+}

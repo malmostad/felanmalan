@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Logo from "Images/logo.svg";
+import { ReactComponent as Logo } from "Images/logo.svg";
 import styles from "./FullScreenTitle.module.css";
 
 class FullScreenTitle extends Component {
@@ -9,13 +9,28 @@ class FullScreenTitle extends Component {
   };
 
   render() {
-    const { titleStrong = "", title = "", children = null } = this.props;
+    const {
+      titleStrong = "",
+      title = "",
+      children = null,
+      strongTextLast = false,
+      screenTitleHolderStyle = false,
+      screenTitleStyle = false
+    } = this.props;
+    const StyleScreenTitle = screenTitleStyle || styles.screenTitle;
+    const StyleScreenTitleHolder =
+      screenTitleHolderStyle || styles.screenTitleHolder;
     return (
-      <div className={styles.screenTitleHolder}>
-        <img src={Logo} alt="Malmö stad" />
-        <h1 className={styles.screenTitle}>
-          <strong className="boldText">{titleStrong}</strong>
+      <div className={StyleScreenTitleHolder}>
+        <Logo />
+        <h1 className={StyleScreenTitle}>
+          {!strongTextLast && (
+            <strong className="boldText">{titleStrong}</strong>
+          )}
           {title}
+          {strongTextLast && (
+            <strong className="boldText">{titleStrong}</strong>
+          )}
         </h1>
         {children}
       </div>

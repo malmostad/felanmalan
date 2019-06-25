@@ -6,5 +6,7 @@ module.exports = {
   mainColor: "#066B35",
   secondColor: "#FFE6E6",
   contentMaxWidth: "640px",
+  trackPageBg: "#08215B",
+  trackPageText: "#4CA9F8",
   divider: "#C8C7CC"
 };
