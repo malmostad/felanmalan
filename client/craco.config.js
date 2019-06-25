@@ -1,7 +1,24 @@
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const CracoAntDesignPlugin = require("craco-antd");
 const CracoLessPlugin = require("craco-less");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const vars = require("postcss-simple-vars");
+let webpackConfig = {};
+const IS_CORDOVA = process.env.CORDOVA === true;
+if (IS_CORDOVA) {
+  webpackConfig = {
+    configure: {
+      output: {
+        publicPath: "./",
+        path: __dirname + "/../cordova-felanmalan/www/"
+      }
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "cordova/index.html"
+      })
+    ]
+  };
+}
 module.exports = {
   style: {
     postcss: {
@@ -14,9 +31,7 @@ module.exports = {
       ]
     }
   },
-  // webpack: {
-  //   plugins: [new BundleAnalyzerPlugin()]
-  // },
+  webpack: webpackConfig,
   plugins: [
     {
       plugin: CracoAntDesignPlugin
