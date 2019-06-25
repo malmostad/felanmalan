@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, withRouter } from "react-router-dom";
 import styles from "./NextButton.module.css";
 import { ReactComponent as NextArrow } from "./next.svg";
 
@@ -28,9 +28,9 @@ class NextButton extends Component {
     );
   };
   render() {
-    const { path = "/" } = this.props;
-    return <Route exact path={path} render={this.renderLink} />;
+    const { path = "/", exact } = this.props;
+    return <Route exact={exact} path={path} render={this.renderLink} />;
   }
 }
 // add loading of state here
-export default NextButton;
+export default withRouter(NextButton);

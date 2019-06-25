@@ -12,6 +12,7 @@ import styles from "./Photos.module.css";
 import "./Uploader.override.css";
 
 const MAX_AMOUNT_OF_IMAGES = 3;
+const { REACT_APP_API_URL = "/" } = process.env;
 
 class Photos extends Component {
   constructor() {
@@ -65,7 +66,7 @@ class Photos extends Component {
     const config = {
       accept: "image/*",
       name: "file",
-      action: "photos",
+      action: `${REACT_APP_API_URL}photos`,
       multiple: true,
       onChange: this.onPhotoChange,
       showUploadList: false

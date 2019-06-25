@@ -15,8 +15,8 @@ import Steps from "Components/Steps";
 import BottomBar from "Components/BottomBar";
 import NextButton from "Components/NextButton";
 const getRouter = () => {
-  const { CORDOVA = false } = process.env;
-  if (CORDOVA) {
+  const { REACT_APP_IS_CORDOVA = false } = process.env;
+  if (REACT_APP_IS_CORDOVA) {
     return HashRouter;
   }
   return BrowserRouter;
@@ -70,6 +70,8 @@ class App extends Component {
             {loading && <LoadingIndicator message={loadingMessage} />}
             <NextButton
               text="Nästa steg"
+              exact
+              path="/"
               active={mapScreenClicked}
               to="/photo"
             />

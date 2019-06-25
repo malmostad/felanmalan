@@ -31,6 +31,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "build:cordova": "REACT_APP_IS_CORDOVA=true craco build",
     "test": "NODE_PATH=src/ react-scripts test",
     "eslint:vim": "eslint --report-unused-disable-directives",
     "eslint": "eslint src/*.js src/**/*.js"

@@ -3,7 +3,7 @@ const CracoLessPlugin = require("craco-less");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const vars = require("postcss-simple-vars");
 let webpackConfig = {};
-const IS_CORDOVA = process.env.CORDOVA === true;
+const IS_CORDOVA = process.env.REACT_APP_IS_CORDOVA === "true";
 if (IS_CORDOVA) {
   webpackConfig = {
     configure: {

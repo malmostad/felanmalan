@@ -1,6 +1,7 @@
+const { REACT_APP_API_URL = "/" } = process.env;
 export async function createReport(report) {
   try {
-    const response = await fetch("/reports", {
+    const response = await fetch(`${REACT_APP_API_URL}reports`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
