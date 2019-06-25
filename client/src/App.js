@@ -7,6 +7,7 @@ import { createReport } from "redux/actions";
 import Photos from "Screens/Photos";
 import Map from "Screens/Map";
 import Done from "Screens/Done";
+import Track from "Screens/Track";
 import Info from "Screens/Info";
 import ContactInfo from "Screens/ContactInfo";
 
@@ -26,14 +27,11 @@ class App extends Component {
   componentWillReceiveProps(nextProps) {
     const { sendingState: currentSendingState } = this.props;
     if (currentSendingState === "pending") {
-      if (nextProps.sendingState === "none") {
-      }
       if (nextProps.sendingState === "failure") {
       }
     }
   }
-
-  render() {
+  renderReportPage() {
     const {
       createReport,
       loading,
@@ -43,56 +41,65 @@ class App extends Component {
       description,
       mapScreenClicked
     } = this.props;
+    return (
+      <div>
+        <Switch>
+          <Route exact path="/photo" component={Photos} />
+          <Route exact path="/info" component={Info} />
+          <Route
+            exact
+            path="/contact-info"
+            render={props => (
+              <ContactInfo
+                {...props}
+                onSubmit={() => {
+                  createReport();
+                }}
+              />
+            )}
+          />
+          <Route excat path="/done" component={Done} />
+          <Route component={Map} />
+        </Switch>
+        <BottomBar disabled={!mapScreenClicked}>
+          <Steps />
+          {loading && <LoadingIndicator message={loadingMessage} />}
+          <NextButton
+            text="Nästa steg"
+            exact
+            path="/"
+            active={mapScreenClicked}
+            to="/photo"
+          />
+          <NextButton path="/photo" text="Nästa steg" to="/info" />
+          <NextButton
+            path="/info"
+            text="Nästa steg"
+            to="/contact-info"
+            active={description.length > 0}
+          />
+          <NextButton
+            text="Skicka felanmälan"
+            path="/contact-info"
+            to="/done"
+            active={email.length > 0 || phone.length > 0}
+            onSubmit={() => {
+              createReport();
+            }}
+          />
+        </BottomBar>
+      </div>
+    );
+  }
+
+  render() {
     const Router = getRouter();
     return (
       <Router>
-        <div>
-          <Switch>
-            <Route exact path="/photo" component={Photos} />
-            <Route exact path="/info" component={Info} />
-            <Route
-              exact
-              path="/contact-info"
-              render={props => (
-                <ContactInfo
-                  {...props}
-                  onSubmit={() => {
-                    createReport();
-                  }}
-                />
-              )}
-            />
-            <Route excat path="/done" component={Done} />
-            <Route component={Map} />
-          </Switch>
-          <BottomBar disabled={!mapScreenClicked}>
-            <Steps />
-            {loading && <LoadingIndicator message={loadingMessage} />}
-            <NextButton
-              text="Nästa steg"
-              exact
-              path="/"
-              active={mapScreenClicked}
-              to="/photo"
-            />
-            <NextButton path="/photo" text="Nästa steg" to="/info" />
-            <NextButton
-              path="/info"
-              text="Nästa steg"
-              to="/contact-info"
-              active={description.length > 0}
-            />
-            <NextButton
-              text="Skicka felanmälan"
-              path="/contact-info"
-              to="/done"
-              active={email.length > 0 || phone.length > 0}
-              onSubmit={() => {
-                createReport();
-              }}
-            />
-          </BottomBar>
-        </div>
+        <Switch>
+          <Route path="/track/:uuid" component={Track} />
+          <Route render={props => this.renderReportPage()} />
+        </Switch>
       </Router>
     );
   }
