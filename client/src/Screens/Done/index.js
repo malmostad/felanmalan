@@ -33,6 +33,7 @@ class Done extends Component {
           <PhotoItem
             style={{ width: `${imageWidth}%` }}
             key={preview.uuid}
+            preventRemove={true}
             previewDataURL={preview.previewDataURL}
             uuid={preview.uuid}
           />
