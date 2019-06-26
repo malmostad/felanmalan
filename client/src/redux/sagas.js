@@ -32,7 +32,6 @@ function* watchCreateReport() {
 
 export function* getAddress(action) {
   const records = yield call(Api.getAddress, action.payload);
-
   yield put({
     type: GET_ADDRESS_SUCCESS,
     payload: extractClosestAddress(records)
@@ -45,7 +44,8 @@ function* watchGetAddress() {
 function extractClosestAddress(records) {
   // TODO: Cover edge cases
   // use place_name??
-  const { text = "", address = "" } = records.features[0];
+  const feature = records.features[0] || {};
+  const { text = "", address = "" } = feature;
   return {
     address: `${text} ${address}`
   };
