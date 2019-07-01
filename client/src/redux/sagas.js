@@ -7,7 +7,8 @@ import {
   GET_ADDRESS_SUCCESS,
   FETCH_ISSUE_STATUS,
   FETCH_ISSUE_STATUS_FAILURE,
-  FETCH_ISSUE_STATUS_SUCCESS
+  FETCH_ISSUE_STATUS_SUCCESS,
+  PROPERTY_STATUS_CHECKED
 } from "./action-types";
 
 import * as Api from "./api";
@@ -36,6 +37,15 @@ export function* getAddress(action) {
     type: GET_ADDRESS_SUCCESS,
     payload: extractClosestAddress(records)
   });
+  const property = yield call(Api.fetchTileQuery, action.payload);
+  if (property) {
+    const { features } = property;
+    yield put({
+      type: PROPERTY_STATUS_CHECKED,
+      valid: features.length > 0,
+      coordinates: action.payload
+    })
+  }
 }
 function* watchGetAddress() {
   yield takeEvery(GET_ADDRESS, getAddress);
