@@ -6,27 +6,46 @@ class InputItem extends Component {
     valid: true
   };
   validateEmail = email => {
-    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
-  onHandleChange = (event, valid) => {
+  validatePhoneNumber = phone => {
+    const reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+    return reg.test(phone);
+  }
+  onHandleChange = (event, valid, ...rest) => {
     const { onChange = false } = this.props;
     if (onChange) {
-      onChange(event, valid);
+      onChange(event, valid, ...rest);
     }
   };
 
   onValidate = event => {
     const { type } = this.props;
     let valid = true;
+    let isEmail = false;
     if (type === "email") {
       valid = this.validateEmail(event.target.value);
+      if (valid) {
+        isEmail = true;
+      }
       this.setState({ valid });
     }
     if (type === "phone") {
       this.setState({ valid });
     }
-    this.onHandleChange(event, valid);
+
+    if (type === "email-or-phone") {
+      valid = this.validateEmail(event.target.value);
+      // add check for phone?
+      if (valid) {
+        isEmail = true;
+      } else {
+        valid = this.validatePhoneNumber(event.target.value);
+      }
+      this.setState({ valid });
+    }
+    this.onHandleChange(event, valid, isEmail);
   };
 
   render() {
