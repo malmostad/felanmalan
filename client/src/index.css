@@ -118,7 +118,6 @@ textarea {
 }
 textarea:focus {
   outline: none;
-  border-bottom: solid 0px white;
 }
 .content {
   margin: 0 auto;

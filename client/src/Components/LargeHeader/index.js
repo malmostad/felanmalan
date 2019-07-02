@@ -10,7 +10,7 @@ class LargeHeader extends Component {
   render() {
     const {
       children = null,
-      size = 450
+      size = 400
     } = this.props;
     return (
       <div style={{ height: `${size}px` }} className={styles.outer}>

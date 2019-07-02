@@ -23,11 +23,10 @@ class PhotosOverlay extends Component {
       >
         <div>
           <div className={styles.photosOverlay}>
-            <div style={{margin: "0 auto", maxWidth: "800px"}}>
               <FullScreenTitle
                 titleStrong="Lägg till foton "
                 title="på problemet & platsen"
-                style={{margin: "0 10px"}}
+                style={{margin: "0 auto", maxWidth: "800px", width: "100%"}}
               />
               <div className={styles.actionWrapper}>
                 <Link className={styles.skipLink} to="/map">Hoppa över</Link>
@@ -47,7 +46,6 @@ class PhotosOverlay extends Component {
                   </button>
                 </Dragger>
               </div>
-            </div>
           </div>
         </div>
       </CSSTransition>
