@@ -2,11 +2,11 @@
   "name": "list-of-ingredients",
   "license": "MIT",
   "engines": {
-    "node": "10.12.0",
-    "yarn": "1.12.3"
+    "node": "12.4.0",
+    "yarn": "1.16.0"
   },
   "scripts": {
-    "build": "yarn --cwd client install --check-files && yarn --cwd client build",
+    "build": "yarn --cwd client install && yarn --cwd client build",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "yarn build && yarn deploy"
   }
