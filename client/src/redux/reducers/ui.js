@@ -15,7 +15,6 @@ import {
 
 const initialState = {
   loadingAddress: false,
-  aPhotoUploaded: false,
   mapScreenClicked: false,
   touchCatcher: false,
   sendingState: "none",
@@ -29,8 +28,6 @@ const uiReducer = (state = initialState, action) => {
       return { ...state, touchCatcher: true };
     case UI_TOUCH_CATCHER_HIDE:
       return { ...state, touchCatcher: false };
-    case PHOTO_UPLOAD_SUCCESS:
-      return { ...state, aPhotoUploaded: true };
     case UI_MAP_SCREEN_CLICKED:
       return { ...state, mapScreenClicked: true };
     case CREATE_REPORT:

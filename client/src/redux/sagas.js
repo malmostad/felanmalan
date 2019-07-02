@@ -44,7 +44,7 @@ export function* getAddress(action) {
       type: PROPERTY_STATUS_CHECKED,
       valid: features.length > 0,
       coordinates: action.payload
-    })
+    });
   }
 }
 function* watchGetAddress() {
