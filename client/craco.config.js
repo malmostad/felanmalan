@@ -1,4 +1,4 @@
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const path = require("path");
 const CracoAntDesignPlugin = require("craco-antd");
 const CracoLessPlugin = require("craco-less");
 const vars = require("postcss-simple-vars");
@@ -14,9 +14,15 @@ module.exports = {
       ]
     }
   },
-  // webpack: {
-  //   plugins: [new BundleAnalyzerPlugin()]
-  // },
+  webpack: {
+    configure: {
+      resolve: {
+        alias: {
+          '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.js')
+        }
+      }
+    },
+  },
   plugins: [
     {
       plugin: CracoAntDesignPlugin
