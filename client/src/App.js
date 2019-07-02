@@ -28,6 +28,7 @@ class App extends Component {
     const { sendingState: currentSendingState } = this.props;
     if (currentSendingState === "pending") {
       if (nextProps.sendingState === "failure") {
+        console.log("Failed creating your report");
       }
     }
   }
