@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class PhotosController < ApiController
-  # before_action :set_photo, only: %i[show update destroy]
+  before_action :set_photo, only: %i[show]
 
   # GET /photos/1
-  # def show
-  #   render json: @photo
-  # end
+  def show
+    @photo = Photo.find_by(params[:uuid])
+
+    send_data(@photo.data, type: @photo.mime_type, disposition: 'inline')
+  end
 
   # POST /photos
   def create
@@ -21,9 +23,9 @@ class PhotosController < ApiController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  # def set_photo
-  #   @photo = Photo.find(params[:id])
-  # end
+  def set_photo
+    @photo = Photo.find_by(params[:uuid])
+  end
 
   # Only allow a trusted parameter "white list" through.
   def photo_params
