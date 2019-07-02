@@ -5,7 +5,7 @@ import { photoUploaded, photoRemoved, uiHideTouchCatcher } from "redux/actions";
 import PhotosOverlay from "Components/PhotosOverlay";
 import PhotoItem from "Components/PhotoItem";
 import { previewImage } from "utils";
-import Plus from "./plus.svg";
+import { ReactComponent as Plus } from './plus.svg';
 
 import styles from "./Photos.module.css";
 import "./Uploader.override.css";
@@ -99,7 +99,7 @@ class Photos extends Component {
               <PhotoItem hide={imageItems.length >= MAX_AMOUNT_OF_IMAGES}>
                 <Upload {...config} listType="none">
                   <button className={styles.photoUploadButton}>
-                    <img src={Plus} alt="Lägg till bild" />
+                    <Plus />
                   </button>
                 </Upload>
               </PhotoItem>

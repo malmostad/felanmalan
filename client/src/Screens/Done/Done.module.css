@@ -1,7 +1,5 @@
 .doneCard {
   width: 100%;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.07);
-  border-radius: 5px;
   padding: 30px;
   overflow: hidden;
   position: relative;
@@ -19,7 +17,8 @@
 }
 .doneDescription {
   width: 100%;
-  color: $mainColor;
+  color: $secondColor;
+  font-size: 16px;
   padding-bottom: 40px;
 }
 .imageHolder {
@@ -44,7 +43,6 @@
   font-weight: bold;
   justify-content: center;
   display: flex;
-  border-radius: 5px;
   background: $mainColor;
   color: $secondColor;
   margin: 0 auto;

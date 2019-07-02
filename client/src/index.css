@@ -93,15 +93,12 @@ textarea:focus {
   border-bottom: solid 2px $secondaryGrey;
 }
 .content {
-  margin: 25px auto;
+  margin: 0 auto;
   padding: 0 30px;
+  max-width: 800px;
   width: 100%;
-}
-@media screen and (min-width: 800px) {
-  .content {
-    margin: 60px auto;
-    width: 100%;
-  }
+  max-width: 800px;
+  background: #fff;
 }
 
 .overlay-exit {

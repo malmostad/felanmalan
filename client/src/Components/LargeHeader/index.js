@@ -14,7 +14,9 @@ class LargeHeader extends Component {
     } = this.props;
     return (
       <div style={{ height: `${size}px` }} className={styles.outer}>
-        {children}
+        <div style={{maxWidth: "800px", margin: "0 auto"}}>
+          {children}
+        </div>
       </div>
     );
   }

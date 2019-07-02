@@ -18,7 +18,6 @@ import {
   uiLoadingStop,
   reportAdd,
   getAddress,
-  onMapScreenClicked
 } from "redux/actions";
 
 const { track } = TrackingService;
@@ -49,6 +48,7 @@ class Map extends Component {
       zoom: 13
     });
 
+    this.askForLocation(true);
     const outer = document.createElement("div");
     const el = document.createElement("div");
     el.className = "pulsating-circle";
@@ -137,25 +137,11 @@ class Map extends Component {
       this.map.remove();
     }
   }
-  onMapScreenClicked = () => {
-    const { onMapScreenClicked } = this.props;
-    this.askForLocation(true);
-    onMapScreenClicked();
-  };
 
   render() {
     const { mapScreenClicked, address, loadingAddress = false } = this.props;
     return (
       <Layout>
-        <CSSTransition
-          unmountOnExit
-          className="overlay"
-          classNames="overlay"
-          timeout={500}
-          in={!mapScreenClicked}
-        >
-          <MapOverlay onClick={this.onMapScreenClicked} />
-        </CSSTransition>
         {this.state.hasGeoLocation ? (
           <button
             className={styles.currentLocationButton}
@@ -182,14 +168,13 @@ function mapStateToProps(state = {}) {
   const { ui = {}, report = {} } = state;
   const {
     address = false,
-    mapScreenClicked = false,
     loadingAddress = false
   } = ui;
   const { longitude = false, latitude = false } = report;
-  return { address, mapScreenClicked, longitude, latitude, loadingAddress };
+  return { address, longitude, latitude, loadingAddress };
 }
 
 export default connect(
   mapStateToProps,
-  { reportAdd, getAddress, onMapScreenClicked, uiLoadingStop, uiLoadingStart }
+  { reportAdd, getAddress, uiLoadingStop, uiLoadingStart }
 )(withRouter(Map));

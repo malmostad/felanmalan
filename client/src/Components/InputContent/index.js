@@ -8,7 +8,6 @@ class InputContent extends Component {
     } = this.props;
     return (
       <div className="content" style={{
-        margin: 0,
         transition: "all 0.3s ease-out",
         background: "#fff",
         padding: "40px 20px 40px",
