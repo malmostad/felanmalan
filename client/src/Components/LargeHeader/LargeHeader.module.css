@@ -1,0 +1,6 @@
+.outer {
+  transition: height 0.3s ease-out;
+  background-color: $mainColor;
+  padding: 0 30px;
+  width: 100%;
+}

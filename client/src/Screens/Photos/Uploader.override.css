@@ -43,3 +43,14 @@
   height: 100%;
   width: 100%;
 }
+.ant-upload.ant-upload-drag .ant-upload-drag-container {
+  height: 100%;
+  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.antd-dragger {
+  height: 100%;
+}

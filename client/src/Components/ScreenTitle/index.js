@@ -6,11 +6,7 @@ class ScreenTitle extends Component {
   render() {
     return (
       <div className={styles.screenTitleBg}>
-        <FullScreenTitle
-          screenTitleHolderStyle={styles.screenTitleHolder}
-          screenTitleStyle={styles.screenTitle}
-          {...this.props}
-        />
+        <FullScreenTitle {...this.props} />
       </div>
     );
   }

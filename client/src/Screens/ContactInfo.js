@@ -5,10 +5,13 @@ import { Redirect, withRouter } from "react-router-dom";
 
 import { reportAdd } from "redux/actions";
 import ScreenTitle from "Components/ScreenTitle";
+import LargeHeader from "Components/LargeHeader";
+import InputContent from "Components/InputContent";
 import FormItem from "Components/FormItem";
 
 class ContactInfo extends Component {
   state = {
+    focus: false,
     inputValue: "",
     isEmail: false
   };
@@ -58,26 +61,37 @@ class ContactInfo extends Component {
       onSubmit && onSubmit();
     }
   };
+  onFocus = event => {
+    this.setState({ focus: true });
+  };
+  onBlur = event => {
+    this.setState({ focus: false });
+  };
 
   render() {
     // make this more modular
     const { longitude, latitude, description } = this.props;
+    const { focus } = this.state;
     if (!longitude || !latitude || !description) {
       return <Redirect to="/" />;
     }
     return (
       <Layout>
-        <ScreenTitle
-          strongTextLast={true}
-          titleStrong="kontaktuppgifter"
-          title="Lämna dina "
-        />
-        <Layout className="content">
+        <LargeHeader>
+          <ScreenTitle
+            strongTextLast={true}
+            titleStrong="uppgifter"
+            title="Lämna dina "
+          />
+        </LargeHeader>
+        <InputContent focus={focus}>
           <form onSubmit={this.onSubmit}>
             <FormItem
               onChange={this.onInputChange}
               label="E-post eller telefonnummer"
               type="email-or-phone"
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
               value={this.state.inputValue}
               placeholder="Skriv din e-postadress eller ditt telefonnumer"
             />
@@ -85,7 +99,7 @@ class ContactInfo extends Component {
               Skicka in felanmälan
             </button>
           </form>
-        </Layout>
+        </InputContent>
       </Layout>
     );
   }

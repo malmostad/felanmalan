@@ -23,7 +23,6 @@ class NextButton extends Component {
         to={to}
       >
         {text}
-        <NextArrow />
       </Link>
     );
   };

@@ -18,15 +18,8 @@ class Photos extends Component {
   constructor() {
     super();
     this.state = {
-      startWithOverlay: true,
       fileList: []
     };
-  }
-  componentDidMount() {
-    const { aPhotoUploaded, previews } = this.props;
-    if (aPhotoUploaded || previews.length > 0) {
-      this.setState({ startWithOverlay: false });
-    }
   }
   onPhotoChange = async ({ file, fileList, event }) => {
     const status = file.status;
@@ -74,18 +67,17 @@ class Photos extends Component {
     const {
       touchCatcher = false,
       images = [],
-      aPhotoUploaded = false,
       previews = []
     } = this.props;
 
-    const { fileList = [], startWithOverlay } = this.state;
+    const { fileList = [] } = this.state;
     const imageItems = previews.concat(
       fileList.map(item => {
         return { uuid: item, isUploading: true };
       })
     );
     const showOverlay =
-      !(images.length !== 0 || fileList.length !== 0) && !aPhotoUploaded;
+      !(images.length !== 0 || fileList.length !== 0);
     return (
       <div>
         {touchCatcher && (
@@ -94,14 +86,8 @@ class Photos extends Component {
             className={styles.touchCatcher}
           />
         )}
-        {startWithOverlay && (
-          <PhotosOverlay config={config} show={showOverlay} />
-        )}
+        { images.length === 0 && <PhotosOverlay config={config} show={showOverlay} /> }
         <div>
-          <ScreenTitle
-            titleStrong="Lägg till foton "
-            title="på felet och platsen"
-          />
           <div className={styles.photosContentHolder}>
             <div className={styles.photosContent}>
               {imageItems.map(preview => (
@@ -120,12 +106,6 @@ class Photos extends Component {
               </PhotoItem>
             </div>
           </div>
-          <div className="content">
-            <p className={styles.infoText}>
-              Fotot ska göra det lättare för våra förvaltare<br />
-              att hitta där problemet uppstått.
-            </p>
-          </div>
         </div>
       </div>
     );
@@ -135,8 +115,8 @@ class Photos extends Component {
 function mapStateToProps(state = {}) {
   const { report = {}, ui = {} } = state;
   const { images = [], previews = [] } = report;
-  const { aPhotoUploaded = false, touchCatcher = false } = ui;
-  return { images, aPhotoUploaded, previews, touchCatcher };
+  const { touchCatcher = false } = ui;
+  return { images, previews, touchCatcher };
 }
 
 export default connect(

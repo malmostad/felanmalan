@@ -13,16 +13,18 @@ class FullScreenTitle extends Component {
       titleStrong = "",
       title = "",
       children = null,
+      style = {},
       strongTextLast = false,
       screenTitleHolderStyle = false,
-      screenTitleStyle = false
+      screenTitleStyle = false,
+      showLogo = false
     } = this.props;
     const StyleScreenTitle = screenTitleStyle || styles.screenTitle;
     const StyleScreenTitleHolder =
       screenTitleHolderStyle || styles.screenTitleHolder;
     return (
-      <div className={StyleScreenTitleHolder}>
-        <Logo />
+      <div style={style} className={StyleScreenTitleHolder}>
+        { showLogo && <Logo /> }
         <h1 className={StyleScreenTitle}>
           {!strongTextLast && (
             <strong className="boldText">{titleStrong}</strong>

@@ -1,6 +1,8 @@
 .photosContent {
   display: flex;
-  padding: 60px 10px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
   width: 100%;
   max-width: $contentMaxWidth;
 }
