@@ -22,10 +22,18 @@ const { Content } = Layout;
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
-    const { sendingState: currentSendingState } = this.props;
+    const {
+      sendingState: currentSendingState,
+      validPosition: currentValidPosition
+    } = this.props;
     if (currentSendingState === "pending") {
       if (nextProps.sendingState === "failure") {
         message.error("There was an error uploading your report!");
+      }
+    }
+    if (currentValidPosition !== nextProps.validPosition) {
+      if (!nextProps.validPosition) {
+        message.error("Det är inte Malmö stads mark!");
       }
     }
   }
@@ -37,8 +45,10 @@ class App extends Component {
       email,
       phone,
       description,
-      mapScreenClicked
+      mapScreenClicked,
+      validPosition
     } = this.props;
+    console.log(validPosition);
     return (
       <Layout>
         <Content>
@@ -62,12 +72,11 @@ class App extends Component {
           <BottomBar disabled={!mapScreenClicked}>
             <Steps />
             {loading && <LoadingIndicator message={loadingMessage} />}
-            {
-              // Add Switch here?
-            }
+            { !validPosition && <p style={{color: "white", margin: 0}}>Inte Malmö stads mark!</p> }
             <NextButton
               text="Nästa steg"
-              active={mapScreenClicked}
+              path="/"
+              active={mapScreenClicked && validPosition}
               to="/photo"
             />
             <NextButton path="/photo" text="Nästa steg" to="/info" />
@@ -106,7 +115,7 @@ class App extends Component {
 
 function mapStateToProps(state = {}) {
   const { ui = {}, report = {} } = state;
-  const { images = [], description = "", email = "", phone = "" } = report;
+  const { validPosition, images = [], description = "", email = "", phone = "" } = report;
   const {
     sendingState = "none",
     mapScreenClicked,
@@ -114,6 +123,7 @@ function mapStateToProps(state = {}) {
     loadingMessage = false
   } = ui;
   return {
+    validPosition,
     sendingState,
     images,
     description,
