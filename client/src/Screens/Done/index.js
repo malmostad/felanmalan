@@ -56,15 +56,13 @@ class Done extends Component {
             </p>
           </ScreenTitle>
         </LargeHeader>
-        <div className="content">
-          <div className={styles.doneCard}>
-            <label>Ärende #number</label>
-            {this.renderImages()}
-            {address && <p className={styles.address}>{address}</p>}
-            <p styles={styles.description}>{description}</p>
-          </div>
-          <Link className={styles.button} to="/">Börja om</Link>
+        <div className={`content ${styles.doneCard}`}>
+          <label>Ärende #number</label>
+          {this.renderImages()}
+          {address && <p className={styles.address}>{address}</p>}
+          <p styles={styles.description}>{description}</p>
         </div>
+        <Link className={styles.button} to="/">Börja om</Link>
       </div>
     );
   }

@@ -9,6 +9,7 @@
 .photosContentHolder {
   display: flex;
   justify-content: center;
+  padding-bottom: 65px;
 }
 .photoUploadButton {
   border: none;
@@ -24,12 +25,16 @@
 .photoUploadButton:hover {
   background: #e8e8eA;
 }
-.photoUploadButton img {
+.photoUploadButton svg {
   transition: ease-out 300ms transform;
   width: 25px;
   height: 25px;
 }
-.photoUploadButton:hover img {
+.photoUploadButton svg path {
+  fill: $mainColor;
+  stroke: $mainColor;
+}
+.photoUploadButton:hover svg {
   transform: scale(1.4);
 }
 
