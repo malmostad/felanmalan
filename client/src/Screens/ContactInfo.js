@@ -9,8 +9,8 @@ import FormItem from "Components/FormItem";
 
 class ContactInfo extends Component {
   state = {
-    email: "",
-    phone: ""
+    inputValue: "",
+    isEmail: false
   };
 
   componentWillReceiveProps(nextProps) {
@@ -25,34 +25,36 @@ class ContactInfo extends Component {
     const { description, email = "", phone = "" } = this.props;
     this.setState({
       description,
-      email,
-      phone
+      inputValue: email.length > 0 ? email : phone
     });
   }
-  onEmailChange = (event, valid) => {
+  onInputChange = (event, valid, isEmail = false) => {
     const { reportAdd } = this.props;
     // TODO: fix better solution for this
-    const email = event.target.value;
-    this.setState({ email });
-    if (valid) {
-      return reportAdd({ email });
+    const value = event.target.value;
+    this.setState({ inputValue: value, isEmail });
+    if (valid && isEmail) {
+      return reportAdd({
+        email: value,
+        phone: ""
+      });
+    } else {
+      reportAdd({
+        email: "",
+        phone: value
+      });
     }
-    reportAdd({ email: "" });
-  };
-  onPhoneNumberChange = event => {
-    const { reportAdd } = this.props;
-    // TODO: fix better solution for this
-    const phone = event.target.value;
-    this.setState({ phone });
-    reportAdd({ phone });
   };
 
   onSubmit = event => {
     event.preventDefault();
     const { reportAdd, onSubmit } = this.props;
-    const { phone = "", email = "" } = this.state;
-    if (phone.length > 0 || email.length > 0) {
-      reportAdd({ phone, email });
+    const { inputValue = "", isEmail = false } = this.state;
+    if (inputValue.length > 0) {
+      reportAdd({
+        phone: isEmail ? "" : inputValue,
+        email: isEmail ? inputValue : ""
+      });
       onSubmit && onSubmit();
     }
   };
@@ -73,18 +75,11 @@ class ContactInfo extends Component {
         <Layout className="content">
           <form onSubmit={this.onSubmit}>
             <FormItem
-              onChange={this.onEmailChange}
-              label="E-post"
-              type="email"
-              value={this.state.email}
-              placeholder="Skriv din e-postadress"
-            />
-            <FormItem
-              onChange={this.onPhoneNumberChange}
-              label="Telefonnummer"
-              placeholder="Skriv ditt telefonnummer"
-              type="phone"
-              value={this.state.phone}
+              onChange={this.onInputChange}
+              label="E-post eller telefonnummer"
+              type="email-or-phone"
+              value={this.state.inputValue}
+              placeholder="Skriv din e-postadress eller ditt telefonnumer"
             />
             <button style={{ visibility: "hidden" }} type="submit">
               Skicka in felanmälan
