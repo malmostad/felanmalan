@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Layout, message } from "antd";
 import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, HashRouter, BrowserRouter } from "react-router-dom";
 
 import { createReport } from "redux/actions";
 
@@ -17,8 +15,13 @@ import LoadingIndicator from "Components/LoadingIndicator";
 import Steps from "Components/Steps";
 import BottomBar from "Components/BottomBar";
 import NextButton from "Components/NextButton";
-
-const { Content } = Layout;
+const getRouter = () => {
+  const { REACT_APP_IS_CORDOVA = false } = process.env;
+  if (REACT_APP_IS_CORDOVA) {
+    return HashRouter;
+  }
+  return BrowserRouter;
+};
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
@@ -28,12 +31,12 @@ class App extends Component {
     } = this.props;
     if (currentSendingState === "pending") {
       if (nextProps.sendingState === "failure") {
-        message.error("There was an error uploading your report!");
+        console.log("Failed creating your report");
       }
     }
     if (currentValidPosition !== nextProps.validPosition) {
       if (!nextProps.validPosition) {
-        message.error("Det är inte Malmö stads mark!");
+        console.log("Det är inte Malmö stads mark!");
       }
     }
   }
@@ -48,60 +51,60 @@ class App extends Component {
       mapScreenClicked,
       validPosition
     } = this.props;
-    console.log(validPosition);
+
     return (
-      <Layout>
-        <Content>
-          <Switch>
-            <Route path="/photo" component={Photos} />
-            <Route path="/info" component={Info} />
-            <Route
-              path="/contact-info"
-              render={props => (
-                <ContactInfo
-                  {...props}
-                  onSubmit={() => {
-                    createReport();
-                  }}
-                />
-              )}
-            />
-            <Route path="/done" component={Done} />
-            <Route component={Map} />
-          </Switch>
-          <BottomBar disabled={!mapScreenClicked}>
-            <Steps />
-            {loading && <LoadingIndicator message={loadingMessage} />}
-            { !validPosition && <p style={{color: "white", margin: 0}}>Inte Malmö stads mark!</p> }
-            <NextButton
-              text="Nästa steg"
-              path="/"
-              active={mapScreenClicked && validPosition}
-              to="/photo"
-            />
-            <NextButton path="/photo" text="Nästa steg" to="/info" />
-            <NextButton
-              path="/info"
-              text="Nästa steg"
-              to="/contact-info"
-              active={description.length > 0}
-            />
-            <NextButton
-              text="Skicka felanmälan"
-              path="/contact-info"
-              to="/done"
-              active={email.length > 0 || phone.length > 0}
-              onSubmit={() => {
-                createReport();
-              }}
-            />
-          </BottomBar>
-        </Content>
-      </Layout>
+      <div>
+        <Switch>
+          <Route exact path="/photo" component={Photos} />
+          <Route exact path="/info" component={Info} />
+          <Route
+            exact
+            path="/contact-info"
+            render={props => (
+              <ContactInfo
+                {...props}
+                onSubmit={() => {
+                  createReport();
+                }}
+              />
+            )}
+          />
+          <Route excat path="/done" component={Done} />
+          <Route component={Map} />
+        </Switch>
+        <BottomBar disabled={!mapScreenClicked}>
+          <Steps />
+          {loading && <LoadingIndicator message={loadingMessage} />}
+          <NextButton
+            text="Nästa steg"
+            exact
+            path="/"
+            active={mapScreenClicked && validPosition}
+            to="/photo"
+          />
+          <NextButton path="/photo" text="Nästa steg" to="/info" />
+          <NextButton
+            path="/info"
+            text="Nästa steg"
+            to="/contact-info"
+            active={description.length > 0}
+          />
+          <NextButton
+            text="Skicka felanmälan"
+            path="/contact-info"
+            to="/done"
+            active={email.length > 0 || phone.length > 0}
+            onSubmit={() => {
+              createReport();
+            }}
+          />
+        </BottomBar>
+      </div>
     );
   }
 
   render() {
+    const Router = getRouter();
     return (
       <Router>
         <Switch>

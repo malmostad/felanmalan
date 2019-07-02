@@ -31,12 +31,20 @@ if (timestamp !== -1 && age > MAX_AGE_OF_STORED_REPORT) {
 
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
-);
+const startRender = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById("root")
+  );
+};
+const { CORDOVA = false } = process.env;
+if (CORDOVA) {
+  document.addEventListener("deviceready", startRender);
+} else {
+  startRender();
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

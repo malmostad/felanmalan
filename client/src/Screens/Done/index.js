@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
 import { connect } from "react-redux";
-
+import { Link } from "react-router-dom";
 import { clear } from "redux/actions";
 import styles from "./Done.module.css";
 import ScreenTitle from "Components/ScreenTitle";
@@ -44,7 +43,7 @@ class Done extends Component {
   render() {
     const { description = "" , address = "" } = this.state;
     return (
-      <Layout>
+      <div>
         <ScreenTitle
           strongTextLast={true}
           titleStrong="skickats"
@@ -54,15 +53,16 @@ class Done extends Component {
             Din felanmälan är nu skickad och vi kommer att se över din rapport så snart som möjligt. Om du uppgav din mail i förra steget så kommer du att få ett mail men en länk till ditt ärende.
           </p>
         </ScreenTitle>
-        <Layout className="content">
+        <div className="content">
           <div className={styles.doneCard}>
             <label>Ärende #number</label>
             {this.renderImages()}
             {address && <p className={styles.address}>{address}</p>}
             <p styles={styles.description}>{description}</p>
           </div>
-        </Layout>
-      </Layout>
+          <Link className={styles.button} to="/">Börja om</Link>
+        </div>
+      </div>
     );
   }
 }

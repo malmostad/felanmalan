@@ -1,10 +1,12 @@
 const {
+  REACT_APP_API_URL = "/",
   REACT_APP_MAPBOX_ACCESS_TOKEN,
   REACT_APP_PROPERTY_TILESET = false
 } = process.env;
+
 export async function createReport(report) {
   try {
-    const response = await fetch("/reports", {
+    const response = await fetch(`${REACT_APP_API_URL}reports`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
