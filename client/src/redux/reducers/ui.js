@@ -9,8 +9,7 @@ import {
   UI_LOADING_STOP,
   UI_LOADING_START,
   UI_TOUCH_CATCHER_HIDE,
-  UI_TOUCH_CATCHER_SHOW,
-  PHOTO_UPLOAD_SUCCESS
+  UI_TOUCH_CATCHER_SHOW
 } from "../action-types";
 
 const initialState = {

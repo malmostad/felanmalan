@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Upload } from "antd";
 import { connect } from "react-redux";
 import { photoUploaded, photoRemoved, uiHideTouchCatcher } from "redux/actions";
-import ScreenTitle from "Components/ScreenTitle";
 import PhotosOverlay from "Components/PhotosOverlay";
 import PhotoItem from "Components/PhotoItem";
 import { previewImage } from "utils";

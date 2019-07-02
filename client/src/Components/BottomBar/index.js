@@ -7,8 +7,7 @@ class BottomBar extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      sendingState: currentSendingState,
-      validPosition: currentValidPosition
+      sendingState: currentSendingState
     } = this.props;
     if (currentSendingState === "pending") {
       if (nextProps.sendingState === "failure") {
@@ -21,9 +20,7 @@ class BottomBar extends Component {
       location = {},
       description = "",
       phone = "",
-      email = "",
-      images = [],
-      previews = []
+      email = ""
     } = this.props;
     const { pathname = "" } = location;
     if (pathname === "/") {
@@ -43,7 +40,6 @@ class BottomBar extends Component {
   }
   isError = () => {
     const {
-      children = null,
       location = {},
       onRetry = () => {},
       sendingState = "none",
@@ -96,8 +92,6 @@ function mapStateToProps(state = {}) {
     sendingState = "none"
   } = ui;
   const {
-    previews = [],
-    images = [],
     description = "",
     email = "",
     phone = "",
@@ -107,8 +101,6 @@ function mapStateToProps(state = {}) {
   return {
     sendingState,
     validPosition,
-    previews,
-    images,
     description,
     email,
     phone,
