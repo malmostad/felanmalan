@@ -12,7 +12,6 @@ import Info from "Screens/Info";
 import ContactInfo from "Screens/ContactInfo";
 
 import LoadingIndicator from "Components/LoadingIndicator";
-import Steps from "Components/Steps";
 import BottomBar from "Components/BottomBar";
 import NextButton from "Components/NextButton";
 const getRouter = () => {
@@ -24,22 +23,6 @@ const getRouter = () => {
 };
 
 class App extends Component {
-  componentWillReceiveProps(nextProps) {
-    const {
-      sendingState: currentSendingState,
-      validPosition: currentValidPosition
-    } = this.props;
-    if (currentSendingState === "pending") {
-      if (nextProps.sendingState === "failure") {
-        console.log("Failed creating your report");
-      }
-    }
-    if (currentValidPosition !== nextProps.validPosition) {
-      if (!nextProps.validPosition) {
-        console.log("Det är inte Malmö stads mark!");
-      }
-    }
-  }
   renderReportPage() {
     const {
       createReport,
@@ -47,15 +30,13 @@ class App extends Component {
       loadingMessage = false,
       email,
       phone,
-      description,
-      mapScreenClicked,
-      validPosition
+      description
     } = this.props;
 
     return (
       <div>
         <Switch>
-          <Route exact path="/photo" component={Photos} />
+          <Route exact path="/map" component={Map} />
           <Route exact path="/info" component={Info} />
           <Route
             exact
@@ -70,19 +51,21 @@ class App extends Component {
             )}
           />
           <Route excat path="/done" component={Done} />
-          <Route component={Map} />
+          <Route component={Photos} />
         </Switch>
-        <BottomBar disabled={!mapScreenClicked}>
-          <Steps />
-          {loading && <LoadingIndicator message={loadingMessage} />}
-          <NextButton
-            text="Nästa steg"
-            exact
-            path="/"
-            active={mapScreenClicked && validPosition}
-            to="/photo"
-          />
-          <NextButton path="/photo" text="Nästa steg" to="/info" />
+        <BottomBar
+          onRetry={() => {
+            createReport();
+          }}
+        >
+          {loading && (
+            <LoadingIndicator
+              message={loadingMessage}
+              style={{ position: "absolute", left: "10px", top: "15px" }}
+            />
+          )}
+          <NextButton text="Nästa steg" exact path="/map" to="/info" />
+          <NextButton exact path="/" text="Nästa steg" to="/map" />
           <NextButton
             path="/info"
             text="Nästa steg"
@@ -118,7 +101,14 @@ class App extends Component {
 
 function mapStateToProps(state = {}) {
   const { ui = {}, report = {} } = state;
-  const { validPosition, images = [], description = "", email = "", phone = "" } = report;
+  const {
+    previews = [],
+    validPosition,
+    images = [],
+    description = "",
+    email = "",
+    phone = ""
+  } = report;
   const {
     sendingState = "none",
     mapScreenClicked,
@@ -128,6 +118,7 @@ function mapStateToProps(state = {}) {
   return {
     validPosition,
     sendingState,
+    previews,
     images,
     description,
     email,
