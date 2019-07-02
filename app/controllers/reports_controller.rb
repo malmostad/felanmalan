@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 class ReportsController < ApiController
-  # before_action :set_report, only: [:show, :update, :destroy]
+  before_action :set_report, only: %i[show]
 
   # GET /reports
-  def index
-    @reports = Report.all
+  # def index
+  #   @reports = Report.all
 
-    render json: @reports
-  end
-
-  # # GET /reports/1
-  # def show
-  #   render json: @report
+  #   render json: @reports
   # end
+
+  # GET /reports/1
+  def show
+    render json: @report.as_json(except: %i[id created_at updated_at email])
+  end
 
   # POST /reports
   def create
@@ -43,14 +43,13 @@ class ReportsController < ApiController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  # def set_report
-  #   @report = Report.find(params[:id])
-  # end
+  def set_report
+    @report = Report.find(params[:id])
+  end
 
   # Only allow a trusted parameter "white list" through.
   def report_params
     params.require(:report).permit(
-      :image_token,
       :email,
       :description,
       :latitude,
