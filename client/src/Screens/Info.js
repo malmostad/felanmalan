@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
 import { connect } from "react-redux";
 
 import { reportAdd } from "redux/actions";
-import ScreenTitle from "Components/ScreenTitle";
+import ScreenTitle from "Components/FullScreenTitle";
+import LargeHeader from "Components/LargeHeader";
+import InputContent from "Components/InputContent";
 
 class Info extends Component {
   state = {
-    description: ""
+    description: "",
+    focus: false
   };
   componentDidMount() {
     const { description } = this.props;
@@ -22,21 +24,35 @@ class Info extends Component {
       description: event.target.value
     });
   };
+  onFocus = event => {
+    this.setState({ focus: true });
+  };
+  onBlur = event => {
+    this.setState({ focus: false });
+  };
 
   render() {
+    const { focus } = this.state;
     return (
-      <Layout>
-        <ScreenTitle titleStrong="Beskriv " title="problemet" />
-        <Layout className="content">
+      <div>
+        <LargeHeader>
+          <ScreenTitle titleStrong="Beskriv " title="problemet" />
+        </LargeHeader>
+        <InputContent focus={focus}>
           <label>Beskrivning</label>
           <textarea
-            style={{ fontSize: "16px" }}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            style={{
+              fontSize: "16px",
+              height: focus ? "120px" : "40px"
+            }}
             placeholder="Beskriv problemet du vill felanmäla..."
             onChange={this.onHandleChange}
             value={this.state.description}
           />
-        </Layout>
-      </Layout>
+        </InputContent>
+      </div>
     );
   }
 }

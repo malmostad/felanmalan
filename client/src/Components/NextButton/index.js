@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link, Route, withRouter } from "react-router-dom";
 import styles from "./NextButton.module.css";
-import { ReactComponent as NextArrow } from "./next.svg";
 
 class NextButton extends Component {
   onClick = event => {
@@ -23,7 +22,6 @@ class NextButton extends Component {
         to={to}
       >
         {text}
-        <NextArrow />
       </Link>
     );
   };

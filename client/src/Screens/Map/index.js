@@ -102,7 +102,7 @@ class Map extends Component {
       timeout: 10000,
       maximumAge: 0
     };
-    this.props.uiLoadingStart("Hämtar din position");
+    this.props.uiLoadingStart("Hämtar position");
     navigator.geolocation.getCurrentPosition(
       pos => {
         this.onSuccessCurrentPosition(pos, onLoad);

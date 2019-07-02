@@ -3,7 +3,7 @@ import styles from "./LoadingIndicator.module.css";
 
 class LoadingIndicator extends Component {
   render() {
-    const { message = null, size = false } = this.props;
+    const { message = null, size = false, style = {} } = this.props;
     let innerStyle = {};
     let outerStyle = {};
     if (size) {
@@ -18,7 +18,7 @@ class LoadingIndicator extends Component {
       };
     }
     return (
-      <div className={styles.loadingHolder}>
+      <div className={styles.loadingHolder} style={style}>
         <div className={styles.loadingRing} style={outerStyle}>
           {Array(4)
             .fill("div")

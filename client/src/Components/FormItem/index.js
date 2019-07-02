@@ -10,7 +10,7 @@ class InputItem extends Component {
     return re.test(email);
   };
   validatePhoneNumber = phone => {
-    const reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+    const reg = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im
     return reg.test(phone);
   }
   onHandleChange = (event, valid, ...rest) => {
