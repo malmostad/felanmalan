@@ -22,8 +22,17 @@ import {
 } from "redux/actions";
 
 const { track } = TrackingService;
+const {
+  REACT_APP_MAPBOX_ACCESS_TOKEN,
+  REACT_APP_MAPBOX_STYLE = "mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
+} = process.env;
+// TODO: move to config
+const maxBounds = [
+  [12.855952171065837, 55.49066310369751],
+  [13.17594041283428, 55.6585718499375]
+];
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+mapboxgl.accessToken = REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 class Map extends Component {
   state = {
@@ -34,8 +43,9 @@ class Map extends Component {
     const { longitude = false, latitude = false } = this.props;
     let map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: REACT_APP_MAPBOX_STYLE,
       center: [longitude, latitude],
+      maxBounds,
       zoom: 13
     });
 

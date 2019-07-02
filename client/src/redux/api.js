@@ -1,4 +1,9 @@
-const { REACT_APP_API_URL = "/" } = process.env;
+const {
+  REACT_APP_API_URL = "/",
+  REACT_APP_MAPBOX_ACCESS_TOKEN,
+  REACT_APP_PROPERTY_TILESET = false
+} = process.env;
+
 export async function createReport(report) {
   try {
     const response = await fetch(`${REACT_APP_API_URL}reports`, {
@@ -42,4 +47,20 @@ export async function fetchIssueStatus(uuid) {
       });
     }, 400);
   });
+}
+export async function fetchTileQuery (coordinates) {
+  if (!REACT_APP_PROPERTY_TILESET) {
+    console.log("You need to have a property tileset set to check if its not allowed property");
+    return false;
+  }
+  const { longitude, latitude } = coordinates;
+  const radius = 0;
+  const url = `https://api.mapbox.com/v4/${REACT_APP_PROPERTY_TILESET}/tilequery/${longitude},${latitude}.json?limit=5&radius=${radius}&dedupe=true&access_token=${REACT_APP_MAPBOX_ACCESS_TOKEN}`
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  return response.json();
 }

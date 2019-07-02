@@ -3,7 +3,8 @@ import {
   REPORT_ADD,
   PHOTO_UPLOAD_SUCCESS,
   GET_ADDRESS_SUCCESS,
-  PHOTO_REMOVED
+  PHOTO_REMOVED,
+  PROPERTY_STATUS_CHECKED
 } from "../action-types";
 
 // TODO: make this configurable
@@ -52,6 +53,14 @@ const reportReducer = (state = initialState, action) => {
       return {
         ...initialState
       };
+    case PROPERTY_STATUS_CHECKED:
+      const { coordinates = {}, valid = true } = action;
+      if (coordinates.longitude === state.longitude &&
+        coordinates.latitude === state.latitude) {
+        return { ...state, validPosition: valid }
+      }
+      return state;
+
     default:
       return state;
   }

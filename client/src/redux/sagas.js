@@ -7,7 +7,8 @@ import {
   GET_ADDRESS_SUCCESS,
   FETCH_ISSUE_STATUS,
   FETCH_ISSUE_STATUS_FAILURE,
-  FETCH_ISSUE_STATUS_SUCCESS
+  FETCH_ISSUE_STATUS_SUCCESS,
+  PROPERTY_STATUS_CHECKED
 } from "./action-types";
 
 import * as Api from "./api";
@@ -32,11 +33,19 @@ function* watchCreateReport() {
 
 export function* getAddress(action) {
   const records = yield call(Api.getAddress, action.payload);
-
   yield put({
     type: GET_ADDRESS_SUCCESS,
     payload: extractClosestAddress(records)
   });
+  const property = yield call(Api.fetchTileQuery, action.payload);
+  if (property) {
+    const { features } = property;
+    yield put({
+      type: PROPERTY_STATUS_CHECKED,
+      valid: features.length > 0,
+      coordinates: action.payload
+    })
+  }
 }
 function* watchGetAddress() {
   yield takeEvery(GET_ADDRESS, getAddress);
@@ -45,7 +54,8 @@ function* watchGetAddress() {
 function extractClosestAddress(records) {
   // TODO: Cover edge cases
   // use place_name??
-  const { text = "", address = "" } = records.features[0];
+  const feature = records.features[0] || {};
+  const { text = "", address = "" } = feature;
   return {
     address: `${text} ${address}`
   };

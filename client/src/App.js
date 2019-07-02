@@ -25,10 +25,18 @@ const getRouter = () => {
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
-    const { sendingState: currentSendingState } = this.props;
+    const {
+      sendingState: currentSendingState,
+      validPosition: currentValidPosition
+    } = this.props;
     if (currentSendingState === "pending") {
       if (nextProps.sendingState === "failure") {
         console.log("Failed creating your report");
+      }
+    }
+    if (currentValidPosition !== nextProps.validPosition) {
+      if (!nextProps.validPosition) {
+        console.log("Det är inte Malmö stads mark!");
       }
     }
   }
@@ -40,8 +48,10 @@ class App extends Component {
       email,
       phone,
       description,
-      mapScreenClicked
+      mapScreenClicked,
+      validPosition
     } = this.props;
+
     return (
       <div>
         <Switch>
@@ -69,7 +79,7 @@ class App extends Component {
             text="Nästa steg"
             exact
             path="/"
-            active={mapScreenClicked}
+            active={mapScreenClicked && validPosition}
             to="/photo"
           />
           <NextButton path="/photo" text="Nästa steg" to="/info" />
@@ -108,7 +118,7 @@ class App extends Component {
 
 function mapStateToProps(state = {}) {
   const { ui = {}, report = {} } = state;
-  const { images = [], description = "", email = "", phone = "" } = report;
+  const { validPosition, images = [], description = "", email = "", phone = "" } = report;
   const {
     sendingState = "none",
     mapScreenClicked,
@@ -116,6 +126,7 @@ function mapStateToProps(state = {}) {
     loadingMessage = false
   } = ui;
   return {
+    validPosition,
     sendingState,
     images,
     description,
