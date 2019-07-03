@@ -91,7 +91,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/track/:uuid" component={Track} />
+          <Route path="/track/:id" component={Track} />
           <Route render={props => this.renderReportPage()} />
         </Switch>
       </Router>
