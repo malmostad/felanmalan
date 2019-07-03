@@ -3,10 +3,8 @@ import { withRouter } from "react-router-dom";
 import { Layout } from "antd";
 import { connect } from "react-redux";
 import mapboxgl from "mapbox-gl";
-import { CSSTransition } from "react-transition-group";
 import TrackingService from "TrackingService";
 
-import MapOverlay from "Components/MapOverlay";
 import MapSearchBar from "Components/MapSearchBar";
 
 import styles from "./Map.module.css";
@@ -139,7 +137,7 @@ class Map extends Component {
   }
 
   render() {
-    const { mapScreenClicked, address, loadingAddress = false } = this.props;
+    const { address, loadingAddress = false } = this.props;
     return (
       <Layout>
         {this.state.hasGeoLocation ? (

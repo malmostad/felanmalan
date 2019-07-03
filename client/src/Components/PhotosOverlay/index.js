@@ -23,29 +23,29 @@ class PhotosOverlay extends Component {
       >
         <div>
           <div className={styles.photosOverlay}>
-            <FullScreenTitle
-              titleStrong="Lägg till foton "
-              title="på problemet & platsen"
-              style={{margin: "0 10px"}}
-            />
-            <div className={styles.actionWrapper}>
-              <Link className={styles.skipLink} to="/map">Hoppa över</Link>
-              <Dragger {...config} className={styles.dragger}>
-                <button className={styles.uploadArea}>
-                  <img
-                    className={styles.uploadButton}
-                    src={UploadButton}
-                    alt="Upload"
-                  />
-                  <p className={styles.uploadText}>
-                    Klicka eller dra bild hit för att starta uppladdning
-                  </p>
-                  <p className={styles.uploadTextMobile}>
-                    Lägg till foto
-                  </p>
-                </button>
-              </Dragger>
-            </div>
+              <FullScreenTitle
+                titleStrong="Lägg till foton "
+                title="på problemet & platsen"
+                style={{margin: "0 auto", maxWidth: "800px", width: "100%"}}
+              />
+              <div className={styles.actionWrapper}>
+                <Link className={styles.skipLink} to="/map">Hoppa över</Link>
+                <Dragger {...config} className={styles.dragger}>
+                  <button className={styles.uploadArea}>
+                    <img
+                      className={styles.uploadButton}
+                      src={UploadButton}
+                      alt="Upload"
+                    />
+                    <p className={styles.uploadText}>
+                      Klicka eller dra bild hit för att starta uppladdning
+                    </p>
+                    <p className={styles.uploadTextMobile}>
+                      Lägg till foto
+                    </p>
+                  </button>
+                </Dragger>
+              </div>
           </div>
         </div>
       </CSSTransition>

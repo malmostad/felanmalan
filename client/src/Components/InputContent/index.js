@@ -11,7 +11,7 @@ class InputContent extends Component {
         transition: "all 0.3s ease-out",
         background: "#fff",
         padding: "40px 20px 40px",
-        transform: focus ? "translateY(-150px)" : "translateY(0px)"
+        transform: focus ? "translateY(-100px)" : "translateY(0px)"
       }}>
         {children}
       </div>

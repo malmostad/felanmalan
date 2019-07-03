@@ -31,6 +31,7 @@ class Info extends Component {
     this.setState({ focus: false });
   };
 
+  // TODO: auto size textarea
   render() {
     const { focus } = this.state;
     return (
@@ -45,7 +46,8 @@ class Info extends Component {
             onBlur={this.onBlur}
             style={{
               fontSize: "16px",
-              height: focus ? "120px" : "40px"
+              borderBottom: focus ? "none" : "solid 1px gray",
+              height: focus ? "100px" : "45px"
             }}
             placeholder="Beskriv problemet du vill felanmäla..."
             onChange={this.onHandleChange}

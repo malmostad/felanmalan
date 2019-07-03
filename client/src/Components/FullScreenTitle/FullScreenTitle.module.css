@@ -2,8 +2,9 @@
   max-width: 600px;
 }
 .screenTitle {
-  max-width: 20rem;
+  font-family: 'MalmoRubrik';
   font-weight: lighter;
+  max-width: 19rem;
   letter-spacing: 0.2px;
   text-align: left;
   color: $secondColor;
@@ -13,7 +14,7 @@
 }
 @media screen and (min-width: 640px) {
   .screenTitle {
-    max-width: 40rem;
+    max-width: 36rem;
     font-size: 80px;
     line-height: 80px;
   }

@@ -7,7 +7,7 @@ import LargeHeader from "Components/LargeHeader";
 import ScreenTitle from "Components/ScreenTitle";
 import PhotoItem from "Components/PhotoItem";
 
-const MAX_IMAGE_WIDTH_PERCENT = 90;
+const MAX_IMAGE_WIDTH_PERCENT = 100;
 class Done extends Component {
   state = {
     description: "",
