@@ -15,4 +15,13 @@ class Report < ApplicationRecord
   def set_defaults
     self.status ||= 'registered'
   end
+
+  def to_api_response
+    { id: id,
+      description: description,
+      latitude: latitude,
+      longitude: longitude,
+      images: images,
+      status: I18n.t(status, scope: :report) }.to_json
+  end
 end

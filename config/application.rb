@@ -28,6 +28,8 @@ module Boilerplate
       g.test_framework :rspec
     end
 
+    config.i18n.default_locale = :sv
+
     config.app_generators.scaffold_controller = :scaffold_controller
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

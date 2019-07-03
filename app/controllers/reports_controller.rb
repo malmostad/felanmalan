@@ -12,7 +12,7 @@ class ReportsController < ApiController
 
   # GET /reports/1
   def show
-    render json: @report.as_json(except: %i[created_at updated_at email])
+    render json: @report.to_api_response
   end
 
   # POST /reports
