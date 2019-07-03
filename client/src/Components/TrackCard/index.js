@@ -8,9 +8,9 @@ class Steps extends Component {
       description = "",
       issueNumber = "",
       address = "",
-      images = null
+      images = []
     } = this.props;
-    const image = images && images[0];
+    const image = images[0];
 
     return (
       <div className={styles.background}>
