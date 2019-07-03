@@ -18,6 +18,7 @@ class Report < ApplicationRecord
 
   def to_api_response
     { id: id,
+      address: address,
       description: description,
       latitude: latitude,
       longitude: longitude,

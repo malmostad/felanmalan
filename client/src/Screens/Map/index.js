@@ -15,7 +15,7 @@ import {
   uiLoadingStart,
   uiLoadingStop,
   reportAdd,
-  getAddress,
+  getAddress
 } from "redux/actions";
 
 const { track } = TrackingService;
@@ -164,10 +164,7 @@ class Map extends Component {
 
 function mapStateToProps(state = {}) {
   const { ui = {}, report = {} } = state;
-  const {
-    address = false,
-    loadingAddress = false
-  } = ui;
+  const { address = false, loadingAddress = false } = ui;
   const { longitude = false, latitude = false } = report;
   return { address, longitude, latitude, loadingAddress };
 }

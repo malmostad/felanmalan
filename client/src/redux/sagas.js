@@ -16,7 +16,7 @@ import * as Api from "./api";
 export function* createReport() {
   const { report } = yield select();
   // TODO: clean up data
-  const { timestamp, previews, address, ...props } = report;
+  const { timestamp, previews, validPosition, ...props } = report;
   try {
     const createdReport = yield call(Api.createReport, {
       report: { ...props }

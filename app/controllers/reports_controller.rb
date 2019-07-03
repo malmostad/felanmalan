@@ -51,6 +51,7 @@ class ReportsController < ApiController
   def report_params
     params.require(:report).permit(
       :email,
+      :address,
       :description,
       :latitude,
       :longitude,
