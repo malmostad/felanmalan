@@ -11,7 +11,8 @@ import LoadingIndicator from "Components/LoadingIndicator";
 class Track extends Component {
   componentDidMount() {
     const { fetchIssueStatus } = this.props;
-    fetchIssueStatus();
+    const issueId = this.props.match.params.id;
+    fetchIssueStatus(issueId);
   }
   render() {
     const { issueStatus } = this.props;

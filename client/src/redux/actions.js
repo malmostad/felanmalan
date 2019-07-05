@@ -57,7 +57,7 @@ export const uiHideTouchCatcher = () => {
 export const clear = () => {
   return { type: CLEAR };
 };
-export const fetchIssueStatus = uuid => ({
+export const fetchIssueStatus = id => ({
   type: FETCH_ISSUE_STATUS,
-  uuid
+  id
 });

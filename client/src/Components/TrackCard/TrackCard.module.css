@@ -7,6 +7,12 @@
   display: flex;
 }
 .imageHolder { }
+
+.image{
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+}
 .contentHolder {
   display: flex;
   flex-direction: column;

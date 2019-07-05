@@ -16,7 +16,7 @@ import * as Api from "./api";
 export function* createReport() {
   const { report } = yield select();
   // TODO: clean up data
-  const { timestamp, previews, address, ...props } = report;
+  const { timestamp, previews, validPosition, ...props } = report;
   try {
     const createdReport = yield call(Api.createReport, {
       report: { ...props }
@@ -60,9 +60,9 @@ function extractClosestAddress(records) {
     address: `${text} ${address}`
   };
 }
-export function* fetchIssueStatus(uuid) {
+export function* fetchIssueStatus(action) {
   try {
-    const issueData = yield call(Api.fetchIssueStatus, uuid);
+    const issueData = yield call(Api.fetchIssueStatus, action.id);
     yield put({ type: FETCH_ISSUE_STATUS_SUCCESS, payload: issueData });
   } catch (error) {
     yield put({ type: FETCH_ISSUE_STATUS_FAILURE, payload: error });

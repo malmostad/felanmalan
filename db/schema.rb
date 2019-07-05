@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_02_135523) do
+ActiveRecord::Schema.define(version: 2019_07_03_151450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,16 +44,8 @@ ActiveRecord::Schema.define(version: 2019_07_02_135523) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reports", force: :cascade do |t|
-    t.string "email"
-    t.string "description"
-    t.float "latitude"
-    t.string "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "images", default: [], array: true
-    t.integer "status"
-  end
+# Could not dump table "reports" because of following StandardError
+#   Unknown type 'issue_status' for column 'status'
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end
