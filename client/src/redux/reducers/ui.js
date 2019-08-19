@@ -10,7 +10,10 @@ import {
   UI_LOADING_STOP,
   UI_LOADING_START,
   UI_TOUCH_CATCHER_HIDE,
-  UI_TOUCH_CATCHER_SHOW
+  UI_TOUCH_CATCHER_SHOW,
+  UI_INPUT_BLUR,
+  UI_INPUT_FOCUS,
+  UI_INPUT_VALIDATION
 } from "../action-types";
 
 const initialState = {
@@ -20,11 +23,20 @@ const initialState = {
   touchCatcher: false,
   sendingState: "none",
   address: false,
+  inputFocus: false,
+  validInput: false,
   loading: false
 };
 
 const uiReducer = (state = initialState, action) => {
   switch (action.type) {
+    case UI_INPUT_VALIDATION:
+      const { isValid } = action;
+      return { ...state, validInput: isValid };
+    case UI_INPUT_FOCUS:
+      return { ...state, inputFocus: true };
+    case UI_INPUT_BLUR:
+      return { ...state, inputFocus: false };
     case UI_TOUCH_CATCHER_SHOW:
       return { ...state, touchCatcher: true };
     case UI_TOUCH_CATCHER_HIDE:
@@ -50,8 +62,13 @@ const uiReducer = (state = initialState, action) => {
     case ACCEPT_COOKIES:
       return { ...state, acceptedCookies: true };
     case CLEAR:
-      const { mapScreenClicked, aPhotoUploaded } = state;
-      return { ...initialState, mapScreenClicked, aPhotoUploaded };
+      const { mapScreenClicked, aPhotoUploaded, acceptedCookies } = state;
+      return {
+        ...initialState,
+        mapScreenClicked,
+        aPhotoUploaded,
+        acceptedCookies
+      };
     default:
       return state;
   }

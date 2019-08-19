@@ -3,7 +3,12 @@ import { Layout } from "antd";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 
-import { reportAdd } from "redux/actions";
+import {
+  reportAdd,
+  inputFocus,
+  inputBlur,
+  updateInputValidation
+} from "redux/actions";
 import ScreenTitle from "Components/ScreenTitle";
 import LargeHeader from "Components/LargeHeader";
 import InputContent from "Components/InputContent";
@@ -36,6 +41,7 @@ class ContactInfo extends Component {
     // TODO: fix better solution for this
     const value = event.target.value;
     this.setState({ inputValue: value, isEmail });
+    this.props.updateInputValidation(valid);
     if (valid && isEmail) {
       return reportAdd({
         email: value,
@@ -62,9 +68,11 @@ class ContactInfo extends Component {
     }
   };
   onFocus = event => {
+    this.props.inputFocus();
     this.setState({ focus: true });
   };
   onBlur = event => {
+    this.props.inputBlur();
     this.setState({ focus: false });
   };
 
@@ -114,5 +122,5 @@ function mapStateToProps(state = {}) {
 
 export default connect(
   mapStateToProps,
-  { reportAdd }
+  { reportAdd, inputBlur, inputFocus, updateInputValidation }
 )(withRouter(ContactInfo));

@@ -11,6 +11,9 @@ import {
   UI_LOADING_START,
   UI_TOUCH_CATCHER_HIDE,
   UI_TOUCH_CATCHER_SHOW,
+  UI_INPUT_BLUR,
+  UI_INPUT_FOCUS,
+  UI_INPUT_VALIDATION,
   FETCH_ISSUE_STATUS
 } from "./action-types";
 
@@ -64,4 +67,16 @@ export const fetchIssueStatus = id => ({
 });
 export const acceptCookies = () => {
   return { type: ACCEPT_COOKIES };
+};
+export const inputFocus = () => {
+  return { type: UI_INPUT_FOCUS };
+};
+export const inputBlur = () => {
+  return { type: UI_INPUT_BLUR };
+};
+export const updateInputValidation = (isValid = false) => {
+  return {
+    type: UI_INPUT_VALIDATION,
+    isValid
+  };
 };
