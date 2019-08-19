@@ -5,7 +5,7 @@ import { photoUploaded, photoRemoved, uiHideTouchCatcher } from "redux/actions";
 import PhotosOverlay from "Components/PhotosOverlay";
 import PhotoItem from "Components/PhotoItem";
 import { previewImage } from "utils";
-import { ReactComponent as Plus } from './plus.svg';
+import { ReactComponent as Plus } from "./plus.svg";
 
 import styles from "./Photos.module.css";
 import "./Uploader.override.css";
@@ -66,7 +66,8 @@ class Photos extends Component {
     const {
       touchCatcher = false,
       images = [],
-      previews = []
+      previews = [],
+      texts = {}
     } = this.props;
 
     const { fileList = [] } = this.state;
@@ -75,8 +76,7 @@ class Photos extends Component {
         return { uuid: item, isUploading: true };
       })
     );
-    const showOverlay =
-      !(images.length !== 0 || fileList.length !== 0);
+    const showOverlay = !(images.length !== 0 || fileList.length !== 0);
     return (
       <div>
         {touchCatcher && (
@@ -85,7 +85,9 @@ class Photos extends Component {
             className={styles.touchCatcher}
           />
         )}
-        { images.length === 0 && <PhotosOverlay config={config} show={showOverlay} /> }
+        {images.length === 0 && (
+          <PhotosOverlay texts={texts} config={config} show={showOverlay} />
+        )}
         <div>
           <div className={styles.photosContentHolder}>
             <div className={styles.photosContent}>
@@ -112,10 +114,10 @@ class Photos extends Component {
 }
 
 function mapStateToProps(state = {}) {
-  const { report = {}, ui = {} } = state;
+  const { report = {}, ui = {}, texts } = state;
   const { images = [], previews = [] } = report;
   const { touchCatcher = false } = ui;
-  return { images, previews, touchCatcher };
+  return { images, previews, touchCatcher, texts };
 }
 
 export default connect(

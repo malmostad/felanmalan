@@ -1,5 +1,7 @@
 .screenTitleHolder {
   margin-top: 100px;
+  padding-left: 12px;
+  padding-right: 12px;
   max-width: 600px;
 }
 .screenTitle {

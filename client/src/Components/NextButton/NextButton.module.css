@@ -1,4 +1,5 @@
 .nextButton {
+  border-radius: 2px;
   font-weight: bold;
   border: solid 2px $mainColor;
   color: $mainColor;
@@ -9,6 +10,7 @@
   align-items: center;
 }
 .nextButton:hover {
+  background-color: $mainColor;
   color: $secondColor;
 }
 .nextButton:hover svg {
@@ -17,6 +19,10 @@
 .nextButton.inverted {
   color: $secondColor;
   border: solid 2px $secondColor;
+}
+.nextButton.inverted:hover {
+  background-color: $secondColor;
+  color: $mainColor;
 }
 .nextButton svg {
   transition: transform 300ms ease-out;
