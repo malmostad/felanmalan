@@ -1,4 +1,5 @@
 import {
+  ACCEPT_COOKIES,
   CLEAR,
   CREATE_REPORT_FAILURE,
   CREATE_REPORT_SUCCESS,
@@ -13,6 +14,7 @@ import {
 } from "../action-types";
 
 const initialState = {
+  acceptedCookies: false,
   loadingAddress: false,
   mapScreenClicked: false,
   touchCatcher: false,
@@ -45,6 +47,8 @@ const uiReducer = (state = initialState, action) => {
     case GET_ADDRESS_SUCCESS:
       const { payload = {} } = action;
       return { ...state, address: payload.address, loadingAddress: false };
+    case ACCEPT_COOKIES:
+      return { ...state, acceptedCookies: true };
     case CLEAR:
       const { mapScreenClicked, aPhotoUploaded } = state;
       return { ...initialState, mapScreenClicked, aPhotoUploaded };

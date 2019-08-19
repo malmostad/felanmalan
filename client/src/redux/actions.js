@@ -1,4 +1,5 @@
 import {
+  ACCEPT_COOKIES,
   CLEAR,
   CREATE_REPORT,
   REPORT_ADD,
@@ -61,3 +62,6 @@ export const fetchIssueStatus = id => ({
   type: FETCH_ISSUE_STATUS,
   id
 });
+export const acceptCookies = () => {
+  return { type: ACCEPT_COOKIES };
+};

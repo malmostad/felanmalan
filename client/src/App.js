@@ -9,6 +9,7 @@ import Map from "Screens/Map";
 import Done from "Screens/Done";
 import Track from "Screens/Track";
 import Info from "Screens/Info";
+import Intro from "Screens/Intro";
 import ContactInfo from "Screens/ContactInfo";
 
 import LoadingIndicator from "Components/LoadingIndicator";
@@ -25,6 +26,7 @@ const getRouter = () => {
 class App extends Component {
   renderReportPage() {
     const {
+      acceptedCookies,
       createReport,
       loading,
       loadingMessage = false,
@@ -35,6 +37,7 @@ class App extends Component {
 
     return (
       <div>
+        {acceptedCookies || <Intro />}
         <Switch>
           <Route exact path="/map" component={Map} />
           <Route exact path="/info" component={Info} />
@@ -110,12 +113,14 @@ function mapStateToProps(state = {}) {
     phone = ""
   } = report;
   const {
+    acceptedCookies = false,
     sendingState = "none",
     mapScreenClicked,
     loading,
     loadingMessage = false
   } = ui;
   return {
+    acceptedCookies,
     validPosition,
     sendingState,
     previews,
