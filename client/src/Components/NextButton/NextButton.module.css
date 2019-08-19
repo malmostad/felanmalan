@@ -1,8 +1,9 @@
 .nextButton {
   border-radius: 2px;
   font-weight: bold;
+  background-color: $mainColor;
   border: solid 2px $mainColor;
-  color: $mainColor;
+  color: $secondColor;
   display: flex;
   font-size: 18px;
   padding: 15px;
@@ -33,6 +34,8 @@
   stroke: white;
 }
 .disabled {
-  opacity: 0.5;
+  border: solid 2px $mainColor;
+  background-color: transparent;
+  color: $mainColor;
   pointer-events: none;
 }
