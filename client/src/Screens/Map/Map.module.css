@@ -58,3 +58,14 @@
   width: 30px;
   height: 30px
 }
+.titleHolder {
+  position: absolute;
+  top: 0;
+  background: $mainColor;
+  width: 100%;
+  z-index: 1002;
+  padding-bottom: 30px;
+  transition: transform ease-out 0.3s;
+  transform: translateY(0px);
+  height: 230px;
+}

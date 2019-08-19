@@ -6,6 +6,7 @@ import mapboxgl from "mapbox-gl";
 import TrackingService from "TrackingService";
 
 import MapSearchBar from "Components/MapSearchBar";
+import FullScreenTitle from "Components/FullScreenTitle";
 
 import styles from "./Map.module.css";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -34,7 +35,8 @@ mapboxgl.accessToken = REACT_APP_MAPBOX_ACCESS_TOKEN;
 class Map extends Component {
   state = {
     hasGeoLocation: true,
-    userCoordinates: {}
+    userCoordinates: {},
+    headerHidden: false
   };
   componentDidMount() {
     const { longitude = false, latitude = false } = this.props;
@@ -53,8 +55,11 @@ class Map extends Component {
     outer.appendChild(el);
     this.currentLocation = new mapboxgl.Marker(outer);
 
+    map.on("dragstart", this.onHideHeader);
+
     map.on("dragend", this.onMapDragEnd);
     map.on("zoomend", this.onMapDragEnd);
+
     this.geoCoderContainer.onGo(map);
 
     this.map = map;
@@ -89,6 +94,11 @@ class Map extends Component {
     };
     this.props.reportAdd(coordinates);
     this.props.getAddress(coordinates);
+  };
+  onHideHeader = () => {
+    this.setState({
+      headerHidden: true
+    });
   };
 
   getUserLocation = (onLoad = false) => {
@@ -137,7 +147,14 @@ class Map extends Component {
   }
 
   render() {
-    const { address, loadingAddress = false } = this.props;
+    const {
+      address,
+      loadingAddress = false,
+      texts = {},
+      visits = 0
+    } = this.props;
+    const { headerHidden = false } = this.state;
+
     return (
       <Layout>
         {this.state.hasGeoLocation ? (
@@ -157,16 +174,28 @@ class Map extends Component {
           loading={loadingAddress}
           ref={el => (this.geoCoderContainer = el)}
         />
+        {visits < 3 ? (
+          <div
+            onTouchStart={this.onHideHeader}
+            onClick={this.onHideHeader}
+            style={{ transform: `translateY(${headerHidden ? -230 : 0}px)` }}
+            className={styles.titleHolder}
+          >
+            <FullScreenTitle titleStrong={texts.locationPageWhereIsTheError} />
+          </div>
+        ) : (
+          false
+        )}
       </Layout>
     );
   }
 }
 
 function mapStateToProps(state = {}) {
-  const { ui = {}, report = {} } = state;
+  const { ui = {}, report = {}, texts = {} } = state;
   const { address = false, loadingAddress = false } = ui;
   const { longitude = false, latitude = false } = report;
-  return { address, longitude, latitude, loadingAddress };
+  return { address, longitude, latitude, loadingAddress, texts };
 }
 
 export default connect(
