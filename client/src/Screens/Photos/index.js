@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Upload } from "antd";
 import { connect } from "react-redux";
 import { photoUploaded, photoRemoved, uiHideTouchCatcher } from "redux/actions";
+import FullScreenTitle from "Components/FullScreenTitle";
 import PhotosOverlay from "Components/PhotosOverlay";
 import PhotoItem from "Components/PhotoItem";
 import { previewImage } from "utils";
@@ -79,6 +80,9 @@ class Photos extends Component {
     const showOverlay = !(images.length !== 0 || fileList.length !== 0);
     return (
       <div>
+        <div className={styles.pageHeader}>
+          <FullScreenTitle titleStrong={texts.addPhotoOnProblemAndPlace} />
+        </div>
         {touchCatcher && (
           <div
             onTouchStart={this.onTouchStart}

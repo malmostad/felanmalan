@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import FullScreenTitle from "Components/FullScreenTitle";
 
 import styles from "./PhotosOverlay.module.css";
+import buttonStyles from "Components/NextButton/NextButton.module.css";
 import UploadButton from "./upload-button.svg";
 const Dragger = Upload.Dragger;
 
@@ -39,7 +40,11 @@ class PhotosOverlay extends Component {
                     alt="Upload"
                   />
                   <p className={styles.uploadText}>{texts.clickOrDragImage}</p>
-                  <p className={styles.uploadTextMobile}>{texts.addPhoto}</p>
+                  <p
+                    className={`${buttonStyles.nextButton} ${buttonStyles.inverted}`}
+                  >
+                    {texts.addPhoto}
+                  </p>
                 </button>
               </Dragger>
             </div>

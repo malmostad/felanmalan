@@ -1,14 +1,11 @@
 .photosContent {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0;
-  width: 100%;
+  min-width: 100%;
   max-width: $contentMaxWidth;
+  white-space: nowrap;
 }
 .photosContentHolder {
-  display: flex;
-  justify-content: center;
+  overflow-x: scroll;
+  width: 100%;
   padding-bottom: 65px;
 }
 .photoUploadButton {
@@ -48,4 +45,8 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+.pageHeader {
+  background-color: $mainColor;
+  padding-bottom: 35px;
 }

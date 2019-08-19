@@ -2,23 +2,19 @@
   margin: 5px;
   position: relative;
   overflow: hidden;
-  width: 40%;
-}
-.photoItem:first-child {
-  margin: 0 0 15px 0;
-  width: 100%;
+  display: inline-block;
+  width: 200px;
+  height: 300px;
 }
 .photoItem.hideItem {
   display: none;
 }
 .photoItem img {
-  width: 100%;
-  height: auto;
-}
-.photoItem:after {
-  display: block;
-  content: '';
-  padding-bottom: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
 }
 .photoItemContent {
   position: absolute;
@@ -39,11 +35,11 @@
   border: none;
   cursor: pointer;
   background-color: transparent;
-  left: 0;
+  right: 0;
   position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  bottom: 0;
+  width: 52px;
+  height: 52px;
   display: none;
   justify-content: center;
   align-items: center;

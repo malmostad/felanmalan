@@ -8,7 +8,10 @@ const initialState = {
   introPageIngress: "Här anmäler du fel på Malmös gator, torg och parker.",
   introPageText:
     "Vi vill att tjänsten ska fungera så bra som möjligt för dig som besökare. För att kunna ta reda på vad vi kan göra bättre analyserar vi hur våra besökare använder tjänsten med webbkakor (cookies)",
-  locationPageWhereIsTheError: "Vart är felet, placera det på kartan"
+  locationPageWhereIsTheError: "Vart är felet, placera det på kartan",
+  createNew: "Skapa ny",
+  donePageTitle: "Tack för din felanmälan",
+  donePageText: "Den hjälper oss hålla vår vackra stad iordning."
 };
 const textsReducer = (state = initialState, action) => {
   return initialState;

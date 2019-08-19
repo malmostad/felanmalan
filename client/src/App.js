@@ -30,9 +30,8 @@ class App extends Component {
       createReport,
       loading,
       loadingMessage = false,
-      email,
-      phone,
-      description
+      description,
+      validInput
     } = this.props;
 
     return (
@@ -79,7 +78,7 @@ class App extends Component {
             text="Skicka felanmälan"
             path="/contact-info"
             to="/done"
-            active={email.length > 0 || phone.length > 0}
+            active={validInput}
             onSubmit={() => {
               createReport();
             }}
@@ -108,16 +107,15 @@ function mapStateToProps(state = {}) {
     previews = [],
     validPosition,
     images = [],
-    description = "",
-    email = "",
-    phone = ""
+    description = ""
   } = report;
   const {
     acceptedCookies = false,
     sendingState = "none",
     mapScreenClicked,
     loading,
-    loadingMessage = false
+    loadingMessage = false,
+    validInput = false
   } = ui;
   return {
     acceptedCookies,
@@ -126,11 +124,10 @@ function mapStateToProps(state = {}) {
     previews,
     images,
     description,
-    email,
-    phone,
     mapScreenClicked,
     loading,
-    loadingMessage
+    loadingMessage,
+    validInput
   };
 }
 

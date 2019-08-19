@@ -10,9 +10,9 @@ class InputItem extends Component {
     return re.test(email);
   };
   validatePhoneNumber = phone => {
-    const reg = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im
-    return reg.test(phone);
-  }
+    const reg = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
+    return reg.test(phone.replace(" ", ""));
+  };
   onHandleChange = (event, valid, ...rest) => {
     const { onChange = false } = this.props;
     if (onChange) {
