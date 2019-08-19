@@ -16,7 +16,7 @@
 .introPageText {
   color: $secondColor;
   font-size: 17px;
-  padding-top: 15px;
+  padding: 15px 12px 0;
 }
 .introPageText strong {
   display: block;

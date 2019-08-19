@@ -7,7 +7,6 @@ import { acceptCookies } from "redux/actions";
 
 import FullScreenTitle from "Components/FullScreenTitle";
 import NextButton from "Components/NextButton";
-console.log({ acceptCookies });
 
 class Intro extends Component {
   render() {
