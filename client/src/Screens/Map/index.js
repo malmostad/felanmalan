@@ -50,7 +50,7 @@ class Map extends Component {
     const outer = document.createElement("div");
     const el = document.createElement("div");
     el.className = "pulsating-circle";
-    outer.append(el);
+    outer.appendChild(el);
     this.currentLocation = new mapboxgl.Marker(outer);
 
     map.on("dragend", this.onMapDragEnd);
