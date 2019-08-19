@@ -4,21 +4,35 @@ import styles from "./NextButton.module.css";
 
 class NextButton extends Component {
   onClick = event => {
-    const { active = true, onSubmit = false } = this.props;
+    const { active = true, onSubmit = false, onClick = false } = this.props;
     if (!active) {
       event.preventDefault();
     }
     if (onSubmit) {
       event.preventDefault();
       onSubmit();
+      return;
+    }
+
+    if (onClick) {
+      event.preventDefault();
+      onClick();
+      return;
     }
   };
   renderLink = () => {
-    const { to = "/", text = null, active = true } = this.props;
+    const {
+      to = "/",
+      text = null,
+      active = true,
+      inverted = false
+    } = this.props;
     return (
       <Link
         onClick={this.onClick}
-        className={`${styles.nextButton} ${!active ? styles.disabled : ""}`}
+        className={`${styles.nextButton} ${!active ? styles.disabled : ""} ${
+          inverted ? styles.inverted : ""
+        }`}
         to={to}
       >
         {text}

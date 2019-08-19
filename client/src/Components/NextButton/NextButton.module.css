@@ -1,6 +1,10 @@
 .nextButton {
-  color: white;
+  font-weight: bold;
+  border: solid 2px $mainColor;
+  color: $mainColor;
   display: flex;
+  font-size: 18px;
+  padding: 15px;
   justify-content: center;
   align-items: center;
 }
@@ -9,6 +13,10 @@
 }
 .nextButton:hover svg {
   transform: scale(1.05) translateX(1px);
+}
+.nextButton.inverted {
+  color: $secondColor;
+  border: solid 2px $secondColor;
 }
 .nextButton svg {
   transition: transform 300ms ease-out;
