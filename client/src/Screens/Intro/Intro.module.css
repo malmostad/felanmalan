@@ -1,0 +1,28 @@
+.introPage {
+  padding: 12px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $mainColor;
+  z-index: 1001;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.introPageContent {
+  padding: 12px;
+}
+.introPageText {
+  color: $secondColor;
+  font-size: 17px;
+  padding-top: 15px;
+}
+.introPageText strong {
+  display: block;
+  margin-bottom: 1rem;
+}
+
