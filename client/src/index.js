@@ -1,3 +1,7 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import "isomorphic-fetch";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";

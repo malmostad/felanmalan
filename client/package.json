@@ -8,12 +8,15 @@
     "@mapbox/mapbox-gl-geocoder": "mapbox/mapbox-gl-geocoder",
     "antd": "^3.10.3",
     "babel-plugin-import": "^1.11.0",
+    "core-js": "3",
     "craco-antd": "^1.9.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "http-proxy-middleware": "^0.19.0",
+    "isomorphic-fetch": "^2.2.1",
     "mapbox-gl": "^0.52.0",
     "mixpanel-browser": "^2.26.0",
+    "postcss-simple-vars": "^5.0.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-geolocation": "^1.0.4",
@@ -25,8 +28,7 @@
     "redux-devtools-extension": "^2.13.5",
     "redux-localstorage-simple": "^2.1.6",
     "redux-saga": "^0.16.2",
-    "webpack-bundle-analyzer": "^3.3.2",
-    "postcss-simple-vars": "^5.0.2"
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "scripts": {
     "start": "craco start",
