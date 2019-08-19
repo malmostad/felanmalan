@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Layout } from "antd";
 import { connect } from "react-redux";
 import mapboxgl from "mapbox-gl";
 import TrackingService from "TrackingService";
@@ -59,6 +58,10 @@ class Map extends Component {
 
     map.on("dragend", this.onMapDragEnd);
     map.on("zoomend", this.onMapDragEnd);
+    map.addControl(
+      new mapboxgl.NavigationControl({ showCompass: false }),
+      "bottom-right"
+    );
 
     this.geoCoderContainer.onGo(map);
 
@@ -156,7 +159,7 @@ class Map extends Component {
     const { headerHidden = false } = this.state;
 
     return (
-      <Layout>
+      <div>
         {this.state.hasGeoLocation ? (
           <button
             className={styles.currentLocationButton}
@@ -186,7 +189,7 @@ class Map extends Component {
         ) : (
           false
         )}
-      </Layout>
+      </div>
     );
   }
 }
