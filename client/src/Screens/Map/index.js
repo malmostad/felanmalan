@@ -15,7 +15,8 @@ import {
   uiLoadingStart,
   uiLoadingStop,
   reportAdd,
-  getAddress
+  getAddress,
+  pageVisit
 } from "redux/actions";
 
 const { track } = TrackingService;
@@ -32,13 +33,19 @@ const maxBounds = [
 mapboxgl.accessToken = REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 class Map extends Component {
-  state = {
-    hasGeoLocation: true,
-    userCoordinates: {},
-    headerHidden: false
-  };
+  constructor(props) {
+    super(props);
+    const { visits = 0 } = props;
+    this.state = {
+      hasGeoLocation: true,
+      userCoordinates: {},
+      headerHidden: false,
+      showHeaderAtStart: visits < 3
+    };
+  }
   componentDidMount() {
-    const { longitude = false, latitude = false } = this.props;
+    const { longitude = false, latitude = false, pageVisit } = this.props;
+    pageVisit("MAP");
     let map = new mapboxgl.Map({
       container: this.mapContainer,
       style: REACT_APP_MAPBOX_STYLE,
@@ -150,13 +157,8 @@ class Map extends Component {
   }
 
   render() {
-    const {
-      address,
-      loadingAddress = false,
-      texts = {},
-      visits = 0
-    } = this.props;
-    const { headerHidden = false } = this.state;
+    const { address, loadingAddress = false, texts = {} } = this.props;
+    const { headerHidden = false, showHeaderAtStart } = this.state;
 
     return (
       <div>
@@ -177,7 +179,7 @@ class Map extends Component {
           loading={loadingAddress}
           ref={el => (this.geoCoderContainer = el)}
         />
-        {visits < 3 ? (
+        {showHeaderAtStart && (
           <div
             onTouchStart={this.onHideHeader}
             onClick={this.onHideHeader}
@@ -186,8 +188,6 @@ class Map extends Component {
           >
             <FullScreenTitle titleStrong={texts.locationPageWhereIsTheError} />
           </div>
-        ) : (
-          false
         )}
       </div>
     );
@@ -195,13 +195,14 @@ class Map extends Component {
 }
 
 function mapStateToProps(state = {}) {
-  const { ui = {}, report = {}, texts = {} } = state;
+  const { ui = {}, report = {}, texts = {}, visits = {} } = state;
+  const { map = 0 } = visits;
   const { address = false, loadingAddress = false } = ui;
   const { longitude = false, latitude = false } = report;
-  return { address, longitude, latitude, loadingAddress, texts };
+  return { address, longitude, latitude, loadingAddress, texts, visits: map };
 }
 
 export default connect(
   mapStateToProps,
-  { reportAdd, getAddress, uiLoadingStop, uiLoadingStart }
+  { reportAdd, getAddress, uiLoadingStop, uiLoadingStart, pageVisit }
 )(withRouter(Map));
