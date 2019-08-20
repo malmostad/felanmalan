@@ -6,7 +6,6 @@ import {
   CREATE_REPORT,
   GET_ADDRESS,
   GET_ADDRESS_SUCCESS,
-  UI_MAP_SCREEN_CLICKED,
   UI_LOADING_STOP,
   UI_LOADING_START,
   UI_TOUCH_CATCHER_HIDE,
@@ -19,7 +18,6 @@ import {
 const initialState = {
   acceptedCookies: false,
   loadingAddress: false,
-  mapScreenClicked: false,
   touchCatcher: false,
   sendingState: "none",
   address: false,
@@ -41,8 +39,6 @@ const uiReducer = (state = initialState, action) => {
       return { ...state, touchCatcher: true };
     case UI_TOUCH_CATCHER_HIDE:
       return { ...state, touchCatcher: false };
-    case UI_MAP_SCREEN_CLICKED:
-      return { ...state, mapScreenClicked: true };
     case CREATE_REPORT:
       return { ...state, sendingState: "pending" };
     case CREATE_REPORT_FAILURE:
@@ -62,11 +58,9 @@ const uiReducer = (state = initialState, action) => {
     case ACCEPT_COOKIES:
       return { ...state, acceptedCookies: true };
     case CLEAR:
-      const { mapScreenClicked, aPhotoUploaded, acceptedCookies } = state;
+      const { acceptedCookies } = state;
       return {
         ...initialState,
-        mapScreenClicked,
-        aPhotoUploaded,
         acceptedCookies
       };
     default:

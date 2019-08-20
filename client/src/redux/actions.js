@@ -3,10 +3,10 @@ import {
   CLEAR,
   CREATE_REPORT,
   REPORT_ADD,
+  PAGE_VISIT,
   PHOTO_UPLOAD_SUCCESS,
   PHOTO_REMOVED,
   GET_ADDRESS,
-  UI_MAP_SCREEN_CLICKED,
   UI_LOADING_STOP,
   UI_LOADING_START,
   UI_TOUCH_CATCHER_HIDE,
@@ -43,9 +43,6 @@ export const createReport = payload => ({
 export function getAddress(coordinates) {
   return { type: GET_ADDRESS, payload: coordinates };
 }
-export const onMapScreenClicked = () => {
-  return { type: UI_MAP_SCREEN_CLICKED };
-};
 export const uiLoadingStart = message => {
   return { type: UI_LOADING_START, message };
 };
@@ -78,5 +75,11 @@ export const updateInputValidation = (isValid = false) => {
   return {
     type: UI_INPUT_VALIDATION,
     isValid
+  };
+};
+export const pageVisit = (page = "START") => {
+  return {
+    type: PAGE_VISIT,
+    page
   };
 };
