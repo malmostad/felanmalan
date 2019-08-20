@@ -10,7 +10,7 @@ class InputContent extends Component {
           transition: "all 0.3s ease-out",
           background: "#fff",
           padding: "40px 20px 40px",
-          transform: focus ? "translateY(-50px)" : "translateY(0px)"
+          transform: focus ? "translateY(-10px)" : "translateY(0px)"
         }}
       >
         {children}

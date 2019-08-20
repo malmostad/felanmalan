@@ -3,16 +3,12 @@
   position: relative;
   overflow: hidden;
   display: inline-block;
-  width: 188px;
   height: 250px;
 }
 .photoItem.hideItem {
   display: none;
 }
 .photoItem img {
-  position: absolute;
-  top: 0;
-  left: 0;
   height: 100%;
   width: auto;
 }
@@ -22,8 +18,11 @@
   height: 100%;
 }
 .uploading {
+  position: absolute;
+  top: 0px;
+  left: 0px;
   color: white;
-  background: $mainColor;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;

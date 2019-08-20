@@ -6,6 +6,7 @@ import TrackingService from "TrackingService";
 
 import MapSearchBar from "Components/MapSearchBar";
 import FullScreenTitle from "Components/FullScreenTitle";
+import TitleHolder from "Components/TitleHolder";
 
 import styles from "./Map.module.css";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -186,7 +187,11 @@ class Map extends Component {
             style={{ transform: `translateY(${headerHidden ? -230 : 0}px)` }}
             className={styles.titleHolder}
           >
-            <FullScreenTitle titleStrong={texts.locationPageWhereIsTheError} />
+            <TitleHolder>
+              <FullScreenTitle
+                titleStrong={texts.locationPageWhereIsTheError}
+              />
+            </TitleHolder>
           </div>
         )}
       </div>

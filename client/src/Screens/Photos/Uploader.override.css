@@ -59,7 +59,9 @@
   bottom: 110px;
   width: 100%;
 }
-.additionalUpload a {
+.additionalUpload button {
+  appearance: none;
+  border: none;
   color: $mainColor;
 }
 

@@ -11,8 +11,8 @@ import { ReactComponent as Plus } from "./plus.svg";
 import styles from "./Photos.module.css";
 import "./Uploader.override.css";
 
-const MAX_AMOUNT_OF_IMAGES = 3;
 const { REACT_APP_API_URL = "/" } = process.env;
+const ITEM_SIZE = 350;
 
 class Photos extends Component {
   constructor() {
@@ -24,27 +24,36 @@ class Photos extends Component {
   onPhotoChange = async ({ file, fileList, event }) => {
     const status = file.status;
     if (status === "uploading") {
-      this.setState({
-        fileList: [
-          ...this.state.fileList.filter(uid => uid !== file.uid),
-          file.uid
-        ]
-      });
+      const exits = this.state.fileList.find(({ uuid }) => uuid === file.uid);
+
+      if (!exits) {
+        /*
+         * TODO: scroll need to animated if used
+        setTimeout(() => {
+          this.scrollDiv.scrollLeft = this.scrollDiv.scrollWidth - ITEM_SIZE;
+        }, 300);
+        */
+        const dataURL = await previewImage(file.originFileObj);
+        this.setState({
+          fileList: [
+            ...this.state.fileList.filter(({ uuid }) => uuid !== file.uid),
+            { uuid: file.uid, dataURL }
+          ]
+        });
+      }
     }
     if (status === "done") {
+      const dataURL = await previewImage(file.originFileObj);
       try {
-        const dataURL = await previewImage(file.originFileObj);
         this.props.photoUploaded(file.response.id, dataURL);
       } catch (error) {
         this.props.photoUploaded(file.response.id, -1);
       }
+      // remove from temp state
       this.setState({
-        fileList: this.state.fileList.filter(uid => uid !== file.uid)
+        fileList: this.state.fileList.filter(({ uuid }) => uuid !== file.uid)
       });
     }
-  };
-  onPreviewFile = file => {
-    return previewImage(file);
   };
   onRemoveImage = uuid => {
     this.props.photoRemoved(uuid);
@@ -74,7 +83,8 @@ class Photos extends Component {
     const { fileList = [] } = this.state;
     const imageItems = previews.concat(
       fileList.map(item => {
-        return { uuid: item, isUploading: true };
+        const { uuid, dataURL } = item;
+        return { uuid, dataURL, isUploading: true };
       })
     );
     const showOverlay = !(images.length !== 0 || fileList.length !== 0);
@@ -92,7 +102,10 @@ class Photos extends Component {
         {images.length === 0 && (
           <PhotosOverlay texts={texts} config={config} show={showOverlay} />
         )}
-        <div className={styles.photosContentHolder}>
+        <div
+          ref={el => (this.scrollDiv = el)}
+          className={styles.photosContentHolder}
+        >
           <div className={styles.photosContent}>
             {imageItems.map(preview => (
               <PhotoItem
@@ -101,7 +114,7 @@ class Photos extends Component {
                 {...preview}
               />
             ))}
-            <PhotoItem hide={imageItems.length >= MAX_AMOUNT_OF_IMAGES}>
+            <PhotoItem>
               <Upload {...config} listType="none">
                 <button className={styles.photoUploadButton}>
                   <Plus />
@@ -110,9 +123,6 @@ class Photos extends Component {
             </PhotoItem>
           </div>
         </div>
-        <Upload {...config} listType="none" className="additionalUpload">
-          <a>{texts.addPhoto}</a>
-        </Upload>
       </div>
     );
   }

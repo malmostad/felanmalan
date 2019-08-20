@@ -47,13 +47,16 @@ class PhotoItem extends Component {
     }, 40);
   };
   renderImage = () => {
-    const { uuid = false, previewDataURL = false } = this.props;
+    const {
+      uuid = false,
+      dataURL = false,
+    } = this.props;
     const { showRemove } = this.state;
     return (
-      <div>
-        <div onTouchStart={this.onTouchStart}>
-          {previewDataURL ? (
-            <img key={uuid} src={previewDataURL} alt={uuid} />
+      <div style={{ height: "100%" }}>
+        <div style={{ height: "100%" }} onTouchStart={this.onTouchStart}>
+          {dataURL ? (
+            <img key={uuid} src={dataURL} alt={uuid} />
           ) : null}
         </div>
         <button
@@ -90,11 +93,9 @@ class PhotoItem extends Component {
         key={uuid}
         style={style}
       >
-        <div className={moduleStyles.photoItemContent}>
-          {isUploading ? this.renderUploading() : null}
-          {uuid ? this.renderImage() : null}
-          {children ? children : null}
-        </div>
+        {uuid ? this.renderImage() : null}
+        {isUploading && this.renderUploading()}
+        {children ? children : null}
       </div>
     );
   }

@@ -15,6 +15,7 @@ import ContactInfo from "Screens/ContactInfo";
 import LoadingIndicator from "Components/LoadingIndicator";
 import BottomBar from "Components/BottomBar";
 import NextButton from "Components/NextButton";
+import BackButton from "Components/BackButton";
 const getRouter = () => {
   const { REACT_APP_IS_CORDOVA = false } = process.env;
   if (REACT_APP_IS_CORDOVA) {
@@ -84,6 +85,7 @@ class App extends Component {
             }}
           />
         </BottomBar>
+        <BackButton />
       </div>
     );
   }
