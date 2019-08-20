@@ -43,7 +43,7 @@ const reportReducer = (state = initialState, action) => {
         ...state,
         timestamp,
         images: [...images, uuid],
-        previews: [...previews, { uuid, previewDataURL }]
+        previews: [...previews, { uuid, dataURL: previewDataURL }]
       };
     }
     case REPORT_ADD:
@@ -55,9 +55,11 @@ const reportReducer = (state = initialState, action) => {
       };
     case PROPERTY_STATUS_CHECKED:
       const { coordinates = {}, valid = true } = action;
-      if (coordinates.longitude === state.longitude &&
-        coordinates.latitude === state.latitude) {
-        return { ...state, validPosition: valid }
+      if (
+        coordinates.longitude === state.longitude &&
+        coordinates.latitude === state.latitude
+      ) {
+        return { ...state, validPosition: valid };
       }
       return state;
 

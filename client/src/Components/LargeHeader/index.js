@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./LargeHeader.module.css";
+import TitleHolder from "Components/TitleHolder";
 
 class LargeHeader extends Component {
   onClick = () => {
@@ -14,9 +15,9 @@ class LargeHeader extends Component {
     } = this.props;
     return (
       <div style={{ height: `${size}px` }} className={styles.outer}>
-        <div style={{maxWidth: "800px", margin: "0 auto"}}>
+        <TitleHolder>
           {children}
-        </div>
+        </TitleHolder>
       </div>
     );
   }

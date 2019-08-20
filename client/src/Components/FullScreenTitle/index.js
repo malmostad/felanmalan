@@ -24,12 +24,12 @@ class FullScreenTitle extends Component {
       screenTitleHolderStyle || styles.screenTitleHolder;
     return (
       <div style={style} className={StyleScreenTitleHolder}>
-        { showLogo && <Logo /> }
+        {showLogo && <Logo />}
         <h1 className={StyleScreenTitle}>
           {!strongTextLast && (
             <strong className="boldText">{titleStrong}</strong>
           )}
-          {title}
+          {title || false}
           {strongTextLast && (
             <strong className="boldText">{titleStrong}</strong>
           )}

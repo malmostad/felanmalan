@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Layout } from "antd";
 import { connect } from "react-redux";
 import mapboxgl from "mapbox-gl";
 import TrackingService from "TrackingService";
 
 import MapSearchBar from "Components/MapSearchBar";
+import FullScreenTitle from "Components/FullScreenTitle";
+import TitleHolder from "Components/TitleHolder";
 
 import styles from "./Map.module.css";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -15,7 +16,8 @@ import {
   uiLoadingStart,
   uiLoadingStop,
   reportAdd,
-  getAddress
+  getAddress,
+  pageVisit
 } from "redux/actions";
 
 const { track } = TrackingService;
@@ -32,12 +34,19 @@ const maxBounds = [
 mapboxgl.accessToken = REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 class Map extends Component {
-  state = {
-    hasGeoLocation: true,
-    userCoordinates: {}
-  };
+  constructor(props) {
+    super(props);
+    const { visits = 0 } = props;
+    this.state = {
+      hasGeoLocation: true,
+      userCoordinates: {},
+      headerHidden: false,
+      showHeaderAtStart: visits < 3
+    };
+  }
   componentDidMount() {
-    const { longitude = false, latitude = false } = this.props;
+    const { longitude = false, latitude = false, pageVisit } = this.props;
+    pageVisit("MAP");
     let map = new mapboxgl.Map({
       container: this.mapContainer,
       style: REACT_APP_MAPBOX_STYLE,
@@ -53,8 +62,15 @@ class Map extends Component {
     outer.appendChild(el);
     this.currentLocation = new mapboxgl.Marker(outer);
 
+    map.on("dragstart", this.onHideHeader);
+
     map.on("dragend", this.onMapDragEnd);
     map.on("zoomend", this.onMapDragEnd);
+    map.addControl(
+      new mapboxgl.NavigationControl({ showCompass: false }),
+      "bottom-right"
+    );
+
     this.geoCoderContainer.onGo(map);
 
     this.map = map;
@@ -89,6 +105,11 @@ class Map extends Component {
     };
     this.props.reportAdd(coordinates);
     this.props.getAddress(coordinates);
+  };
+  onHideHeader = () => {
+    this.setState({
+      headerHidden: true
+    });
   };
 
   getUserLocation = (onLoad = false) => {
@@ -137,9 +158,11 @@ class Map extends Component {
   }
 
   render() {
-    const { address, loadingAddress = false } = this.props;
+    const { address, loadingAddress = false, texts = {} } = this.props;
+    const { headerHidden = false, showHeaderAtStart } = this.state;
+
     return (
-      <Layout>
+      <div>
         {this.state.hasGeoLocation ? (
           <button
             className={styles.currentLocationButton}
@@ -157,19 +180,34 @@ class Map extends Component {
           loading={loadingAddress}
           ref={el => (this.geoCoderContainer = el)}
         />
-      </Layout>
+        {showHeaderAtStart && (
+          <div
+            onTouchStart={this.onHideHeader}
+            onClick={this.onHideHeader}
+            style={{ transform: `translateY(${headerHidden ? -230 : 0}px)` }}
+            className={styles.titleHolder}
+          >
+            <TitleHolder>
+              <FullScreenTitle
+                titleStrong={texts.locationPageWhereIsTheError}
+              />
+            </TitleHolder>
+          </div>
+        )}
+      </div>
     );
   }
 }
 
 function mapStateToProps(state = {}) {
-  const { ui = {}, report = {} } = state;
+  const { ui = {}, report = {}, texts = {}, visits = {} } = state;
+  const { map = 0 } = visits;
   const { address = false, loadingAddress = false } = ui;
   const { longitude = false, latitude = false } = report;
-  return { address, longitude, latitude, loadingAddress };
+  return { address, longitude, latitude, loadingAddress, texts, visits: map };
 }
 
 export default connect(
   mapStateToProps,
-  { reportAdd, getAddress, uiLoadingStop, uiLoadingStart }
+  { reportAdd, getAddress, uiLoadingStop, uiLoadingStart, pageVisit }
 )(withRouter(Map));

@@ -20,19 +20,19 @@
 }
 .currentLocationButton {
   background-image: url('./current-location.svg');
-  background-size: 45%;
-  background-color: white;
-  border-color: white;
+  background-size: 15px;
+  background-color: $mainColor;
+  background-position: 15px;
+  border-color: none;
   margin: 20px 15px;
-  background-position: center;
   background-repeat: no-repeat;
   z-index: 98;
-  bottom: 50px;
-  right: 10px;
+  bottom: 180px;
+  right: 0;
   position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
 .map {
   width: 100%;
@@ -57,4 +57,15 @@
   left: calc(50% - 15px);
   width: 30px;
   height: 30px
+}
+.titleHolder {
+  position: absolute;
+  top: 0;
+  background: $mainColor;
+  width: 100%;
+  z-index: 1002;
+  padding-bottom: 30px;
+  transition: transform ease-out 0.3s;
+  transform: translateY(0px);
+  height: 230px;
 }

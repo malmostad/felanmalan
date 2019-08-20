@@ -1,4 +1,4 @@
-.donePage {
+.introPage {
   padding: 12px;
   position: absolute;
   top: 0;
@@ -13,9 +13,13 @@
   justify-content: space-between;
   flex-direction: column;
 }
-.text {
-  padding: 12px;
-  font-size: 26px;
-  line-height: 27px;
+.introPageText {
   color: $secondColor;
+  font-size: 17px;
+  padding: 15px 12px 0;
 }
+.introPageText strong {
+  display: block;
+  margin-bottom: 1rem;
+}
+

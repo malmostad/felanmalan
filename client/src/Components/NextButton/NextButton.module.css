@@ -1,14 +1,29 @@
 .nextButton {
-  color: white;
+  border-radius: 2px;
+  font-weight: bold;
+  background-color: $mainColor;
+  border: solid 2px $mainColor;
+  color: $secondColor;
   display: flex;
+  font-size: 18px;
+  padding: 15px;
   justify-content: center;
   align-items: center;
 }
 .nextButton:hover {
+  background-color: $mainColor;
   color: $secondColor;
 }
 .nextButton:hover svg {
   transform: scale(1.05) translateX(1px);
+}
+.nextButton.inverted {
+  color: $secondColor;
+  border: solid 2px $secondColor;
+}
+.nextButton.inverted:hover {
+  background-color: $secondColor;
+  color: $mainColor;
 }
 .nextButton svg {
   transition: transform 300ms ease-out;
@@ -19,6 +34,8 @@
   stroke: white;
 }
 .disabled {
-  opacity: 0.5;
+  border: solid 2px $mainColor;
+  background-color: transparent;
+  color: $mainColor;
   pointer-events: none;
 }

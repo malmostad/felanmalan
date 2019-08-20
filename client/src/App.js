@@ -9,11 +9,13 @@ import Map from "Screens/Map";
 import Done from "Screens/Done";
 import Track from "Screens/Track";
 import Info from "Screens/Info";
+import Intro from "Screens/Intro";
 import ContactInfo from "Screens/ContactInfo";
 
 import LoadingIndicator from "Components/LoadingIndicator";
 import BottomBar from "Components/BottomBar";
 import NextButton from "Components/NextButton";
+import BackButton from "Components/BackButton";
 const getRouter = () => {
   const { REACT_APP_IS_CORDOVA = false } = process.env;
   if (REACT_APP_IS_CORDOVA) {
@@ -25,16 +27,17 @@ const getRouter = () => {
 class App extends Component {
   renderReportPage() {
     const {
+      acceptedCookies,
       createReport,
       loading,
       loadingMessage = false,
-      email,
-      phone,
-      description
+      description,
+      validInput
     } = this.props;
 
     return (
       <div>
+        {acceptedCookies || <Intro />}
         <Switch>
           <Route exact path="/map" component={Map} />
           <Route exact path="/info" component={Info} />
@@ -53,17 +56,17 @@ class App extends Component {
           <Route excat path="/done" component={Done} />
           <Route component={Photos} />
         </Switch>
+        {loading && (
+          <LoadingIndicator
+            message={loadingMessage}
+            style={{ position: "absolute", left: "10px", bottom: "120px" }}
+          />
+        )}
         <BottomBar
           onRetry={() => {
             createReport();
           }}
         >
-          {loading && (
-            <LoadingIndicator
-              message={loadingMessage}
-              style={{ position: "absolute", left: "10px", top: "15px" }}
-            />
-          )}
           <NextButton text="Nästa steg" exact path="/map" to="/info" />
           <NextButton exact path="/" text="Nästa steg" to="/map" />
           <NextButton
@@ -76,12 +79,13 @@ class App extends Component {
             text="Skicka felanmälan"
             path="/contact-info"
             to="/done"
-            active={email.length > 0 || phone.length > 0}
+            active={validInput}
             onSubmit={() => {
               createReport();
             }}
           />
         </BottomBar>
+        <BackButton />
       </div>
     );
   }
@@ -105,27 +109,27 @@ function mapStateToProps(state = {}) {
     previews = [],
     validPosition,
     images = [],
-    description = "",
-    email = "",
-    phone = ""
+    description = ""
   } = report;
   const {
+    acceptedCookies = false,
     sendingState = "none",
     mapScreenClicked,
     loading,
-    loadingMessage = false
+    loadingMessage = false,
+    validInput = false
   } = ui;
   return {
+    acceptedCookies,
     validPosition,
     sendingState,
     previews,
     images,
     description,
-    email,
-    phone,
     mapScreenClicked,
     loading,
-    loadingMessage
+    loadingMessage,
+    validInput
   };
 }
 

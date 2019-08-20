@@ -1,15 +1,19 @@
 import {
+  ACCEPT_COOKIES,
   CLEAR,
   CREATE_REPORT,
   REPORT_ADD,
+  PAGE_VISIT,
   PHOTO_UPLOAD_SUCCESS,
   PHOTO_REMOVED,
   GET_ADDRESS,
-  UI_MAP_SCREEN_CLICKED,
   UI_LOADING_STOP,
   UI_LOADING_START,
   UI_TOUCH_CATCHER_HIDE,
   UI_TOUCH_CATCHER_SHOW,
+  UI_INPUT_BLUR,
+  UI_INPUT_FOCUS,
+  UI_INPUT_VALIDATION,
   FETCH_ISSUE_STATUS
 } from "./action-types";
 
@@ -39,9 +43,6 @@ export const createReport = payload => ({
 export function getAddress(coordinates) {
   return { type: GET_ADDRESS, payload: coordinates };
 }
-export const onMapScreenClicked = () => {
-  return { type: UI_MAP_SCREEN_CLICKED };
-};
 export const uiLoadingStart = message => {
   return { type: UI_LOADING_START, message };
 };
@@ -61,3 +62,24 @@ export const fetchIssueStatus = id => ({
   type: FETCH_ISSUE_STATUS,
   id
 });
+export const acceptCookies = () => {
+  return { type: ACCEPT_COOKIES };
+};
+export const inputFocus = () => {
+  return { type: UI_INPUT_FOCUS };
+};
+export const inputBlur = () => {
+  return { type: UI_INPUT_BLUR };
+};
+export const updateInputValidation = (isValid = false) => {
+  return {
+    type: UI_INPUT_VALIDATION,
+    isValid
+  };
+};
+export const pageVisit = (page = "START") => {
+  return {
+    type: PAGE_VISIT,
+    page
+  };
+};

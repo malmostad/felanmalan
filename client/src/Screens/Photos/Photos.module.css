@@ -1,24 +1,24 @@
 .photosContent {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0;
-  width: 100%;
+  min-width: 100%;
   max-width: $contentMaxWidth;
+  white-space: nowrap;
 }
 .photosContentHolder {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 65px;
+  margin-top: 5px;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  width: 100%;
+  padding-bottom: 15px;
 }
 .photoUploadButton {
   border: none;
-  display: flex;
+  appearance: none;
+  display: block;
   justify-content: center;
   align-items: center;
   background: #F8F8FA;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 250px;
   margin: 0;
   cursor: pointer;
 }
@@ -48,4 +48,13 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+.pageHeader {
+  background-color: $mainColor;
+  padding-bottom: 25px;
+}
+.smallUploadButton {
+}
+.smallUploadButton .ant-upload.ant-upload-select {
+  background-color: red;
 }

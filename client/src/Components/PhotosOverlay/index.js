@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 import FullScreenTitle from "Components/FullScreenTitle";
 
 import styles from "./PhotosOverlay.module.css";
+import buttonStyles from "Components/NextButton/NextButton.module.css";
 import UploadButton from "./upload-button.svg";
 const Dragger = Upload.Dragger;
 
 class PhotosOverlay extends Component {
   render() {
-    const { config, show } = this.props;
+    const { config, show, texts = {} } = this.props;
     return (
       <CSSTransition
         unmountOnExit={false}
@@ -23,29 +24,30 @@ class PhotosOverlay extends Component {
       >
         <div>
           <div className={styles.photosOverlay}>
-              <FullScreenTitle
-                titleStrong="Lägg till foton "
-                title="på problemet & platsen"
-                style={{margin: "0 auto", maxWidth: "800px", width: "100%"}}
-              />
-              <div className={styles.actionWrapper}>
-                <Link className={styles.skipLink} to="/map">Hoppa över</Link>
-                <Dragger {...config} className={styles.dragger}>
-                  <button className={styles.uploadArea}>
-                    <img
-                      className={styles.uploadButton}
-                      src={UploadButton}
-                      alt="Upload"
-                    />
-                    <p className={styles.uploadText}>
-                      Klicka eller dra bild hit för att starta uppladdning
-                    </p>
-                    <p className={styles.uploadTextMobile}>
-                      Lägg till foto
-                    </p>
-                  </button>
-                </Dragger>
-              </div>
+            <FullScreenTitle
+              titleStrong={texts.addPhotoOnProblemAndPlace}
+              style={{ maxWidth: "800px", width: "100%" }}
+            />
+            <div className={styles.actionWrapper}>
+              <Link className={styles.skipLink} to="/map">
+                {texts.skip}
+              </Link>
+              <Dragger {...config} className={styles.dragger}>
+                <button className={styles.uploadArea}>
+                  <img
+                    className={styles.uploadButton}
+                    src={UploadButton}
+                    alt="Upload"
+                  />
+                  <p className={styles.uploadText}>{texts.clickOrDragImage}</p>
+                  <p
+                    className={`${buttonStyles.nextButton} ${buttonStyles.inverted}`}
+                  >
+                    {texts.addPhoto}
+                  </p>
+                </button>
+              </Dragger>
+            </div>
           </div>
         </div>
       </CSSTransition>

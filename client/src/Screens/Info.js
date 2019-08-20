@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { reportAdd } from "redux/actions";
+import { reportAdd, inputFocus, inputBlur } from "redux/actions";
 import ScreenTitle from "Components/FullScreenTitle";
 import LargeHeader from "Components/LargeHeader";
 import InputContent from "Components/InputContent";
@@ -25,9 +25,11 @@ class Info extends Component {
     });
   };
   onFocus = event => {
+    this.props.inputFocus();
     this.setState({ focus: true });
   };
   onBlur = event => {
+    this.props.inputBlur();
     this.setState({ focus: false });
   };
 
@@ -37,7 +39,7 @@ class Info extends Component {
     return (
       <div>
         <LargeHeader>
-          <ScreenTitle titleStrong="Beskriv " title="problemet" />
+          <ScreenTitle titleStrong="Beskriv problemet" />
         </LargeHeader>
         <InputContent focus={focus}>
           <label>Beskrivning</label>
@@ -45,9 +47,9 @@ class Info extends Component {
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             style={{
-              fontSize: "16px",
-              borderBottom: focus ? "none" : "solid 1px gray",
-              height: focus ? "100px" : "45px"
+              fontSize: "18px",
+              borderBottom: "none",
+              height: focus ? "80px" : "35px"
             }}
             placeholder="Beskriv problemet du vill felanmäla..."
             onChange={this.onHandleChange}
@@ -67,5 +69,5 @@ function mapStateToProps(state = {}) {
 
 export default connect(
   mapStateToProps,
-  { reportAdd }
+  { reportAdd, inputBlur, inputFocus }
 )(Info);
