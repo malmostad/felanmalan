@@ -1,0 +1,15 @@
+.backButton {
+  outline: none;
+  border: none;
+  backgroundColor: transparent;
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  padding: 10px;
+  zIndex: 1003;
+}
+@media screen and (min-width: 800px) {
+  .backButton {
+    display: none;
+  }
+}
