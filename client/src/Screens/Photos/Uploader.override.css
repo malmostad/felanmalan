@@ -54,3 +54,16 @@
 .antd-dragger {
   height: 100%;
 }
+.additionalUpload {
+  position: absolute;
+  bottom: 110px;
+  width: 100%;
+}
+.additionalUpload a {
+  color: $mainColor;
+}
+
+.additionalUpload .ant-upload.ant-upload-select {
+  text-align: center;
+  background: transparent;
+}

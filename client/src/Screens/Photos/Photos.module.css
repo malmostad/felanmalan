@@ -6,7 +6,7 @@
 .photosContentHolder {
   overflow-x: scroll;
   width: 100%;
-  padding-bottom: 65px;
+  padding-bottom: 25px;
 }
 .photoUploadButton {
   border: none;
@@ -48,5 +48,10 @@
 }
 .pageHeader {
   background-color: $mainColor;
-  padding-bottom: 35px;
+  padding-bottom: 25px;
+}
+.smallUploadButton {
+}
+.smallUploadButton .ant-upload.ant-upload-select {
+  background-color: red;
 }

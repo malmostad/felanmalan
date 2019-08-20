@@ -144,3 +144,6 @@ div.mapboxgl-ctrl-bottom-right {
   bottom: 105px;
   right: 15px;
 }
+a {
+  color: $mainColor;
+}

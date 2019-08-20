@@ -3,8 +3,8 @@
   position: relative;
   overflow: hidden;
   display: inline-block;
-  width: 200px;
-  height: 300px;
+  width: 188px;
+  height: 250px;
 }
 .photoItem.hideItem {
   display: none;

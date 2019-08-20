@@ -92,26 +92,27 @@ class Photos extends Component {
         {images.length === 0 && (
           <PhotosOverlay texts={texts} config={config} show={showOverlay} />
         )}
-        <div>
-          <div className={styles.photosContentHolder}>
-            <div className={styles.photosContent}>
-              {imageItems.map(preview => (
-                <PhotoItem
-                  onRemoveImage={this.onRemoveImage}
-                  key={preview.uuid}
-                  {...preview}
-                />
-              ))}
-              <PhotoItem hide={imageItems.length >= MAX_AMOUNT_OF_IMAGES}>
-                <Upload {...config} listType="none">
-                  <button className={styles.photoUploadButton}>
-                    <Plus />
-                  </button>
-                </Upload>
-              </PhotoItem>
-            </div>
+        <div className={styles.photosContentHolder}>
+          <div className={styles.photosContent}>
+            {imageItems.map(preview => (
+              <PhotoItem
+                onRemoveImage={this.onRemoveImage}
+                key={preview.uuid}
+                {...preview}
+              />
+            ))}
+            <PhotoItem hide={imageItems.length >= MAX_AMOUNT_OF_IMAGES}>
+              <Upload {...config} listType="none">
+                <button className={styles.photoUploadButton}>
+                  <Plus />
+                </button>
+              </Upload>
+            </PhotoItem>
           </div>
         </div>
+        <Upload {...config} listType="none" className="additionalUpload">
+          <a>{texts.addPhoto}</a>
+        </Upload>
       </div>
     );
   }
