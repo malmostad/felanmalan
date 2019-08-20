@@ -20,6 +20,7 @@ import {
   pageVisit
 } from "redux/actions";
 
+const IS_WIDE = window.innerWidth > 800;
 const { track } = TrackingService;
 const {
   REACT_APP_MAPBOX_ACCESS_TOKEN,
@@ -66,10 +67,12 @@ class Map extends Component {
 
     map.on("dragend", this.onMapDragEnd);
     map.on("zoomend", this.onMapDragEnd);
-    map.addControl(
-      new mapboxgl.NavigationControl({ showCompass: false }),
-      "bottom-right"
-    );
+    if (IS_WIDE) {
+      map.addControl(
+        new mapboxgl.NavigationControl({ showCompass: false }),
+        "bottom-right"
+      );
+    }
 
     this.geoCoderContainer.onGo(map);
 
@@ -165,6 +168,7 @@ class Map extends Component {
       <div>
         {this.state.hasGeoLocation ? (
           <button
+            style={{ bottom: IS_WIDE ? 180 : 100 }}
             className={styles.currentLocationButton}
             onClick={this.getUserLocation}
           />
