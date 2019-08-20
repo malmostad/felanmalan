@@ -39,7 +39,6 @@ const reportReducer = (state = initialState, action) => {
     case PHOTO_UPLOAD_SUCCESS: {
       const { uuid = -1, previewDataURL = -1, timestamp } = action;
       const { images = [], previews = [] } = state;
-      console.log('suc', previewDataURL);
       return {
         ...state,
         timestamp,
