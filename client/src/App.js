@@ -55,17 +55,17 @@ class App extends Component {
           <Route excat path="/done" component={Done} />
           <Route component={Photos} />
         </Switch>
+        {loading && (
+          <LoadingIndicator
+            message={loadingMessage}
+            style={{ position: "absolute", left: "10px", bottom: "120px" }}
+          />
+        )}
         <BottomBar
           onRetry={() => {
             createReport();
           }}
         >
-          {loading && (
-            <LoadingIndicator
-              message={loadingMessage}
-              style={{ position: "absolute", left: "10px", top: "15px" }}
-            />
-          )}
           <NextButton text="Nästa steg" exact path="/map" to="/info" />
           <NextButton exact path="/" text="Nästa steg" to="/map" />
           <NextButton
