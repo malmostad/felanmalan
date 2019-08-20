@@ -12,7 +12,7 @@ import styles from "./Photos.module.css";
 import "./Uploader.override.css";
 
 const { REACT_APP_API_URL = "/" } = process.env;
-const ITEM_SIZE = 350;
+// const ITEM_SIZE = 350;
 
 class Photos extends Component {
   constructor() {
