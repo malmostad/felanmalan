@@ -38,6 +38,7 @@ class App extends Component {
     return (
       <div>
         {acceptedCookies || <Intro />}
+        <BackButton />
         <Switch>
           <Route exact path="/map" component={Map} />
           <Route exact path="/info" component={Info} />
@@ -85,7 +86,6 @@ class App extends Component {
             }}
           />
         </BottomBar>
-        <BackButton />
       </div>
     );
   }

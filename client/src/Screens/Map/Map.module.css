@@ -15,7 +15,7 @@
   height: 70px;
   padding: 5px 10px;
   width: 100%;
-  background-cColor: white;
+  background-color: white;
   z-index: 100;
 }
 .currentLocationButton {
@@ -27,7 +27,6 @@
   margin: 20px 15px;
   background-repeat: no-repeat;
   z-index: 98;
-  bottom: 180px;
   right: 0;
   position: absolute;
   width: 50px;
