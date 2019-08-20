@@ -36,10 +36,20 @@ class Info extends Component {
   // TODO: auto size textarea
   render() {
     const { focus } = this.state;
+    const transform = `scale(${focus ? 0.75 : 1}) translateY(${
+      focus ? "250px" : "0px"
+    })`;
     return (
       <div>
         <LargeHeader>
-          <ScreenTitle titleStrong="Beskriv problemet" />
+          <ScreenTitle
+            style={{
+              transition: "transform 0.3s ease",
+              transform,
+              transformOrigin: "left bottom"
+            }}
+            titleStrong="Beskriv problemet"
+          />
         </LargeHeader>
         <InputContent focus={focus}>
           <label>Beskrivning</label>

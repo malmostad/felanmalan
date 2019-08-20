@@ -89,7 +89,7 @@ class BottomBar extends Component {
     };
     const error = this.isError();
     const styleError = {
-      transform: error.show ? "translateY(0px)" : "translateY(60px)"
+      transform: error.show ? "translateY(-80px)" : "translateY(60px)"
     };
     return (
       <div style={style} className={styles.bottomBarOuter}>
