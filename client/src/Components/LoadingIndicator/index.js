@@ -1,31 +1,17 @@
 import React, { Component } from "react";
 import styles from "./LoadingIndicator.module.css";
+import { ReactComponent as Spinner } from "./spinner.svg";
 
 class LoadingIndicator extends Component {
   render() {
-    const { message = null, size = false, style = {} } = this.props;
-    let innerStyle = {};
-    let outerStyle = {};
-    if (size) {
-      innerStyle = {
-        width: `${size}px`,
-        height: `${size}px`,
-        borderWidth: `${size / 3}px`
-      };
-      outerStyle = {
-        width: `${size + 12}px`,
-        height: `${size + 12}px`
-      };
-    }
+    const { message = null, size = 20, style = {} } = this.props;
+    const circleStyle = {
+      width: `${size}px`,
+      height: `${size}px`
+    };
     return (
       <div className={styles.loadingHolder} style={style}>
-        <div className={styles.loadingRing} style={outerStyle}>
-          {Array(4)
-            .fill("div")
-            .map((a, i) => {
-              return <div style={innerStyle} key={`div-${i}`} />;
-            })}
-        </div>
+        <Spinner style={circleStyle} className={styles.loadingRing} />
         {message && <p className={styles.loadingMessage}>{message}</p>}
       </div>
     );
