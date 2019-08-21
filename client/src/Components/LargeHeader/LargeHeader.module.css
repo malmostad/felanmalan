@@ -4,3 +4,8 @@
   padding: 0 12px;
   width: 100%;
 }
+@media screen and (min-width: $contentMaxWidth) {
+  .outer {
+    height: 180px;
+  }
+}

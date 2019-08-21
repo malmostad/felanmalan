@@ -16,11 +16,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 600px;
   z-index: 100;
 }
 .bottomBarInner a {
   width: 100%;
+  max-width: $contentMaxWidth;
 }
 .error {
   transition: transform 0.3s ease-out;

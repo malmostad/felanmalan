@@ -24,18 +24,20 @@ class NextButton extends Component {
     const {
       to = "/",
       text = null,
+      className = false,
       active = true,
-      inverted = false
+      inverted = false,
+      children = false
     } = this.props;
     return (
       <Link
         onClick={this.onClick}
         className={`${styles.nextButton} ${!active ? styles.disabled : ""} ${
           inverted ? styles.inverted : ""
-        }`}
+        } ${className ? className : ""}`}
         to={to}
       >
-        {text}
+        {children} {text}
       </Link>
     );
   };

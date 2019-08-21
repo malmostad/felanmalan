@@ -4,6 +4,7 @@ import { clear } from "redux/actions";
 import styles from "./Done.module.css";
 import NextButton from "Components/NextButton";
 import FullScreenTitle from "Components/FullScreenTitle";
+import LargeHeader from "Components/LargeHeader";
 
 class Done extends Component {
   componentDidMount() {
@@ -14,11 +15,11 @@ class Done extends Component {
     const { texts = {} } = this.props;
     return (
       <div className={styles.donePage}>
-        <div>
+        <LargeHeader>
           <FullScreenTitle title={texts.donePageTitle} />
           <p className={styles.text}>{texts.donePageText}</p>
-        </div>
-        <NextButton inverted={true} text={texts.createNew} to="/" />
+        </LargeHeader>
+        <NextButton className={styles.button} inverted={true} text={texts.createNew} to="/" />
       </div>
     );
   }
