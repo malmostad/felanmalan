@@ -168,7 +168,7 @@ class Map extends Component {
       <div>
         {this.state.hasGeoLocation ? (
           <button
-            style={{ bottom: IS_WIDE ? 180 : 100 }}
+            style={{ bottom: IS_WIDE ? 180 : 70 }}
             className={styles.currentLocationButton}
             onClick={this.getUserLocation}
           />
@@ -192,9 +192,7 @@ class Map extends Component {
             className={styles.titleHolder}
           >
             <TitleHolder>
-              <FullScreenTitle
-                titleStrong={texts.locationPageWhereIsTheError}
-              />
+              <FullScreenTitle title={texts.locationPageWhereIsTheError} />
             </TitleHolder>
           </div>
         )}

@@ -19,21 +19,22 @@
   z-index: 100;
 }
 .currentLocationButton {
-  background-image: url('./current-location.svg');
-  background-size: 15px;
-  background-color: $mainColor;
-  background-position: 15px;
-  border: none;
   appearance: none;
-  margin: 20px 15px;
+  background-image: url('./current-location.svg');
+  background-size: 20px;
+  background-color: $mainColor;
+  background-position: 19px;
+  border: none;
+  border-radius: 31px;
+  margin: 10px;
   background-repeat: no-repeat;
   z-index: 98;
-  bottom: 100px;
+  bottom: 70px;
   right: 0;
   position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  width: 62px;
+  height: 62px;
+  bottom: 70px;
 }
 .map {
   width: 100%;
@@ -65,8 +66,7 @@
   background: $mainColor;
   width: 100%;
   z-index: 1002;
-  padding-bottom: 30px;
+  padding: 0 12px 30px;
   transition: transform ease-out 0.3s;
   transform: translateY(0px);
-  height: 230px;
 }
