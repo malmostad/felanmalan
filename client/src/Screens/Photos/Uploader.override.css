@@ -39,7 +39,6 @@
   }
 }
 .ant-upload.ant-upload-select {
-  background: green;
   height: 100%;
   width: 100%;
 }
@@ -68,4 +67,10 @@
 .additionalUpload .ant-upload.ant-upload-select {
   text-align: center;
   background: transparent;
+}
+.ant-upload.ant-upload-drag .ant-upload {
+  padding: 0;
+}
+.ant-upload button p {
+  margin: 0 4px;
 }

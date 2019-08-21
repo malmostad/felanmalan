@@ -13,6 +13,7 @@ class Info extends Component {
   };
   componentDidMount() {
     const { description } = this.props;
+    this.props.inputBlur();
     this.setState({
       description
     });
@@ -26,42 +27,43 @@ class Info extends Component {
   };
   onFocus = event => {
     this.props.inputFocus();
+    setTimeout(() => {
+      document.body.scrollTop = 0;
+    }, 40);
     this.setState({ focus: true });
   };
   onBlur = event => {
     this.props.inputBlur();
     this.setState({ focus: false });
   };
+  onTouchStart = e => {
+    console.log(e);
+    e.nativeEvent.preventDefault();
+    e.preventDefault();
+    e.nativeEvent.stopPropagation();
+  };
 
   // TODO: auto size textarea
   render() {
     const { focus } = this.state;
-    const transform = `scale(${focus ? 0.75 : 1}) translateY(${
-      focus ? "250px" : "0px"
-    })`;
+    const { texts } = this.props;
     return (
       <div>
-        <LargeHeader>
-          <ScreenTitle
-            style={{
-              transition: "transform 0.3s ease",
-              transform,
-              transformOrigin: "left bottom"
-            }}
-            titleStrong="Beskriv problemet"
-          />
+        <LargeHeader focus={focus}>
+          <ScreenTitle title={texts.descriptionTitle} />
         </LargeHeader>
         <InputContent focus={focus}>
-          <label>Beskrivning</label>
+          <label>{texts.description}</label>
           <textarea
             onFocus={this.onFocus}
+            onTouchStart={this.onTouchStart}
             onBlur={this.onBlur}
             style={{
               fontSize: "18px",
               borderBottom: "none",
-              height: focus ? "80px" : "35px"
+              height: "80px"
             }}
-            placeholder="Beskriv problemet du vill felanmäla..."
+            placeholder={texts.descriptionPlaceHolder}
             onChange={this.onHandleChange}
             value={this.state.description}
           />
@@ -72,9 +74,9 @@ class Info extends Component {
 }
 
 function mapStateToProps(state = {}) {
-  const { report = {} } = state;
+  const { report = {}, texts } = state;
   const { description } = report;
-  return { description };
+  return { description, texts };
 }
 
 export default connect(

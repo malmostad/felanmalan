@@ -1,13 +1,14 @@
 .screenTitleHolder {
-  padding-top: 100px;
+  padding-top: 33px;
   padding-left: 12px;
   padding-right: 12px;
-  max-width: 600px;
+  max-width: 560px;
 }
 .screenTitle {
   font-family: 'MalmoRubrik';
   font-weight: lighter;
   max-width: 19rem;
+  margin-bottom: 0px;
   letter-spacing: 0.2px;
   text-align: left;
   color: $secondColor;

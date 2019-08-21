@@ -1,6 +1,6 @@
 const isImageFileType = (type: string): boolean =>
   !!type && type.indexOf("image/") === 0;
-const MEASURE_SIZE = 300;
+const MEASURE_SIZE = 350;
 export async function previewImage(file: File | Blob): Promise<string> {
   return new Promise(async resolve => {
     if (!isImageFileType(file.type)) {

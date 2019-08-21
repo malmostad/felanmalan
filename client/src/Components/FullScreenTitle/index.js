@@ -10,11 +10,9 @@ class FullScreenTitle extends Component {
 
   render() {
     const {
-      titleStrong = "",
       title = "",
       children = null,
       style = {},
-      strongTextLast = false,
       screenTitleHolderStyle = false,
       screenTitleStyle = false,
       showLogo = false
@@ -25,15 +23,7 @@ class FullScreenTitle extends Component {
     return (
       <div style={style} className={StyleScreenTitleHolder}>
         {showLogo && <Logo />}
-        <h1 className={StyleScreenTitle}>
-          {!strongTextLast && (
-            <strong className="boldText">{titleStrong}</strong>
-          )}
-          {title || false}
-          {strongTextLast && (
-            <strong className="boldText">{titleStrong}</strong>
-          )}
-        </h1>
+        <h1 className={StyleScreenTitle}>{title}</h1>
         {children}
       </div>
     );

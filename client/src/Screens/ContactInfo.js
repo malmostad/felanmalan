@@ -35,6 +35,7 @@ class ContactInfo extends Component {
       description,
       inputValue: email.length > 0 ? email : phone
     });
+    this.props.inputBlur();
   }
   onInputChange = (event, valid, isEmail = false) => {
     const { reportAdd } = this.props;
@@ -68,6 +69,9 @@ class ContactInfo extends Component {
     }
   };
   onFocus = event => {
+    setTimeout(() => {
+      document.body.scrollTop = 0;
+    }, 40);
     this.props.inputFocus();
     this.setState({ focus: true });
   };
@@ -78,41 +82,29 @@ class ContactInfo extends Component {
 
   render() {
     // make this more modular
-    const { longitude, latitude, description } = this.props;
+    const { longitude, latitude, description, texts } = this.props;
     const { focus } = this.state;
     if (!longitude || !latitude || !description) {
       return <Redirect to="/" />;
     }
-    const transform = `scale(${focus ? 0.75 : 1}) translateY(${
-      focus ? "250px" : "0px"
-    })`;
     return (
       <Layout>
-        <LargeHeader>
-          <ScreenTitle
-            style={{
-              transition: "transform 0.3s ease",
-              transform,
-              transformOrigin: "left bottom"
-            }}
-            strongTextLast={true}
-            titleStrong="uppgifter"
-            title="Lämna dina "
-          />
+        <LargeHeader focus={focus}>
+          <ScreenTitle title={texts.contactPageTitle} />
         </LargeHeader>
         <InputContent focus={focus}>
           <form onSubmit={this.onSubmit}>
             <FormItem
               onChange={this.onInputChange}
-              label="E-post eller telefonnummer"
+              label={texts.emailOrPhone}
               type="email-or-phone"
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               value={this.state.inputValue}
-              placeholder="Skriv din e-postadress eller ditt telefonnumer"
+              placeholder={texts.emailOrPhonePlaceHolder}
             />
             <button style={{ visibility: "hidden" }} type="submit">
-              Skicka in felanmälan
+              {texts.sendIssueReport}
             </button>
           </form>
         </InputContent>
@@ -122,10 +114,10 @@ class ContactInfo extends Component {
 }
 
 function mapStateToProps(state = {}) {
-  const { report = {}, ui } = state;
+  const { report = {}, ui, texts } = state;
   const { email, phone, longitude, latitude, description } = report;
   const { sendingState = "none" } = ui;
-  return { email, phone, sendingState, longitude, latitude, description };
+  return { email, phone, sendingState, longitude, latitude, description, texts };
 }
 
 export default connect(

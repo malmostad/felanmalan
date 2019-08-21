@@ -15,7 +15,6 @@ import ContactInfo from "Screens/ContactInfo";
 import LoadingIndicator from "Components/LoadingIndicator";
 import BottomBar from "Components/BottomBar";
 import NextButton from "Components/NextButton";
-import BackButton from "Components/BackButton";
 const getRouter = () => {
   const { REACT_APP_IS_CORDOVA = false } = process.env;
   if (REACT_APP_IS_CORDOVA) {
@@ -32,13 +31,13 @@ class App extends Component {
       loading,
       loadingMessage = false,
       description,
-      validInput
+      validInput,
+      validPosition
     } = this.props;
 
     return (
       <div>
         {acceptedCookies || <Intro />}
-        <BackButton />
         <Switch>
           <Route exact path="/map" component={Map} />
           <Route exact path="/info" component={Info} />
@@ -68,7 +67,13 @@ class App extends Component {
             createReport();
           }}
         >
-          <NextButton text="Nästa steg" exact path="/map" to="/info" />
+          <NextButton
+            text="Nästa steg"
+            exact
+            path="/map"
+            to="/info"
+            active={validPosition}
+          />
           <NextButton exact path="/" text="Nästa steg" to="/map" />
           <NextButton
             path="/info"

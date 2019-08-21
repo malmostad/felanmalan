@@ -1,9 +1,7 @@
 .bottomBarOuter {
   transition: transform 0.3s ease-out;
-  opacity: 0.9;
   background-color: $secondColor;
   display: flex;
-  padding: 20px 16px 30px;
   justify-content: center;
   position: fixed;
   bottom: 0;
@@ -11,19 +9,22 @@
   z-index: 100;
 }
 .bottomBarInner {
+  background-color: $secondColor;
   box-sizing: border-box;
   display: flex;
+  padding: 10px 16px;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: 600px;
+  z-index: 100;
 }
 .bottomBarInner a {
   width: 100%;
 }
 .error {
   transition: transform 0.3s ease-out;
-  top: 70px;
+  bottom: 0px;
   display: flex;
   align-items: center;
   justify-content: center;

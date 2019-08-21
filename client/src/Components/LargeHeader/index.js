@@ -9,15 +9,16 @@ class LargeHeader extends Component {
   };
 
   render() {
-    const {
-      children = null,
-      size = 400
-    } = this.props;
+    const { children = null, focus = false } = this.props;
     return (
-      <div style={{ height: `${size}px` }} className={styles.outer}>
-        <TitleHolder>
-          {children}
-        </TitleHolder>
+      <div style={
+        {
+          height: `${focus ? 10 : 280}px`,
+        }
+      }
+      className={styles.outer}
+    >
+        <TitleHolder>{children}</TitleHolder>
       </div>
     );
   }

@@ -6,7 +6,7 @@ class TitleHolder extends Component {
     return (
       <div
         style={{
-          maxWidth: "800px",
+          maxWidth: "560px",
           margin: "0 auto"
         }}
       >
