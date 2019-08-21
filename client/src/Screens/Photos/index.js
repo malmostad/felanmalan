@@ -91,7 +91,7 @@ class Photos extends Component {
     return (
       <div>
         <div className={styles.pageHeader}>
-          <FullScreenTitle titleStrong={texts.addPhotoOnProblemAndPlace} />
+          <FullScreenTitle title={texts.addPhotoOnProblemAndPlace} />
         </div>
         {touchCatcher && (
           <div
@@ -123,6 +123,13 @@ class Photos extends Component {
             </PhotoItem>
           </div>
         </div>
+        <Upload
+          className={styles.smallUploadButton}
+          listType="none"
+          {...config}
+        >
+          <button>{texts.addPhoto}</button>
+        </Upload>
       </div>
     );
   }

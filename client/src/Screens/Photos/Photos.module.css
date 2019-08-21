@@ -4,7 +4,7 @@
   white-space: nowrap;
 }
 .photosContentHolder {
-  margin-top: 5px;
+  margin-top: 8px;
   -webkit-overflow-scrolling: touch;
   overflow-x: scroll;
   width: 100%;
@@ -17,8 +17,8 @@
   justify-content: center;
   align-items: center;
   background: #F8F8FA;
-  width: 200px;
-  height: 250px;
+  width: 250px;
+  height: 350px;
   margin: 0;
   cursor: pointer;
 }
@@ -51,10 +51,21 @@
 }
 .pageHeader {
   background-color: $mainColor;
-  padding-bottom: 25px;
+  padding: 0 8px 27px;
 }
 .smallUploadButton {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: $bottomBarHeight;
 }
-.smallUploadButton .ant-upload.ant-upload-select {
-  background-color: red;
+.smallUploadButton button {
+  appearance: none;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: $mainColor;
 }
