@@ -35,6 +35,7 @@ class ContactInfo extends Component {
       description,
       inputValue: email.length > 0 ? email : phone
     });
+    this.props.inputBlur();
   }
   onInputChange = (event, valid, isEmail = false) => {
     const { reportAdd } = this.props;

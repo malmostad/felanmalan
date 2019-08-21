@@ -13,6 +13,7 @@ class Info extends Component {
   };
   componentDidMount() {
     const { description } = this.props;
+    this.props.inputBlur();
     this.setState({
       description
     });
