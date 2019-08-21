@@ -77,19 +77,21 @@ class BottomBar extends Component {
     };
   };
   render() {
-    const { children = null } = this.props;
+    const { children = null, inputFocus = false } = this.props;
     const show = this.showBar();
     const { location = {} } = this.props;
     const { pathname = "" } = location;
 
     const style = {
-      transform: show ? "translateY(0px)" : "translateY(100px)",
+      transform: show
+        ? `translateY(${inputFocus ? -270 : 0}px)`
+        : "translateY(100px)",
       boxShadow:
         pathname === "/map" ? "0px 2px 10px rgba(96, 96, 96, 0.18)" : "none"
     };
     const error = this.isError();
     const styleError = {
-      transform: error.show ? "translateY(-80px)" : "translateY(60px)"
+      transform: error.show ? `translateY(-70px)` : "translateY(0px)"
     };
     return (
       <div style={style} className={styles.bottomBarOuter}>
