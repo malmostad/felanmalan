@@ -8,5 +8,6 @@ module.exports = {
   trackPageBg: "#08215B",
   trackPageText: "#4CA9F8",
   divider: "#C8C7CC",
+  bottomBarHeight: "70px",
   ...AppConfig
 };
