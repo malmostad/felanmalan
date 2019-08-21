@@ -24,10 +24,7 @@ class PhotosOverlay extends Component {
       >
         <div>
           <div className={styles.photosOverlay}>
-            <FullScreenTitle
-              titleStrong={texts.addPhotoOnProblemAndPlace}
-              style={{ maxWidth: "800px", width: "100%" }}
-            />
+            <FullScreenTitle title={texts.addPhotoOnProblemAndPlace}/>
             <div className={styles.actionWrapper}>
               <Link className={styles.skipLink} to="/map">
                 {texts.skip}
