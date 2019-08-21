@@ -1,26 +1,22 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import styles from "./BackButton.module.css";
 import Arrow from "./arrow.svg";
 
 class BackButton extends Component {
   render() {
-    const { history = {}, location = {} } = this.props;
+    const { history = {}, location = {}, inputFocus } = this.props;
     const { pathname = "" } = location;
     if (pathname === "/" || pathname === "/done") {
       return false;
     }
     const style = {
-      outline: "none",
-      border: "none",
-      backgroundColor: "transparent",
-      position: "absolute",
-      top: "30px",
-      left: "0px",
-      padding: "10px",
-      zIndex: 1003
+      transform: `translateY(${inputFocus ? 230 : 0}px)`
     };
     return (
       <button
+        className={styles.backButton}
         style={style}
         onClick={() => {
           history.goBack();
@@ -32,4 +28,9 @@ class BackButton extends Component {
   }
 }
 
-export default withRouter(BackButton);
+function mapStateToProps(state = {}) {
+  const { ui = {} } = state;
+  const { inputFocus } = ui;
+  return { inputFocus };
+}
+export default connect(mapStateToProps)(withRouter(BackButton));

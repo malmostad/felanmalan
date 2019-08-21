@@ -83,10 +83,18 @@ class ContactInfo extends Component {
     if (!longitude || !latitude || !description) {
       return <Redirect to="/" />;
     }
+    const transform = `scale(${focus ? 0.75 : 1}) translateY(${
+      focus ? "250px" : "0px"
+    })`;
     return (
       <Layout>
         <LargeHeader>
           <ScreenTitle
+            style={{
+              transition: "transform 0.3s ease",
+              transform,
+              transformOrigin: "left bottom"
+            }}
             strongTextLast={true}
             titleStrong="uppgifter"
             title="Lämna dina "

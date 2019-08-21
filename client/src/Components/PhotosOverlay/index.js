@@ -41,7 +41,7 @@ class PhotosOverlay extends Component {
                   />
                   <p className={styles.uploadText}>{texts.clickOrDragImage}</p>
                   <p
-                    className={`${buttonStyles.nextButton} ${buttonStyles.inverted}`}
+                    className={`${styles.uploadMobileButton} ${buttonStyles.nextButton} ${buttonStyles.inverted}`}
                   >
                     {texts.addPhoto}
                   </p>
