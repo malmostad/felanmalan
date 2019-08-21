@@ -15,7 +15,7 @@ class Done extends Component {
     return (
       <div className={styles.donePage}>
         <div>
-          <FullScreenTitle titleStrong={texts.donePageTitle} />
+          <FullScreenTitle title={texts.donePageTitle} />
           <p className={styles.text}>{texts.donePageText}</p>
         </div>
         <NextButton inverted={true} text={texts.createNew} to="/" />
