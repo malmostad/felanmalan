@@ -27,9 +27,6 @@ class Info extends Component {
   };
   onFocus = event => {
     this.props.inputFocus();
-    setTimeout(() => {
-      document.body.scrollTop = 0;
-    }, 40);
     this.setState({ focus: true });
   };
   onBlur = event => {

@@ -69,9 +69,6 @@ class ContactInfo extends Component {
     }
   };
   onFocus = event => {
-    setTimeout(() => {
-      document.body.scrollTop = 0;
-    }, 40);
     this.props.inputFocus();
     this.setState({ focus: true });
   };
@@ -83,16 +80,15 @@ class ContactInfo extends Component {
   render() {
     // make this more modular
     const { longitude, latitude, description, texts } = this.props;
-    const { focus } = this.state;
     if (!longitude || !latitude || !description) {
       return <Redirect to="/" />;
     }
     return (
       <Layout>
-        <LargeHeader focus={focus}>
+        <LargeHeader>
           <ScreenTitle title={texts.contactPageTitle} />
         </LargeHeader>
-        <InputContent focus={focus}>
+        <InputContent>
           <form onSubmit={this.onSubmit}>
             <FormItem
               onChange={this.onInputChange}
@@ -117,7 +113,15 @@ function mapStateToProps(state = {}) {
   const { report = {}, ui, texts } = state;
   const { email, phone, longitude, latitude, description } = report;
   const { sendingState = "none" } = ui;
-  return { email, phone, sendingState, longitude, latitude, description, texts };
+  return {
+    email,
+    phone,
+    sendingState,
+    longitude,
+    latitude,
+    description,
+    texts
+  };
 }
 
 export default connect(
