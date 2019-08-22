@@ -172,3 +172,9 @@ body b, body strong {
     padding: 0;
   }
 }
+
+@media screen and (max-height: 400px) {
+  .extraText {
+    display: none;
+  }
+}

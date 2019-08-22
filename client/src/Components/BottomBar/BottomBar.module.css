@@ -36,17 +36,3 @@
   height: 100%;
   z-index: 99;
 }
-.backButton {
-  display: none;
-}
-@media screen and (min-width: $contentMaxWidth) {
-  .backButton {
-    display: flex;
-  }
-  .bottomBarInner a {
-    width: 270px;
-  }
-  .bottomBarInner a:first-child {
-    margin-right: 20px;
-  }
-}
