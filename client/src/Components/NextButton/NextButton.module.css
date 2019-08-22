@@ -41,6 +41,9 @@
   color: $mainColor;
   pointer-events: none;
 }
+.allowSubmit {
+  pointer-events: auto;
+}
 .backButton {
   display: none;
   border: solid 2px $mainColor;
@@ -55,9 +58,6 @@
 @media screen and (min-width: $contentMaxWidth) {
   .backButton {
     display: flex;
-  }
-  .bottomBarInner a {
-    width: 270px;
   }
   a.backButton {
     margin-right: 20px;

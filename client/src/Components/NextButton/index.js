@@ -4,7 +4,17 @@ import styles from "./NextButton.module.css";
 
 class NextButton extends Component {
   onClick = event => {
-    const { active = true, onSubmit = false, onClick = false } = this.props;
+    const {
+      allowSubmit = false,
+      active = true,
+      onSubmit = false,
+      onClick = false
+    } = this.props;
+    if (allowSubmit && onSubmit) {
+      event.preventDefault();
+      onSubmit();
+      return;
+    }
     if (!active) {
       event.preventDefault();
     }
@@ -27,6 +37,7 @@ class NextButton extends Component {
       backButton = false,
       className = false,
       active = true,
+      allowSubmit = false,
       inverted = false,
       children = false
     } = this.props;
@@ -35,7 +46,9 @@ class NextButton extends Component {
         onClick={this.onClick}
         className={`${styles.nextButton} ${!active ? styles.disabled : ""} ${
           inverted ? styles.inverted : ""
-        } ${backButton ? styles.backButton : ""} ${className ? className : ""}`}
+        } ${backButton ? styles.backButton : ""} ${className ? className : ""}
+        ${allowSubmit ? styles.allowSubmit : ""}
+          `}
         to={to}
       >
         {children} {text}

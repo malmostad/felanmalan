@@ -58,10 +58,11 @@ const uiReducer = (state = initialState, action) => {
     case ACCEPT_COOKIES:
       return { ...state, acceptedCookies: true };
     case CLEAR:
-      const { acceptedCookies } = state;
+      const { acceptedCookies, validInput } = state;
       return {
         ...initialState,
-        acceptedCookies
+        acceptedCookies,
+        validInput
       };
     default:
       return state;

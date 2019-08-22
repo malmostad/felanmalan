@@ -50,8 +50,11 @@ const reportReducer = (state = initialState, action) => {
       const { timestamp = -1 } = action;
       return { ...state, ...action.payload, timestamp };
     case CLEAR:
+      const { email, phone } = state;
       return {
-        ...initialState
+        ...initialState,
+        email,
+        phone
       };
     case PROPERTY_STATUS_CHECKED:
       const { coordinates = {}, valid = true } = action;
