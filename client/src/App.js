@@ -87,6 +87,7 @@ class App extends Component {
             path="/contact-info"
             to="/done"
             active={validInput}
+            allowSubmit={true}
             onSubmit={() => {
               createReport();
             }}

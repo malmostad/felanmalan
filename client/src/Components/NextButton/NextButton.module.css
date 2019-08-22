@@ -41,6 +41,9 @@
   color: $mainColor;
   pointer-events: none;
 }
+.allowSubmit {
+  pointer-events: auto;
+}
 .backButton {
   display: none;
   border: solid 2px $mainColor;

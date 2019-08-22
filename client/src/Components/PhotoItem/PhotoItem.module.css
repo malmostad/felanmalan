@@ -4,7 +4,7 @@
   position: relative;
   overflow: hidden;
   display: inline-block;
-  height: 350px;
+  height: 300px;
 }
 .photoItem.hideItem {
   display: none;
