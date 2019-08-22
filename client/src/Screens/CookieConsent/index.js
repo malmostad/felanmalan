@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import styles from "./Intro.module.css";
+import styles from "./CookieConsent.module.css";
 
 import { acceptCookies } from "redux/actions";
 
