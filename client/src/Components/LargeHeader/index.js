@@ -9,15 +9,9 @@ class LargeHeader extends Component {
   };
 
   render() {
-    const { children = null, focus = false } = this.props;
+    const { children = null } = this.props;
     return (
-      <div style={
-        {
-          height: `${focus ? 10 : 280}px`,
-        }
-      }
-      className={styles.outer}
-    >
+      <div className={styles.outer}>
         <TitleHolder>{children}</TitleHolder>
       </div>
     );
