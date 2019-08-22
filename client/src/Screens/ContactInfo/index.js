@@ -45,7 +45,7 @@ class ContactInfo extends Component {
     const value = event.target.value;
     this.setState({ inputValue: value, isEmail });
     this.props.updateInputValidation(valid);
-    if (valid && isEmail) {
+    if (isEmail) {
       return reportAdd({
         email: value,
         phone: ""

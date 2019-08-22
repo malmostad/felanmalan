@@ -4,7 +4,17 @@ import styles from "./NextButton.module.css";
 
 class NextButton extends Component {
   onClick = event => {
-    const { active = true, onSubmit = false, onClick = false } = this.props;
+    const {
+      allowSubmit = false,
+      active = true,
+      onSubmit = false,
+      onClick = false
+    } = this.props;
+    if (allowSubmit && onSubmit) {
+      event.preventDefault();
+      onSubmit();
+      return;
+    }
     if (!active) {
       event.preventDefault();
     }
