@@ -82,10 +82,6 @@ class App extends Component {
             to="/contact-info"
             active={description.length > 0}
           />
-          <Route
-            path="/contact-info"
-            render={() => <p className="extraText">{texts.contactExtraText}</p>}
-          />
           <NextButton
             text={texts.send}
             path="/contact-info"

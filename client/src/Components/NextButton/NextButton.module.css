@@ -56,9 +56,6 @@
   .backButton {
     display: flex;
   }
-  .bottomBarInner a {
-    width: 270px;
-  }
   a.backButton {
     margin-right: 20px;
   }

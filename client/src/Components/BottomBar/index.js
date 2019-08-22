@@ -31,15 +31,8 @@ class BottomBar extends Component {
       return false;
     } else if (pathname === "/info" && description.length > 0) {
       return true;
-    } else if (
-      pathname === "/contact-info" &&
-      email.length === 0 &&
-      phone.length === 0
-    ) {
-      if (inputFocus) {
-        return true;
-      }
-      return false;
+    } else if (pathname === "/contact-info") {
+      return true;
     } else if (
       pathname === "/contact-info" &&
       (email.length > 0 || phone.length > 0)
