@@ -58,7 +58,7 @@ class Info extends Component {
             style={{
               fontSize: "18px",
               borderBottom: "none",
-              height: "80px"
+              height: "180px"
             }}
             placeholder={texts.descriptionPlaceHolder}
             onChange={this.onHandleChange}
