@@ -24,7 +24,7 @@ class FullScreenTitle extends Component {
       <div style={style} className={StyleScreenTitleHolder}>
         {showLogo && <Logo />}
         <h1 className={StyleScreenTitle}>{title}</h1>
-        {children}
+        <React.Fragment>{children}</React.Fragment>
       </div>
     );
   }

@@ -9,7 +9,7 @@ import Map from "Screens/Map";
 import Done from "Screens/Done";
 import Track from "Screens/Track";
 import Info from "Screens/Info";
-import Intro from "Screens/Intro";
+import CookieConsent from "Screens/CookieConsent";
 import ContactInfo from "Screens/ContactInfo";
 
 import LoadingIndicator from "Components/LoadingIndicator";
@@ -37,7 +37,7 @@ class App extends Component {
 
     return (
       <div>
-        {acceptedCookies || <Intro />}
+        {acceptedCookies || <CookieConsent />}
         <Switch>
           <Route exact path="/map" component={Map} />
           <Route exact path="/info" component={Info} />
