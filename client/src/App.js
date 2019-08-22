@@ -29,7 +29,7 @@ class App extends Component {
       acceptedCookies,
       createReport,
       loading,
-      loadingMessage = false,
+      sendingState,
       description,
       validInput,
       validPosition
@@ -56,12 +56,6 @@ class App extends Component {
           <Route excat path="/done" component={Done} />
           <Route component={Photos} />
         </Switch>
-        {loading && (
-          <LoadingIndicator
-            message={loadingMessage}
-            style={{ position: "absolute", left: "10px", bottom: "120px" }}
-          />
-        )}
         <BottomBar
           onRetry={() => {
             createReport();
@@ -73,7 +67,13 @@ class App extends Component {
             path="/map"
             to="/info"
             active={validPosition}
-          />
+          >
+            {loading && (
+              <LoadingIndicator
+                style={{ position: "absolute", left: "20px", bottom: "25px" }}
+              />
+            )}
+          </NextButton>
           <NextButton exact path="/" text="Nästa steg" to="/map" />
           <NextButton
             path="/info"
@@ -89,7 +89,13 @@ class App extends Component {
             onSubmit={() => {
               createReport();
             }}
-          />
+          >
+            {sendingState === "pending" && (
+              <LoadingIndicator
+                style={{ position: "absolute", left: "20px", bottom: "25px" }}
+              />
+            )}
+          </NextButton>
         </BottomBar>
       </div>
     );

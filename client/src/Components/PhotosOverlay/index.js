@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import { Link } from "react-router-dom";
 
 import FullScreenTitle from "Components/FullScreenTitle";
+import LargeHeader from "Components/LargeHeader";
 
 import styles from "./PhotosOverlay.module.css";
 import buttonStyles from "Components/NextButton/NextButton.module.css";
@@ -24,7 +25,9 @@ class PhotosOverlay extends Component {
       >
         <div>
           <div className={styles.photosOverlay}>
-            <FullScreenTitle title={texts.addPhotoOnProblemAndPlace}/>
+            <LargeHeader>
+              <FullScreenTitle title={texts.addPhotoOnProblemAndPlace} />
+            </LargeHeader>
             <div className={styles.actionWrapper}>
               <Link className={styles.skipLink} to="/map">
                 {texts.skip}

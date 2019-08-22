@@ -1,19 +1,10 @@
 import React, { Component } from "react";
+import styles from "./InputContent.module.css";
 
 class InputContent extends Component {
   render() {
     const { children = null } = this.props;
-    return (
-      <div
-        className="content"
-        style={{
-          background: "#fff",
-          padding: "40px 20px 40px"
-        }}
-      >
-        {children}
-      </div>
-    );
+    return <div className={styles.inputContent}>{children}</div>;
   }
 }
 export default InputContent;
