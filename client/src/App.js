@@ -82,6 +82,10 @@ class App extends Component {
             to="/contact-info"
             active={description.length > 0}
           />
+          <Route
+            path="/contact-info"
+            render={() => <p className="extraText">{texts.contactExtraText}</p>}
+          />
           <NextButton
             text={texts.send}
             path="/contact-info"
@@ -91,7 +95,6 @@ class App extends Component {
               createReport();
             }}
           >
-            <p className="extraText">{texts.contactExtraText}</p>
             {sendingState === "pending" && (
               <LoadingIndicator
                 style={{ position: "absolute", left: "20px", bottom: "25px" }}

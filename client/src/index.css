@@ -157,13 +157,18 @@ body b, body strong {
 .extraText {
   width: 100%;
   max-width: $contentMaxWidth;
-  margin: 0 24px;
+  padding: 0 24px;
   position: absolute;
-  bottom: 70px;
+  bottom: 60px;
   font-weight: normal;
   color: $thirdGray;
   font-size: 18px;
   text-align: left;
-
 }
 
+@media screen and (min-width: $contentMaxWidth) {
+  .extraText {
+    text-align: center;
+    padding: 0;
+  }
+}
