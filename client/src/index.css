@@ -1,29 +1,17 @@
 @font-face {
-  font-family: 'MalmoText';
-  src: local('MalmoText'), url(./fonts/MalmoText/MalmoText-Regular.woff) format('woff');
+  font-family: 'MyriadPro';
+  src: local('MyriadPro'), url(./fonts/Myriad/MyriadPro-Regular.otf) format('opentype');
   font-weight: normal;
 }
 @font-face {
-  font-family: 'MalmoText';
-  src: local('MalmoText'), url(./fonts/MalmoText/MalmoText-Bold.woff) format('woff');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: 'MalmoRubrik';
-  src: local('MalmoText'), url(./fonts/MalmoRubrik/MalmoRubrik-Bold.woff) format('woff');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: 'MalmoRubrik';
-  src: local('MalmoText'), url(./fonts/MalmoRubrik/MalmoRubrik-Regular.woff) format('woff');
-  font-weight: normal;
-}
-@font-face {
-  font-family: 'MalmoRubrik';
-  src: local('MalmoText'), url(./fonts/MalmoRubrik/MalmoRubrik-Light.woff) format('woff');
+  font-family: 'MyriadPro';
+  src: local('MyriadPro'), url(./fonts/Myriad/MyriadPro-Light.otf) format('opentype');
   font-weight: lighter;
+}
+@font-face {
+  font-family: 'MyriadPro';
+  src: local('MyriadPro'), url(./fonts/Myriad/MyriadPro-Bold.otf) format('opentype');
+  font-weight: bold;
 }
 
 html, body {
@@ -37,7 +25,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 #root {
-  font-family: MalmoText;
+  font-family: MyriadPro, Open sans, Verdana;
 }
 
 code {

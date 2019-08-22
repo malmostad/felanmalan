@@ -25,7 +25,7 @@ class Intro extends Component {
     return (
       <div className={styles.introPage}>
         <div className={styles.introPageContent}>
-          <FullScreenTitle showLogo={true} title={texts.introPageTitle} />
+          <FullScreenTitle title={texts.introPageTitle} />
           <p className={styles.introPageText}>
             <strong>{texts.introPageIngress}</strong>
             {texts.introPageText}
