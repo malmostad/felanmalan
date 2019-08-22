@@ -31,6 +31,7 @@ class App extends Component {
       loading,
       sendingState,
       description,
+      texts,
       validInput,
       validPosition
     } = this.props;
@@ -62,7 +63,7 @@ class App extends Component {
           }}
         >
           <NextButton
-            text="Nästa steg"
+            text={texts.nextStep}
             exact
             path="/map"
             to="/info"
@@ -77,12 +78,12 @@ class App extends Component {
           <NextButton exact path="/" text="Nästa steg" to="/map" />
           <NextButton
             path="/info"
-            text="Nästa steg"
+            text={texts.nextStep}
             to="/contact-info"
             active={description.length > 0}
           />
           <NextButton
-            text="Skicka felanmälan"
+            text={texts.send}
             path="/contact-info"
             to="/done"
             active={validInput}
@@ -90,6 +91,7 @@ class App extends Component {
               createReport();
             }}
           >
+            <p className="extraText">{texts.contactExtraText}</p>
             {sendingState === "pending" && (
               <LoadingIndicator
                 style={{ position: "absolute", left: "20px", bottom: "25px" }}
@@ -115,7 +117,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state = {}) {
-  const { ui = {}, report = {} } = state;
+  const { ui = {}, report = {}, texts = {} } = state;
   const {
     previews = [],
     validPosition,
@@ -140,7 +142,8 @@ function mapStateToProps(state = {}) {
     mapScreenClicked,
     loading,
     loadingMessage,
-    validInput
+    validInput,
+    texts
   };
 }
 

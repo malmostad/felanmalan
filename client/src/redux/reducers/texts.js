@@ -1,6 +1,8 @@
 import React from "react";
 import CookieReadMoreText from "../../texts/cookie-read-more";
 const initialState = {
+  nextStep: "Nästa steg",
+  send: "Skicka in",
   skip: "Hoppa över",
   accept: "Acceptera",
   addPhoto: "Lägg till bild",
@@ -25,13 +27,18 @@ const initialState = {
   descriptionTitle: <strong>Beskriv problemet</strong>,
   description: "Beskrivning",
   descriptionPlaceHolder: "Beskriv problemet du vill felanmäla...",
-  contactPageTitle: [
-    <strong>Följ</strong>,
-    " vad som ",
-    <strong>händer</strong>,
-    " med din ",
-    <strong>felanmälan</strong>
-  ],
+  contactPageTitle: (
+    <>
+      <strong>Följ</strong> vad som <strong>händer</strong> med din
+      <strong> felanmälan</strong>
+    </>
+  ),
+  contactPageCanWeReachOutToYou: "Kan vi kontakta dig vid frågor?",
+  contactExtraText: (
+    <>
+      Vill du inte följa eller bli kontaktad klicka bara skicka in
+    </>
+  ),
   emailOrPhone: "E-post eller telefonnummer",
   emailOrPhonePlaceHolder: "Skriv din e-postadress eller ditt telefonnumer",
   sendIssueReport: "Skicka in felanmälan",

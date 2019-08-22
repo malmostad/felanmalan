@@ -3,6 +3,7 @@ const AppConfig = require("./app.config.js");
 
 module.exports = {
   secondaryGrey: "#8A8A8D",
+  thirdGray: "#C4C4C4",
   black: "#12181F",
   contentMaxWidth: "560px",
   trackPageBg: "#08215B",
