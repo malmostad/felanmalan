@@ -24,6 +24,7 @@ class NextButton extends Component {
     const {
       to = "/",
       text = null,
+      backButton = false,
       className = false,
       active = true,
       inverted = false,
@@ -34,7 +35,7 @@ class NextButton extends Component {
         onClick={this.onClick}
         className={`${styles.nextButton} ${!active ? styles.disabled : ""} ${
           inverted ? styles.inverted : ""
-        } ${className ? className : ""}`}
+        } ${backButton ? styles.backButton : ""} ${className ? className : ""}`}
         to={to}
       >
         {children} {text}

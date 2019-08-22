@@ -41,3 +41,12 @@
   color: $mainColor;
   pointer-events: none;
 }
+.backButton {
+  border: solid 2px $mainColor;
+  background-color: transparent;
+  color: $mainColor;
+}
+.backButton:hover {
+  background-color: $mainColor;
+  color: $secondColor;
+}
