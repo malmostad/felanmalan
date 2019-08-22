@@ -56,8 +56,8 @@
   padding: 5px 60px;
 }
 .mapboxgl-ctrl-geocoder--icon-search {
-  left: 20px;
-  top: 17px;
+  left: 13px;
+  top: 15px;
 }
 .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--pin-right > * {
   margin: 4px 5px;
@@ -70,8 +70,8 @@
     margin: 0;
   }
   .mapboxgl-ctrl-geocoder--icon-search {
-    left: 20px;
-    top: 13px;
+    left: 10px;
+    top: 9px;
   }
 }
 .mapboxgl-ctrl-geocoder--icon-close {
