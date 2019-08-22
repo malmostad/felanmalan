@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styles from "./BottomBar.module.css";
 import { withRouter } from "react-router-dom";
+import NextButton from "Components/NextButton";
 
 class BottomBar extends Component {
   componentWillReceiveProps(nextProps) {
@@ -77,9 +78,8 @@ class BottomBar extends Component {
     };
   };
   render() {
-    const { children = null } = this.props;
+    const { history = {}, location = {}, children = null } = this.props;
     const show = this.showBar();
-    const { location = {} } = this.props;
     const { pathname = "" } = location;
 
     const style = {
@@ -93,7 +93,16 @@ class BottomBar extends Component {
     };
     return (
       <div style={style} className={styles.bottomBarOuter}>
-        <div className={styles.bottomBarInner}>{children}</div>
+        <div className={styles.bottomBarInner}>
+          <NextButton
+            backButton={true}
+            onClick={() => {
+              history.goBack();
+            }}
+            text="Tillbaka"
+          />
+          {children}
+        </div>
         <div
           onClick={error.onClick}
           style={styleError}

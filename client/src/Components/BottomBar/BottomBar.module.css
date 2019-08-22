@@ -17,6 +17,7 @@
   justify-content: center;
   width: 100%;
   z-index: 100;
+  display: flex;
 }
 .bottomBarInner a {
   width: 100%;
@@ -33,4 +34,5 @@
   color: #fff;
   width: 100%;
   height: 100%;
+  z-index: 99;
 }

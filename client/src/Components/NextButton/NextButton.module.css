@@ -41,3 +41,25 @@
   color: $mainColor;
   pointer-events: none;
 }
+.backButton {
+  display: none;
+  border: solid 2px $mainColor;
+  background-color: transparent;
+  color: $mainColor;
+}
+.backButton:hover {
+  background-color: $mainColor;
+  color: $secondColor;
+}
+
+@media screen and (min-width: $contentMaxWidth) {
+  .backButton {
+    display: flex;
+  }
+  .bottomBarInner a {
+    width: 270px;
+  }
+  a.backButton {
+    margin-right: 20px;
+  }
+}
