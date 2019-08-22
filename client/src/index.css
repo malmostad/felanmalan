@@ -154,3 +154,16 @@ a {
 body b, body strong {
   font-weight: bold;
 }
+.extraText {
+  width: 100%;
+  max-width: $contentMaxWidth;
+  margin: 0 24px;
+  position: absolute;
+  bottom: 70px;
+  font-weight: normal;
+  color: $thirdGray;
+  font-size: 18px;
+  text-align: left;
+
+}
+

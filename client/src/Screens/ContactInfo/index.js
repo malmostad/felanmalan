@@ -14,6 +14,8 @@ import LargeHeader from "Components/LargeHeader";
 import InputContent from "Components/InputContent";
 import FormItem from "Components/FormItem";
 
+import styles from "./ContactInfo.module.css";
+
 class ContactInfo extends Component {
   state = {
     focus: false,
@@ -76,6 +78,12 @@ class ContactInfo extends Component {
     this.props.inputBlur();
     this.setState({ focus: false });
   };
+  onCheckBoxChange = event => {
+    const { reportAdd } = this.props;
+    reportAdd({
+      allowContact: event.target.checked
+    });
+  };
 
   render() {
     // make this more modular
@@ -99,9 +107,15 @@ class ContactInfo extends Component {
               value={this.state.inputValue}
               placeholder={texts.emailOrPhonePlaceHolder}
             />
-            <button style={{ visibility: "hidden" }} type="submit">
-              {texts.sendIssueReport}
-            </button>
+            <div>
+              <label className={styles.checkboxItem}>
+                <input type="checkbox" onChange={this.onCheckBoxChange} />
+                {texts.contactPageCanWeReachOutToYou}
+              </label>
+              <button style={{ visibility: "hidden" }} type="submit">
+                {texts.sendIssueReport}
+              </button>
+            </div>
           </form>
         </InputContent>
       </Layout>
