@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
 import { connect } from "react-redux";
 
 import { fetchIssueStatus } from "redux/actions";
@@ -18,20 +17,22 @@ class Track extends Component {
     const { issueStatus } = this.props;
     const { status = "", loading = false } = issueStatus;
     return (
-      <Layout className={styles.background}>
+      <div className={styles.background}>
         {loading ? (
           <LoadingIndicator size={80} />
         ) : (
           <div>
             <FullScreenTitle
-              strongTextLast={true}
-              titleStrong={status}
-              title="Ditt ärende är " // intentionally trailing whitespace
+              title={
+                <>
+                  Ditt ärende är <strong>{status}</strong>
+                </>
+              }
             />
             <TrackCard {...issueStatus} />
           </div>
         )}
-      </Layout>
+      </div>
     );
   }
 }
