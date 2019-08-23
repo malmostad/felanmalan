@@ -49,6 +49,7 @@ class Map extends Component {
     pageVisit("MAP");
     let map = new mapboxgl.Map({
       container: this.mapContainer,
+      attributionControl: false,
       style: REACT_APP_MAPBOX_STYLE,
       center: [longitude, latitude],
       maxBounds,
@@ -174,7 +175,7 @@ class Map extends Component {
           />
         ) : null}
         <div
-          style={{ position: "fixed" }}
+          style={{ position: "absolute" }}
           className={styles.map}
           ref={el => (this.mapContainer = el)}
         />

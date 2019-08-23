@@ -133,8 +133,13 @@ textarea:focus {
   transition: opacity 300ms;
 }
 div.mapboxgl-ctrl-bottom-right {
+  z-index: 102;
   bottom: 80px;
   right: 15px;
+}
+.mapboxgl-ctrl-logo {
+  position: relative;
+  bottom: 70px;
 }
 a {
   color: $mainColor;
