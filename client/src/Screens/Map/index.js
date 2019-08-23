@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import mapboxgl from "mapbox-gl";
-import TrackingService from "TrackingService";
+import { track } from "TrackingService";
 
 import MapSearchBar from "Components/MapSearchBar";
 import FullScreenTitle from "Components/FullScreenTitle";
@@ -21,7 +21,6 @@ import {
 } from "redux/actions";
 
 const IS_WIDE = window.innerWidth > 800;
-const { track } = TrackingService;
 const {
   REACT_APP_MAPBOX_ACCESS_TOKEN,
   REACT_APP_MAPBOX_STYLE = "mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
@@ -96,7 +95,6 @@ class Map extends Component {
     }
   };
   onGeoCodeResult = event => {
-    track("Location from Search");
     const coords = event.result.geometry.coordinates;
     this.map.flyTo({ center: [coords[0], coords[1]] });
   };
@@ -127,6 +125,7 @@ class Map extends Component {
     this.props.uiLoadingStart("Hämtar position");
     navigator.geolocation.getCurrentPosition(
       pos => {
+        track("USER_LOCATION_SUCCESS");
         this.onSuccessCurrentPosition(pos, onLoad);
       },
       this.onErrorCurrentPosition,
@@ -150,6 +149,7 @@ class Map extends Component {
   };
 
   onErrorCurrentPosition = data => {
+    track("USER_LOCATION_ERROR");
     this.props.uiLoadingStop();
     this.setState({ hasGeoLocation: false });
   };

@@ -9,9 +9,13 @@ import LargeHeader from "Components/LargeHeader";
 import styles from "./PhotosOverlay.module.css";
 import buttonStyles from "Components/NextButton/NextButton.module.css";
 import UploadButton from "./upload-button.svg";
+import TrackingService from "TrackingService";
 const Dragger = Upload.Dragger;
 
 class PhotosOverlay extends Component {
+  onSkipLink = () => {
+    TrackingService.track("SKIP_IMAGE_UPLOAD");
+  };
   render() {
     const { config, show, texts = {} } = this.props;
     return (
@@ -29,7 +33,7 @@ class PhotosOverlay extends Component {
               <FullScreenTitle title={texts.addPhotoOnProblemAndPlace} />
             </LargeHeader>
             <div className={styles.actionWrapper}>
-              <Link className={styles.skipLink} to="/map">
+              <Link onClick={this.onSkipLink} className={styles.skipLink} to="/map">
                 {texts.skip}
               </Link>
               <Dragger {...config} className={styles.dragger}>
