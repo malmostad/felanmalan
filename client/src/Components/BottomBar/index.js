@@ -84,16 +84,23 @@ class BottomBar extends Component {
     const styleError = {
       transform: error.show ? `translateY(-70px)` : "translateY(0px)"
     };
+    const isPhotoPage = pathname === "/";
     return (
       <div style={style} className={styles.bottomBarOuter}>
-        <div className={styles.bottomBarInner}>
-          <NextButton
-            backButton={true}
-            onClick={() => {
-              history.goBack();
-            }}
-            text="Tillbaka"
-          />
+        <div
+          className={`${styles.bottomBarInner} ${
+            isPhotoPage ? styles.bottomBarInnerForceFull : ""
+          }`}
+        >
+          {!isPhotoPage && (
+            <NextButton
+              backButton={true}
+              onClick={() => {
+                history.goBack();
+              }}
+              text="Tillbaka"
+            />
+          )}
           {children}
         </div>
         <div

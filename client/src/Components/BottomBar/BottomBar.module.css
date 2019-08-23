@@ -40,4 +40,7 @@
   .bottomBarInner a {
     width: 270px;
   }
+  .bottomBarInner.bottomBarInnerForceFull a {
+    width: 100%;
+  }
 }

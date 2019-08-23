@@ -62,6 +62,14 @@
 .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--pin-right > * {
   margin: 4px 5px;
 }
+.mapboxgl-ctrl-geocoder--icon-close {
+  margin-top: 3px;
+}
+.mapbox-gl-geocoder--error {
+  width: 100%;
+  padding: 30px;
+}
+
 @media screen and (min-width: $contentMaxWidth) {
   .mapboxgl-ctrl-geocoder {
     max-width: 560px;
@@ -74,11 +82,7 @@
     left: 10px;
     top: 9px;
   }
-}
-.mapboxgl-ctrl-geocoder--icon-close {
-  margin-top: 3px;
-}
-.mapbox-gl-geocoder--error {
-  width: 100%;
-  padding: 30px;
+  .mapboxgl-ctrl-geocoder--input {
+    padding: 5px 39px;
+  }
 }

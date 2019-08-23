@@ -70,3 +70,26 @@
   background-color: transparent;
   color: $mainColor;
 }
+@media screen and (min-width: $contentMaxWidth) {
+  .photosContentHolder {
+    margin: 8px auto;
+    overflow-x: auto;
+    width: $contentMaxWidth;
+    padding-bottom: 15px;
+  }
+  .photosContent {
+    white-space: inherit;
+  }
+  .photoUploadButton {
+    width: 272px;
+    height: 272px;
+  }
+  .photosContentHolder {
+    padding-bottom: 50px;
+  }
+  .smallUploadButton {
+    background: white;
+    margin-bottom: 0;
+    position: fixed;
+  }
+}
