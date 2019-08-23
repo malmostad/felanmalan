@@ -1,3 +1,4 @@
+// TODO: Rename to just Title
 import React, { Component } from "react";
 import { ReactComponent as Logo } from "Images/logo.svg";
 import styles from "./FullScreenTitle.module.css";

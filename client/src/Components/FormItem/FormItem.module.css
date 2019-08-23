@@ -16,7 +16,7 @@
   border-bottom: solid 1px $divider;
   display: block;
   width: 100%;
-  padding: 5px 0;
+  padding: 5px 0 0;
   margin-bottom: 20px;
 }
 .error .input {

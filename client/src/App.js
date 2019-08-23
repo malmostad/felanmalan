@@ -88,8 +88,7 @@ class App extends Component {
             text={texts.send}
             path="/contact-info"
             to="/done"
-            active={validInput}
-            allowSubmit={true}
+            active={true}
             onSubmit={() => {
               createReport();
             }}
