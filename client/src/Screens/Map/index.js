@@ -23,6 +23,8 @@ import {
 const IS_WIDE = window.innerWidth > 800;
 const {
   REACT_APP_MAPBOX_ACCESS_TOKEN,
+  REACT_APP_DEFAULT_LONGITUDE = 13.003365,
+  REACT_APP_DEFAULT_LATITUDE = 55.6051458,
   REACT_APP_MAPBOX_STYLE = "mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
 } = process.env;
 // TODO: move to config
@@ -80,6 +82,13 @@ class Map extends Component {
   }
 
   askForLocation = (onLoad = false) => {
+    const { longitude, latitude } = this.props;
+
+    const userHasAlreadySetPosition =
+      onLoad &&
+      longitude !== REACT_APP_DEFAULT_LONGITUDE &&
+      latitude !== REACT_APP_DEFAULT_LATITUDE;
+
     if (window.navigator.permissions) {
       navigator.permissions
         .query({ name: "geolocation" })
@@ -87,12 +96,16 @@ class Map extends Component {
           if (PermissionStatus.state === "denied") {
             this.setState({ hasGeoLocation: false });
           } else {
-            this.getUserLocation(onLoad);
+            if (!userHasAlreadySetPosition) {
+              this.getUserLocation(onLoad);
+            }
           }
         });
     } else {
       // safari doesnt have the Permission API
-      this.getUserLocation(onLoad);
+      if (!userHasAlreadySetPosition) {
+        this.getUserLocation(onLoad);
+      }
     }
   };
   onGeoCodeResult = event => {

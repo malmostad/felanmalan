@@ -34,7 +34,6 @@ class App extends Component {
       sendingState,
       description,
       texts,
-      validInput,
       validPosition
     } = this.props;
 
@@ -88,8 +87,7 @@ class App extends Component {
             text={texts.send}
             path="/contact-info"
             to="/done"
-            active={validInput}
-            allowSubmit={true}
+            active={true}
             onSubmit={() => {
               createReport();
             }}
@@ -133,8 +131,7 @@ function mapStateToProps(state = {}) {
     sendingState = "none",
     mapScreenClicked,
     loading,
-    loadingMessage = false,
-    validInput = false
+    loadingMessage = false
   } = ui;
   return {
     acceptedCookies,
@@ -146,7 +143,6 @@ function mapStateToProps(state = {}) {
     mapScreenClicked,
     loading,
     loadingMessage,
-    validInput,
     texts
   };
 }
