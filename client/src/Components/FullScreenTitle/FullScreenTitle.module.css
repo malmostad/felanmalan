@@ -19,11 +19,12 @@
 }
 @media screen and (min-width: $contentMaxWidth) {
   .screenTitleHolder {
+    padding-top: 90px;
     padding-left: 0;
   }
   .screenTitle {
-    max-width: 26rem;
-    font-size: 34px;
-    line-height: 39px;
+    max-width: 40rem;
+    font-size: 64px;
+    line-height: 64px;
   }
 }
