@@ -15,6 +15,8 @@ import ContactInfo from "Screens/ContactInfo";
 import LoadingIndicator from "Components/LoadingIndicator";
 import BottomBar from "Components/BottomBar";
 import NextButton from "Components/NextButton";
+import TrackRouteChanges from "Components/TrackRouteChanges";
+
 const getRouter = () => {
   const { REACT_APP_IS_CORDOVA = false } = process.env;
   if (REACT_APP_IS_CORDOVA) {
@@ -107,10 +109,12 @@ class App extends Component {
     const Router = getRouter();
     return (
       <Router>
-        <Switch>
-          <Route path="/track/:id" component={Track} />
-          <Route render={props => this.renderReportPage()} />
-        </Switch>
+        <TrackRouteChanges>
+          <Switch>
+            <Route path="/track/:id" component={Track} />
+            <Route render={props => this.renderReportPage()} />
+          </Switch>
+        </TrackRouteChanges>
       </Router>
     );
   }
