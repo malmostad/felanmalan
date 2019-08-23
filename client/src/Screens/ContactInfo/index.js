@@ -9,7 +9,7 @@ import {
   inputBlur,
   updateInputValidation
 } from "redux/actions";
-import ScreenTitle from "Components/ScreenTitle";
+import Title from "Components/FullScreenTitle";
 import LargeHeader from "Components/LargeHeader";
 import InputContent from "Components/InputContent";
 import FormItem from "Components/FormItem";
@@ -94,7 +94,7 @@ class ContactInfo extends Component {
     return (
       <Layout>
         <LargeHeader>
-          <ScreenTitle title={texts.contactPageTitle} />
+          <Title title={texts.contactPageTitle} />
         </LargeHeader>
         <InputContent>
           <form onSubmit={this.onSubmit}>
