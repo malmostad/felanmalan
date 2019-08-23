@@ -2,13 +2,14 @@
   min-width: 100%;
   max-width: $contentMaxWidth;
   white-space: nowrap;
+  display: flex;
 }
 .photosContentHolder {
   margin-top: 8px;
   -webkit-overflow-scrolling: touch;
   overflow-x: scroll;
   width: 100%;
-  padding-bottom: 15px;
+  padding-bottom: 120px;
 }
 .photoUploadButton {
   border: none;
@@ -17,8 +18,8 @@
   justify-content: center;
   align-items: center;
   background: #F8F8FA;
-  width: 250px;
-  height: 350px;
+  width: 100%;
+  height: 100%;
   margin: 0;
   cursor: pointer;
 }
@@ -61,6 +62,9 @@
   width: 100%;
   position: absolute;
   bottom: $bottomBarHeight;
+  background: white;
+  margin-bottom: 0;
+  position: fixed;
 }
 .smallUploadButton button {
   appearance: none;
@@ -75,21 +79,13 @@
     margin: 8px auto;
     overflow-x: auto;
     width: $contentMaxWidth;
-    padding-bottom: 15px;
   }
   .photosContent {
+    display: block;
     white-space: inherit;
   }
   .photoUploadButton {
     width: 272px;
     height: 272px;
-  }
-  .photosContentHolder {
-    padding-bottom: 50px;
-  }
-  .smallUploadButton {
-    background: white;
-    margin-bottom: 0;
-    position: fixed;
   }
 }
