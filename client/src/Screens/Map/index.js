@@ -202,7 +202,7 @@ class Map extends Component {
           <div
             onTouchStart={this.onHideHeader}
             onClick={this.onHideHeader}
-            style={{ transform: `translateY(${headerHidden ? -230 : 0}px)` }}
+            style={{ transform: `translateY(${headerHidden ? -330 : 0}px)` }}
             className={styles.titleHolder}
           >
             <TitleHolder>
