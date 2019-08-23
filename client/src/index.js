@@ -15,6 +15,7 @@ import * as serviceWorker from "./serviceWorker";
 import { clear } from "redux/actions";
 import reducers from "redux/reducers";
 import rootSaga from "redux/sagas";
+import TrackingMiddleWare from "redux/TrackingMiddleWare";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -22,7 +23,9 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   reducers,
   load(),
-  composeWithDevTools(applyMiddleware(sagaMiddleware, save({ debounce: 500 })))
+  composeWithDevTools(
+    applyMiddleware(sagaMiddleware, TrackingMiddleWare, save({ debounce: 500 }))
+  )
 );
 
 // clear data on startup if old. There is probably a better place for this.
