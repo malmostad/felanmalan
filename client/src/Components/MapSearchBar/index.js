@@ -4,7 +4,7 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
 import "./mapbox-gl-geocoder.css";
-import styles from "./MapSearchBar.module.css"
+import styles from "./MapSearchBar.module.css";
 
 const {
   REACT_APP_DEFAULT_LONGITUDE = 13.003365,
@@ -15,6 +15,13 @@ const defaultCoordinates = {
   longitude: REACT_APP_DEFAULT_LONGITUDE,
   latitude: REACT_APP_DEFAULT_LATITUDE
 };
+
+const maxBounds = [
+  12.855952171065837,
+  55.49066310369751,
+  13.17594041283428,
+  55.6585718499375
+];
 
 class MapSearchBar extends Component {
   render() {
@@ -62,6 +69,7 @@ class MapSearchBar extends Component {
       accessToken: mapboxgl.accessToken,
       marker: false,
       country: "SE",
+      bbox: maxBounds,
       mapboxgl: mapboxgl,
       proximity: defaultCoordinates
     }).on("result", this.onGeoCodeResult);
