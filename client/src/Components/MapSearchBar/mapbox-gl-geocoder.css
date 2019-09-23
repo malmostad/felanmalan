@@ -1,7 +1,7 @@
 .mapboxgl-ctrl-geocoder {
   width: 100%;
   margin: 10px 16px;
-  border-radius: 5px;
+  border-radius: 0px;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.1);
 }
 .mapboxgl-ctrl-geocoder .suggestions {
@@ -20,20 +20,8 @@
 }
 .mapboxgl-ctrl-geocoder .suggestions > li > a {
   width: 100%;
-  padding: 20px 15px 20px 60px;
+  padding: 20px 15px 20px 20px;
   border-bottom: solid 1px #C8C7CC;
-}
-.mapboxgl-ctrl-geocoder .suggestions > li:before {
-  content: '';
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  background-color: #FFE6E6;
-  border-radius: 15px;
-  left: 15px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: url('./geocoder-pin.svg');
 }
 .mapboxgl-ctrl-geocoder .suggestions > li:first-child > a {
   border-top: solid 1px #C8C7CC;
@@ -62,8 +50,12 @@
 .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--pin-right > * {
   margin: 4px 5px;
 }
+.mapboxgl-ctrl-geocoder--button {
+  outline: none;
+}
 .mapboxgl-ctrl-geocoder--icon-close {
-  margin-top: 3px;
+  margin-top: 5px;
+  margin-right: 5px;
 }
 .mapbox-gl-geocoder--error {
   width: 100%;

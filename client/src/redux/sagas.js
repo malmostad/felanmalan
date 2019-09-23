@@ -52,8 +52,6 @@ function* watchGetAddress() {
 }
 
 function extractClosestAddress(records) {
-  // TODO: Cover edge cases
-  // use place_name??
   const feature = records.features[0] || {};
   const { text = "", address = "" } = feature;
   return {
