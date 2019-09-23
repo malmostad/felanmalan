@@ -20,6 +20,7 @@
 }
 .currentLocationButton {
   appearance: none;
+  outline: none;
   background-image: url('./current-location.svg');
   background-size: 20px;
   background-color: $mainColor;

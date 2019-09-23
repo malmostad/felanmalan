@@ -35,10 +35,12 @@ class MapSearchBar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loading && !this.props.loading) {
+      this.hideClear();
       this.showLoading();
     }
     if (!nextProps.loading && this.props.loading) {
       this.hideLoading();
+      this.showClear();
     }
     if (nextProps.address && nextProps.address !== this.props.address) {
       this.geocoder.setInput(nextProps.address);
@@ -71,6 +73,13 @@ class MapSearchBar extends Component {
       country: "SE",
       bbox: maxBounds,
       mapboxgl: mapboxgl,
+      getItemValue: function(location) {
+        if (location.properties.address) {
+          return location.properties.address;
+        } else {
+          return `${location.text} ${location.address}`;
+        }
+      },
       proximity: defaultCoordinates
     }).on("result", this.onGeoCodeResult);
     if (geocoder) {
