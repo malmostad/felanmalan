@@ -12,7 +12,7 @@ class AddStatusToReports < ActiveRecord::Migration[5.2]
   end
 
   def down
-    drop_column :reports, :issue_status
+    drop_column :reports, :status
     execute 'DROP type issue_status;'
   end
 end

@@ -35,10 +35,10 @@ const initialState = {
   ),
   contactPageCanWeReachOutToYou: "Kan vi kontakta dig vid frågor?",
   contactExtraText: (
-    <>
-      Vill du inte följa eller bli kontaktad klicka bara skicka in
-    </>
+    <>Vill du inte följa eller bli kontaktad klicka bara skicka in</>
   ),
+  name: "Namn",
+  namePlaceholder: "Skriv dit namn",
   emailOrPhone: "E-post eller telefonnummer",
   emailOrPhonePlaceHolder: "Skriv din e-postadress eller ditt telefonnumer",
   sendIssueReport: "Skicka in felanmälan",

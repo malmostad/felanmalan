@@ -34,7 +34,6 @@ class Info extends Component {
     this.setState({ focus: false });
   };
   onTouchStart = e => {
-    console.log(e);
     e.nativeEvent.preventDefault();
     e.preventDefault();
     e.nativeEvent.stopPropagation();

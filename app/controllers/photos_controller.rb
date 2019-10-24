@@ -12,8 +12,12 @@ class PhotosController < ApiController
 
   # POST /photos
   def create
-    @photo = Photo.new(data: photo_params.read, mime_type: photo_params.content_type)
+    @photo = Photo.new(data: photo_params.read,
+                       mime_type: photo_params.content_type,
+                       filename: photo_params.original_filename)
     @photo.save
+    @photo.external_id = EasyIncidentService.upload(@photo)
+    @photo.save!
     render json: { id: @photo.uuid }, status: :created, location: @photo
     # else
     #   render json: @photo.errors, status: :unprocessable_entity

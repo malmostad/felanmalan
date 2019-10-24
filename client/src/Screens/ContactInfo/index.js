@@ -32,18 +32,19 @@ class ContactInfo extends Component {
     }
   }
   componentDidMount() {
-    const { description, email = "", phone = "" } = this.props;
+    const { description, email = "", phone = "", name = "" } = this.props;
     this.setState({
       description,
-      inputValue: email.length > 0 ? email : phone
+      name,
+      emailOrPhone: email.length > 0 ? email : phone
     });
     this.props.inputBlur();
   }
-  onInputChange = (event, valid, isEmail = false) => {
+  onEmailOrPhoneChange = (event, valid, isEmail = false) => {
     const { reportAdd } = this.props;
     // TODO: fix better solution for this
     const value = event.target.value;
-    this.setState({ inputValue: value, isEmail });
+    this.setState({ emailOrPhone: value, isEmail });
     this.props.updateInputValidation(valid);
     if (isEmail) {
       return reportAdd({
@@ -58,14 +59,23 @@ class ContactInfo extends Component {
     }
   };
 
+  onNameChange = event => {
+    const { reportAdd } = this.props;
+    const value = event.target.value;
+    this.setState({ name: value });
+    return reportAdd({
+      name: value
+    });
+  };
   onSubmit = event => {
     event.preventDefault();
     const { reportAdd, onSubmit } = this.props;
-    const { inputValue = "", isEmail = false } = this.state;
-    if (inputValue.length > 0) {
+    const { emailOrPhone = "", isEmail = false, name = "" } = this.state;
+    if (emailOrPhone.length > 0) {
       reportAdd({
-        phone: isEmail ? "" : inputValue,
-        email: isEmail ? inputValue : ""
+        phone: isEmail ? "" : emailOrPhone,
+        email: isEmail ? emailOrPhone : "",
+        name
       });
       onSubmit && onSubmit();
     }
@@ -81,13 +91,19 @@ class ContactInfo extends Component {
   onCheckBoxChange = event => {
     const { reportAdd } = this.props;
     reportAdd({
-      allowContact: event.target.checked
+      allow_contact: event.target.checked
     });
   };
 
   render() {
     // make this more modular
-    const { longitude, latitude, description, texts } = this.props;
+    const {
+      longitude,
+      latitude,
+      description,
+      texts,
+      allow_contact
+    } = this.props;
     if (!longitude || !latitude || !description) {
       return <Redirect to="/" />;
     }
@@ -99,23 +115,38 @@ class ContactInfo extends Component {
         <InputContent>
           <form onSubmit={this.onSubmit}>
             <FormItem
-              onChange={this.onInputChange}
+              onChange={this.onEmailOrPhoneChange}
               label={texts.emailOrPhone}
               type="email-or-phone"
               onFocus={this.onFocus}
               onBlur={this.onBlur}
-              value={this.state.inputValue}
+              value={this.state.emailOrPhone}
               placeholder={texts.emailOrPhonePlaceHolder}
             />
             <div>
               <label className={styles.checkboxItem}>
-                <input type="checkbox" onChange={this.onCheckBoxChange} />
+                <input
+                  type="checkbox"
+                  defaultChecked={allow_contact}
+                  onChange={this.onCheckBoxChange}
+                />
                 {texts.contactPageCanWeReachOutToYou}
               </label>
               <button style={{ visibility: "hidden" }} type="submit">
                 {texts.sendIssueReport}
               </button>
             </div>
+            {allow_contact && (
+              <FormItem
+                onChange={this.onNameChange}
+                label={texts.name}
+                type="name"
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+                value={this.state.name}
+                placeholder={texts.namePlaceholder}
+              />
+            )}
           </form>
         </InputContent>
       </Layout>
@@ -125,12 +156,22 @@ class ContactInfo extends Component {
 
 function mapStateToProps(state = {}) {
   const { report = {}, ui, texts } = state;
-  const { email, phone, longitude, latitude, description } = report;
+  const {
+    email,
+    phone,
+    name,
+    longitude,
+    latitude,
+    description,
+    allow_contact
+  } = report;
   const { sendingState = "none" } = ui;
   return {
     email,
     phone,
+    name,
     sendingState,
+    allow_contact,
     longitude,
     latitude,
     description,

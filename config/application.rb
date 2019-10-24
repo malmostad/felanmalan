@@ -28,6 +28,7 @@ module Boilerplate
       g.test_framework :rspec
     end
 
+    config.active_record.schema_format = :sql
     config.i18n.default_locale = :sv
 
     config.app_generators.scaffold_controller = :scaffold_controller

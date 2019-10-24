@@ -17,7 +17,15 @@ class ReportsController < ApiController
 
   # POST /reports
   def create
+    # TODO: replace UUIDs with tempId from EasyIncident
+    uuids = report_params[:images] || []
+    photos = uuids.map do |uuid|
+      Photo.find_by(uuid: uuid)
+    end
+
     @report = Report.new(report_params)
+    @report.photos << photos
+    @report.external_id = EasyIncidentService.create(@report)
 
     if @report.save
       render json: @report, status: :created, location: @report
@@ -51,6 +59,9 @@ class ReportsController < ApiController
   def report_params
     params.require(:report).permit(
       :email,
+      :phone,
+      :name,
+      :allow_contact,
       :address,
       :description,
       :latitude,

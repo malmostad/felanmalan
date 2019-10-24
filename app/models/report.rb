@@ -2,6 +2,7 @@
 
 class Report < ApplicationRecord
   after_initialize :set_defaults, unless: :persisted?
+  has_many :photos
 
   enum status: {
     registered: 'registered',
