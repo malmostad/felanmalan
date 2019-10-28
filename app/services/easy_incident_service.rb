@@ -35,6 +35,7 @@ class EasyIncidentService
     conn = ::Faraday.new(url: EASY_INCIDENT_BASE_URL) do |faraday|
       faraday.request :multipart
       faraday.adapter :net_http
+      faraday.response :json
     end
 
     response = conn.post do |req|

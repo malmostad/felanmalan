@@ -19,7 +19,12 @@ class Done extends Component {
           <FullScreenTitle title={texts.donePageTitle} />
           <p className={styles.text}>{texts.donePageText}</p>
         </LargeHeader>
-        <NextButton className={styles.button} inverted={true} text={texts.createNew} to="/" />
+        <NextButton
+          className={styles.button}
+          inverted={true}
+          text={texts.createNew}
+          to="/"
+        />
       </div>
     );
   }

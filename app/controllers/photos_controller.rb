@@ -5,7 +5,7 @@ class PhotosController < ApiController
 
   # GET /photos/1
   def show
-    @photo = Photo.find_by(params[:uuid])
+    @photo = Photo.find_by(uuid: params[:id])
 
     send_data(@photo.data, type: @photo.mime_type, disposition: 'inline')
   end
