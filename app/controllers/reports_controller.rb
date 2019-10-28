@@ -17,8 +17,7 @@ class ReportsController < ApiController
 
   # POST /reports
   def create
-    # TODO: replace UUIDs with tempId from EasyIncident
-    uuids = report_params[:images] || []
+    uuids = report_params.delete(:images) || []
     photos = uuids.map do |uuid|
       Photo.find_by(uuid: uuid)
     end
