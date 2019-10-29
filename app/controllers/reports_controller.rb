@@ -17,12 +17,12 @@ class ReportsController < ApiController
 
   # POST /reports
   def create
-    uuids = report_params.delete(:images) || []
+    uuids = report_params['images'] || []
     photos = uuids.map do |uuid|
       Photo.find_by(uuid: uuid)
     end
 
-    @report = Report.new(report_params)
+    @report = Report.new(report_params.except('images'))
     @report.photos << photos
     @report.external_id = EasyIncidentService.create(@report)
 
