@@ -27,7 +27,7 @@ class ContactInfo extends Component {
     const { sendingState: currentSendingState } = this.props;
     if (currentSendingState === "pending") {
       if (nextProps.sendingState === "none") {
-        this.props.history.push("/done");
+        this.props.history.push(`/done/${nextProps.external_id}`);
       }
     }
   }
@@ -156,6 +156,8 @@ class ContactInfo extends Component {
 
 function mapStateToProps(state = {}) {
   const { report = {}, ui, texts } = state;
+  const external_id = ui.external_id;
+
   const {
     email,
     phone,
@@ -175,7 +177,8 @@ function mapStateToProps(state = {}) {
     longitude,
     latitude,
     description,
-    texts
+    texts,
+    external_id
   };
 }
 

@@ -55,7 +55,7 @@ class App extends Component {
               />
             )}
           />
-          <Route excat path="/done" component={Done} />
+          <Route path="/done/:id" component={Done} />
           <Route component={Photos} />
         </Switch>
         <BottomBar

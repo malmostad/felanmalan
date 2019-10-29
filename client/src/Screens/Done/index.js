@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { clear } from "redux/actions";
 import styles from "./Done.module.css";
@@ -13,11 +14,27 @@ class Done extends Component {
   }
   render() {
     const { texts = {} } = this.props;
+    const external_id = this.props.match.params.id;
+
     return (
       <div className={styles.donePage}>
         <LargeHeader>
           <FullScreenTitle title={texts.donePageTitle} />
-          <p className={styles.text}>{texts.donePageText}</p>
+          <p className={styles.text}>
+            {texts.donePageText}
+            <Link
+              target="_blank"
+              style={{
+                color: "white",
+                fontWeight: "bold",
+                textDecoration: "underline"
+              }}
+              to={`/track/${external_id}`}
+            >
+              {" "}
+              Ärende: {external_id}{" "}
+            </Link>
+          </p>
         </LargeHeader>
         <NextButton
           className={styles.button}
