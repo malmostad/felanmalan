@@ -18,12 +18,12 @@ class Report < ApplicationRecord
   end
 
   def to_api_response
-    { id: id,
+    { id: external_id,
       address: address,
       description: description,
       latitude: latitude,
       longitude: longitude,
-      images: images,
+      images: photos.pluck(:uuid),
       status: I18n.t(status, scope: :report) }.to_json
   end
 end

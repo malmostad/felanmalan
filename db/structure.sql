@@ -155,10 +155,8 @@ CREATE TABLE public.reports (
     longitude double precision,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    images character varying[] DEFAULT '{}'::character varying[],
     status public.issue_status,
     address character varying,
-    attachment_ids character varying[] DEFAULT '{}'::character varying[],
     phone character varying,
     allow_contact boolean,
     external_id character varying,
@@ -328,6 +326,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190923145407'),
 ('20190923151301'),
 ('20190924113943'),
-('20191024135504');
+('20191024135504'),
+('20191028124510');
 
 

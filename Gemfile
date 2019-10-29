@@ -8,6 +8,7 @@ gem 'rails', '~> 5.2.1'
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'faraday'
+gem 'faraday_middleware'
 gem 'figaro'
 gem 'pg'
 gem 'puma', '~> 3.11'
