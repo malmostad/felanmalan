@@ -3,6 +3,7 @@
 class EasyIncidentService
   EASY_INCIDENT_BASE_URL = ENV['EASY_INCIDENT_BASE_URL']
   SMS = 1
+  EMAIL = 2
   STATUS_TRANSLATION = {
     'Ej Registrerat' => 'registered',
     'Registrerat' => 'reviewed',
@@ -13,19 +14,7 @@ class EasyIncidentService
   }.freeze
 
   def self.create(report)
-    coordinates = { latitude: report.latitude, longitude: report.longitude }
-    sweref991330 = to_grid(coordinates)
-    photo_ids = report.photos.map(&:external_id)
-    body = {
-      'IssueRegistrator' => report.name,
-      'IssueDescription' => report.description,
-      'IssueEasting' => sweref991330[:easting],
-      'IssueNorthing' => sweref991330[:northing],
-      'IssueDocuments' => photo_ids,
-      'IssueRegistratorFeedback' => report.phone
-    }.tap { |h| h['IssueRegistratorFeedbackType'] = SMS if report.phone }
-           .to_json
-
+    body = build_payload(report)
     report.external_id = post_issue(body)
     report.save!
     report.external_id
@@ -75,5 +64,31 @@ class EasyIncidentService
     JSON.parse(response.body)['IssueId']
   end
 
-  private_class_method :to_grid, :post_issue
+  def self.build_payload(report)
+    coordinates = { latitude: report.latitude, longitude: report.longitude }
+    sweref991330 = to_grid(coordinates)
+    photo_ids = report.photos.map(&:external_id)
+
+    {
+      'IssueRegistrator' => report.name,
+      'IssueDescription' => report.description,
+      'IssueEasting' => sweref991330[:easting],
+      'IssueNorthing' => sweref991330[:northing],
+      'IssueDocuments' => photo_ids,
+      'IssueRegisterContactEmail' => (report.email if report.allow_contact),
+      'IssueRegisterContactPhone' => (report.phone if report.allow_contact),
+      'IssueRegistratorFeedback' => report.phone || report.email
+    }.tap do |h|
+      type =
+        if report.phone
+          SMS
+        elsif report.email
+          EMAIL
+        end
+
+      h['IssueRegistratorFeedbackType'] = type
+    end.to_json
+  end
+
+  private_class_method :to_grid, :post_issue, :build_payload
 end
