@@ -1,13 +1,22 @@
 const path = require("path");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const CracoAntDesignPlugin = require("craco-antd");
 const CracoLessPlugin = require("craco-less");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const vars = require("postcss-simple-vars");
+
 let webpackConfig = {
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: "disabled",
+      generateStatsFile: process.env.CREATE_STATS === "true",
+      statsOptions: { source: false }
+    })
+  ],
   configure: {
     resolve: {
       alias: {
-        '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.js')
+        "@ant-design/icons/lib/dist$": path.resolve(__dirname, "./src/icons.js")
       }
     }
   }

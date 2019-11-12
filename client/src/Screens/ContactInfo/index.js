@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 
@@ -108,7 +107,7 @@ class ContactInfo extends Component {
       return <Redirect to="/" />;
     }
     return (
-      <Layout>
+      <div>
         <LargeHeader>
           <Title title={texts.contactPageTitle} />
         </LargeHeader>
@@ -149,7 +148,7 @@ class ContactInfo extends Component {
             )}
           </form>
         </InputContent>
-      </Layout>
+      </div>
     );
   }
 }
