@@ -2,6 +2,7 @@
 
 class EasyIncidentService
   EASY_INCIDENT_BASE_URL = ENV['EASY_INCIDENT_BASE_URL']
+  EASY_INCIDENT_API_TOKEN = ENV['EASY_INCIDENT_API_TOKEN']
   SMS = 1
   EMAIL = 2
   STATUS_TRANSLATION = {
@@ -30,6 +31,7 @@ class EasyIncidentService
     response = conn.post do |req|
       req.url 'upload'
       req.headers['Content-Type'] = 'multipart/form-data'
+      req.headers['ApiKey'] = EASY_INCIDENT_API_TOKEN
 
       payload = Faraday::UploadIO.new(StringIO.new(photo.data),
                                       photo.mime_type,
@@ -48,7 +50,9 @@ class EasyIncidentService
 
   def self.issue_status(issue_id)
     conn = Faraday.new(url: EASY_INCIDENT_BASE_URL + '/arende')
-    response = conn.get issue_id.to_s
+    response = conn.get issue_id.to_s do |req|
+      req.headers['ApiKey'] = EASY_INCIDENT_API_TOKEN
+    end
     status = JSON.parse(response.body)['IssueStatus']
     STATUS_TRANSLATION[status]
   end
@@ -58,6 +62,8 @@ class EasyIncidentService
     response = conn.post do |req|
       req.url 'arende'
       req.headers['Content-Type'] = 'application/json'
+      req.headers['ApiKey'] = EASY_INCIDENT_API_TOKEN
+
       req.body = body
     end
 
