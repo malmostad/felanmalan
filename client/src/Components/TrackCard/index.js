@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 class Steps extends Component {
   render() {
     const {
-      description = "",
       issueNumber = "",
       address = "",
       images = []
@@ -28,7 +27,6 @@ class Steps extends Component {
             <strong className={styles.issue}>Ärende {address}</strong>
           )}
           {address && <p className={styles.address}>{address}</p>}
-          {description && <p className={styles.description}>{description}</p>}
         </div>
       </div>
     );
