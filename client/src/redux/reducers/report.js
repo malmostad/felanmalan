@@ -50,11 +50,11 @@ const reportReducer = (state = initialState, action) => {
       const { timestamp = -1 } = action;
       return { ...state, ...action.payload, timestamp };
     case CLEAR:
-      const { email, phone, name, allow_contact } = state;
+      const { email, phone, name, enable_tracking } = state;
       return {
         ...initialState,
         email,
-        allow_contact,
+        enable_tracking,
         phone,
         name
       };

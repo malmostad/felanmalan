@@ -29,16 +29,16 @@ const initialState = {
   descriptionPlaceHolder: "Beskriv problemet du vill felanmäla...",
   contactPageTitle: (
     <>
-      <strong>Följ</strong> vad som <strong>händer</strong> med din
-      <strong> felanmälan</strong>
+      <strong>Kan</strong> vi <strong>kontakta</strong> dig vid 
+      <strong> frågor</strong>?
     </>
   ),
-  contactPageCanWeReachOutToYou: "Kan vi kontakta dig vid frågor?",
+  contactTracking: "Få automatiska uppdateringar om ditt ärende",
   contactExtraText: (
     <>Vill du inte följa eller bli kontaktad klicka bara skicka in</>
   ),
   name: "Namn",
-  namePlaceholder: "Skriv dit namn",
+  namePlaceholder: "Skriv ditt namn",
   emailOrPhone: "E-post eller telefonnummer",
   emailOrPhonePlaceHolder: "Skriv din e-postadress eller ditt telefonnumer",
   sendIssueReport: "Skicka in felanmälan",

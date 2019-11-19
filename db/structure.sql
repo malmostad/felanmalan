@@ -158,7 +158,7 @@ CREATE TABLE public.reports (
     status public.issue_status,
     address character varying,
     phone character varying,
-    allow_contact boolean,
+    enable_tracking boolean,
     external_id character varying,
     name character varying
 );
@@ -327,6 +327,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190923151301'),
 ('20190924113943'),
 ('20191024135504'),
-('20191028124510');
+('20191028124510'),
+('20191119151550');
 
 

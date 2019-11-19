@@ -90,7 +90,7 @@ class ContactInfo extends Component {
   onCheckBoxChange = event => {
     const { reportAdd } = this.props;
     reportAdd({
-      allow_contact: event.target.checked
+      enable_tracking: event.target.checked
     });
   };
 
@@ -101,7 +101,7 @@ class ContactInfo extends Component {
       latitude,
       description,
       texts,
-      allow_contact
+      enable_tracking
     } = this.props;
     if (!longitude || !latitude || !description) {
       return <Redirect to="/" />;
@@ -113,6 +113,15 @@ class ContactInfo extends Component {
         </LargeHeader>
         <InputContent>
           <form onSubmit={this.onSubmit}>
+              <FormItem
+                onChange={this.onNameChange}
+                label={texts.name}
+                type="name"
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+                value={this.state.name}
+                placeholder={texts.namePlaceholder}
+              />
             <FormItem
               onChange={this.onEmailOrPhoneChange}
               label={texts.emailOrPhone}
@@ -126,26 +135,15 @@ class ContactInfo extends Component {
               <label className={styles.checkboxItem}>
                 <input
                   type="checkbox"
-                  defaultChecked={allow_contact}
+                  defaultChecked={enable_tracking}
                   onChange={this.onCheckBoxChange}
                 />
-                {texts.contactPageCanWeReachOutToYou}
+                {texts.contactTracking}
               </label>
               <button style={{ visibility: "hidden" }} type="submit">
                 {texts.sendIssueReport}
               </button>
             </div>
-            {allow_contact && (
-              <FormItem
-                onChange={this.onNameChange}
-                label={texts.name}
-                type="name"
-                onFocus={this.onFocus}
-                onBlur={this.onBlur}
-                value={this.state.name}
-                placeholder={texts.namePlaceholder}
-              />
-            )}
           </form>
         </InputContent>
       </div>
@@ -164,7 +162,7 @@ function mapStateToProps(state = {}) {
     longitude,
     latitude,
     description,
-    allow_contact
+    enable_tracking
   } = report;
   const { sendingState = "none" } = ui;
   return {
@@ -172,7 +170,7 @@ function mapStateToProps(state = {}) {
     phone,
     name,
     sendingState,
-    allow_contact,
+    enable_tracking,
     longitude,
     latitude,
     description,

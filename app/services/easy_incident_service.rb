@@ -81,9 +81,8 @@ class EasyIncidentService
       'IssueEasting' => sweref991330[:easting],
       'IssueNorthing' => sweref991330[:northing],
       'IssueDocuments' => photo_ids,
-      'IssueRegisterContactEmail' => (report.email if report.allow_contact),
-      'IssueRegisterContactPhone' => (report.phone if report.allow_contact),
-      'IssueRegistratorFeedback' => report.phone || report.email
+      'IssueRegisterContactEmail' => report.email,
+      'IssueRegisterContactPhone' => report.phone
     }.tap do |h|
       type =
         if report.phone
@@ -92,7 +91,7 @@ class EasyIncidentService
           EMAIL
         end
 
-      h['IssueRegistratorFeedbackType'] = type
+      h['IssueRegistratorFeedbackType'] = type if report.enable_tracking
     end.to_json
   end
 

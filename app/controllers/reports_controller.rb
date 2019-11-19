@@ -60,7 +60,7 @@ class ReportsController < ApiController
       :email,
       :phone,
       :name,
-      :allow_contact,
+      :enable_tracking,
       :address,
       :description,
       :latitude,
