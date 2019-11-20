@@ -85,9 +85,9 @@ class EasyIncidentService
       'IssueRegisterContactPhone' => report.phone
     }.tap do |h|
       type =
-        if report.phone
+        if report.phone.present?
           SMS
-        elsif report.email
+        elsif report.email.present?
           EMAIL
         end
 
