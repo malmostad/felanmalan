@@ -11,7 +11,7 @@ class EasyIncidentService
     'Pågående' => 'ongoing',
     'Vidarebefordrat' => 'forwarded',
     'Åtgärdat' => 'fixed',
-    'Avslutat/avvisat senare behandling' => 'rejected'
+    'Avslutat' => 'rejected'
   }.freeze
 
   def self.create(report)
