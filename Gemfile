@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'swedishgrid', git: 'https://github.com/lluft/swedishgrid'
+gem 'sentry-raven'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
