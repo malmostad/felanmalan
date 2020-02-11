@@ -160,7 +160,8 @@ CREATE TABLE public.reports (
     phone character varying,
     enable_tracking boolean,
     external_id character varying,
-    name character varying
+    name character varying,
+    statuss character varying
 );
 
 
@@ -328,6 +329,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190924113943'),
 ('20191024135504'),
 ('20191028124510'),
-('20191119151550');
+('20191119151550'),
+('20200211125001');
 
 
