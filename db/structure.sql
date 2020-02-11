@@ -155,13 +155,12 @@ CREATE TABLE public.reports (
     longitude double precision,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    status public.issue_status,
     address character varying,
     phone character varying,
     enable_tracking boolean,
     external_id character varying,
     name character varying,
-    statuss character varying
+    status character varying
 );
 
 
@@ -330,6 +329,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191024135504'),
 ('20191028124510'),
 ('20191119151550'),
-('20200211125001');
+('20200211125001'),
+('20200211130653'),
+('20200211130908');
 
 
