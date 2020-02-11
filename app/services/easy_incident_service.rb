@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+class EasyIncidentError < StandardError; end
+class EasyIncidentNotFoundError < EasyIncidentError; end
+class EasyIncidentUploadError < EasyIncidentError; end
+class EasyIncidentCreationFailureError < EasyIncidentError; end
+
 class EasyIncidentService
   EASY_INCIDENT_BASE_URL = ENV['EASY_INCIDENT_BASE_URL']
   EASY_INCIDENT_API_TOKEN = ENV['EASY_INCIDENT_API_TOKEN']
@@ -16,16 +21,13 @@ class EasyIncidentService
 
   def self.create(report)
     body = build_payload(report)
-    report.external_id = post_issue(body)
-    report.save!
-    report.external_id
+    post_issue(body)
   end
 
   def self.upload(photo)
     conn = ::Faraday.new(url: EASY_INCIDENT_BASE_URL) do |faraday|
       faraday.request :multipart
       faraday.adapter :net_http
-      faraday.response :json
     end
 
     response = conn.post do |req|
@@ -38,7 +40,17 @@ class EasyIncidentService
                                       photo.filename)
       req.body = { 'UploadedImage' => payload }
     end
-    response.body['tempId']
+
+    raise EasyIncidentUploadError, response.body.to_s unless response.success?
+
+    temp_id = JSON.parse(response.body)['tempId']
+
+    unless temp_id.present?
+      raise EasyIncidentUploadError,
+            response.body.to_s
+    end
+
+    temp_id
   end
 
   def self.to_grid(longitude:, latitude:)
@@ -53,8 +65,20 @@ class EasyIncidentService
     response = conn.get issue_id.to_s do |req|
       req.headers['ApiKey'] = EASY_INCIDENT_API_TOKEN
     end
-    status = JSON.parse(response.body)['IssueStatus']
-    STATUS_TRANSLATION[status]
+
+    begin
+      status = JSON.parse(response.body)['IssueStatus']
+    rescue JSON::ParserError
+      raise EasyIncidentNotFoundError, response.body if response.body == 'ID does not exist.'
+
+      raise EasyIncidentError, response.body
+    end
+
+    translated = STATUS_TRANSLATION[status]
+    unless translated
+      Raven.capture_message("Unrecognized EasyIncident Status #{status}")
+    end
+    translated
   end
 
   def self.post_issue(body)
@@ -67,7 +91,19 @@ class EasyIncidentService
       req.body = body
     end
 
-    JSON.parse(response.body)['IssueId']
+    unless response.success?
+      raise EasyIncidentCreationFailureError,
+            response.body.to_s
+    end
+
+    issue_id = JSON.parse(response.body)['IssueId']
+
+    unless issue_id.present?
+      raise EasyIncidentCreationFailureError,
+            response.body.to_s
+    end
+
+    issue_id
   end
 
   def self.build_payload(report)
