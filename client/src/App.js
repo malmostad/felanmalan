@@ -11,6 +11,7 @@ import Track from "Screens/Track";
 import Info from "Screens/Info";
 import CookieConsent from "Screens/CookieConsent";
 import ContactInfo from "Screens/ContactInfo";
+import ContactInfoExternal from "Screens/ContactInfoExternal";
 
 import LoadingIndicator from "Components/LoadingIndicator";
 import BottomBar from "Components/BottomBar";
@@ -34,6 +35,7 @@ class App extends Component {
       sendingState,
       description,
       texts,
+      validPosition,
       validInput
     } = this.props;
 
@@ -47,12 +49,19 @@ class App extends Component {
             exact
             path="/contact-info"
             render={props => (
+              validPosition ? 
               <ContactInfo
                 {...props}
                 onSubmit={() => {
                   createReport();
                 }}
-              />
+              /> :
+              <ContactInfoExternal
+                {...props}
+                onSubmit={() => {
+                  createReport();
+                }}
+              /> 
             )}
           />
           <Route path="/done/:id" component={Done} />
@@ -123,6 +132,7 @@ function mapStateToProps(state = {}) {
   const {
     previews = [],
     images = [],
+    validPosition,
     description = ""
   } = report;
   const {
@@ -138,6 +148,7 @@ function mapStateToProps(state = {}) {
     sendingState,
     previews,
     validInput,
+    validPosition,
     images,
     description,
     mapScreenClicked,
