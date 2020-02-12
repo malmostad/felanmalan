@@ -22,7 +22,7 @@ const initialState = {
   sendingState: "none",
   address: false,
   inputFocus: false,
-  validInput: false,
+  validInput: true,
   loading: false
 };
 

@@ -48,16 +48,9 @@ class BottomBar extends Component {
       location = {},
       onRetry = () => {},
       sendingState = "none",
-      validPosition = true
     } = this.props;
     const { pathname = "" } = location;
 
-    if (!validPosition && pathname === "/map") {
-      return {
-        show: true,
-        message: "Inte Malmö stads mark, flytta markören igen"
-      };
-    }
     if (sendingState === "failure") {
       return {
         show: true,
@@ -117,12 +110,11 @@ class BottomBar extends Component {
 function mapStateToProps(state = {}) {
   const { ui = {}, report = {} } = state;
   const { sendingState = "none", inputFocus } = ui;
-  const { description = "", email = "", phone = "", validPosition } = report;
+  const { description = "", email = "", phone = "" } = report;
 
   return {
     inputFocus,
     sendingState,
-    validPosition,
     description,
     email,
     phone

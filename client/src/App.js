@@ -34,7 +34,7 @@ class App extends Component {
       sendingState,
       description,
       texts,
-      validPosition
+      validInput
     } = this.props;
 
     return (
@@ -68,7 +68,7 @@ class App extends Component {
             exact
             path="/map"
             to="/info"
-            active={validPosition}
+            active={true}
           >
             {loading && (
               <LoadingIndicator
@@ -87,7 +87,7 @@ class App extends Component {
             text={texts.send}
             path="/contact-info"
             to="/done"
-            active={true}
+            active={validInput}
             onSubmit={() => {
               createReport();
             }}
@@ -122,7 +122,6 @@ function mapStateToProps(state = {}) {
   const { ui = {}, report = {}, texts = {} } = state;
   const {
     previews = [],
-    validPosition,
     images = [],
     description = ""
   } = report;
@@ -130,14 +129,15 @@ function mapStateToProps(state = {}) {
     acceptedCookies = false,
     sendingState = "none",
     mapScreenClicked,
+    validInput,
     loading,
     loadingMessage = false
   } = ui;
   return {
     acceptedCookies,
-    validPosition,
     sendingState,
     previews,
+    validInput,
     images,
     description,
     mapScreenClicked,

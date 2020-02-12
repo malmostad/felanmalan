@@ -24,15 +24,18 @@ class InputItem extends Component {
     const { type } = this.props;
     let valid = true;
     let isEmail = false;
+    let value = event.target.value
+    let isSet = value && value.length > 0
+    
     if (type === "email") {
       valid = this.validateEmail(event.target.value);
       if (valid) {
         isEmail = true;
       }
-      this.setState({ valid });
+      this.setState({ valid: valid || !isSet });
     }
     if (type === "phone") {
-      this.setState({ valid });
+      this.setState({ valid: valid || !isSet });
     }
 
     if (type === "email-or-phone") {
@@ -43,9 +46,9 @@ class InputItem extends Component {
       } else {
         valid = this.validatePhoneNumber(event.target.value);
       }
-      this.setState({ valid });
+      this.setState({ valid: valid || !isSet });
     }
-    this.onHandleChange(event, valid, isEmail);
+    this.onHandleChange(event, valid || !isSet, isEmail);
   };
 
   render() {
