@@ -28,6 +28,8 @@ module Boilerplate
       g.test_framework :rspec
     end
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.active_record.schema_format = :sql
     config.i18n.default_locale = :sv
 
