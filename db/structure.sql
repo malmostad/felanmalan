@@ -25,7 +25,7 @@ CREATE TYPE public.issue_status AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -160,7 +160,8 @@ CREATE TABLE public.reports (
     enable_tracking boolean,
     external_id character varying,
     name character varying,
-    status character varying
+    status character varying,
+    internal boolean
 );
 
 
@@ -331,6 +332,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191119151550'),
 ('20200211125001'),
 ('20200211130653'),
-('20200211130908');
+('20200211130908'),
+('20200213090109');
 
 

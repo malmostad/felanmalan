@@ -32,7 +32,7 @@ class ContactInfoExternal extends Component {
   }
   componentDidMount() {
     const { description, email = "", phone = "", name = "" } = this.props;
-    this.props.updateInputValidation(email.length > 0 && phone.length > 0);
+    this.props.updateInputValidation(email.length > 0 || phone.length > 0);
     this.setState({
       description,
       name,
@@ -104,7 +104,7 @@ class ContactInfoExternal extends Component {
     return (
       <div>
         <LargeHeader>
-          <Title title="EXTERNAL"/>
+          <Title title={texts.contactPageTitle} />
         </LargeHeader>
         <InputContent>
           <form onSubmit={this.onSubmit}>
