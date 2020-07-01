@@ -6,23 +6,23 @@
   "dependencies": {
     "@craco/craco": "^5.6.1",
     "@mapbox/mapbox-gl-geocoder": "mapbox/mapbox-gl-geocoder",
-    "antd": "^3.10.3",
+    "antd": "^4.4.0",
     "babel-plugin-import": "^1.12.2",
     "core-js": "3",
     "craco-antd": "^1.9.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "http-proxy-middleware": "^0.20.0",
+    "http-proxy-middleware": "^1.0.4",
     "isomorphic-fetch": "^2.2.1",
     "mapbox-gl": "^1.5.0",
     "postcss-simple-vars": "^5.0.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-ga": "^2.6.0",
+    "react-ga": "^3.0.0",
     "react-geolocation": "^1.0.4",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
+    "react-scripts": "3.4.1",
     "react-transition-group": "^4.1.1",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
@@ -51,6 +51,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "prettier": "1.18.2"
+    "prettier": "2.0.5"
   }
 }
