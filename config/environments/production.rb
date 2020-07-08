@@ -18,7 +18,7 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = true
 
   config.force_ssl = true
 
@@ -68,8 +68,8 @@ Rails.application.configure do
     address: 'smtp.sendgrid.net',
     port: 587,
     authentication: 'plain',
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
+    user_name: Rails.application.credentials.sendgrid_username,
+    password: Rails.application.credentials.sendgrid_password,
     domain: 'localhost:3000',
     enable_starttls_auto: true
   }

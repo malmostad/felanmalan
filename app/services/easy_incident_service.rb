@@ -6,8 +6,8 @@ class EasyIncidentUploadError < EasyIncidentError; end
 class EasyIncidentCreationFailureError < EasyIncidentError; end
 
 class EasyIncidentService
-  EASY_INCIDENT_BASE_URL = ENV['EASY_INCIDENT_BASE_URL']
-  EASY_INCIDENT_API_TOKEN = ENV['EASY_INCIDENT_API_TOKEN']
+  EASY_INCIDENT_BASE_URL = Rails.configuration.easy_incident['base_url']
+  EASY_INCIDENT_API_SECRET = Rails.application.credentials.easy_incident_api_secret
   SMS = 1
   EMAIL = 2
   STATUS_TRANSLATION = {
@@ -33,7 +33,7 @@ class EasyIncidentService
     response = conn.post do |req|
       req.url 'upload'
       req.headers['Content-Type'] = 'multipart/form-data'
-      req.headers['ApiKey'] = EASY_INCIDENT_API_TOKEN
+      req.headers['ApiKey'] = EASY_INCIDENT_API_SECRET
 
       payload = Faraday::UploadIO.new(StringIO.new(photo.data),
                                       photo.mime_type,
@@ -63,7 +63,7 @@ class EasyIncidentService
   def self.issue_status(issue_id)
     conn = Faraday.new(url: EASY_INCIDENT_BASE_URL + '/arende')
     response = conn.get issue_id.to_s do |req|
-      req.headers['ApiKey'] = EASY_INCIDENT_API_TOKEN
+      req.headers['ApiKey'] = EASY_INCIDENT_API_SECRET
     end
 
     begin
@@ -75,9 +75,7 @@ class EasyIncidentService
     end
 
     translated = STATUS_TRANSLATION[status]
-    unless translated
-      Raven.capture_message("Unrecognized EasyIncident Status #{status}")
-    end
+    Raven.capture_message("Unrecognized EasyIncident Status #{status}") unless translated
     translated
   end
 
@@ -86,7 +84,7 @@ class EasyIncidentService
     response = conn.post do |req|
       req.url 'arende'
       req.headers['Content-Type'] = 'application/json'
-      req.headers['ApiKey'] = EASY_INCIDENT_API_TOKEN
+      req.headers['ApiKey'] = EASY_INCIDENT_API_SECRET
 
       req.body = body
     end

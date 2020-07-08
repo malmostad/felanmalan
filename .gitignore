@@ -27,7 +27,7 @@
 /config/master.key
 
 # Mac specific
-.DS_store
+*.DS_Store
 
 # Vim specific
 *.swp
@@ -37,10 +37,7 @@
 # Frontend
 /public/packs
 /public/packs-test
-/node_modules
+node_modules/
 yarn-debug.log*
 .yarn-integrity
 
-.env
-# Ignore application configuration
-/config/application.yml
