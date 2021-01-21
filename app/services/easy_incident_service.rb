@@ -6,8 +6,8 @@ class EasyIncidentUploadError < EasyIncidentError; end
 class EasyIncidentCreationFailureError < EasyIncidentError; end
 
 class EasyIncidentService
-  EASY_INCIDENT_BASE_URL = Rails.configuration.easy_incident['base_url']
-  EASY_INCIDENT_API_SECRET = Rails.application.credentials.easy_incident_api_secret
+  EASY_INCIDENT_BASE_URL = Rails.application.config_for(:easy_incident)['base_url']
+  EASY_INCIDENT_API_SECRET = Rails.application.credentials.easy_incident_api_token
   SMS = 1
   EMAIL = 2
   STATUS_TRANSLATION = {
