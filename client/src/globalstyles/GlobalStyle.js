@@ -1,14 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
-import MalmoRubikRegularWoff2 from '../../public/fonts/MalmoRubrik/MalmoRubik-Regular.woff2'
-import MalmoRubikRegularWoff from '../../public/fonts/MalmoRubrik/MalmoRubik-Regular.woff'
+import MalmoRubikRegularWoff2 from '../assets/fonts/MalmoRubrik/MalmoRubrik-Regular.woff2';
 
 const GlobalStyle = createGlobalStyle`
 
 @font-face {
   font-family: 'MalmoRubik Regular';
-  src: local('MalmoRubik Regular'), local('MalmoRubikRegular'),
-  url(${MalmoRubikRegularWoff2}) format('woff2'),
-  url(${MalmoRubikRegularWoff}) format('woff');
+  src: url(${MalmoRubikRegularWoff2}) format('woff2');
+  src: local('MalmoRubik Regular'), local('MalmoRubikRegular');
   font-weight: 300;
   font-style: normal;
 }
@@ -29,7 +27,5 @@ html {
 
 
 `;
-
-
 
 export default GlobalStyle;

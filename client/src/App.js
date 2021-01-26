@@ -1,10 +1,13 @@
+import Landing from './components/views/Landing';
+import GlobalStyle from './globalstyles/GlobalStyle';
 
 const App = () => {
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      <GlobalStyle />
+      <Landing />
+    </>
   );
-}
+};
 
 export default App;

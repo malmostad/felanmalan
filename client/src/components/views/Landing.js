@@ -1,12 +1,15 @@
-import styled from 'styled-components/macro';
-
+import { Hero } from '../hero/Hero';
 
 const Landing = () => {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  )
-}
+    <>
+      <Hero>
+        <Hero.Content>
+          <Hero.Title>Lägg till bilder på Problemet & Platsen</Hero.Title>
+        </Hero.Content>
+      </Hero>
+    </>
+  );
+};
 
-export default Landing
+export default Landing;

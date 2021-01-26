@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const styledContainer = styled.div`
+export const StyledContainer = styled.div`
   display: flex;
-  
-`
+  width: 90px;
+  height: 90px;
+  background-color: pink;
+`;
