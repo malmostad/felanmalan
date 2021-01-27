@@ -9,7 +9,7 @@ export const useUpdate = () => useContext(UpdateContext)
 export const UpdateProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false)
-  const [currentView, setCurrentView] = useState(undefined)
+  const [currentView, setCurrentView] = useState('landing')
   const [previousView, setPreviousView] = useState(undefined)
   const [nextView, setNextView] = useState(undefined)
 

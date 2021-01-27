@@ -1,6 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { act, renderHook } from "@testing-library/react-hooks";
+import { UpdateContext } from './contexts/UpdateContext';
+
+
 describe('App', () => {
   test('renders App component', () => {
     render(<App />);
@@ -8,12 +12,10 @@ describe('App', () => {
   });
 });
 
-function sum(x, y) {
-  return x + y;
-}
+describe("current page", () => {
+  it("will be undefined", () => {
+    const { currentView } = renderHook(UpdateContext);
 
-describe('sum', () => {
-  test('testing the console', () => {
-    expect(sum(2, 4)).toBe(6);
+    expect(currentView).toBe('landing')
   });
 });

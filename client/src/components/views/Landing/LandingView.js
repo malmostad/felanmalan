@@ -23,7 +23,7 @@ const LandingView = () => {
     <>
       <Hero>
         <Hero.Content>
-          <Hero.Title>title</Hero.Title>
+          <Hero.Title>Lägg till bilder på Problemet & Platsen</Hero.Title>
         </Hero.Content>
       </Hero>
     
