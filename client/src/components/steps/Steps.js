@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useUpdate } from '../../contexts/UpdateContext';
-import {Views, LandingView, UploadImageView, MapView, DescriptionView, ContactInfoView} from '../views/index'
+import {Views, LandingView, UploadImageView, MapView, DescriptionView, ContactInfoView, FollowUpView} from '../views/index'
 
 const Steps = () => {
 
@@ -21,6 +21,8 @@ const Steps = () => {
       return <DescriptionView  />;
     case "contact":
       return <ContactInfoView  />;
+    case "follow":
+      return <FollowUpView />;
 
     default:
       return null;
