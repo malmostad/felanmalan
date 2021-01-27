@@ -1,10 +1,10 @@
-import { Button, Container } from './style/ButtonStyle';
+import { Button, Container } from './style/Buttons';
 
 export const ButtonContainer = ({children, ...restProps}) => (
     <Container {...restProps}>{children}</Container>
 );
 
-ButtonContainer.Content = ({ children, ...restProps}) => (
+ButtonContainer.Button = ({ children, ...restProps}) => (
     <Button {...restProps}>{children}</Button>
 );
 

@@ -1,23 +1,27 @@
 import { Hero } from '../../hero/index';
 import { ButtonContainer } from '../../buttons/index';
-
+import {useState} from 'react'
+import { useUpdate } from '../../../contexts/UpdateContext';
 
 const LandingView = () => {
+
+  const {renderNext, setRenderNext, renderPrevious, currentView, setCurrentView} = useUpdate()
+
+  const handleCLick = (e) => {
+    setRenderNext(!renderNext)
+  }
+
   return (
     <>
       <Hero>
         <Hero.Content>
-          <Hero.Title>Lägg till bilder på Problemet & Platsen</Hero.Title>
+          <Hero.Title>title</Hero.Title>
         </Hero.Content>
       </Hero>
     
-
-        <ButtonContainer>
-          <ButtonContainer.Content> Next </ButtonContainer.Content>
-        </ButtonContainer>
-     
-
-
+      <ButtonContainer>
+        <ButtonContainer.Button onClick={handleCLick}> Next </ButtonContainer.Button>
+      </ButtonContainer>
     </>
   );
 };
