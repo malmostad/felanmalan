@@ -8,10 +8,25 @@ export const useUpdate = () => useContext(UpdateContext)
 
 export const UpdateProvider = ({ children }) => {
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [currentView, setCurrentView] = useState(undefined)
+  const [previousView, setPreviousView] = useState(undefined)
+  const [nextView, setNextView] = useState(undefined)
   const [renderNext, setRenderNext] = useState(false)
   const [renderPrevious, setRenderPrevious] = useState(false)
+
+  // //upload view
+  // const [renderUploadView, setRenderUploadView] = useState(false)
+  // //map view
+  // const [renderMapView, setRenderMapView] = useState(false)
+  // // desc view
+  // const [renderDescriptionView, setRenderDescriptionView] = useState(false)
+  // //contact view
+  // const [renderContactInfoView, setRenderContactInfoView] = useState(false)
+  // //follow up view
+  // const [renderFollowUpView, setRenderFollowUpView] = useState(false)
+
+  
 
   useEffect(() => {
     console.log(currentView)
@@ -23,7 +38,24 @@ export const UpdateProvider = ({ children }) => {
     renderNext,
     setRenderNext,
     renderPrevious,
-    setRenderPrevious
+    setRenderPrevious,
+    currentView,
+    setCurrentView,
+    previousView,
+    nextView,
+    setNextView,
+    setPreviousView,
+    // renderUploadView,
+    // setRenderUploadView,
+    // renderMapView,
+    // setRenderMapView,
+    // renderDescriptionView,
+    // setRenderDescriptionView,
+    // renderContactInfoView,
+    // setRenderContactInfoView,
+    // renderFollowUpView,
+    // setRenderFollowUpView
+
   }
 
   return (

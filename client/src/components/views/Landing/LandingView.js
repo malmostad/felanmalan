@@ -1,14 +1,22 @@
 import { Hero } from '../../hero/index';
 import { ButtonContainer } from '../../buttons/index';
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { useUpdate } from '../../../contexts/UpdateContext';
 
 const LandingView = () => {
 
-  const {renderNext, setRenderNext, renderPrevious, currentView, setCurrentView} = useUpdate()
+  const {setPreviousView, setNextView, setCurrentView} = useUpdate()
 
+  useEffect(() => {
+    setPreviousView(undefined)
+    setCurrentView("landing")
+    setNextView("upload")
+  }, [])
+  
   const handleCLick = (e) => {
-    setRenderNext(!renderNext)
+    setPreviousView("landing")
+    setCurrentView("upload")
+    setNextView("map")
   }
 
   return (
