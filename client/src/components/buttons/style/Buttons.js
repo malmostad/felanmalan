@@ -11,5 +11,3 @@ export const Button = styled.button`
   height: 50px;
   color: ${props => props.theme.colors.PrimaryWhite};
 `;
-
-
