@@ -1,5 +1,5 @@
 import { Hero } from '../../hero/index';
-import { ButtonContainer } from '../../buttons';
+import { ButtonWrapper } from '../../buttons';
 
 const FollowUpView = () => {
 
@@ -15,9 +15,9 @@ const FollowUpView = () => {
           </Hero.Content>
         </Hero>
 
-        <ButtonContainer>
-          <ButtonContainer.Button onClick={handleSubmit}> Submit </ButtonContainer.Button>
-        </ButtonContainer>
+        <ButtonWrapper>
+          <ButtonWrapper.Button onClick={handleSubmit}> Submit </ButtonWrapper.Button>
+        </ButtonWrapper>
       </>
     )
 }

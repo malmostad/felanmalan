@@ -1,21 +1,21 @@
 import { Hero } from '../../hero/index';
 import { useUpdate } from '../../../contexts/UpdateContext';
-import { ButtonContainer } from '../../buttons';
+import { ButtonWrapper } from '../../buttons';
 
 const DescriptionView = () => {
 
   const {setNextView, setCurrentView, setPreviousView} = useUpdate()
 
   const handleCLickNext= () => {
-    setPreviousView("description")
-    setCurrentView("contact")
-    setNextView("")
+    setPreviousView("description");
+    setCurrentView("contact");
+    setNextView("");
   }
   
   const handleCLickBack= () => {
-    setPreviousView("upload")
-    setCurrentView("map")
-    setNextView("description")
+    setPreviousView("upload");
+    setCurrentView("map");
+    setNextView("description");
   }
 
     return (
@@ -26,10 +26,10 @@ const DescriptionView = () => {
           </Hero.Content>
         </Hero>
 
-        <ButtonContainer>
-          <ButtonContainer.Button onClick={handleCLickBack}> Back </ButtonContainer.Button>
-          <ButtonContainer.Button onClick={handleCLickNext}> Next </ButtonContainer.Button>
-        </ButtonContainer>
+        <ButtonWrapper>
+          <ButtonWrapper.Button onClick={handleCLickBack}> Back </ButtonWrapper.Button>
+          <ButtonWrapper.Button onClick={handleCLickNext}> Next </ButtonWrapper.Button>
+        </ButtonWrapper>
       </>
     )
 }

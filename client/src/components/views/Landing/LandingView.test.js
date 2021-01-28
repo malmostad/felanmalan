@@ -7,7 +7,9 @@ it('renders without crashing', () => {
     ReactDOM.render(<LandingView />, div);
 })
 
+/*
 test('render LandingView', () => {
     render(<LandingView />);
     expect(screen.getByText('Lägg till bilder på Problemet & Platsen')).toBeInTheDocument();
 })
+*/

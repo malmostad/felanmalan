@@ -1,6 +1,6 @@
 import { Hero } from '../../hero/index';
 import { useUpdate } from '../../../contexts/UpdateContext';
-import { ButtonContainer } from '../../buttons';
+import { ButtonWrapper } from '../../buttons';
 
 const ContactInfoView = () => {
 
@@ -27,10 +27,10 @@ const ContactInfoView = () => {
           </Hero.Content>
         </Hero>
 
-        <ButtonContainer>
-          <ButtonContainer.Button onClick={handleCLickBack}> Back </ButtonContainer.Button>
-          <ButtonContainer.Button onClick={handleCLickNext}> Next </ButtonContainer.Button>
-        </ButtonContainer>
+        <ButtonWrapper>
+          <ButtonWrapper.Button onClick={handleCLickBack}> Back </ButtonWrapper.Button>
+          <ButtonWrapper.Button onClick={handleCLickNext}> Next </ButtonWrapper.Button>
+        </ButtonWrapper>
       </>
     )
 }

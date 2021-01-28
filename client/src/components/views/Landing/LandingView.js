@@ -1,5 +1,5 @@
-import { Hero } from '../../hero/index';
-import { ButtonContainer } from '../../buttons/index';
+import { ButtonWrapper } from '../../buttons/index';
+import { LandingContainer } from '../../container/index';
 import {useEffect, useState} from 'react'
 import { useUpdate } from '../../../contexts/UpdateContext';
 
@@ -8,28 +8,26 @@ const LandingView = () => {
   const {setPreviousView, setNextView, setCurrentView} = useUpdate()
 
   useEffect(() => {
-    setPreviousView(undefined)
-    setCurrentView("landing")
-    setNextView("upload")
+    setPreviousView(undefined);
+    setCurrentView("landing");
+    setNextView("upload");
   }, [])
   
   const handleCLick = (e) => {
-    setPreviousView("landing")
-    setCurrentView("upload")
-    setNextView("map")
+    setPreviousView("landing");
+    setCurrentView("upload");
+    setNextView("map");
   }
 
   return (
     <>
-      <Hero>
-        <Hero.Content>
-          <Hero.Title>Lägg till bilder på Problemet & Platsen</Hero.Title>
-        </Hero.Content>
-      </Hero>
+      <LandingContainer>
+        <h1> Testing </h1>
     
-      <ButtonContainer>
-        <ButtonContainer.Button onClick={handleCLick}> Next </ButtonContainer.Button>
-      </ButtonContainer>
+        <ButtonWrapper>
+          <ButtonWrapper.Button onClick={handleCLick}> Acceptera </ButtonWrapper.Button>
+        </ButtonWrapper>
+      </LandingContainer>
     </>
   );
 };
