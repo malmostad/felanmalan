@@ -4,13 +4,16 @@ import App from './App';
 import { UpdateProvider } from './contexts/UpdateContext';
 import { ThemeProvider } from 'styled-components';
 import { Theme } from './globalstyles/Theme';
+import { ReportProvider } from './contexts/ReportContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <UpdateProvider>
-      <ThemeProvider theme={Theme}>
-        <App />
-      </ThemeProvider>
+      <ReportProvider>
+        <ThemeProvider theme={Theme}>
+          <App />
+        </ThemeProvider>
+      </ReportProvider>
     </UpdateProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -25,10 +25,10 @@ const UploadImageView = () => {
         </Hero.Content>
       </Hero>
       <ButtonWrapper>
-        <ButtonWrapper.Button onClick={handleCLickBack}>
+        <ButtonWrapper.Button inverted onClick={handleCLickBack}>
           Back
         </ButtonWrapper.Button>
-        <ButtonWrapper.Button onClick={handleCLickNext}>
+        <ButtonWrapper.Button inverted onClick={handleCLickNext}>
           Next
         </ButtonWrapper.Button>
       </ButtonWrapper>

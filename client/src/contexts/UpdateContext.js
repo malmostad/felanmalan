@@ -13,6 +13,7 @@ export const UpdateProvider = ({ children }) => {
   const [previousView, setPreviousView] = useState(undefined)
   const [nextView, setNextView] = useState(undefined)
 
+  const [readMore, setReadMore] = useState(false)
 
   useEffect(() => {
     console.log(currentView)
@@ -27,6 +28,9 @@ export const UpdateProvider = ({ children }) => {
     nextView,
     setNextView,
     setPreviousView,
+    readMore,
+    setReadMore
+
   }
 
   return (

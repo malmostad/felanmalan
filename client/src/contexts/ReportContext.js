@@ -5,19 +5,45 @@ const ReportContext = createContext()
 
 export const useReport = () => useContext(ReportContext)
 
+const initialReportData = {
+  acceptedCookies: false,
+  images: [],
+  location: {
+    lat: "",
+    lng: ""
+  },
+  info: {
+    description: "",
+    followUp: false,
+  },
+  contact: {
+    email: "",
+    phone: ""
+  }
+}
 
 export const ReportProvider = ({ children }) => {
 
-  const [report, setReport] = useState({})
+  const [report, setReport] = useState(initialReportData)
+  const [submit, setSubmit] = useState(false)
+
+
+  useEffect(() => {
+    console.log("report data is", report)
+  }, [report])
+
 
 
   const reportvalues = {
-    loading,
+    report,
+    setReport,
+    submit,
+    setSubmit
 
   }
 
   return (
-    <ReportContext.Provider value={updateValues}>
+    <ReportContext.Provider value={reportvalues}>
       {children}
     </ReportContext.Provider>
   )
