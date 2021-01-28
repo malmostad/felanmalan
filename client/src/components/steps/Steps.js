@@ -7,7 +7,9 @@ import {
   MapView,
   DescriptionView,
   ContactInfoView,
+  FollowUpView,
 } from '../../views/index';
+
 
 const Steps = () => {
   const { currentView } = useUpdate();

@@ -5,6 +5,7 @@ import DescriptionView from './Description/DescriptionView'
 import ContactInfoView from './ContactInfo/ContactInfoView'
 import FollowUpView from './FollowUp/FollowUpView';
 
+
 export const Views = [LandingView, UploadImageView, MapView, DescriptionView, ContactInfoView, FollowUpView]
 
 export {LandingView, UploadImageView, MapView, DescriptionView, ContactInfoView, FollowUpView }
