@@ -1,3 +1,3 @@
-import { LandingContainer } from './Container';
+import { LandingWrapper } from './Container';
 
-export { LandingContainer };
+export { LandingWrapper };

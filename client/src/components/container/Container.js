@@ -1,5 +1,5 @@
-import { StyledContainer } from './style/Container';
+import { LandingContainer } from './style/Container';
 
-export const LandingContainer = ({ children, ...restProps }) => (
-  <StyledContainer {...restProps}>{children}</StyledContainer>
+export const LandingWrapper = ({ children, ...restProps }) => (
+  <LandingContainer {...restProps}>{children}</LandingContainer>
 );

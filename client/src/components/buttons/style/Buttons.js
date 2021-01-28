@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 export const Button = styled.button`
-  background-color: transparent;
+  background-color: ${props => props.theme.colors.PrimaryGreen};
   font-size: ${props => props.theme.FontSizes.ButtonText};
   border: 2px solid white;
   border-radius: 2px;

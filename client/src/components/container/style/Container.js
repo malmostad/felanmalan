@@ -7,8 +7,17 @@ export const StyledContainer = styled.div`
 `;
 
 export const ButtonContainer = styled(StyledContainer)`
+  height: 100px;
   background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const LandingContainer = styled(StyledContainer)`
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 `;
