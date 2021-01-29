@@ -5,12 +5,12 @@ import { ButtonWrapper } from '../../components/buttons/index';
 const ContactInfoView = () => {
   const { setNextView, setCurrentView, setPreviousView } = useUpdate();
 
-  const handleCLickNext = () => {
+  const handleClickNext = () => {
     setPreviousView('contact');
     setCurrentView('follow');
   };
 
-  const handleCLickBack = () => {
+  const handleClickPrevious= () => {
     setPreviousView('map');
     setCurrentView('description');
     setNextView('contact');
@@ -25,13 +25,11 @@ const ContactInfoView = () => {
       </Hero>
 
       <ButtonWrapper>
-        <ButtonWrapper.Button onClick={handleCLickBack}>
-          {' '}
-          Back{' '}
+        <ButtonWrapper.Button onClick={handleClickPrevious}>
+          Back
         </ButtonWrapper.Button>
-        <ButtonWrapper.Button onClick={handleCLickNext}>
-          {' '}
-          Next{' '}
+        <ButtonWrapper.Button onClick={handleClickNext}>
+          Next
         </ButtonWrapper.Button>
       </ButtonWrapper>
     </>
