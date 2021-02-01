@@ -4,12 +4,6 @@ import { useEffect } from 'react'
 //Views
 import Steps from './components/steps/Steps'
 const App = () => {
-  const { currentView, setCurrentView } = useUpdate()
-
-  useEffect(() => {
-    console.log('current view app', currentView)
-  }, [currentView])
-
   return (
     <>
       <GlobalStyle />

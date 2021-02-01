@@ -23,7 +23,6 @@ const Steps = () => {
   const [current, setCurrent] = useState()
 
   useEffect(() => {
-    console.log('triggered')
     formViews.map((View, index) => {
       if (currentView === index) {
         setCurrent(View)
