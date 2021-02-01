@@ -1,10 +1,7 @@
 import { Hero } from '../../components/hero/index';
-import { ButtonWrapper } from '../../components/buttons/index';
+import NavigationButtons from '../../components/buttons/navigation/NavigationButtons';
 
 const FollowUpView = () => {
-  const handleSubmit = () => {
-    console.log('success');
-  };
 
   return (
     <>
@@ -14,11 +11,7 @@ const FollowUpView = () => {
         </Hero.Content>
       </Hero>
 
-      <ButtonWrapper>
-        <ButtonWrapper.Button onClick={handleSubmit}>
-          Submit
-        </ButtonWrapper.Button>
-      </ButtonWrapper>
+      <NavigationButtons />
     </>
   );
 };

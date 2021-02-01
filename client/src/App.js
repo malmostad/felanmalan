@@ -7,9 +7,6 @@ const App = () => {
 
   const {currentView, setCurrentView} = useUpdate()
 
-  useEffect(() => {
-    setCurrentView("landing")
-  }, [])
 
   useEffect(() => {
     console.log("current view app", currentView)

@@ -1,38 +1,45 @@
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useUpdate } from '../../contexts/UpdateContext';
 import {
-  Views,
   LandingView,
   UploadImageView,
   MapView,
   DescriptionView,
   ContactInfoView,
+  FollowUpView
 } from '../../views/index';
+import { _LoadingContainer } from '../container/index';
+import { Spinner } from '../loading';
 
-const Steps = () => {
+ const Steps = () => {
   const { currentView } = useUpdate();
+  const formViews = [<LandingView />,<UploadImageView />,<MapView/>, <DescriptionView />, <ContactInfoView />, <FollowUpView />]
+  const [current, setCurrent] = useState()
 
   useEffect(() => {
-    console.log('current view in steps is', currentView);
-  }, [currentView]);
+    console.log("triggered")
+    formViews.map((View, index) => {
+      if(currentView === index) {
+        setCurrent(View)
+      }
+    })
+  }, [currentView])
 
-  switch (currentView) {
-    case 'landing':
-      return <LandingView />;
-    case 'upload':
-      return <UploadImageView />;
-    case 'map':
-      return <MapView />;
-    case "description":
-      return <DescriptionView  />;
-    case "contact":
-      return <ContactInfoView  />;
-    case "follow":
-      return <FollowUpView />;
 
-    default:
-      return null;
-  }
-};
+  return (
+    <>
+      {
+        !current ?
+        <_LoadingContainer >
+          <Spinner />
+        </_LoadingContainer>
+        : 
+        current
+      }
+    </>
+  
+  )
+}
 
-export default Steps;
+export default Steps

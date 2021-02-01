@@ -6,7 +6,6 @@ const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
 
 const initialReportData = {
-  acceptedCookies: false,
   images: [],
   location: {
     lat: "",
@@ -14,11 +13,12 @@ const initialReportData = {
   },
   info: {
     description: "",
-    followUp: false,
-  },
+    
   contact: {
     email: "",
     phone: ""
+  },
+  followUp: false,
   }
 }
 
