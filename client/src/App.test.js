@@ -1,9 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from '@testing-library/react-hooks';
 import { useUpdate } from './contexts/UpdateContext';
-
 
 describe('App', () => {
   test('renders App component', () => {

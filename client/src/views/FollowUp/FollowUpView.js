@@ -1,4 +1,4 @@
-import { Hero } from '../../components/hero/index';
+import { HeadSection } from '../../components/headSection/index';
 import { ButtonWrapper } from '../../components/buttons/index';
 
 const FollowUpView = () => {
@@ -8,11 +8,11 @@ const FollowUpView = () => {
 
   return (
     <>
-      <Hero>
-        <Hero.Content>
-          <Hero.Title>Follow up view</Hero.Title>
-        </Hero.Content>
-      </Hero>
+      <HeadSection>
+        <HeadSection.Content>
+          <HeadSection.Title>Follow up view</HeadSection.Title>
+        </HeadSection.Content>
+      </HeadSection>
 
       <ButtonWrapper>
         <ButtonWrapper.Button onClick={handleSubmit}>

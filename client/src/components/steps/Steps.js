@@ -10,7 +10,6 @@ import {
   FollowUpView,
 } from '../../views/index';
 
-
 const Steps = () => {
   const { currentView } = useUpdate();
 
@@ -25,11 +24,11 @@ const Steps = () => {
       return <UploadImageView />;
     case 'map':
       return <MapView />;
-    case "description":
-      return <DescriptionView  />;
-    case "contact":
-      return <ContactInfoView  />;
-    case "follow":
+    case 'description':
+      return <DescriptionView />;
+    case 'contact':
+      return <ContactInfoView />;
+    case 'follow':
       return <FollowUpView />;
 
     default:

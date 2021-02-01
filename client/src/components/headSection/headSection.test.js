@@ -1,11 +1,11 @@
 import ReactDOM from 'react-dom';
-import { Hero } from './index';
+import { HeadSection } from './index';
 import { render, screen } from '@testing-library/react';
 
 it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Hero />, div);
-})
+  const div = document.createElement('div');
+  ReactDOM.render(<HeadSection />, div);
+});
 
 /*
 it('render Hero.Title', () => {

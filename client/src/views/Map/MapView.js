@@ -1,4 +1,4 @@
-import { Hero } from '../../components/hero/index';
+import { HeadSection } from '../../components/headSection/index';
 import { useUpdate } from '../../contexts/UpdateContext';
 import { ButtonWrapper } from '../../components/buttons/index';
 
@@ -19,11 +19,11 @@ const MapView = () => {
 
   return (
     <>
-      <Hero>
-        <Hero.Content>
-          <Hero.Title>Map</Hero.Title>
-        </Hero.Content>
-      </Hero>
+      <HeadSection>
+        <HeadSection.Content>
+          <HeadSection.Title>Map</HeadSection.Title>
+        </HeadSection.Content>
+      </HeadSection>
       <ButtonWrapper>
         <ButtonWrapper.Button onClick={handleCLickBack}>
           Back

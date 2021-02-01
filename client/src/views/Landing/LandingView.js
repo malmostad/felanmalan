@@ -23,11 +23,9 @@ const LandingView = () => {
       <LandingContainer>
         <h1>Testing testing</h1>
         <ButtonWrapper>
-       
           <ButtonWrapper.Button onClick={handleCLick}>
             Acceptera
           </ButtonWrapper.Button>
-          
         </ButtonWrapper>
       </LandingContainer>
     </>

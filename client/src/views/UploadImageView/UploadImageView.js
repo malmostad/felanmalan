@@ -1,4 +1,4 @@
-import { Hero } from '../../components/hero/index';
+import { HeadSection } from '../../components/headSection/index';
 import { useUpdate } from '../../contexts/UpdateContext';
 import { ButtonWrapper } from '../../components/buttons/index';
 
@@ -19,11 +19,11 @@ const UploadImageView = () => {
 
   return (
     <>
-      <Hero>
-        <Hero.Content>
-          <Hero.Title>Upload</Hero.Title>
-        </Hero.Content>
-      </Hero>
+      <HeadSection>
+        <HeadSection.Content>
+          <HeadSection.Title>Upload</HeadSection.Title>
+        </HeadSection.Content>
+      </HeadSection>
       <ButtonWrapper>
         <ButtonWrapper.Button onClick={handleCLickBack}>
           Back

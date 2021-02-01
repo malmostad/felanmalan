@@ -1,4 +1,4 @@
-import { Hero } from '../../components/hero/index';
+import { HeadSection } from '../../components/headSection/index';
 import { useUpdate } from '../../contexts/UpdateContext';
 import { ButtonWrapper } from '../../components/buttons/index';
 
@@ -19,20 +19,18 @@ const DescriptionView = () => {
 
   return (
     <>
-      <Hero>
-        <Hero.Content>
-          <Hero.Title>DescriptionView</Hero.Title>
-        </Hero.Content>
-      </Hero>
+      <HeadSection>
+        <HeadSection.Content>
+          <HeadSection.Title>DescriptionView</HeadSection.Title>
+        </HeadSection.Content>
+      </HeadSection>
 
       <ButtonWrapper>
         <ButtonWrapper.Button onClick={handleCLickBack}>
-          {' '}
-          Back{' '}
+          Back
         </ButtonWrapper.Button>
         <ButtonWrapper.Button onClick={handleCLickNext}>
-          {' '}
-          Next{' '}
+          Next
         </ButtonWrapper.Button>
       </ButtonWrapper>
     </>
