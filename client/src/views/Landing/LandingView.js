@@ -1,32 +1,17 @@
-import { ButtonWrapper } from '../../components/buttons/index';
+
 import { LandingContainer } from '../../components/container/index';
-import { useEffect, useState } from 'react';
 import { useUpdate } from '../../contexts/UpdateContext';
+import ReadMore from '../../components/ReadMore/ReadMore';
+import NavigationButtons from '../../components/buttons/navigation/NavigationButtons';
 
 const LandingView = () => {
-  const { setPreviousView, setNextView, setCurrentView } = useUpdate();
-
-  useEffect(() => {
-    setPreviousView(undefined);
-    setCurrentView('landing');
-    setNextView('upload');
-  }, []);
-
-  const handleCLick = e => {
-    setPreviousView('landing');
-    setCurrentView('upload');
-    setNextView('map');
-  };
-
+  const { readMore } = useUpdate();
   return (
     <>
       <LandingContainer>
         <h1>Testing testing</h1>
-        <ButtonWrapper>
-          <ButtonWrapper.Button onClick={handleCLick}>
-            Acceptera
-          </ButtonWrapper.Button>
-        </ButtonWrapper>
+        {readMore && <ReadMore />}
+        <NavigationButtons />
       </LandingContainer>
     </>
   );

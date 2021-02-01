@@ -1,22 +1,7 @@
-import { HeadSection } from '../../components/headSection/index';
-import { useUpdate } from '../../contexts/UpdateContext';
-import { ButtonWrapper } from '../../components/buttons/index';
+import { HeadSection } from '../../components/headSection/index'
+import NavigationButtons from '../../components/buttons/navigation/NavigationButtons'
 
 const DescriptionView = () => {
-  const { setNextView, setCurrentView, setPreviousView } = useUpdate();
-
-  const handleCLickNext = () => {
-    setPreviousView('description');
-    setCurrentView('contact');
-    setNextView('');
-  };
-
-  const handleCLickBack = () => {
-    setPreviousView('upload');
-    setCurrentView('map');
-    setNextView('description');
-  };
-
   return (
     <>
       <HeadSection>
@@ -25,16 +10,9 @@ const DescriptionView = () => {
         </HeadSection.Content>
       </HeadSection>
 
-      <ButtonWrapper>
-        <ButtonWrapper.Button onClick={handleCLickBack}>
-          Back
-        </ButtonWrapper.Button>
-        <ButtonWrapper.Button onClick={handleCLickNext}>
-          Next
-        </ButtonWrapper.Button>
-      </ButtonWrapper>
+      <NavigationButtons />
     </>
-  );
-};
+  )
+}
 
-export default DescriptionView;
+export default DescriptionView

@@ -1,11 +1,7 @@
-import { HeadSection } from '../../components/headSection/index';
-import { ButtonWrapper } from '../../components/buttons/index';
+import { HeadSection } from '../../components/headSection/index'
+import NavigationButtons from '../../components/buttons/navigation/NavigationButtons'
 
 const FollowUpView = () => {
-  const handleSubmit = () => {
-    console.log('success');
-  };
-
   return (
     <>
       <HeadSection>
@@ -14,13 +10,9 @@ const FollowUpView = () => {
         </HeadSection.Content>
       </HeadSection>
 
-      <ButtonWrapper>
-        <ButtonWrapper.Button onClick={handleSubmit}>
-          Submit
-        </ButtonWrapper.Button>
-      </ButtonWrapper>
+      <NavigationButtons />
     </>
-  );
-};
+  )
+}
 
-export default FollowUpView;
+export default FollowUpView

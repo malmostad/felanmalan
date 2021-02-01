@@ -12,3 +12,8 @@ export const ButtonContainer = styled(StyledContainer)`
   justify-content: center;
   align-items: center;
 `;
+
+export const LoadingContainer = styled(StyledContainer)`
+  background-color: #ffffff;
+`;
+

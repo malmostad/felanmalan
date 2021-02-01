@@ -1,3 +1,3 @@
-import { LandingContainer } from './Container';
+import { LandingContainer, _LoadingContainer } from './Container';
 
-export { LandingContainer };
+export { LandingContainer, _LoadingContainer };
