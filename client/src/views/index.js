@@ -1,4 +1,3 @@
-import LandingView from './Landing/LandingView'
 import UploadImageView from './UploadImageView/UploadImageView'
 import MapView from './Map/MapView'
 import DescriptionView from './Description/DescriptionView'
@@ -14,7 +13,6 @@ export const formViews = [
 ]
 
 export {
-  LandingView,
   UploadImageView,
   MapView,
   DescriptionView,

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useUpdate } from '../../contexts/UpdateContext'
 import {
-  LandingView,
   UploadImageView,
   MapView,
   DescriptionView,
@@ -15,7 +14,6 @@ import { Spinner } from '../loading'
 const Steps = () => {
   const { currentView } = useUpdate()
   const formViews = [
-    <LandingView />,
     <UploadImageView />,
     <MapView />,
     <DescriptionView />,

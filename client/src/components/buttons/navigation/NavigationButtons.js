@@ -24,31 +24,6 @@ const NavigationButtons = () => {
     }
   }, [currentView])
 
-  /*
-  useEffect(() => {
-    if(currentView && formViews.length) {
-
-      if(currentView +1 >= formViews.length && currentView -1 >= 0){
-        console.log(currentView)
-      }
-    }
-    else alert("something is seriously wrong, maybe switch career?")
-    
-
-  }, [currentView]);
-
-*/
-  /*switch(expression) {
-  case x:
-    // code block
-    break;
-  case y:
-    // code block
-    break;
-  default:
-    // code block
-}  */
-
   const handleClickNext = () => {
     setPreviousView((prevState) => prevState)
     setCurrentView((prevState) => prevState + 1)
