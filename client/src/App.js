@@ -1,26 +1,24 @@
 import GlobalStyle from './globalstyles/GlobalStyle';
 import { useUpdate } from './contexts/UpdateContext';
-import {useEffect} from 'react'
+import { useEffect } from 'react';
 //Views
-import Steps from './components/steps/Steps'
+import Steps from './components/steps/Steps';
 const App = () => {
-
-  const {currentView, setCurrentView} = useUpdate()
-
-  useEffect(() => {
-    setCurrentView("landing")
-  }, [])
+  const { currentView, setCurrentView } = useUpdate();
 
   useEffect(() => {
-    console.log("current view app", currentView)
-  }, [currentView])
+    setCurrentView('upload');
+  }, []);
 
-  return ( 
+  useEffect(() => {
+    console.log('current view app', currentView);
+  }, [currentView]);
+
+  return (
     <>
       <GlobalStyle />
-     
-      <Steps />
 
+      <Steps />
     </>
   );
 };

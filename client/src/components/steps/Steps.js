@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import { useUpdate } from '../../contexts/UpdateContext';
 import {
-  Views,
-  LandingView,
   UploadImageView,
   MapView,
   DescriptionView,
@@ -17,8 +15,6 @@ const Steps = () => {
   }, [currentView]);
 
   switch (currentView) {
-    case 'landing':
-      return <LandingView />;
     case 'upload':
       return <UploadImageView />;
     case 'map':

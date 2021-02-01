@@ -1,9 +1,15 @@
 import { Hero } from '../../components/hero/index';
 import { useUpdate } from '../../contexts/UpdateContext';
 import { ButtonWrapper } from '../../components/buttons/index';
+import Cookie from '../../components/cookie/Cookie';
 
 const UploadImageView = () => {
-  const { setNextView, setCurrentView, setPreviousView } = useUpdate();
+  const {
+    setNextView,
+    setCurrentView,
+    setPreviousView,
+    acceptCookies,
+  } = useUpdate();
 
   const handleCLickNext = () => {
     setPreviousView('upload');
@@ -11,27 +17,24 @@ const UploadImageView = () => {
     setNextView('description');
   };
 
-  const handleCLickBack = () => {
-    setPreviousView(undefined);
-    setCurrentView('landing');
-    setNextView('upload');
-  };
-
   return (
     <>
-      <Hero>
-        <Hero.Content>
-          <Hero.Title>Upload</Hero.Title>
-        </Hero.Content>
-      </Hero>
-      <ButtonWrapper>
-        <ButtonWrapper.Button onClick={handleCLickBack}>
-          Back
-        </ButtonWrapper.Button>
-        <ButtonWrapper.Button onClick={handleCLickNext}>
-          Next
-        </ButtonWrapper.Button>
-      </ButtonWrapper>
+      {acceptCookies ? (
+        <>
+          <Hero>
+            <Hero.Content>
+              <Hero.Title>Upload</Hero.Title>
+            </Hero.Content>
+          </Hero>
+          <ButtonWrapper>
+            <ButtonWrapper.Button onClick={handleCLickNext}>
+              Next
+            </ButtonWrapper.Button>
+          </ButtonWrapper>
+        </>
+      ) : (
+        <Cookie />
+      )}
     </>
   );
 };
