@@ -1,7 +1,6 @@
-import { ButtonWrapper } from '../index'
+import { ButtonContainer } from '../index'
 import { formViews } from '../../../views/index'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useUpdate } from '../../../contexts/UpdateContext'
 
 const NavigationButtons = () => {
@@ -41,23 +40,23 @@ const NavigationButtons = () => {
   }
 
   return (
-    <ButtonWrapper>
-      <ButtonWrapper.Container>
+    <ButtonContainer>
+      <ButtonContainer.InnerContainer>
         {!disabledNext && (
-          <ButtonWrapper.Button
+          <ButtonContainer.Button
             inverted
             onClick={!disabledNext ? handleClickNext : handleSubmit}
           >
             {!disabledNext ? 'Next' : 'Submit'}
-          </ButtonWrapper.Button>
+          </ButtonContainer.Button>
         )}
         {!disabledPrevious && (
-          <ButtonWrapper.Button inverted onClick={handleClickPrevious}>
+          <ButtonContainer.Button inverted onClick={handleClickPrevious}>
             Previous
-          </ButtonWrapper.Button>
+          </ButtonContainer.Button>
         )}
-      </ButtonWrapper.Container>
-    </ButtonWrapper>
+      </ButtonContainer.InnerContainer>
+    </ButtonContainer>
   )
 }
 

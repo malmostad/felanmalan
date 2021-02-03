@@ -3,10 +3,11 @@ import styled from 'styled-components/macro'
 export const StyledContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: ${(props) => props.theme.colors.PrimaryGreen};
+  background-color: ${({ light, theme }) =>
+    light ? 'white' : theme.colors.PrimaryGreen};
 `
 
-export const ButtonContainer = styled(StyledContainer)`
+export const StyledButtonContainer = styled(StyledContainer)`
   height: 100px;
   background-color: transparent;
   display: flex;
@@ -14,11 +15,11 @@ export const ButtonContainer = styled(StyledContainer)`
   align-items: center;
 `
 
-export const LoadingContainer = styled(StyledContainer)`
+export const StyledLoadingContainer = styled(StyledContainer)`
   background-color: #ffffff;
 `
 
-export const LandingContainer = styled(StyledContainer)`
+export const StyledLandingContainer = styled(StyledContainer)`
   min-height: 100vh;
   display: flex;
   justify-content: space-between;
@@ -26,11 +27,28 @@ export const LandingContainer = styled(StyledContainer)`
   flex-direction: column;
 `
 
-export const StyledWrapper = styled.div`
+export const StyledInnerWrapper = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   background-color: transparent;
+`
+
+export const StyledHeadSection = styled.div`
+  width: 100%;
+  background-color: #037540;
+  height: auto;
+  min-height: 270px;
+  display: flex;
+`
+
+export const StyledHeadInner = styled.div`
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  align-self: flex-end;
 `

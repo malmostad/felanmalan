@@ -1,11 +1,11 @@
 import { HeadSection } from '../../components/headSection/index'
 import NavigationButtons from '../../components/buttons/navigation/NavigationButtons'
-import { StyledContainer } from '../../components/container/index'
+import { Wrapper } from '../../components/container/index'
 
 const DescriptionView = () => {
   return (
     <>
-      <StyledContainer>
+      <Wrapper>
         <HeadSection>
           <HeadSection.Content>
             <HeadSection.Title>DescriptionView</HeadSection.Title>
@@ -13,7 +13,7 @@ const DescriptionView = () => {
         </HeadSection>
 
         <NavigationButtons />
-      </StyledContainer>
+      </Wrapper>
     </>
   )
 }

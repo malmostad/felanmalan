@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro'
 
-export const Button = styled.button`
+export const StyledButton = styled.button`
   cursor: pointer;
-  background-color: ${(props) =>
-    props.inverted ? props.theme.colors.PrimaryGreen : 'transparent'};
-  font-size: ${(props) => props.theme.FontSizes.ButtonText};
+  background-color: ${({ theme, inverted }) =>
+    inverted ? theme.colors.PrimaryGreen : 'transparent'};
+  font-size: ${({ theme }) => theme.FontSizes.ButtonText};
   border: 2px solid white;
   border-radius: 2px;
   width: 100%;
@@ -12,18 +12,10 @@ export const Button = styled.button`
   max-width: 380px;
   height: 50px;
   margin-bottom: 10px;
-  color: ${(props) => props.theme.colors.PrimaryWhite};
-
-  &:first-of-type {
-    border: none;
-
-    &:hover {
-      color: red;
-    }
-  }
+  color: ${({ theme }) => theme.colors.PrimaryWhite};
 `
 
-export const ButtonBox = styled.div`
+export const StyledButtonBox = styled.div`
   width: 100%;
   height: 100%;
   display: flex;

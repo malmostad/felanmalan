@@ -1,3 +1,3 @@
-import { ButtonWrapper } from './Button';
+import { ButtonContainer } from './Button'
 
-export { ButtonWrapper };
+export { ButtonContainer }

@@ -1,17 +1,17 @@
 import {
-  LoadingContainer,
-  LandingContainer,
-  StyledWrapper,
+  StyledLandingContainer,
+  StyledLoadingContainer,
+  StyledContainer,
 } from './style/Container'
 
-export const LandingWrapper = ({ children, ...restProps }) => (
-  <LandingContainer {...restProps}>{children}</LandingContainer>
+export const LandingContainer = ({ children, ...restProps }) => (
+  <StyledLandingContainer {...restProps}>{children}</StyledLandingContainer>
 )
 
-export const _LoadingContainer = ({ children, ...restProps }) => (
-  <LoadingContainer {...restProps}>{children}</LoadingContainer>
+export const LoadingContainer = ({ children, ...restProps }) => (
+  <StyledLoadingContainer {...restProps}>{children}</StyledLoadingContainer>
 )
 
-export const StyledContainer = ({ children, ...restProps }) => (
-  <StyledWrapper {...restProps}>{children}</StyledWrapper>
+export const Wrapper = ({ children, ...restProps }) => (
+  <StyledContainer {...restProps}>{children}</StyledContainer>
 )

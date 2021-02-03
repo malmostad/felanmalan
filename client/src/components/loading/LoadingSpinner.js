@@ -1,3 +1,10 @@
-import {LoadingSpinner} from './styles/LoadingSpinner'
+import { StyledLoadingContainer } from '../container/style/Container'
+import { StyledLoadingSpinner } from './styles/LoadingSpinner'
 
-export const Spinner = ({...restProps}) => ( <LoadingSpinner {...restProps} /> )
+export const LoadingContainer = ({ Children, ...restProps }) => (
+  <StyledLoadingContainer {...restProps}>{Children}</StyledLoadingContainer>
+)
+
+LoadingContainer.LoadingSpinner = ({ ...restProps }) => (
+  <StyledLoadingSpinner {...restProps} />
+)

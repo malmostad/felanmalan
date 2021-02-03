@@ -1,11 +1,11 @@
 import { HeadSection } from '../../components/headSection/index'
 import NavigationButtons from '../../components/buttons/navigation/NavigationButtons'
-import { StyledContainer } from '../../components/container/index'
+import { Wrapper } from '../../components/container/index'
 
 const FollowUpView = () => {
   return (
     <>
-      <StyledContainer>
+      <Wrapper>
         <HeadSection>
           <HeadSection.Content>
             <HeadSection.Title>Follow up view</HeadSection.Title>
@@ -13,7 +13,7 @@ const FollowUpView = () => {
         </HeadSection>
 
         <NavigationButtons />
-      </StyledContainer>
+      </Wrapper>
     </>
   )
 }

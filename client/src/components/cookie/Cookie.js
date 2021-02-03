@@ -1,26 +1,26 @@
-import { ButtonWrapper } from '../buttons/index';
-import { LandingWrapper } from '../container/index';
-import { useUpdate } from '../../contexts/UpdateContext';
+import { ButtonContainer } from '../buttons/index'
+import { LandingContainer } from '../container/index'
+import { useUpdate } from '../../contexts/UpdateContext'
 
 const Cookie = () => {
-  const { setAcceptCookies } = useUpdate();
+  const { setAcceptCookies } = useUpdate()
 
   const acceptCookies = () => {
-    setAcceptCookies(true);
-  };
+    setAcceptCookies(true)
+  }
 
   return (
     <>
-      <LandingWrapper>
+      <LandingContainer>
         <h1>Malmö stads felanmälan</h1>
-        <ButtonWrapper>
-          <ButtonWrapper.Button onClick={acceptCookies}>
+        <ButtonContainer>
+          <ButtonContainer.Button onClick={acceptCookies}>
             Acceptera
-          </ButtonWrapper.Button>
-        </ButtonWrapper>
-      </LandingWrapper>
+          </ButtonContainer.Button>
+        </ButtonContainer>
+      </LandingContainer>
     </>
-  );
-};
+  )
+}
 
-export default Cookie;
+export default Cookie

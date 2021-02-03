@@ -1,14 +1,14 @@
-import { Button, ButtonBox } from './style/Buttons';
-import { ButtonContainer } from '../container/style/Container';
+import { StyledButton, StyledButtonBox } from './style/Buttons'
+import { StyledButtonContainer } from '../container/style/Container'
 
-export const ButtonWrapper = ({ children, ...restProps }) => (
-  <ButtonContainer {...restProps}>{children}</ButtonContainer>
-);
+export const ButtonContainer = ({ children, ...restProps }) => (
+  <StyledButtonContainer {...restProps}>{children}</StyledButtonContainer>
+)
 
-ButtonWrapper.Button = ({ children, ...restProps }) => (
-  <Button {...restProps}>{children}</Button>
-);
+ButtonContainer.Button = ({ children, ...restProps }) => (
+  <StyledButton {...restProps}>{children}</StyledButton>
+)
 
-ButtonWrapper.Container = ({children, ...restProps}) => (
-  <ButtonBox {...restProps}>{children}</ButtonBox>
+ButtonContainer.InnerContainer = ({ children, ...restProps }) => (
+  <StyledButtonBox {...restProps}>{children}</StyledButtonBox>
 )

@@ -1,14 +1,18 @@
-import React from 'react';
-import { Container, Content, Title } from './style/HeadSection';
+import React from 'react'
+import {
+  StyledHeadSection,
+  StyledHeadInner,
+} from '../container/style/Container'
+import { StyledHeading } from '../Typography/styles/Typography'
 
 export const HeadSection = ({ children, ...restProps }) => (
-  <Container {...restProps}>{children}</Container>
-);
+  <StyledHeadSection {...restProps}>{children}</StyledHeadSection>
+)
 
-HeadSection.Content = ({ children, ...restProps }) => (
-  <Content {...restProps}>{children}</Content>
-);
+HeadSection.Inner = ({ children, ...restProps }) => (
+  <StyledHeadInner {...restProps}>{children}</StyledHeadInner>
+)
 
 HeadSection.Title = ({ children, ...restProps }) => (
-  <Title {...restProps}>{children}</Title>
-);
+  <StyledHeading {...restProps}>{children}</StyledHeading>
+)

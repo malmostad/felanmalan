@@ -1,29 +1,15 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useUpdate } from '../../contexts/UpdateContext'
-import {
-  UploadImageView,
-  MapView,
-  DescriptionView,
-  ContactInfoView,
-  FollowUpView,
-} from '../../views/index'
-import { _LoadingContainer } from '../container/index'
-import { Spinner } from '../loading'
+import { formViews } from '../../views/index'
+import { LoadingContainer } from '../loading'
 
 const Steps = () => {
   const { currentView } = useUpdate()
-  const formViews = [
-    <UploadImageView />,
-    <MapView />,
-    <DescriptionView />,
-    <ContactInfoView />,
-    <FollowUpView />,
-  ]
+
   const [current, setCurrent] = useState()
 
   useEffect(() => {
-    formViews.map((View, index) => {
+    formViews.forEach((View, index) => {
       if (currentView === index) {
         setCurrent(View)
       }
@@ -33,9 +19,9 @@ const Steps = () => {
   return (
     <>
       {!current ? (
-        <_LoadingContainer>
-          <Spinner />
-        </_LoadingContainer>
+        <LoadingContainer>
+          <LoadingContainer.LoadingSpinner />
+        </LoadingContainer>
       ) : (
         current
       )}
