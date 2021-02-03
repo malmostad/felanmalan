@@ -7,9 +7,9 @@ const ContactInfoView = () => {
     <>
       <Wrapper>
         <HeadSection>
-          <HeadSection.Content>
+          <HeadSection.Inner>
             <HeadSection.Title>ContactInfoView</HeadSection.Title>
-          </HeadSection.Content>
+          </HeadSection.Inner>
         </HeadSection>
 
         <NavigationButtons />

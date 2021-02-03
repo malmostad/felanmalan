@@ -7,9 +7,9 @@ const DescriptionView = () => {
     <>
       <Wrapper>
         <HeadSection>
-          <HeadSection.Content>
+          <HeadSection.Inner>
             <HeadSection.Title>DescriptionView</HeadSection.Title>
-          </HeadSection.Content>
+          </HeadSection.Inner>
         </HeadSection>
 
         <NavigationButtons />

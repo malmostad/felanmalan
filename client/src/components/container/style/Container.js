@@ -5,6 +5,9 @@ export const StyledContainer = styled.div`
   height: 100vh;
   background-color: ${({ light, theme }) =>
     light ? 'white' : theme.colors.PrimaryGreen};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 export const StyledButtonContainer = styled(StyledContainer)`

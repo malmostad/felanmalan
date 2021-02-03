@@ -7,9 +7,9 @@ const FollowUpView = () => {
     <>
       <Wrapper>
         <HeadSection>
-          <HeadSection.Content>
+          <HeadSection.Inner>
             <HeadSection.Title>Follow up view</HeadSection.Title>
-          </HeadSection.Content>
+          </HeadSection.Inner>
         </HeadSection>
 
         <NavigationButtons />

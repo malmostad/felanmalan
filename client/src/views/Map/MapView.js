@@ -7,9 +7,9 @@ const MapView = () => {
     <>
       <Wrapper>
         <HeadSection>
-          <HeadSection.Content>
+          <HeadSection.Inner>
             <HeadSection.Title>Map</HeadSection.Title>
-          </HeadSection.Content>
+          </HeadSection.Inner>
         </HeadSection>
         <NavigationButtons />
       </Wrapper>
