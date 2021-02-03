@@ -1,10 +1,13 @@
+import GlobalStyle from './globalstyles/GlobalStyle'
+import Steps from './components/steps/Steps'
 
 const App = () => {
   return (
-    <div className="App">
-
-    </div>
-  );
+    <>
+      <GlobalStyle />
+      <Steps />
+    </>
+  )
 }
 
-export default App;
+export default App
