@@ -1,9 +1,10 @@
-import { ButtonContainer } from '../index'
-import { formViews } from '../../../views/index'
-import { useEffect, useState } from 'react'
-import { useUpdate } from '../../../contexts/UpdateContext'
 
-const NavigationButtons = () => {
+import { formViews } from '../../views/index'
+import { useEffect, useState } from 'react'
+import {useUpdate} from '../../contexts/UpdateContext'
+import { Button } from '../buttons/Buttons'
+
+const Navigation = () => {
   const [disabledPrevious, setDisabledPrevious] = useState(false)
   const [disabledNext, setDisabledNext] = useState(false)
   const {
@@ -40,24 +41,24 @@ const NavigationButtons = () => {
   }
 
   return (
-    <ButtonContainer>
-      <ButtonContainer.InnerContainer>
+    <Button.Outer>
+      <Button.Inner>
         {!disabledNext && (
-          <ButtonContainer.Button
+          <Button
             inverted
             onClick={!disabledNext ? handleClickNext : handleSubmit}
           >
             {!disabledNext ? 'Next' : 'Submit'}
-          </ButtonContainer.Button>
+          </Button>
         )}
         {!disabledPrevious && (
-          <ButtonContainer.Button inverted onClick={handleClickPrevious}>
+          <Button inverted onClick={handleClickPrevious}>
             Previous
-          </ButtonContainer.Button>
+          </Button>
         )}
-      </ButtonContainer.InnerContainer>
-    </ButtonContainer>
+      </Button.Inner>
+    </Button.Outer>
   )
 }
 
-export default NavigationButtons
+export default Navigation

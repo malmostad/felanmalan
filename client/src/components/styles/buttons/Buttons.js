@@ -15,11 +15,4 @@ export const StyledButton = styled.button`
   color: ${({ theme }) => theme.colors.PrimaryWhite};
 `
 
-export const StyledButtonBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`
+

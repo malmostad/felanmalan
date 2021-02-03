@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useUpdate } from '../../contexts/UpdateContext'
 import { formViews } from '../../views/index'
-import { LoadingContainer } from '../loading'
+import Cookie from '../cookie/Cookie'
+import Footer from '../footer/Footer'
+import HeaderSection from '../header/HeaderSection'
+
 
 const Steps = () => {
-  const { currentView } = useUpdate()
+  const { currentView, acceptCookies } = useUpdate()
 
   const [current, setCurrent] = useState()
 
@@ -18,13 +21,16 @@ const Steps = () => {
 
   return (
     <>
-      {!current ? (
-        <LoadingContainer>
-          <LoadingContainer.LoadingSpinner />
-        </LoadingContainer>
-      ) : (
-        current
-      )}
+      {
+        acceptCookies ? 
+        <>
+          <HeaderSection />
+            {current}
+          <Footer />
+        </>
+       : 
+        <Cookie />
+      }
     </>
   )
 }

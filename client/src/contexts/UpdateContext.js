@@ -9,11 +9,13 @@ export const UpdateProvider = ({ children }) => {
   const [currentView, setCurrentView] = useState(0)
   const [previousView, setPreviousView] = useState(undefined)
   const [nextView, setNextView] = useState(2)
-  const [acceptCookies, setAcceptCookies] = useState(null)
-
+  const [acceptCookies, setAcceptCookies] = useState(false)
   const [readMore, setReadMore] = useState(false)
 
-  useEffect(() => {}, [currentView])
+  useEffect(() => {
+    console.log("current", currentView) 
+    console.log("cookies", acceptCookies)
+  },[currentView, acceptCookies])
 
   const updateValues = {
     loading,
