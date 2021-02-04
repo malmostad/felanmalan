@@ -55,7 +55,7 @@ const Navigation = () => {
   }
 
   const handleSubmit = () => {
-    console.log('submit')
+    
   }
 
   return (
