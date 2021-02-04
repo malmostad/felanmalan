@@ -15,11 +15,9 @@ const Cookie = () => {
       <StyledLandingContainer>
         <h1>Malmö stads felanmälan</h1>
         <Button.Outer>
-          <Button.Inner>
             <Button onClick={acceptCookies}>
               Acceptera
             </Button>
-          </Button.Inner>
         </Button.Outer>
       </StyledLandingContainer>
     </>

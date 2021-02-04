@@ -4,6 +4,7 @@ import { formViews } from '../../views/index'
 import Cookie from '../cookie/Cookie'
 import Footer from '../footer/Footer'
 import HeaderSection from '../header/HeaderSection'
+import { StyledLandingContainer } from '../styles/containers/Containers'
 
 
 const Steps = () => {
@@ -24,9 +25,13 @@ const Steps = () => {
       {
         acceptCookies ? 
         <>
-          <HeaderSection />
-            {current}
-          <Footer />
+         
+            <HeaderSection />
+          
+                {current}
+              
+            <Footer />
+         
         </>
        : 
         <Cookie />

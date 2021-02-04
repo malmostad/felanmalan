@@ -1,5 +1,5 @@
 import { useUpdate } from '../../contexts/UpdateContext'
-import { Button } from '../navigation/Buttons'
+import { Button } from '../buttons/Buttons'
 import {ReadMoreContainer} from './styles'
 
 const ReadMore = () => {

@@ -1,10 +1,9 @@
 import styled from 'styled-components/macro'
-import { flexCenterColumn } from '../mixins'
+import { flexCenterColumn, flexCenter } from '../mixins'
 
 export const StyledFlexCenterColumn = styled.div`
   ${flexCenterColumn}
 `
-
 export const StyledOuter = styled.div`
   width: 100vw;
   height: 100vh;
@@ -36,8 +35,17 @@ export const StyledLandingContainer = styled(StyledOuter)`
 // inner for what?
 export const StyledInnerWrapper = styled.div`
   ${flexCenterColumn}
-  min-height: 100vh;
-  background-color: transparent;
+
+
 `
 
 
+export const StyledFooterContainer = styled.div`
+  ${flexCenter}
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 300px;
+  width: 100%;
+  background-color: ${({theme}) => theme.colors.PrimaryGreen};
+`

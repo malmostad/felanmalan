@@ -5,35 +5,53 @@ import {useUpdate} from '../../contexts/UpdateContext'
 import { Button } from '../buttons/Buttons'
 
 const Navigation = () => {
-  const [disabledPrevious, setDisabledPrevious] = useState(false)
+  const [disabledPrevious, setDisabledPrevious] = useState(true)
   const [disabledNext, setDisabledNext] = useState(false)
   const {
     setNextView,
     setCurrentView,
     setPreviousView,
     currentView,
+    previousView,
+    nextView
   } = useUpdate()
 
+
   useEffect(() => {
-    if (currentView + 1 >= formViews.length) {
-      setDisabledNext(true)
-      setDisabledPrevious(false)
-    } else if (currentView === 0) {
-      setDisabledNext(false)
-      setDisabledPrevious(true)
-    }
-  }, [currentView])
+    console.log("disabled next", disabledNext)
+    console.log("disabled prev", disabledPrevious)
+  }, [disabledNext, disabledPrevious ])
+
+
+
+  useEffect(() => {
+    console.log(previousView,currentView,  nextView)
+  }, [currentView, disabledNext, disabledPrevious])
 
   const handleClickNext = () => {
-    setPreviousView((prevState) => prevState)
-    setCurrentView((prevState) => prevState + 1)
-    setNextView((prevState) => prevState - 1)
+    if(currentView +1 < formViews.length){
+      setDisabledPrevious(false)
+      setPreviousView(currentView)
+      setCurrentView(prevState => prevState + 1)
+      setNextView(prevState => prevState + 1)
+    }
+    else {
+      setDisabledNext(true)
+      setDisabledPrevious(false)
+    }
   }
 
   const handleClickPrevious = () => {
-    setPreviousView(currentView - 1)
-    setCurrentView(currentView - 1)
-    setNextView(currentView)
+    if(currentView -1 >= 0) {
+      setDisabledNext(false)
+      setPreviousView(prevState => prevState -1)
+      setCurrentView(prevState => prevState - 1)
+      setNextView(currentView)
+    }
+    else {
+      setDisabledNext(false)
+      setDisabledPrevious(true)
+    }
   }
 
   const handleSubmit = () => {
@@ -43,19 +61,20 @@ const Navigation = () => {
   return (
     <Button.Outer>
       <Button.Inner>
-        {!disabledNext && (
-          <Button
-            inverted
-            onClick={!disabledNext ? handleClickNext : handleSubmit}
-          >
-            {!disabledNext ? 'Next' : 'Submit'}
-          </Button>
-        )}
-        {!disabledPrevious && (
-          <Button inverted onClick={handleClickPrevious}>
-            Previous
-          </Button>
-        )}
+          {!disabledNext && 
+            <Button
+            bgGreen
+              onClick={currentView + 1 === formViews.length ? handleSubmit : handleClickNext}
+            >
+             {currentView +1 === formViews.length ? "submit" : "next"}
+            </Button>
+          }
+          {
+            !disabledPrevious && 
+            <Button bgGreen onClick={handleClickPrevious}>
+              Previous
+            </Button>
+          }
       </Button.Inner>
     </Button.Outer>
   )
