@@ -1,7 +1,6 @@
 import styled from 'styled-components/macro'
 
-
-export const StyledLoadingSpinner= styled.div`
+export const StyledLoadingSpinner = styled.div`
   display: inline-block;
   width: 60px;
   height: 60px;
