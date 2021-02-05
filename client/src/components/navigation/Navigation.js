@@ -1,4 +1,3 @@
-
 import { formViews } from '../../views/index'
 import { useEffect, useState } from 'react'
 import {useUpdate} from '../../contexts/UpdateContext'
@@ -12,21 +11,10 @@ const Navigation = () => {
     setCurrentView,
     setPreviousView,
     currentView,
-    previousView,
-    nextView
   } = useUpdate()
 
 
-  useEffect(() => {
-    console.log("disabled next", disabledNext)
-    console.log("disabled prev", disabledPrevious)
-  }, [disabledNext, disabledPrevious ])
-
-
-
-  useEffect(() => {
-    console.log(previousView,currentView,  nextView)
-  }, [currentView, disabledNext, disabledPrevious])
+  useEffect(() => {}, [currentView, disabledNext, disabledPrevious])
 
   const handleClickNext = () => {
     if(currentView +1 < formViews.length){

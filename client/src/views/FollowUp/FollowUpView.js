@@ -2,7 +2,7 @@
 const FollowUpView = () => {
   return (
     <>
-     <h1>Follow up</h1>
+      <h1>Follow up</h1>
     </>
   )
 }

@@ -5,11 +5,9 @@ import Cookie from '../cookie/Cookie'
 import Footer from '../footer/Footer'
 import HeaderSection from '../header/HeaderSection'
 
-
-
 const Steps = () => {
+  
   const { currentView, acceptCookies } = useUpdate()
-
   const [current, setCurrent] = useState()
 
   useEffect(() => {
@@ -25,13 +23,9 @@ const Steps = () => {
       {
         acceptCookies ? 
         <>
-         
-            <HeaderSection />
-          
-                {current}
-              
-            <Footer />
-         
+          <HeaderSection /> 
+              {current}
+          <Footer /> 
         </>
        : 
         <Cookie />

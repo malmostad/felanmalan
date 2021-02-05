@@ -6,7 +6,6 @@ const Cookie = () => {
   const { setAcceptCookies } = useUpdate()
 
   const acceptCookies = () => {
-    console.log("click")
     setAcceptCookies(true)
   }
 
