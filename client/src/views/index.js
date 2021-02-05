@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import UploadImageView from './UploadImageView/UploadImageView'
 import MapView from './Map/MapView'
 import DescriptionView from './Description/DescriptionView'

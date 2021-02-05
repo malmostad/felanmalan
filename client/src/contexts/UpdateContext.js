@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, createContext } from 'react'
+import { useContext, useState, createContext } from 'react'
 
 const UpdateContext = createContext()
 

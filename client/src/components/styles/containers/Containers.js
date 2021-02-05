@@ -8,12 +8,16 @@ export const StyledOuter = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: ${({ bgWhite, bgSecondary, theme }) =>
-  bgWhite ? theme.colors.White : bgSecondary ? theme.colors.SecondaryGreen : theme.colors.PrimaryGreen };
+    bgWhite
+      ? theme.colors.White
+      : bgSecondary
+      ? theme.colors.SecondaryGreen
+      : theme.colors.PrimaryGreen};
   display: flex;
   justify-content: space-between;
 `
 //button containers
-export const StyledButtonOuter= styled.div`
+export const StyledButtonOuter = styled.div`
   ${flexCenterColumn}
   height: 100px;
   background-color: transparent;
@@ -25,7 +29,6 @@ export const StyledButtonInner = styled.div`
 `
 //loading container
 
-
 // ??
 export const StyledLandingContainer = styled(StyledOuter)`
   ${flexCenterColumn}
@@ -35,10 +38,7 @@ export const StyledLandingContainer = styled(StyledOuter)`
 // inner for what?
 export const StyledInnerWrapper = styled.div`
   ${flexCenterColumn}
-
-
 `
-
 
 export const StyledFooterContainer = styled.div`
   ${flexCenter}
@@ -47,5 +47,5 @@ export const StyledFooterContainer = styled.div`
   bottom: 0;
   height: 300px;
   width: 100%;
-  background-color: ${({theme}) => theme.colors.PrimaryGreen};
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
 `
