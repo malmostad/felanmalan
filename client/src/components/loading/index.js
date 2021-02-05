@@ -1,3 +1,3 @@
-import { LoadingContainer } from './LoadingSpinner'
+import { Loading } from './LoadingSpinner'
 
-export { LoadingContainer }
+export { Loading }

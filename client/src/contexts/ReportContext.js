@@ -12,7 +12,6 @@ const initialReportData = {
   },
   info: {
     description: '',
-
     contact: {
       email: '',
       phone: '',

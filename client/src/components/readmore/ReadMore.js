@@ -1,6 +1,6 @@
 import { useUpdate } from '../../contexts/UpdateContext'
-import { ButtonWrapper } from '../buttons'
-import {ReadMoreContainer} from './index'
+import { Button } from '../buttons/Buttons'
+import {ReadMoreContainer} from './styles'
 
 const ReadMore = () => {
 
@@ -17,11 +17,11 @@ const ReadMore = () => {
          non aliquam neque cumque excepturi veritatis sunt ea facere nemo ut. Atque quaerat quod rem amet qui consequuntur ut molestiae fuga aliquam dolore maiores eveniet et minima nulla, aspernatur repellendus.
       </p>
       </div>
-      <ButtonWrapper>
-        <ButtonWrapper.Button onClick={handleClick}>
+      <Button.Outer>
+        <Button onClick={handleClick}>
           ok
-        </ButtonWrapper.Button>
-      </ButtonWrapper>
+        </Button>
+      </Button.Outer>
     </ReadMoreContainer>
   )
 }

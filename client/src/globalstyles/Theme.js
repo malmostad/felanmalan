@@ -2,9 +2,9 @@ export const Theme = {
   colors: {
     PrimaryGreen: '#037540',
     SecondaryGreen: '#056B54',
-    TextBlack: 'black',
+    TextBlack: '#000',
     TextGray: '#BCBCBC',
-    PrimaryWhite: 'white',
+    White: '#fff',
   },
   FontSizes: {
     Title: '2.2rem',
