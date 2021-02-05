@@ -6,7 +6,7 @@ import Footer from '../footer/Footer'
 import HeaderSection from '../header/HeaderSection'
 
 const Steps = () => {
-  
+
   const { currentView, acceptCookies } = useUpdate()
   const [current, setCurrent] = useState()
 
@@ -24,7 +24,7 @@ const Steps = () => {
         acceptCookies ? 
         <>
           <HeaderSection /> 
-              {current}
+            {current}
           <Footer /> 
         </>
        : 
