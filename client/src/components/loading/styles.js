@@ -7,7 +7,7 @@ export const StyledLoadingContainer = styled(StyledFlexCenterColumn)`
   background-color: green;
 `
 export const StyledLoadingSpinnerBreathing = styled(StyledLoadingSpinner)`
-animation-name: ${breatheAnimation};
-animation-duration: 8s;
-animation-iteration-count: infinite;
+  animation-name: ${breatheAnimation};
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
 `
