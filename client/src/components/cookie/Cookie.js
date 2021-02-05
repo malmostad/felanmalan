@@ -8,7 +8,7 @@ const Cookie = () => {
   const acceptCookies = () => {
     setAcceptCookies(true)
   }
-
+  console.log("hwudhqud")
   return (
     <>
       <StyledLandingContainer>
