@@ -3,7 +3,7 @@ const FollowUpView = () => {
     <>
       <h1>Follow up</h1>
     </>
-  );
-};
+  )
+}
 
-export default FollowUpView;
+export default FollowUpView

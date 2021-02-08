@@ -1,3 +1,3 @@
-import { HeadSection } from './Typography';
+import { HeadSection } from './Typography'
 
-export { HeadSection };
+export { HeadSection }

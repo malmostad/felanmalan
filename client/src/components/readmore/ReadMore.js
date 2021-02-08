@@ -1,11 +1,11 @@
-import { useUpdate } from '../../contexts/UpdateContext';
-import { Button } from '../buttons/Buttons';
-import { ReadMoreContainer } from './styles';
+import { useUpdate } from '../../contexts/UpdateContext'
+import { Button } from '../buttons/Buttons'
+import { ReadMoreContainer } from './styles'
 
 const ReadMore = () => {
-  const { setReadMore } = useUpdate();
+  const { setReadMore } = useUpdate()
 
-  const handleClick = () => setReadMore(false);
+  const handleClick = () => setReadMore(false)
 
   return (
     <ReadMoreContainer>
@@ -23,7 +23,7 @@ const ReadMore = () => {
         <Button onClick={handleClick}>ok</Button>
       </Button.Outer>
     </ReadMoreContainer>
-  );
-};
+  )
+}
 
-export default ReadMore;
+export default ReadMore

@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components/macro'
 
 export const StyledLoadingSpinner = styled.div`
   display: inline-block;
@@ -8,4 +8,4 @@ export const StyledLoadingSpinner = styled.div`
   border: 8px solid ${({ theme }) => theme.colors.PrimaryGreen};
   border-top: 8px solid ${({ theme }) => theme.colors.SecondaryGreen};
   margin-bottom: 8rem;
-`;
+`

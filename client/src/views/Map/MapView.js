@@ -3,7 +3,7 @@ const MapView = () => {
     <>
       <h1>Map</h1>
     </>
-  );
-};
+  )
+}
 
-export default MapView;
+export default MapView

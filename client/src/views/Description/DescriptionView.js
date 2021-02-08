@@ -3,7 +3,7 @@ const DescriptionView = () => {
     <>
       <h1>Description</h1>
     </>
-  );
-};
+  )
+}
 
-export default DescriptionView;
+export default DescriptionView
