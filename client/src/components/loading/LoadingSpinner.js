@@ -1,9 +1,7 @@
-import { StyledLoadingContainer, StyledLoadingSpinnerBreathing } from './styles'
+import { StyledLoadingContainer, StyledLoadingSpinnerBreathing } from './styles';
 
 export const Loading = ({ Children, ...restProps }) => (
   <StyledLoadingContainer {...restProps}>{Children}</StyledLoadingContainer>
-)
+);
 
-Loading.Spinner = ({ ...restProps }) => (
-  <StyledLoadingSpinnerBreathing {...restProps} />
-)
+Loading.Spinner = ({ ...restProps }) => <StyledLoadingSpinnerBreathing {...restProps} />;

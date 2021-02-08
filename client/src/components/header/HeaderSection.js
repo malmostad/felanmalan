@@ -1,4 +1,4 @@
-import { Header } from './index'
+import { Header } from './index';
 
 const HeaderSection = () => {
   return (
@@ -7,7 +7,7 @@ const HeaderSection = () => {
         <Header.Title>Header</Header.Title>
       </Header.Inner>
     </Header>
-  )
-}
+  );
+};
 
-export default HeaderSection
+export default HeaderSection;

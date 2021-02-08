@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components/macro';
 
 export const StyledHeaderOuter = styled.div`
   width: 100%;
@@ -6,7 +6,7 @@ export const StyledHeaderOuter = styled.div`
   height: auto;
   min-height: 270px;
   display: flex;
-`
+`;
 
 export const StyledHeaderInner = styled.div`
   width: 300px;
@@ -15,4 +15,4 @@ export const StyledHeaderInner = styled.div`
   justify-content: center;
   align-items: left;
   align-self: flex-end;
-`
+`;

@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components/macro';
 
 export const StyledButton = styled.button`
   cursor: pointer;
@@ -13,4 +13,4 @@ export const StyledButton = styled.button`
   height: 50px;
   margin-bottom: 10px;
   color: ${({ theme }) => theme.colors.PrimaryWhite};
-`
+`;

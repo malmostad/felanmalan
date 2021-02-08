@@ -1,14 +1,14 @@
-import { useUpdate } from '../../contexts/UpdateContext'
-import { Button } from '../buttons/Buttons'
-import { StyledLandingContainer } from '../styles/containers/Containers'
+import { useUpdate } from '../../contexts/UpdateContext';
+import { Button } from '../buttons/Buttons';
+import { StyledLandingContainer } from '../styles/containers/Containers';
 
 const Cookie = () => {
-  const { setAcceptCookies } = useUpdate()
+  const { setAcceptCookies } = useUpdate();
 
   const acceptCookies = () => {
-    setAcceptCookies(true)
-  }
-  console.log("hwudhqud")
+    setAcceptCookies(true);
+  };
+
   return (
     <>
       <StyledLandingContainer>
@@ -18,7 +18,7 @@ const Cookie = () => {
         </Button.Outer>
       </StyledLandingContainer>
     </>
-  )
-}
+  );
+};
 
-export default Cookie
+export default Cookie;

@@ -1,16 +1,16 @@
-import { useContext, useState, createContext } from 'react'
+import { useContext, useState, createContext } from 'react';
 
-const UpdateContext = createContext()
+const UpdateContext = createContext();
 
-export const useUpdate = () => useContext(UpdateContext)
+export const useUpdate = () => useContext(UpdateContext);
 
 export const UpdateProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false)
-  const [currentView, setCurrentView] = useState(0)
-  const [previousView, setPreviousView] = useState(-1)
-  const [nextView, setNextView] = useState(1)
-  const [acceptCookies, setAcceptCookies] = useState(false)
-  const [readMore, setReadMore] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [currentView, setCurrentView] = useState(0);
+  const [previousView, setPreviousView] = useState(-1);
+  const [nextView, setNextView] = useState(1);
+  const [acceptCookies, setAcceptCookies] = useState(false);
+  const [readMore, setReadMore] = useState(false);
 
   const updateValues = {
     setLoading,
@@ -25,11 +25,9 @@ export const UpdateProvider = ({ children }) => {
     readMore,
     setAcceptCookies,
     acceptCookies,
-  }
+  };
 
   return (
-    <UpdateContext.Provider value={updateValues}>
-      {!loading && children}
-    </UpdateContext.Provider>
-  )
-}
+    <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
+  );
+};

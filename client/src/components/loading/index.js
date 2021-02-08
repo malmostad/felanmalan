@@ -1,3 +1,3 @@
-import { Loading } from './LoadingSpinner'
+import { Loading } from './LoadingSpinner';
 
-export { Loading }
+export { Loading };
