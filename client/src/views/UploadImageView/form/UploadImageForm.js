@@ -1,49 +1,48 @@
-import React, { useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 const UploadImageForm = () => {
-  const [image, setImage] = useState({ preview: '', raw: '' })
+  const [images, setImages] = useState([{ preview: '', raw: '', id: '' }])
+
+  useEffect(() => {
+    console.log(images)
+  }, [images])
 
   const handleChange = (e) => {
-    if (e.target.files.length) {
-      setImage({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0],
+    if (e.target.files.length === 1) {
+      setImages((prevImages) => {
+        ;[
+          ...prevImages,
+          { preview: URL.createObjectURL(e.target.files[0]), raw: e.target.files[0], id: uuidv4() },
+        ]
       })
+    } else {
+      const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file))
+      filesArray.forEach((file) => setImages((prevImages) => [...prevImages, { preview: file }]))
+      Array.from(e.target.files).map(
+        (file) => URL.revokeObjectURL(file) // avoid memory leak
+      )
     }
   }
 
   const handleUpload = async (e) => {
     e.preventDefault()
-    const formData = new FormData()
-    formData.append('image', image.raw)
-
-    await fetch('YOUR_URL', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      body: formData,
-    })
   }
 
   return (
     <div>
-      <label htmlFor="upload-button">
-        {image.preview ? (
-          <img src={image.preview} alt="dummy" width="300" height="300" />
-        ) : (
-          <>
-            <h5 className="text-center">Upload your photo</h5>
-          </>
-        )}
-      </label>
-      <input
-        type="file"
-        id="upload-button"
-        multiple
-        style={{ display: 'none' }}
-        onChange={handleChange}
-      />
+      {images.length >= 2 &&
+        images.map((image, index) => (
+          <div key={uuidv4()}>
+            <img
+              style={{ width: '100px', height: '100px' }}
+              key={index}
+              src={image.preview}
+              alt="uploaded"
+              id={image.id}
+            />
+          </div>
+        ))}
+      <input type="file" id="upload-button" multiple onChange={handleChange} />
       <br />
       <button onClick={handleUpload}>Upload</button>
     </div>
