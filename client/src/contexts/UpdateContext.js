@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, createContext } from 'react'
+import { useContext, useState, createContext } from 'react'
 
 const UpdateContext = createContext()
 
@@ -11,6 +11,7 @@ export const UpdateProvider = ({ children }) => {
   const [nextView, setNextView] = useState(1)
   const [acceptCookies, setAcceptCookies] = useState(false)
   const [readMore, setReadMore] = useState(false)
+  const [error, setError] = useState(false)
 
   const updateValues = {
     setLoading,
@@ -25,6 +26,8 @@ export const UpdateProvider = ({ children }) => {
     readMore,
     setAcceptCookies,
     acceptCookies,
+    error,
+    setError,
   }
 
   return (

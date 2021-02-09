@@ -1,7 +1,7 @@
 const UploadImageView = () => {
 
 return (
-    <h1>Upload</h1>
+      <h1>Upload</h1>
   )
 }
 
