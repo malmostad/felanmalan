@@ -24,7 +24,9 @@ export const ReportProvider = ({ children }) => {
   const [report, setReport] = useState(initialReportData)
   const [submit, setSubmit] = useState(false)
 
-  useEffect(() => {}, [report])
+  useEffect(() => {
+    console.log(report)
+  }, [report])
 
   const reportvalues = {
     report,

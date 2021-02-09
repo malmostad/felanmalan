@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { useReport } from '../../../contexts/ReportContext'
 const UploadImageForm = () => {
   const [images, setImages] = useState([{ preview: '', raw: '', id: '' }])
+  const { report, setReport } = useReport()
 
-  useEffect(() => {
-    console.log(images)
-  }, [images])
 
   const handleChange = (e) => {
     if (e.target.files.length === 1) {
@@ -24,8 +23,10 @@ const UploadImageForm = () => {
     }
   }
 
-  const handleUpload = async (e) => {
-    e.preventDefault()
+  const handleUpload = () => {
+    images.map((img) => {
+      console.log(report)
+    })
   }
 
   return (
