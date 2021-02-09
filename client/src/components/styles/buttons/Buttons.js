@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 export const StyledButton = styled.button`
   cursor: pointer;
   background-color: ${({ theme, bgGreen }) =>
-  bgGreen ? theme.colors.PrimaryGreen : 'transparent'};
+    bgGreen ? theme.colors.PrimaryGreen : 'transparent'};
   font-size: ${({ theme }) => theme.FontSizes.ButtonText};
   border: 2px solid white;
   border-radius: 2px;
@@ -14,5 +14,3 @@ export const StyledButton = styled.button`
   margin-bottom: 10px;
   color: ${({ theme }) => theme.colors.PrimaryWhite};
 `
-
-

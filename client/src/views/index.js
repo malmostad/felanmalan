@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import UploadImageView from './UploadImageView/UploadImageView'
 import MapView from './Map/MapView'
 import DescriptionView from './Description/DescriptionView'
@@ -12,10 +13,4 @@ export const formViews = [
   <FollowUpView />,
 ]
 
-export {
-  UploadImageView,
-  MapView,
-  DescriptionView,
-  ContactInfoView,
-  FollowUpView,
-}
+export { UploadImageView, MapView, DescriptionView, ContactInfoView, FollowUpView }

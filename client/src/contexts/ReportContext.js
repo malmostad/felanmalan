@@ -33,9 +33,5 @@ export const ReportProvider = ({ children }) => {
     setSubmit,
   }
 
-  return (
-    <ReportContext.Provider value={reportvalues}>
-      {children}
-    </ReportContext.Provider>
-  )
+  return <ReportContext.Provider value={reportvalues}>{children}</ReportContext.Provider>
 }

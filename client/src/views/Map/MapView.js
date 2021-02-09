@@ -1,4 +1,3 @@
-
 const MapView = () => {
   return (
     <>

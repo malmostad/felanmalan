@@ -31,8 +31,6 @@ export const UpdateProvider = ({ children }) => {
   }
 
   return (
-    <UpdateContext.Provider value={updateValues}>
-      {!loading && children}
-    </UpdateContext.Provider>
+    <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
   )
 }

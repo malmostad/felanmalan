@@ -1,7 +1,4 @@
-import {
-  StyledHeaderOuter,
-  StyledHeaderInner,
-} from './styles'
+import { StyledHeaderOuter, StyledHeaderInner } from './styles'
 import { StyledHeading } from '../styles/Typography/Typography'
 
 export const Header = ({ children, ...restProps }) => (

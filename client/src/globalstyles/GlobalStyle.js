@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import MalmoRubikRegularWoff2 from '../assets/fonts/MalmoRubrik/MalmoRubrik-Regular.woff2';
+import { createGlobalStyle } from 'styled-components'
+import MalmoRubikRegularWoff2 from '../assets/fonts/MalmoRubrik/MalmoRubrik-Regular.woff2'
 
 const GlobalStyle = createGlobalStyle`
 
@@ -27,6 +27,6 @@ html {
 }
 
 
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
