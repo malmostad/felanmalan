@@ -1,5 +1,4 @@
-import styled from 'styled-components/macro';
-
+import styled from 'styled-components/macro'
 
 export const ReadMoreContainer = styled.div`
   display: flex;
@@ -10,5 +9,4 @@ export const ReadMoreContainer = styled.div`
   width: 100%;
   background-color: green;
   color: white;
-
 `

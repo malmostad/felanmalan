@@ -1,7 +1,6 @@
-import {Header} from './index'
+import { Header } from './index'
 
 const HeaderSection = () => {
-
   return (
     <Header>
       <Header.Inner>

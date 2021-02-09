@@ -1,4 +1,3 @@
-
 import Navigation from '../navigation/Navigation'
 import { StyledFooterContainer } from '../styles/containers/Containers'
 

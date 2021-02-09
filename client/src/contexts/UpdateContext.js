@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, createContext } from 'react'
+import { useContext, useState, createContext } from 'react'
 
 const UpdateContext = createContext()
 
@@ -28,8 +28,6 @@ export const UpdateProvider = ({ children }) => {
   }
 
   return (
-    <UpdateContext.Provider value={updateValues}>
-      {!loading && children}
-    </UpdateContext.Provider>
+    <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
   )
 }

@@ -1,5 +1,3 @@
-
-
 const ContactInfoView = () => {
   return (
     <>
