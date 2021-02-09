@@ -11,4 +11,4 @@ export const Theme = {
     ContentText: '0.9rem',
     ButtonText: '1.1rem',
   },
-};
+}
