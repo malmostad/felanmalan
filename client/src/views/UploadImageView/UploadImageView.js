@@ -1,5 +1,11 @@
+import ImageUploadForm from './forms/ImageUploadForm'
+
 const UploadImageView = () => {
-  return <h1>Upload</h1>
+  return (
+    <>
+      <ImageUploadForm />
+    </>
+  )
 }
 
 export default UploadImageView
