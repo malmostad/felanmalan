@@ -1,7 +1,12 @@
 const DescriptionView = () => {
   return (
     <>
-      <h1>Description</h1>
+      <form>
+        <label>
+          Beskrivning
+          <textarea type="text" name="description" />
+        </label>
+      </form>
     </>
   )
 }
