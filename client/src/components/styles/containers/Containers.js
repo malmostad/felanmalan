@@ -45,7 +45,7 @@ export const StyledFooterContainer = styled.div`
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 300px;
+  height: 100px;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
 `

@@ -2,36 +2,27 @@ import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useReport } from '../../../contexts/ReportContext'
 const UploadImageForm = () => {
-  const [images, setImages] = useState([{ preview: '', raw: '', id: '' }])
+  const [images, setImages] = useState([{}])
+  const [loading, setLoading] = useState(true)
+  const [uploading, setUploading] = useState(false)
   const { report, setReport } = useReport()
 
-
   const handleChange = (e) => {
-    if (e.target.files.length === 1) {
-      setImages((prevImages) => {
-        ;[
-          ...prevImages,
-          { preview: URL.createObjectURL(e.target.files[0]), raw: e.target.files[0], id: uuidv4() },
-        ]
-      })
-    } else {
-      const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file))
-      filesArray.forEach((file) => setImages((prevImages) => [...prevImages, { preview: file }]))
-      Array.from(e.target.files).map(
-        (file) => URL.revokeObjectURL(file) // avoid memory leak
-      )
-    }
-  }
-
-  const handleUpload = () => {
-    images.map((img) => {
-      console.log(report)
-    })
+    setUploading(true)
+    setLoading(!loading)
+    const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file))
+    filesArray.forEach((file) => setImages((prevImages) => [...prevImages, { preview: file }]))
+    Array.from(e.target.files).map(
+      (file) => URL.revokeObjectURL(file) // avoid memory leak
+    )
+    setUploading(false)
   }
 
   return (
     <div>
-      {images.length >= 2 &&
+      {!images.length ? (
+        <h1>Lägg till bild på problemet</h1>
+      ) : (
         images.map((image, index) => (
           <div key={uuidv4()}>
             <img
@@ -42,10 +33,10 @@ const UploadImageForm = () => {
               id={image.id}
             />
           </div>
-        ))}
+        ))
+      )}
       <input type="file" id="upload-button" multiple onChange={handleChange} />
       <br />
-      <button onClick={handleUpload}>Upload</button>
     </div>
   )
 }
