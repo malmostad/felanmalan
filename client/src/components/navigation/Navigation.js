@@ -34,7 +34,9 @@ const Navigation = () => {
     }
   }
 
-  const handleSubmit = () => {}
+  const handleSubmit = () => {
+    window.location.reload()
+  }
 
   return (
     <Button.Outer>
@@ -43,7 +45,7 @@ const Navigation = () => {
           <Button
             bgGreen
             onClick={currentView + 1 === formViews.length ? handleSubmit : handleClickNext}>
-            {currentView + 1 === formViews.length ? 'submit' : 'next'}
+            {currentView + 1 === formViews.length ? 'Skapa Ny' : 'next'}
           </Button>
         )}
         {!disabledPrevious && (
