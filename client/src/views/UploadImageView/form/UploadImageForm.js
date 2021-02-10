@@ -6,6 +6,37 @@ import {
   StyledFlexCenter,
   StyledFlexCenterColumn,
 } from '../../../components/styles/containers/Containers'
+import styled from 'styled-components/macro'
+import { MdAddAPhoto } from 'react-icons/md'
+import { IoTrashOutline } from 'react-icons/io5'
+
+const StyledImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 220px;
+  margin: 10px;
+  object-fit: 'contain';
+`
+const StyledImageOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+`
+const StyledImageIcon = styled.div`
+  color: red;
+  font-size: 24px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+`
 
 const UploadImageForm = () => {
   const [images, setImages] = useState([])
@@ -39,33 +70,39 @@ const UploadImageForm = () => {
         ref={fileInput}
         style={{ display: 'none' }}
       />
-      <StyledFlexCenterColumn>
-        <StyledFlexCenterColumn>
+      <StyledFlexCenter>
+        <StyledFlexCenter>
           {!images.length ? (
             <h1>Lägg till bild på problemet</h1>
           ) : (
             images.map((image, index) => (
               <StyledFlexCenterColumn key={uuidv4()}>
-                <button>X</button>
-                <div key={uuidv4()} style={{ padding: '3px', objectFit: 'contain' }}>
+                <StyledImageContainer>
                   <img
-                    style={{ maxWidth: '400px', maxHeight: '400px' }}
+                    style={{ maxWidth: '220px', maxHeight: '220px' }}
                     key={index}
                     src={image.preview}
                     alt="alt"
                     id={image.id}
                   />
-                </div>
+                  <StyledImageOverlay>
+                    <StyledImageIcon>
+                      <IoTrashOutline />
+                    </StyledImageIcon>
+                  </StyledImageOverlay>
+                </StyledImageContainer>
               </StyledFlexCenterColumn>
             ))
           )}
-        </StyledFlexCenterColumn>
+        </StyledFlexCenter>
         <Button.Outer>
-          <Button bgGreen onClick={() => fileInput.current.click()}>
-            Choose File
-          </Button>
+          <Button.Inner>
+            <Button bgGreen onClick={() => fileInput.current.click()}>
+              <MdAddAPhoto size="1.6rem" style={{ marginTop: '5px', color: 'white' }} />
+            </Button>
+          </Button.Inner>
         </Button.Outer>
-      </StyledFlexCenterColumn>
+      </StyledFlexCenter>
       <br />
     </StyledFlexCenterColumn>
   )
