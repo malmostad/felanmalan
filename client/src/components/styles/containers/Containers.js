@@ -16,7 +16,7 @@ export const StyledOuter = styled.div`
   display: flex;
   justify-content: space-between;
 `
-//button containers
+// button containers
 export const StyledButtonOuter = styled.div`
   ${flexCenterColumn}
   height: 100px;
@@ -27,7 +27,7 @@ export const StyledButtonInner = styled.div`
   width: 100%;
   height: 100%;
 `
-//loading container
+// loading container
 
 // ??
 export const StyledLandingContainer = styled(StyledOuter)`
