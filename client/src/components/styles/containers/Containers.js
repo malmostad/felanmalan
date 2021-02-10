@@ -1,6 +1,10 @@
 import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
+export const StyledFlexCenter = styled.div`
+  ${flexCenter}
+`
+
 export const StyledFlexCenterColumn = styled.div`
   ${flexCenterColumn}
 `
