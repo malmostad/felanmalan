@@ -50,7 +50,7 @@ const Navigation = () => {
         )}
         {!disabledPrevious && (
           <Button bgGreen onClick={handleClickPrevious}>
-            Previous
+            {currentView + 1 === formViews.length ? setDisabledPrevious(true) : 'previous'}
           </Button>
         )}
       </Button.Inner>
