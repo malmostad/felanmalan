@@ -1,4 +1,5 @@
-import { useContext, useState, createContext } from 'react'
+import Error from '../components/errors/Error'
+import { useContext, useState, createContext, useEffect } from 'react'
 
 const UpdateContext = createContext()
 
@@ -12,6 +13,8 @@ export const UpdateProvider = ({ children }) => {
   const [acceptCookies, setAcceptCookies] = useState(false)
   const [readMore, setReadMore] = useState(false)
   const [error, setError] = useState(false)
+  const [errorStatusCode, setErrorStatusCode] = useState(null)
+  const [errorMessenger, setErrorMessenger] = useState(null)
 
   const updateValues = {
     setLoading,
@@ -28,7 +31,18 @@ export const UpdateProvider = ({ children }) => {
     acceptCookies,
     error,
     setError,
+    errorStatusCode,
+    setErrorStatusCode,
+    errorMessenger,
+    setErrorMessenger,
   }
+
+  //check if error Change or not
+  useEffect(() => {
+    if (error) {
+      setErrorMessenger(<Error />)
+    }
+  }, [error])
 
   return (
     <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
