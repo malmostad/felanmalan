@@ -25,6 +25,7 @@ const DescriptionView = () => {
           <textarea
             type="text"
             name="description"
+            value={report.info.description}
             placeholder="Beskriv problemet du vill felanmäla"
             onChange={handelDescriptionChange}
           />
