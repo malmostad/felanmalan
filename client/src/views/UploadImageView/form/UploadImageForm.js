@@ -45,38 +45,51 @@ const StyledFlexContainer = styled(StyledFlexCenterColumn)`
 `
 
 const UploadImageForm = () => {
-  const [files, setFiles] = useState([])
+  const [filesToBeUploaded, setFilesToBeUploaded] = useState([])
   const [previewImages, setPreviewImages] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [uploading, setUploading] = useState(false)
-  const { report, setReport } = useReport()
+  // const [loading, setLoading] = useState(true)
+  const { setReport } = useReport()
 
   const fileInput = useRef(null)
   const imageRef = useRef(null)
 
-  const handleChange = (e) => {
-    setUploading(true)
-    setLoading(!loading)
-    const fileArray = Array.from(e.target.files)
+  const handleUploadImages = (e) => {
+    const stagedImagesArray = Array.from(e.target.files)
+    handleSetPreviewImages(stagedImagesArray)
+    handleSetFilesToBeUploaded(stagedImagesArray)
+    handleSetImagesInReport(filesToBeUploaded)
+    handleRevokeURL(stagedImagesArray)
+  }
+
+  const handleRevokeURL = (fileArray) => {
+    fileArray.map((file) => {
+      URL.revokeObjectURL(file)
+    })
+  }
+
+  const handleSetImagesInReport = (fileArray) => {
+    setReport((prevReport) => ({ ...prevReport, images: fileArray }))
+  }
+
+  const handleSetPreviewImages = (fileArray) => {
     fileArray.map((file) => {
       setPreviewImages((previousPreviewURLs) => [
         ...previousPreviewURLs,
-        { preview: URL.createObjectURL(file), id: uuidv4() },
+        { preview: URL.createObjectURL(file), id: uuidv4(), raw: file },
       ])
-      setFiles((previousImages) => [...previousImages, { raw: file, id: uuidv4() }])
-      setReport((prevReport) => ({ ...prevReport, images: files }))
     })
-
-    fileArray.map(
-      (file) => URL.revokeObjectURL(file) // avoid memory leak
-    )
-    setUploading(false)
   }
 
-  const handleRemoveImage = (e, image) => {
+  const handleSetFilesToBeUploaded = (fileArray) => {
+    fileArray.map((file) => {
+      setFilesToBeUploaded((previousImages) => [...previousImages, { raw: file, id: uuidv4() }])
+    })
+  }
+
+  const handleRemoveImage = (image) => {
     setPreviewImages(previewImages.filter((item) => item.id !== image.id))
-    setFiles(files.filter((item) => item.id !== image.id))
-    setReport((prevReport) => ({ ...prevReport, images: files }))
+    setFilesToBeUploaded(filesToBeUploaded.filter((item) => item.raw !== image.raw))
+    setReport((prevReport) => ({ ...prevReport, images: filesToBeUploaded }))
   }
 
   return (
@@ -85,14 +98,14 @@ const UploadImageForm = () => {
         type="file"
         id="upload-button"
         multiple
-        onChange={handleChange}
+        onChange={handleUploadImages}
         ref={fileInput}
         style={{ display: 'none' }}
       />
       <StyledFlexCenter>
         <StyledFlexCenter>
           {!previewImages.length ? (
-            <h1>Lägg till bild på problemet</h1>
+            <h2>Lägg till bild </h2>
           ) : (
             previewImages.map((image, index) => (
               <StyledFlexCenter key={uuidv4()}>
@@ -106,7 +119,7 @@ const UploadImageForm = () => {
                     id={image.id}
                   />
                   <StyledImageOverlay>
-                    <StyledImageIcon onClick={(e) => handleRemoveImage(e, image)}>
+                    <StyledImageIcon onClick={() => handleRemoveImage(image)}>
                       <IoTrashOutline />
                     </StyledImageIcon>
                   </StyledImageOverlay>
@@ -123,7 +136,6 @@ const UploadImageForm = () => {
           </Button.Inner>
         </Button.Outer>
       </StyledFlexCenter>
-      <br />
     </StyledFlexContainer>
   )
 }
