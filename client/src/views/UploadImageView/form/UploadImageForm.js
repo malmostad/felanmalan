@@ -1,14 +1,22 @@
-import React, { useEffect, useState, useRef } from 'react'
+//react
+import { useEffect, useState, useRef } from 'react'
+
+//libs
 import { v4 as uuidv4 } from 'uuid'
+import styled from 'styled-components/macro'
+import { MdAddAPhoto } from 'react-icons/md'
+import { IoTrashOutline } from 'react-icons/io5'
+
+//contexts
 import { useReport } from '../../../contexts/ReportContext'
+import { useUpdate } from '../../../contexts/UpdateContext'
+
+//components
 import { Button } from '../../../components/buttons/Buttons'
 import {
   StyledFlexCenter,
   StyledFlexCenterColumn,
 } from '../../../components/styles/containers/Containers'
-import styled from 'styled-components/macro'
-import { MdAddAPhoto } from 'react-icons/md'
-import { IoTrashOutline } from 'react-icons/io5'
 
 //styles (to be moved and changed)
 const StyledImageContainer = styled.div`
@@ -48,6 +56,7 @@ const StyledFlexContainer = styled(StyledFlexCenterColumn)`
 const UploadImageForm = () => {
   //global state
   const { setReport } = useReport()
+  const { setCurrentViewHeading } = useUpdate()
 
   //local states
   const [filesToBeUploaded, setFilesToBeUploaded] = useState([])
@@ -56,6 +65,9 @@ const UploadImageForm = () => {
   //refs
   const fileInput = useRef(null)
   const imageRef = useRef(null)
+
+  //effects
+  useEffect(() => {}, [])
 
   //functions
   const handleUploadImages = (e) => {
