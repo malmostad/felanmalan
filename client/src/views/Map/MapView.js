@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useReport } from '../../contexts/ReportContext'
 import BgMapView from './map-view.png'
 import styled from 'styled-components/macro'
@@ -11,7 +10,7 @@ const MapContainer = styled.div`
   width: 100%;
 `
 const MapView = () => {
-  const { report, setReport } = useReport()
+  const { setReport } = useReport()
 
   const coordinates = {
     lat: '55.59705552372533',
@@ -21,10 +20,6 @@ const MapView = () => {
   const handleLongLat = () => {
     setReport((prevReport) => ({ ...prevReport, location: coordinates }))
   }
-
-  useEffect(() => {
-    console.log(report)
-  }, [report])
 
   return (
     <MapContainer>
