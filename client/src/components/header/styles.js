@@ -4,7 +4,7 @@ export const StyledHeaderOuter = styled.div`
   width: 100%;
   background-color: #037540;
   height: auto;
-  min-height: 270px;
+  min-height: 180px;
   display: flex;
 `
 

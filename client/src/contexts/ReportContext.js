@@ -13,6 +13,7 @@ const initialReportData = {
   info: {
     description: '',
     contact: {
+      name: '',
       email: '',
       phone: '',
     },
