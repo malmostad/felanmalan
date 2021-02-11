@@ -62,7 +62,6 @@ const UploadImageForm = () => {
 
   //refs
   const fileInput = useRef(null)
-  const imageRef = useRef(null)
 
   //functions
   const handleUploadImages = (e) => {
@@ -125,7 +124,6 @@ const UploadImageForm = () => {
                 <StyledImageContainer>
                   <img
                     style={{ maxWidth: '220px', maxHeight: '220px' }}
-                    ref={imageRef}
                     key={index}
                     src={image.preview}
                     alt="alt"
