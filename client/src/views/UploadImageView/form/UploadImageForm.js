@@ -34,7 +34,6 @@ const StyledImageOverlay = styled.div`
   right: 0;
   height: 100%;
   width: 100%;
-  opacity: 1;
 `
 const StyledImageIcon = styled.div`
   color: red;
@@ -42,6 +41,7 @@ const StyledImageIcon = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
+
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
