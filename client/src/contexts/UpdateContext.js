@@ -1,4 +1,3 @@
-import Error from '../components/errors/Error'
 import { useContext, useState, createContext, useEffect } from 'react'
 
 const UpdateContext = createContext()
@@ -37,12 +36,19 @@ export const UpdateProvider = ({ children }) => {
     setErrorMessenger,
   }
 
-  //check if error Change or not
   useEffect(() => {
-    if (error) {
-      setErrorMessenger(<Error />)
+    switch (true) {
+      case errorStatusCode < 499:
+        setErrorMessenger('a client error, pleas try agin')
+        break
+      case errorStatusCode < 599:
+        setErrorMessenger('something went wrong on our side, sorry but try agin')
+        break
+      default:
+        setErrorMessenger('unexpected error')
+        break
     }
-  }, [error])
+  }, [errorStatusCode])
 
   return (
     <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>

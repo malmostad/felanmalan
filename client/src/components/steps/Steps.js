@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useUpdate } from '../../contexts/UpdateContext'
 import { formViews } from '../../views/index'
-import { Button } from '../buttons/Buttons'
 import Cookie from '../cookie/Cookie'
 import Footer from '../footer/Footer'
 import HeaderSection from '../header/HeaderSection'
+import Error from '../errors/Error'
 
 const Steps = () => {
-  const { currentView, acceptCookies, error, errorMessenger } = useUpdate()
+  const { currentView, acceptCookies, error, errorMessenger, errorStatusCode } = useUpdate()
   const [current, setCurrent] = useState()
 
   useEffect(() => {
@@ -23,7 +23,11 @@ const Steps = () => {
       {acceptCookies ? (
         <>
           <HeaderSection />
-          {error ? <>{errorMessenger}</> : <>{current}</>}
+          {error ? (
+            <Error errorMessage={errorMessenger} statusCode={errorStatusCode} />
+          ) : (
+            <>{current}</>
+          )}
           <Footer />
         </>
       ) : (
