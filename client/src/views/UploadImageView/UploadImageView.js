@@ -11,11 +11,7 @@ const StyledPageWrapper = styled.div`
 `
 
 const UploadImageView = () => {
-  return (
-    <StyledPageWrapper>
-      <UploadImageForm />
-    </StyledPageWrapper>
-  )
+  return <UploadImageForm />
 }
 
 export default UploadImageView

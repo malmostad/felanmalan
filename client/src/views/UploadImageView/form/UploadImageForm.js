@@ -36,32 +36,51 @@ const StyledImageIcon = styled.div`
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
+  cursor: pointer;
+`
+const StyledFlexContainer = styled(StyledFlexCenterColumn)`
+  max-width: 100vw !important;
+  min-height: 60vh;
+  flex-wrap: wrap;
 `
 
 const UploadImageForm = () => {
-  const [images, setImages] = useState([])
-  const [previewImage, setPreviewImage] = useState(undefined)
+  const [files, setFiles] = useState([])
+  const [previewImages, setPreviewImages] = useState([])
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
   const { report, setReport } = useReport()
 
   const fileInput = useRef(null)
+  const imageRef = useRef(null)
 
   const handleChange = (e) => {
     setUploading(true)
     setLoading(!loading)
     const fileArray = Array.from(e.target.files)
     fileArray.map((file) => {
-      setImages((prevImages) => [...prevImages, { preview: URL.createObjectURL(file), raw: file }])
+      setPreviewImages((previousPreviewURLs) => [
+        ...previousPreviewURLs,
+        { preview: URL.createObjectURL(file), id: uuidv4() },
+      ])
+      setFiles((previousImages) => [...previousImages, { raw: file, id: uuidv4() }])
+      setReport((prevReport) => ({ ...prevReport, images: files }))
     })
+
     fileArray.map(
       (file) => URL.revokeObjectURL(file) // avoid memory leak
     )
     setUploading(false)
   }
 
+  const handleRemoveImage = (e, image) => {
+    setPreviewImages(previewImages.filter((item) => item.id !== image.id))
+    setFiles(files.filter((item) => item.id !== image.id))
+    setReport((prevReport) => ({ ...prevReport, images: files }))
+  }
+
   return (
-    <StyledFlexCenterColumn>
+    <StyledFlexContainer>
       <input
         type="file"
         id="upload-button"
@@ -72,26 +91,27 @@ const UploadImageForm = () => {
       />
       <StyledFlexCenter>
         <StyledFlexCenter>
-          {!images.length ? (
+          {!previewImages.length ? (
             <h1>Lägg till bild på problemet</h1>
           ) : (
-            images.map((image, index) => (
-              <StyledFlexCenterColumn key={uuidv4()}>
+            previewImages.map((image, index) => (
+              <StyledFlexCenter key={uuidv4()}>
                 <StyledImageContainer>
                   <img
                     style={{ maxWidth: '220px', maxHeight: '220px' }}
+                    ref={imageRef}
                     key={index}
                     src={image.preview}
                     alt="alt"
                     id={image.id}
                   />
                   <StyledImageOverlay>
-                    <StyledImageIcon>
+                    <StyledImageIcon onClick={(e) => handleRemoveImage(e, image)}>
                       <IoTrashOutline />
                     </StyledImageIcon>
                   </StyledImageOverlay>
                 </StyledImageContainer>
-              </StyledFlexCenterColumn>
+              </StyledFlexCenter>
             ))
           )}
         </StyledFlexCenter>
@@ -104,7 +124,7 @@ const UploadImageForm = () => {
         </Button.Outer>
       </StyledFlexCenter>
       <br />
-    </StyledFlexCenterColumn>
+    </StyledFlexContainer>
   )
 }
 

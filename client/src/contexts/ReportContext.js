@@ -26,6 +26,7 @@ export const ReportProvider = ({ children }) => {
 
   useEffect(() => {
     console.log(report)
+    console.log('images in report', report.images)
   }, [report])
 
   const reportvalues = {
