@@ -4,8 +4,8 @@ import { useEffect, useState, useRef } from 'react'
 //libs
 import { v4 as uuidv4 } from 'uuid'
 import styled from 'styled-components/macro'
-import { MdAddAPhoto } from 'react-icons/md'
-import { IoTrashOutline } from 'react-icons/io5'
+import { MdAddAPhoto as AddImageIcon} from 'react-icons/md'
+import { IoTrashOutline as RemoveImageIcon } from 'react-icons/io5'
 
 //contexts
 import { useReport } from '../../../contexts/ReportContext'
@@ -15,15 +15,19 @@ import { Button } from '../../../components/buttons/Buttons'
 import {
   StyledFlexCenter,
   StyledFlexCenterColumn,
+  StyledGrid,
 } from '../../../components/styles/containers/Containers'
 
 //styles (to be moved and changed)
 const StyledImageContainer = styled.div`
   position: relative;
-  width: 100%;
-  max-width: 220px;
-  margin: 10px;
-  object-fit: 'contain';
+  text-align: center;
+  width: 220px;
+  height: 220px;
+  img {
+    width: 220px;
+    height: 220px;
+  }
 `
 const StyledImageOverlay = styled.div`
   position: absolute;
@@ -31,25 +35,21 @@ const StyledImageOverlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100%;
-  width: 100%;
+  height: inherit;
+  width: inherit;
 `
 const StyledImageIcon = styled.div`
   color: red;
   font-size: 24px;
   position: absolute;
   bottom: 0;
-  right: 0;
-
+  right: 10%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  text-align: center;
   cursor: pointer;
 `
-const StyledFlexContainer = styled(StyledFlexCenterColumn)`
-  max-width: 100vw !important;
+const StyledWrapper = styled(StyledFlexCenter)`
   min-height: 60vh;
-  flex-wrap: wrap;
 `
 
 const UploadImageForm = () => {
@@ -104,50 +104,43 @@ const UploadImageForm = () => {
   }
 
   return (
-    <StyledFlexContainer>
-      <input
-        type="file"
-        id="upload-button"
-        multiple
-        onChange={handleUploadImages}
-        ref={fileInput}
-        style={{ display: 'none' }}
-        accept="image/*"
-      />
-      <StyledFlexCenter>
+    <StyledWrapper>
+      <StyledFlexCenterColumn>
+        <input
+          type="file"
+          id="upload-button"
+          multiple
+          onChange={handleUploadImages}
+          ref={fileInput}
+          style={{ display: 'none' }}
+          accept="image/*"
+        />
+        {!previewImages.length && (
+          <h2 style={{ paddingRight: '1rem', textAlign: 'center' }}>Lägg till bild </h2>
+        )}
+        <StyledGrid>
+          {previewImages.map((image, index) => (
+            <StyledImageContainer key={uuidv4()}>
+              <img key={index} src={image.preview} alt="alt" id={image.id} />
+              <StyledImageOverlay>
+                <StyledImageIcon onClick={() => handleRemoveImage(image)}>
+                  <RemoveImageIcon />
+                </StyledImageIcon>
+              </StyledImageOverlay>
+            </StyledImageContainer>
+          ))}
+        </StyledGrid>
         <StyledFlexCenter>
-          {!previewImages.length ? (
-            <h2 style={{ paddingRight: '1rem' }}>Lägg till bild </h2>
-          ) : (
-            previewImages.map((image, index) => (
-              <StyledFlexCenter key={uuidv4()}>
-                <StyledImageContainer>
-                  <img
-                    style={{ maxWidth: '220px', maxHeight: '220px' }}
-                    key={index}
-                    src={image.preview}
-                    alt="alt"
-                    id={image.id}
-                  />
-                  <StyledImageOverlay>
-                    <StyledImageIcon onClick={() => handleRemoveImage(image)}>
-                      <IoTrashOutline />
-                    </StyledImageIcon>
-                  </StyledImageOverlay>
-                </StyledImageContainer>
-              </StyledFlexCenter>
-            ))
-          )}
+          <Button.Outer>
+            <Button.Inner>
+              <Button bgGreen onClick={() => fileInput.current.click()}>
+                <AddImageIcon size="1.6rem" style={{ marginTop: '5px', color: 'white' }} />
+              </Button>
+            </Button.Inner>
+          </Button.Outer>
         </StyledFlexCenter>
-        <Button.Outer>
-          <Button.Inner>
-            <Button bgGreen onClick={() => fileInput.current.click()}>
-              <MdAddAPhoto size="1.6rem" style={{ marginTop: '5px', color: 'white' }} />
-            </Button>
-          </Button.Inner>
-        </Button.Outer>
-      </StyledFlexCenter>
-    </StyledFlexContainer>
+      </StyledFlexCenterColumn>
+    </StyledWrapper>
   )
 }
 
