@@ -9,7 +9,6 @@ import { IoTrashOutline } from 'react-icons/io5'
 
 //contexts
 import { useReport } from '../../../contexts/ReportContext'
-import { useUpdate } from '../../../contexts/UpdateContext'
 
 //components
 import { Button } from '../../../components/buttons/Buttons'
@@ -56,7 +55,6 @@ const StyledFlexContainer = styled(StyledFlexCenterColumn)`
 const UploadImageForm = () => {
   //global state
   const { setReport } = useReport()
-  const { setCurrentViewHeading } = useUpdate()
 
   //local states
   const [filesToBeUploaded, setFilesToBeUploaded] = useState([])
@@ -65,9 +63,6 @@ const UploadImageForm = () => {
   //refs
   const fileInput = useRef(null)
   const imageRef = useRef(null)
-
-  //effects
-  useEffect(() => {}, [])
 
   //functions
   const handleUploadImages = (e) => {

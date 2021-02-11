@@ -1,16 +1,14 @@
-import styled from 'styled-components/macro'
 import UploadImageForm from './form/UploadImageForm'
-
-const StyledPageWrapper = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`
+import { useUpdate } from '../../contexts/UpdateContext'
+import { useEffect } from 'react'
 
 const UploadImageView = () => {
+  const { setCurrentViewHeading } = useUpdate()
+
+  useEffect(() => {
+    setCurrentViewHeading('Lägg till bild på problemet')
+  }, [])
+
   return <UploadImageForm />
 }
 
