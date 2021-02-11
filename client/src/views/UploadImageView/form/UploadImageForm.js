@@ -10,6 +10,7 @@ import styled from 'styled-components/macro'
 import { MdAddAPhoto } from 'react-icons/md'
 import { IoTrashOutline } from 'react-icons/io5'
 
+//styles (to be moved and changed)
 const StyledImageContainer = styled.div`
   position: relative;
   width: 100%;
@@ -45,30 +46,24 @@ const StyledFlexContainer = styled(StyledFlexCenterColumn)`
 `
 
 const UploadImageForm = () => {
-  const [filesToBeUploaded, setFilesToBeUploaded] = useState([])
-  const [previewImages, setPreviewImages] = useState([])
-  // const [loading, setLoading] = useState(true)
+  //global state
   const { setReport } = useReport()
 
+  //local states
+  const [filesToBeUploaded, setFilesToBeUploaded] = useState([])
+  const [previewImages, setPreviewImages] = useState([])
+
+  //refs
   const fileInput = useRef(null)
   const imageRef = useRef(null)
 
+  //functions
   const handleUploadImages = (e) => {
     const stagedImagesArray = Array.from(e.target.files)
     handleSetPreviewImages(stagedImagesArray)
     handleSetFilesToBeUploaded(stagedImagesArray)
     handleSetImagesInReport(filesToBeUploaded)
     handleRevokeURL(stagedImagesArray)
-  }
-
-  const handleRevokeURL = (fileArray) => {
-    fileArray.map((file) => {
-      URL.revokeObjectURL(file)
-    })
-  }
-
-  const handleSetImagesInReport = (fileArray) => {
-    setReport((prevReport) => ({ ...prevReport, images: fileArray }))
   }
 
   const handleSetPreviewImages = (fileArray) => {
@@ -83,6 +78,16 @@ const UploadImageForm = () => {
   const handleSetFilesToBeUploaded = (fileArray) => {
     fileArray.map((file) => {
       setFilesToBeUploaded((previousImages) => [...previousImages, { raw: file, id: uuidv4() }])
+    })
+  }
+
+  const handleSetImagesInReport = (fileArray) => {
+    setReport((prevReport) => ({ ...prevReport, images: fileArray }))
+  }
+
+  const handleRevokeURL = (fileArray) => {
+    fileArray.map((file) => {
+      URL.revokeObjectURL(file)
     })
   }
 
@@ -101,6 +106,7 @@ const UploadImageForm = () => {
         onChange={handleUploadImages}
         ref={fileInput}
         style={{ display: 'none' }}
+        accept="image/*"
       />
       <StyledFlexCenter>
         <StyledFlexCenter>

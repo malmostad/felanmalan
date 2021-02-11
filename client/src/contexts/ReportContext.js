@@ -24,10 +24,7 @@ export const ReportProvider = ({ children }) => {
   const [report, setReport] = useState(initialReportData)
   const [submit, setSubmit] = useState(false)
 
-  useEffect(() => {
-    console.log(report)
-    console.log('images in report', report.images)
-  }, [report])
+  useEffect(() => {}, [report])
 
   const reportvalues = {
     report,
