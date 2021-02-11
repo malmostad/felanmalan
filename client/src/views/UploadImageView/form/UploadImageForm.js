@@ -117,7 +117,7 @@ const UploadImageForm = () => {
       <StyledFlexCenter>
         <StyledFlexCenter>
           {!previewImages.length ? (
-            <h2>Lägg till bild </h2>
+            <h2 style={{ paddingRight: '1rem' }}>Lägg till bild </h2>
           ) : (
             previewImages.map((image, index) => (
               <StyledFlexCenter key={uuidv4()}>
