@@ -6,7 +6,7 @@ const MapContainer = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 200px;
+  height: 500px;
   width: 100%;
 `
 const MapView = () => {
