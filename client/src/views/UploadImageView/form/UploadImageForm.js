@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 //libs
 import { v4 as uuidv4 } from 'uuid'
 import styled from 'styled-components/macro'
-import { MdAddAPhoto as AddImageIcon} from 'react-icons/md'
+import { MdAddAPhoto as AddImageIcon } from 'react-icons/md'
 import { IoTrashOutline as RemoveImageIcon } from 'react-icons/io5'
 
 //contexts
