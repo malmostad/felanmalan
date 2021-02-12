@@ -3,7 +3,7 @@ import { useReport } from '../../contexts/ReportContext'
 import { useUpdate } from '../../contexts/UpdateContext'
 
 const DescriptionView = () => {
-  const { report, setReport } = useReport()
+  const { report, setReport, setDescription } = useReport()
   const { setDisabledNext } = useUpdate()
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const DescriptionView = () => {
   }, [report])
 
   const handelDescriptionChange = (e) => {
-    setReport((prevReport) => ({ ...prevReport, info: { description: e.target.value } }))
+    setDescription(e.target.value)
   }
   return (
     <>

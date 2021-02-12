@@ -10,7 +10,7 @@ const MapContainer = styled.div`
   width: 100%;
 `
 const MapView = () => {
-  const { setReport } = useReport()
+  const { setReport, setLocation } = useReport()
 
   const coordinates = {
     lat: '55.59705552372533',
@@ -18,7 +18,7 @@ const MapView = () => {
   }
 
   const handleLongLat = () => {
-    setReport((prevReport) => ({ ...prevReport, location: coordinates }))
+    setLocation(coordinates)
   }
 
   return (
