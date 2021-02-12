@@ -15,16 +15,7 @@ const ContactInfoView = () => {
     const test = regex.test(report.email)
     console.log(test)
   }
-  /*
-  const handleInput = (e) => {
-    const { name, email } = e.target.value
-    setReport((report) => ({
-      ...report,
-      info: { contact: { [e.target.name]: { name, email } } },
-    }))
-    //  setReport((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-  */
+
   const handleInput = (e) => {
     const value = e.target.value
     setContact((prev) => ({
@@ -32,15 +23,13 @@ const ContactInfoView = () => {
       [e.target.name]: value,
     }))
   }
-  //contact: { [e.target.name]: name },
 
   useEffect(() => {
-    console.log(report.info.contact.email.length)
-    if (report.info.contact.email.length) {
+    console.log(report.info.contact.email)
+    if (report.info.contact.email) {
       setDisabledNext(false)
       return
-    }
-    setDisabledNext(true)
+    } else setDisabledNext(true)
   }, [report])
 
   return (
@@ -61,12 +50,25 @@ const ContactInfoView = () => {
           </div>
           <div>
             <label htmlFor>
-              E-post eller telefonnummer
+              E-post
               <InputFormSecond
                 placeholder="Skriv din e-postadress eller ditt telefonnumer"
                 type="email"
                 name="email"
                 value={report.info.contact.email}
+                onChange={handleInput}
+              />
+            </label>
+          </div>
+
+          <div>
+            <label htmlFor>
+              Telefonnummer
+              <InputFormSecond
+                placeholder="Skriv ditt telefonnumer"
+                type="phone"
+                name="phone"
+                value={report.info.contact.phone}
                 onChange={handleInput}
               />
             </label>
