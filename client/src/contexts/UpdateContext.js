@@ -39,10 +39,10 @@ export const UpdateProvider = ({ children }) => {
   useEffect(() => {
     switch (true) {
       case errorStatusCode < 499:
-        setErrorMessenger('a client error, pleas try agin')
+        setErrorMessenger(`${errorStatusCode} a client error, pleas try agin`)
         break
       case errorStatusCode < 599:
-        setErrorMessenger('something went wrong on our side, sorry but try agin')
+        setErrorMessenger(`${errorStatusCode} something went wrong on our side, sorry but try agin`)
         break
       default:
         setErrorMessenger('unexpected error')

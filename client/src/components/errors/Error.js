@@ -1,10 +1,8 @@
-const Error = ({ errorMessage, statusCode }) => {
+const Error = ({ errorMessage }) => {
   return (
     <div>
       <h1>Oops!</h1>
-      <p>
-        {statusCode} {errorMessage}
-      </p>
+      <p>{errorMessage}</p>
     </div>
   )
 }
