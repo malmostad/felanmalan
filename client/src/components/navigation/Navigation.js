@@ -5,8 +5,14 @@ import { Button } from '../buttons/Buttons'
 
 const Navigation = () => {
   const [disabledPrevious, setDisabledPrevious] = useState(true)
-  const [disabledNext, setDisabledNext] = useState(false)
-  const { setNextView, setCurrentView, setPreviousView, currentView } = useUpdate()
+  const {
+    setNextView,
+    setCurrentView,
+    setPreviousView,
+    currentView,
+    disabledNext,
+    setDisabledNext,
+  } = useUpdate()
 
   useEffect(() => {}, [currentView, disabledNext, disabledPrevious])
 
