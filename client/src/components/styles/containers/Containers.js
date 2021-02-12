@@ -53,3 +53,18 @@ export const StyledFooterContainer = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
 `
+export const StyledGrid = styled.div`
+  max-width: 100vw;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-start: end;
+  grid-gap: 10px;
+  overflow-x: hidden;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`
