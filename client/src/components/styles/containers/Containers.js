@@ -53,6 +53,7 @@ export const StyledFooterContainer = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
 `
+
 export const StyledGrid = styled.div`
   max-width: 100vw;
   height: auto;
