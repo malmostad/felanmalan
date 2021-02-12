@@ -1,4 +1,4 @@
-import { useContext, useState, createContext } from 'react'
+import { useContext, useState, createContext, useEffect } from 'react'
 
 const UpdateContext = createContext()
 
@@ -11,6 +11,9 @@ export const UpdateProvider = ({ children }) => {
   const [nextView, setNextView] = useState(1)
   const [acceptCookies, setAcceptCookies] = useState(false)
   const [readMore, setReadMore] = useState(false)
+  const [error, setError] = useState(false)
+  const [errorStatusCode, setErrorStatusCode] = useState(null)
+  const [errorMessenger, setErrorMessenger] = useState(null)
   const [disabledNext, setDisabledNext] = useState(false)
   const [currentViewHeading, setCurrentViewHeading] = useState('')
 
@@ -27,11 +30,31 @@ export const UpdateProvider = ({ children }) => {
     readMore,
     setAcceptCookies,
     acceptCookies,
+    error,
+    setError,
+    errorStatusCode,
+    setErrorStatusCode,
+    errorMessenger,
+    setErrorMessenger,
     disabledNext,
     setDisabledNext,
     setCurrentViewHeading,
     currentViewHeading,
   }
+
+  useEffect(() => {
+    switch (true) {
+      case errorStatusCode < 499:
+        setErrorMessenger(`${errorStatusCode} a client error, pleas try agin`)
+        break
+      case errorStatusCode < 599:
+        setErrorMessenger(`${errorStatusCode} something went wrong on our side, sorry but try agin`)
+        break
+      default:
+        setErrorMessenger('unexpected error')
+        break
+    }
+  }, [errorStatusCode])
 
   return (
     <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>

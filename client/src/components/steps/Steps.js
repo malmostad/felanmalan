@@ -4,9 +4,10 @@ import { formViews } from '../../views/index'
 import Cookie from '../cookie/Cookie'
 import Footer from '../footer/Footer'
 import HeaderSection from '../header/HeaderSection'
+import Error from '../errors/Error'
 
 const Steps = () => {
-  const { currentView, acceptCookies } = useUpdate()
+  const { currentView, acceptCookies, error, errorMessenger, errorStatusCode } = useUpdate()
   const [current, setCurrent] = useState()
 
   useEffect(() => {
@@ -22,7 +23,11 @@ const Steps = () => {
       {acceptCookies ? (
         <>
           <HeaderSection />
-          {current}
+          {error ? (
+            <Error errorMessage={errorMessenger} statusCode={errorStatusCode} />
+          ) : (
+            <>{current}</>
+          )}
           <Footer />
         </>
       ) : (
