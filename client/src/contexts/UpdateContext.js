@@ -11,7 +11,11 @@ export const UpdateProvider = ({ children }) => {
   const [nextView, setNextView] = useState(1)
   const [acceptCookies, setAcceptCookies] = useState(false)
   const [readMore, setReadMore] = useState(false)
+<<<<<<< HEAD
   const [disabledNext, setDisabledNext] = useState(false)
+=======
+  const [currentViewHeading, setCurrentViewHeading] = useState('')
+>>>>>>> master
 
   const updateValues = {
     setLoading,
@@ -26,8 +30,13 @@ export const UpdateProvider = ({ children }) => {
     readMore,
     setAcceptCookies,
     acceptCookies,
+<<<<<<< HEAD
     disabledNext,
     setDisabledNext,
+=======
+    setCurrentViewHeading,
+    currentViewHeading,
+>>>>>>> master
   }
 
   return (
