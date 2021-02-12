@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect, createContext } from 'react'
 
-const ReportContext = createContext()
+export const ReportContext = createContext()
 
 export const useReport = () => useContext(ReportContext)
 

@@ -14,6 +14,8 @@ export const UpdateProvider = ({ children }) => {
   const [error, setError] = useState(false)
   const [errorStatusCode, setErrorStatusCode] = useState(null)
   const [errorMessenger, setErrorMessenger] = useState(null)
+  const [disabledNext, setDisabledNext] = useState(false)
+  const [currentViewHeading, setCurrentViewHeading] = useState('')
 
   const updateValues = {
     setLoading,
@@ -34,6 +36,10 @@ export const UpdateProvider = ({ children }) => {
     setErrorStatusCode,
     errorMessenger,
     setErrorMessenger,
+    disabledNext,
+    setDisabledNext,
+    setCurrentViewHeading,
+    currentViewHeading,
   }
 
   useEffect(() => {
