@@ -6,7 +6,7 @@ import { InputFormSecond } from '../../components/styles/form/Form'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const ContactInfoView = () => {
-  const { report, setReport } = useReport()
+  const { report, setReport, setContact } = useReport()
   const { setDisabledNext } = useUpdate()
   const [error, setError] = useState('')
 
@@ -15,24 +15,32 @@ const ContactInfoView = () => {
     const test = regex.test(report.email)
     console.log(test)
   }
-
+  /*
   const handleInput = (e) => {
-    // const { name, email } = e.target.value
+    const { name, email } = e.target.value
     setReport((report) => ({
       ...report,
-      info: { contact: { [e.target.name]: e.target.value } },
+      info: { contact: { [e.target.name]: { name, email } } },
     }))
     //  setReport((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
+  */
+  const handleInput = (e) => {
+    const value = e.target.value
+    setContact((prev) => ({
+      ...prev,
+      [e.target.name]: value,
+    }))
+  }
+  //contact: { [e.target.name]: name },
 
   useEffect(() => {
-    console.log(report)
-    /*
-    if (report.info.contact.name.length > 0) {
+    console.log(report.info.contact.email.length)
+    if (report.info.contact.email.length) {
       setDisabledNext(false)
       return
-    } else setDisabledNext(true)
-    */
+    }
+    setDisabledNext(true)
   }, [report])
 
   return (

@@ -22,25 +22,43 @@ const initialReportData = {
 }
 
 export const ReportProvider = ({ children }) => {
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [phone, setPhone] = useState()
   const [report, setReport] = useState(initialReportData)
   const [submit, setSubmit] = useState(false)
+  const [description, setDescription] = useState('')
+  const [contact, setContact] = useState({})
+  const [location, setLocation] = useState({})
+  const [images, setImages] = useState([])
+  const [followUp, setFollowUp] = useState(false)
 
-  useEffect(() => {}, [report], [phone], [email], [name])
+  useEffect(() => {
+    const reportData = {
+      images: images,
+      location: location,
+      info: {
+        description: description,
+        contact: contact,
+      },
+      followUp: followUp,
+    }
+    setReport(reportData)
+    console.log(reportData)
+  }, [images, location, description, contact, followUp])
 
   const reportvalues = {
     report,
     setReport,
     submit,
     setSubmit,
-    name,
-    setName,
-    email,
-    setEmail,
-    phone,
-    setPhone,
+    description,
+    setDescription,
+    contact,
+    setContact,
+    location,
+    setLocation,
+    images,
+    setImages,
+    followUp,
+    setFollowUp,
   }
 
   return <ReportContext.Provider value={reportvalues}>{children}</ReportContext.Provider>
