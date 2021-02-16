@@ -38,6 +38,7 @@ export const ReportProvider = ({ children }) => {
 
   const reportvalues = {
     dispatch,
+    formState,
   }
 
   return <ReportContext.Provider value={reportvalues}>{children}</ReportContext.Provider>

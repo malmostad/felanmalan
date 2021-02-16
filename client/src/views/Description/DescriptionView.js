@@ -4,7 +4,7 @@ import { useUpdate } from '../../contexts/UpdateContext'
 
 const DescriptionView = () => {
   const descriptionRef = useRef('')
-  const { dispatch } = useReport()
+  const { dispatch, formState } = useReport()
   const { setDisabledNext } = useUpdate()
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const DescriptionView = () => {
             ref={descriptionRef}
             type="text"
             name="description"
+            defaultValue={formState.description}
             placeholder="Beskriv problemet du vill felanmäla"
             onChange={handelDescriptionChange}
           />
