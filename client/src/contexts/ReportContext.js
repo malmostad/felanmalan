@@ -1,4 +1,39 @@
-import { useContext, useState, useEffect, createContext } from 'react'
+import { useContext, useState, useEffect, createContext, useReducer } from 'react'
+
+const initialState = {
+  images: [],
+  location: {
+    lat: '',
+    lng: '',
+  },
+  info: {
+    description: '',
+    contact: {
+      name: '',
+      email: '',
+      phone: '',
+    },
+    followUp: false,
+  },
+}
+
+export const useStore = () => createContext(initialState)
+
+const { Provider } = useStore
+
+export const StateProvider = ({ children }) => {
+  const [state, dispatch] = useReducer((state, action) => {
+    const currentState = { ...state }
+    switch (action.type) {
+      case 'SET_NAME':
+        currentState.name = action.payload
+        return currentState
+      default:
+        throw new Error()
+    }
+  }, initialState)
+  return <Provider value={{ state, dispatch }}>{children}</Provider>
+}
 
 const ReportContext = createContext()
 

@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { useReport } from '../.././contexts/ReportContext'
 import { StyledError, StyledFormWrapper } from '../../components/styles/form/Form'
 import { StyledInput } from '../../components/styles/form/Form'
 import { InputFormSecond } from '../../components/styles/form/Form'
 import { useUpdate } from '../.././contexts/UpdateContext'
+import { store } from '../.././contexts/ReportContext'
 
 const ContactInfoView = () => {
-  const { report, setReport, setContact } = useReport()
+  const { report, setReport, setContact, setFollowUp } = useReport()
   const { setDisabledNext } = useUpdate()
   const [error, setError] = useState('')
-
-  const handleSubmit = () => {
-    const regex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-    const test = regex.test(report.email)
-    console.log(test)
-  }
 
   const handleInput = (e) => {
     const value = e.target.value
@@ -24,9 +19,27 @@ const ContactInfoView = () => {
     }))
   }
 
+  /*
+  const handleInput = (e) => {
+    const value = e.target.value
+    setReport((prev) => ({
+      ...prev,
+      info: {
+        contact: {
+          [e.target.name]: e.target.value,
+        },
+      },
+    }))
+  }
+  */
+
+  const handleClick = (e) => {}
+
+  const handleSubmit = () => {}
+
   useEffect(() => {
-    console.log(report.info.contact.email)
-    if (report.info.contact.email) {
+    console.log(report.info.contact)
+    if (report.info.contact.email && report.info.contact.phone) {
       setDisabledNext(false)
       return
     } else setDisabledNext(true)
@@ -52,7 +65,7 @@ const ContactInfoView = () => {
             <label htmlFor>
               E-post
               <InputFormSecond
-                placeholder="Skriv din e-postadress eller ditt telefonnumer"
+                placeholder="Skriv din email"
                 type="email"
                 name="email"
                 value={report.info.contact.email}
@@ -60,6 +73,7 @@ const ContactInfoView = () => {
               />
             </label>
           </div>
+          <div>{error}</div>
 
           <div>
             <label htmlFor>
@@ -77,9 +91,9 @@ const ContactInfoView = () => {
           <div>
             <input
               type="checkbox"
-              value="followUp"
+              name="checkbox"
               checked={report.followUp}
-              onChange={handleInput}
+              onClick={handleClick}
             />
             <span> Vill du få uppföljning</span>
           </div>

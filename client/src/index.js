@@ -4,15 +4,17 @@ import App from './App'
 import { UpdateProvider } from './contexts/UpdateContext'
 import { ThemeProvider } from 'styled-components'
 import { Theme } from './globalstyles/Theme'
-import { ReportProvider } from './contexts/ReportContext'
+import { ReportProvider, StateProvider } from './contexts/ReportContext'
 
 ReactDOM.render(
   <React.StrictMode>
     <UpdateProvider>
       <ReportProvider>
-        <ThemeProvider theme={Theme}>
-          <App />
-        </ThemeProvider>
+        <StateProvider>
+          <ThemeProvider theme={Theme}>
+            <App />
+          </ThemeProvider>
+        </StateProvider>
       </ReportProvider>
     </UpdateProvider>
   </React.StrictMode>,
