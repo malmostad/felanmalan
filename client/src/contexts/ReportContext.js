@@ -1,43 +1,12 @@
-import { useContext, useState, useEffect, createContext, useReducer } from 'react'
+import { useContext, createContext, useReducer, useEffect } from 'react'
+import axios from 'axios'
 
-const initialState = {
-  images: [],
-  location: {
-    lat: '',
-    lng: '',
-  },
-  info: {
-    description: '',
-    contact: {
-      name: '',
-      email: '',
-      phone: '',
-    },
-    followUp: false,
-  },
-}
-
-export const useStore = () => createContext(initialState)
-
-const { Provider } = useStore
-
-export const StateProvider = ({ children }) => {
-  const [state, dispatch] = useReducer((state, action) => {
-    const currentState = { ...state }
-    switch (action.type) {
-      case 'SET_NAME':
-        currentState.name = action.payload
-        return currentState
-      default:
-        throw new Error()
-    }
-  }, initialState)
-  return <Provider value={{ state, dispatch }}>{children}</Provider>
-}
-
-const ReportContext = createContext()
-
+export const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
+
+const url = `http://localhost:3000/photos`
+
+const config = { headers: { 'Content-type': 'multipart/form-data' } }
 
 const initialReportData = {
   images: [],
@@ -45,55 +14,54 @@ const initialReportData = {
     lat: '',
     lng: '',
   },
-  info: {
-    description: '',
-    contact: {
-      name: '',
-      email: '',
-      phone: '',
-    },
-    followUp: false,
-  },
+  description: '',
+  name: '',
+  email: '',
+  phone: '',
+  followUp: false,
+}
+
+const postImages = async (payload) => {
+  const formData = new FormData()
+  const newPayLoad = payload.map((image) => {
+    formData.append({ file: image.raw, uuid: image.id })
+  })
+  const res = await axios.post(url, newPayLoad, config)
+  console.log(res)
 }
 
 export const ReportProvider = ({ children }) => {
-  const [report, setReport] = useState(initialReportData)
-  const [submit, setSubmit] = useState(false)
-  const [description, setDescription] = useState('')
-  const [contact, setContact] = useState({})
-  const [location, setLocation] = useState({})
-  const [images, setImages] = useState([])
-  const [followUp, setFollowUp] = useState(false)
-
-  useEffect(() => {
-    const reportData = {
-      images: images,
-      location: location,
-      info: {
-        description: description,
-        contact: contact,
-      },
-      followUp: followUp,
+  const formReducer = (formState, action) => {
+    switch (action.type) {
+      case 'setFormInfo':
+        return {
+          ...formState,
+          [action.field]: action.payload,
+        }
+      case 'uploadImages':
+        postImages(action.payload)
+        break
+      default:
+        return formState
     }
-    setReport(reportData)
-    console.log(reportData)
-  }, [images, location, description, contact, followUp])
+  }
+  const [formState, dispatch] = useReducer(formReducer, initialReportData)
+
+  const handelSetFormInfo = (ref, payload) => {
+    dispatch({
+      type: 'setFormInfo',
+      field: ref.current.name,
+      payload,
+    })
+  }
+  useEffect(() => {
+    console.log(formState)
+  }, [formState])
 
   const reportvalues = {
-    report,
-    setReport,
-    submit,
-    setSubmit,
-    description,
-    setDescription,
-    contact,
-    setContact,
-    location,
-    setLocation,
-    images,
-    setImages,
-    followUp,
-    setFollowUp,
+    formState,
+    handelSetFormInfo,
+    dispatch,
   }
 
   return <ReportContext.Provider value={reportvalues}>{children}</ReportContext.Provider>

@@ -25,7 +25,7 @@ module.exports = {
     'plugin:prettier/recommended', // Make this the last element so prettier config overrides other formatting rules
   ],
   rules: {
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'react/display-name': 'off',
     'react/prop-types': 'off',
     'no-console': 'warn',

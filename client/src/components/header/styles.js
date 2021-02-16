@@ -2,9 +2,8 @@ import styled from 'styled-components/macro'
 
 export const StyledHeaderOuter = styled.div`
   width: 100%;
+  min-height: 200px;
   background-color: #037540;
-  height: auto;
-  min-height: 180px;
   display: flex;
 `
 
@@ -13,6 +12,5 @@ export const StyledHeaderInner = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  align-items: left;
-  align-self: flex-end;
+  align-items: center;
 `

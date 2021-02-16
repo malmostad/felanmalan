@@ -1,6 +1,10 @@
 import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
+export const StyledFlexCenter = styled.div`
+  ${flexCenter}
+`
+
 export const StyledFlexCenterColumn = styled.div`
   ${flexCenterColumn}
 `
@@ -16,7 +20,7 @@ export const StyledOuter = styled.div`
   display: flex;
   justify-content: space-between;
 `
-//button containers
+// button containers
 export const StyledButtonOuter = styled.div`
   ${flexCenterColumn}
   height: 100px;
@@ -27,7 +31,7 @@ export const StyledButtonInner = styled.div`
   width: 100%;
   height: 100%;
 `
-//loading container
+// loading container
 
 // ??
 export const StyledLandingContainer = styled(StyledOuter)`
@@ -45,7 +49,23 @@ export const StyledFooterContainer = styled.div`
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 30%;
+  height: 100px;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+`
+
+export const StyledGrid = styled.div`
+  max-width: 100vw;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-start: end;
+  grid-gap: 10px;
+  overflow-x: hidden;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `
