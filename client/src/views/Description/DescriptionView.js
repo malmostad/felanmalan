@@ -1,21 +1,18 @@
-import { useEffect } from 'react'
+import { useRef } from 'react'
 import { useReport } from '../../contexts/ReportContext'
 import { useUpdate } from '../../contexts/UpdateContext'
 
 const DescriptionView = () => {
-  const { report, setReport, setDescription } = useReport()
+  const descriptionRef = useRef(null)
+  const { dispatch } = useReport()
   const { setDisabledNext } = useUpdate()
-
-  useEffect(() => {
-    if (report.info.description.length > 0) {
-      setDisabledNext(false)
-      return
-    }
-    setDisabledNext(true)
-  }, [report])
-
-  const handelDescriptionChange = (e) => {
-    setDescription(e.target.value)
+  const handelDescriptionChange = () => {
+    dispatch({
+      type: 'setDescription',
+      field: descriptionRef.current.name,
+      payload: descriptionRef.current.value,
+    })
+    console.log('text', descriptionRef.current.value)
   }
   return (
     <>
@@ -23,9 +20,9 @@ const DescriptionView = () => {
         <label>
           Beskrivning
           <textarea
+            ref={descriptionRef}
             type="text"
             name="description"
-            value={report.info.description}
             placeholder="Beskriv problemet du vill felanmäla"
             onChange={handelDescriptionChange}
           />
