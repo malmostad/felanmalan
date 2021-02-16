@@ -4,7 +4,7 @@ import { useUpdate } from '../../contexts/UpdateContext'
 
 const DescriptionView = () => {
   const descriptionRef = useRef('')
-  const { dispatch, formState } = useReport()
+  const { handelSetFormInfo, formState } = useReport()
   const { setDisabledNext } = useUpdate()
 
   useEffect(() => {
@@ -15,13 +15,6 @@ const DescriptionView = () => {
     }
   }, [descriptionRef.current.value])
 
-  const handelDescriptionChange = () => {
-    dispatch({
-      type: 'setDescription',
-      field: descriptionRef.current.name,
-      payload: descriptionRef.current.value,
-    })
-  }
   return (
     <>
       <form>
@@ -33,7 +26,7 @@ const DescriptionView = () => {
             name="description"
             defaultValue={formState.description}
             placeholder="Beskriv problemet du vill felanmäla"
-            onChange={handelDescriptionChange}
+            onChange={() => handelSetFormInfo(descriptionRef, descriptionRef.current.value)}
           />
         </label>
       </form>

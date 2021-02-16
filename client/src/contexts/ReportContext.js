@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, createContext, useReducer } from 'react'
+import { useContext, createContext, useReducer, useEffect } from 'react'
 
 export const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
@@ -19,7 +19,7 @@ const initialReportData = {
 export const ReportProvider = ({ children }) => {
   const formReducer = (formState, action) => {
     switch (action.type) {
-      case 'setDescription':
+      case 'setFormInfo':
         return {
           ...formState,
           [action.field]: action.payload,
@@ -28,17 +28,23 @@ export const ReportProvider = ({ children }) => {
         return formState
     }
   }
-
   const [formState, dispatch] = useReducer(formReducer, initialReportData)
 
+  const handelSetFormInfo = (ref, payload) => {
+    dispatch({
+      type: 'setFormInfo',
+      field: ref.current.name,
+      payload,
+    })
+  }
+
   useEffect(() => {
-    console.log('this is formdata', formState)
-    // setReport(reportData)
+    console.log(formState)
   }, [formState])
 
   const reportvalues = {
-    dispatch,
     formState,
+    handelSetFormInfo,
   }
 
   return <ReportContext.Provider value={reportvalues}>{children}</ReportContext.Provider>
