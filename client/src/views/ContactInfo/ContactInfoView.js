@@ -1,49 +1,38 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useReport } from '../.././contexts/ReportContext'
 import { StyledError, StyledFormWrapper } from '../../components/styles/form/Form'
 import { StyledInput } from '../../components/styles/form/Form'
 import { InputFormSecond } from '../../components/styles/form/Form'
 import { useUpdate } from '../.././contexts/UpdateContext'
-import { store } from '../.././contexts/ReportContext'
+
+/* eslint-disable */
+const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const mobilePattern = /^[0-9]{10}$/
 
 const ContactInfoView = () => {
-  const { report, setReport, setContact, setFollowUp } = useReport()
+  const userName = useRef('')
+  const email = useRef('')
+  const phone = useRef('')
+  const followUp = useRef(false)
+  const { handelSetFormInfo, formState } = useReport()
   const { setDisabledNext } = useUpdate()
-  const [error, setError] = useState('')
-
-  const handleInput = (e) => {
-    const value = e.target.value
-    setContact((prev) => ({
-      ...prev,
-      [e.target.name]: value,
-    }))
-  }
-
-  /*
-  const handleInput = (e) => {
-    const value = e.target.value
-    setReport((prev) => ({
-      ...prev,
-      info: {
-        contact: {
-          [e.target.name]: e.target.value,
-        },
-      },
-    }))
-  }
-  */
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleClick = (e) => {}
 
-  const handleSubmit = () => {}
+  const handleSubmit = (e) => {}
 
   useEffect(() => {
-    console.log(report.info.contact)
-    if (report.info.contact.email && report.info.contact.phone) {
+    if (followUp.current.checked) {
+      setDisabledNext(true)
+    }
+    if (emailPattern.test(email.current.value)) {
       setDisabledNext(false)
-      return
-    } else setDisabledNext(true)
-  }, [report])
+    }
+    if (mobilePattern.test(phone.current.value)) {
+      setDisabledNext(false)
+    }
+  }, [userName.current.value, followUp.current.checked, email.current.value, phone.current.value])
 
   return (
     <>
@@ -56,8 +45,9 @@ const ContactInfoView = () => {
                 placeholder="Skriv ditt namn"
                 type="name"
                 name="name"
-                value={report.info.contact.name}
-                onChange={handleInput}
+                defaultValue={formState.name}
+                ref={userName}
+                onChange={() => handelSetFormInfo(userName, userName.current.value)}
               />
             </label>
           </div>
@@ -68,22 +58,23 @@ const ContactInfoView = () => {
                 placeholder="Skriv din email"
                 type="email"
                 name="email"
-                value={report.info.contact.email}
-                onChange={handleInput}
+                defaultValue={formState.email}
+                ref={email}
+                onChange={() => handelSetFormInfo(email, email.current.value)}
               />
             </label>
           </div>
-          <div>{error}</div>
-
+          {errorMsg}
           <div>
             <label htmlFor>
               Telefonnummer
               <InputFormSecond
                 placeholder="Skriv ditt telefonnumer"
-                type="phone"
+                type="number"
                 name="phone"
-                value={report.info.contact.phone}
-                onChange={handleInput}
+                defaultValue={formState.phone}
+                ref={phone}
+                onChange={() => handelSetFormInfo(phone, phone.current.value)}
               />
             </label>
           </div>
@@ -91,18 +82,14 @@ const ContactInfoView = () => {
           <div>
             <input
               type="checkbox"
-              name="checkbox"
-              checked={report.followUp}
-              onClick={handleClick}
+              name="followUp"
+              defaultChecked={formState.followUp}
+              ref={followUp}
+              onChange={() => handelSetFormInfo(followUp, followUp.current.checked)}
             />
             <span> Vill du få uppföljning</span>
           </div>
         </form>
-        {error && (
-          <StyledError>
-            <p>{error}</p>
-          </StyledError>
-        )}
       </StyledFormWrapper>
     </>
   )
