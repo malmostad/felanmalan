@@ -1,5 +1,4 @@
 import { useContext, createContext, useReducer, useEffect } from 'react'
-import axios from 'axios'
 
 export const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
@@ -21,42 +20,33 @@ const initialReportData = {
   followUp: false,
 }
 
-const postImages = async (payload) => {
-  const formData = new FormData()
-  const newPayLoad = payload.map((image) => {
-    formData.append({ file: image.raw, uuid: image.id })
-  })
-  const res = await axios.post(url, newPayLoad, config)
-  console.log(res)
-}
-
 export const ReportProvider = ({ children }) => {
-  const formReducer = (formState, action) => {
-    switch (action.type) {
+  const formReducer = (formState, { field, payload, type }) => {
+    switch (type) {
       case 'setFormInfo':
         return {
           ...formState,
-          [action.field]: action.payload,
+          [field]: payload,
         }
       case 'uploadImages':
-        postImages(action.payload)
-        break
+        return {
+          ...formState,
+          [field]: payload,
+        }
       default:
         return formState
     }
   }
   const [formState, dispatch] = useReducer(formReducer, initialReportData)
 
-  const handelSetFormInfo = (ref, payload) => {
+  const handelSetFormInfo = (name, payload) => {
     dispatch({
       type: 'setFormInfo',
-      field: ref.current.name,
+      field: name,
       payload,
     })
   }
-  useEffect(() => {
-    console.log(formState)
-  }, [formState])
+  useEffect(() => {}, [formState])
 
   const reportvalues = {
     formState,

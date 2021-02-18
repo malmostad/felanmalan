@@ -73,11 +73,11 @@ const UploadImageForm = () => {
     })
   }
 
-  const handleUploadImages = async (e) => {
+  const handleUploadImages = (e) => {
     const stagedImagesArray = Array.from(e.target.files)
     handleSetPreviewImages(stagedImagesArray)
     handleSetFilesToBeUploaded(stagedImagesArray)
-    await setUploadImages(fileInput, filesToBeUploaded)
+    setUploadImages(fileInput, filesToBeUploaded)
     handleRevokeURL(stagedImagesArray)
   }
 
@@ -92,12 +92,11 @@ const UploadImageForm = () => {
 
   const handleSetFilesToBeUploaded = (fileArray) => {
     fileArray.map((file) => {
-      setFilesToBeUploaded((previousImages) => [...previousImages, { raw: file, id: uuidv4() }])
+      setFilesToBeUploaded((previousImages) => [
+        ...previousImages,
+        { raw: file, id: uuidv4(), MIME_Type: file.type },
+      ])
     })
-  }
-
-  const handleSetImagesInReport = (fileArray) => {
-    setReport((prevReport) => ({ ...prevReport, images: fileArray }))
   }
 
   const handleRevokeURL = (fileArray) => {

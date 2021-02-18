@@ -19,6 +19,13 @@ const ContactInfoView = () => {
 
   const handleSubmit = (e) => {}
 
+  const handelFormInfo = (e) => {
+    handelSetFormInfo('userName', userName.current.value),
+      handelSetFormInfo('email', email.current.value),
+      handelSetFormInfo('phone', phone.current.value),
+      handelSetFormInfo('followUp', followUp.current.checked)
+  }
+
   useEffect(() => {
     if (followUp.current.checked) {
       setDisabledNext(true)
@@ -47,7 +54,7 @@ const ContactInfoView = () => {
                 name="name"
                 defaultValue={formState.name}
                 ref={userName}
-                onChange={() => handelSetFormInfo(userName, userName.current.value)}
+                onChange={handelFormInfo}
               />
             </label>
           </div>
@@ -60,7 +67,7 @@ const ContactInfoView = () => {
                 name="email"
                 defaultValue={formState.email}
                 ref={email}
-                onChange={() => handelSetFormInfo(email, email.current.value)}
+                onChange={handelFormInfo}
               />
             </label>
           </div>
@@ -73,7 +80,7 @@ const ContactInfoView = () => {
                 name="phone"
                 defaultValue={formState.phone}
                 ref={phone}
-                onChange={() => handelSetFormInfo(phone, phone.current.value)}
+                onChange={handelFormInfo}
               />
             </label>
           </div>
@@ -84,7 +91,7 @@ const ContactInfoView = () => {
               name="followUp"
               defaultChecked={formState.followUp}
               ref={followUp}
-              onChange={() => handelSetFormInfo(followUp, followUp.current.checked)}
+              onChange={handelFormInfo}
             />
             <span> Vill du få uppföljning på ditt ärende?</span>
           </div>

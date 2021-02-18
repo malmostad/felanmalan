@@ -15,6 +15,10 @@ const DescriptionView = () => {
     }
   }, [descriptionRef.current.value])
 
+  const handleFormInfo = () => {
+    handelSetFormInfo('description', descriptionRef.current.value)
+  }
+
   return (
     <>
       <form>
@@ -23,10 +27,9 @@ const DescriptionView = () => {
           <textarea
             ref={descriptionRef}
             type="text"
-            name="description"
             defaultValue={formState.description}
             placeholder="Beskriv problemet du vill felanmäla"
-            onChange={() => handelSetFormInfo(descriptionRef, descriptionRef.current.value)}
+            onChange={handleFormInfo}
           />
         </label>
       </form>
