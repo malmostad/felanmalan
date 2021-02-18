@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect, createContext } from 'react'
+import { useContext, createContext, useReducer, useEffect } from 'react'
+import fileUploadSerivce from '../'
 
 export const ReportContext = createContext()
-
 export const useReport = () => useContext(ReportContext)
 
 const initialReportData = {
@@ -10,27 +10,45 @@ const initialReportData = {
     lat: '',
     lng: '',
   },
-  info: {
-    description: '',
-    contact: {
-      email: '',
-      phone: '',
-    },
-    followUp: false,
-  },
+  description: '',
+  name: '',
+  email: '',
+  phone: '',
+  followUp: false,
 }
 
 export const ReportProvider = ({ children }) => {
-  const [report, setReport] = useState(initialReportData)
-  const [submit, setSubmit] = useState(false)
+  const formReducer = (formState, { field, payload, type }) => {
+    switch (type) {
+      case 'setFormInfo':
+        return {
+          ...formState,
+          [field]: payload,
+        }
+      case 'uploadImages':
+        return {
+          ...formState,
+          [field]: payload,
+        }
+      default:
+        return formState
+    }
+  }
+  const [formState, dispatch] = useReducer(formReducer, initialReportData)
 
-  useEffect(() => {}, [report])
+  const handelSetFormInfo = (name, payload) => {
+    dispatch({
+      type: 'setFormInfo',
+      field: name,
+      payload,
+    })
+  }
+  useEffect(() => {}, [formState])
 
   const reportvalues = {
-    report,
-    setReport,
-    submit,
-    setSubmit,
+    formState,
+    handelSetFormInfo,
+    dispatch,
   }
 
   return <ReportContext.Provider value={reportvalues}>{children}</ReportContext.Provider>
