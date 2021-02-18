@@ -5,8 +5,7 @@ import { StyledInput } from '../../components/styles/form/Form'
 import { InputFormSecond } from '../../components/styles/form/Form'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
-/* eslint-disable */
-const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const mobilePattern = /^[0-9]{10}$/
 
 const ContactInfoView = () => {
