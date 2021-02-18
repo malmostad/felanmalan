@@ -1,33 +1,35 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useReport } from '../../contexts/ReportContext'
 import { useUpdate } from '../../contexts/UpdateContext'
 
 const DescriptionView = () => {
-  const { report, setReport } = useReport()
+  const descriptionRef = useRef('')
+  const { handelSetFormInfo, formState } = useReport()
   const { setDisabledNext } = useUpdate()
 
   useEffect(() => {
-    if (report.info.description.length > 0) {
+    if (!descriptionRef.current.value) {
+      setDisabledNext(true)
+    } else {
       setDisabledNext(false)
-      return
     }
-    setDisabledNext(true)
-  }, [report])
+  }, [descriptionRef.current.value])
 
-  const handelDescriptionChange = (e) => {
-    setReport((prevReport) => ({ ...prevReport, info: { description: e.target.value } }))
+  const handleFormInfo = () => {
+    handelSetFormInfo('description', descriptionRef.current.value)
   }
+
   return (
     <>
       <form>
         <label>
           Beskrivning
           <textarea
+            ref={descriptionRef}
             type="text"
-            name="description"
-            value={report.info.description}
+            defaultValue={formState.description}
             placeholder="Beskriv problemet du vill felanmäla"
-            onChange={handelDescriptionChange}
+            onChange={handleFormInfo}
           />
         </label>
       </form>

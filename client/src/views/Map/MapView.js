@@ -1,4 +1,5 @@
 import { useReport } from '../../contexts/ReportContext'
+import { useRef } from 'react'
 import BgMapView from './map-view.png'
 import styled from 'styled-components/macro'
 const MapContainer = styled.div`
@@ -10,20 +11,19 @@ const MapContainer = styled.div`
   width: 100%;
 `
 const MapView = () => {
-  const { setReport } = useReport()
+  const mapRef = useRef('')
+  const { handelSetFormInfo } = useReport()
 
   const coordinates = {
     lat: '55.59705552372533',
     lng: '12.977538048269887',
   }
 
-  const handleLongLat = () => {
-    setReport((prevReport) => ({ ...prevReport, location: coordinates }))
-  }
-
   return (
     <MapContainer>
-      <button onClick={handleLongLat}>Min position</button>
+      <button ref={mapRef} name="location" onClick={() => handelSetFormInfo(mapRef, coordinates)}>
+        Min position
+      </button>
     </MapContainer>
   )
 }

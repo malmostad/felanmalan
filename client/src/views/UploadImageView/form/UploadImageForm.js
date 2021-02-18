@@ -54,7 +54,7 @@ const StyledWrapper = styled(StyledFlexCenter)`
 
 const UploadImageForm = () => {
   //global state
-  const { setReport } = useReport()
+  const { setReport, dispatch } = useReport()
 
   //local states
   const [filesToBeUploaded, setFilesToBeUploaded] = useState([])
@@ -64,11 +64,20 @@ const UploadImageForm = () => {
   const fileInput = useRef(null)
 
   //functions
+
+  const setUploadImages = (ref, payload) => {
+    dispatch({
+      type: 'uploadImages',
+      field: ref.current.name,
+      payload,
+    })
+  }
+
   const handleUploadImages = (e) => {
     const stagedImagesArray = Array.from(e.target.files)
     handleSetPreviewImages(stagedImagesArray)
     handleSetFilesToBeUploaded(stagedImagesArray)
-    handleSetImagesInReport(filesToBeUploaded)
+    setUploadImages(fileInput, filesToBeUploaded)
     handleRevokeURL(stagedImagesArray)
   }
 
@@ -83,12 +92,11 @@ const UploadImageForm = () => {
 
   const handleSetFilesToBeUploaded = (fileArray) => {
     fileArray.map((file) => {
-      setFilesToBeUploaded((previousImages) => [...previousImages, { raw: file, id: uuidv4() }])
+      setFilesToBeUploaded((previousImages) => [
+        ...previousImages,
+        { raw: file, id: uuidv4(), MIME_Type: file.type },
+      ])
     })
-  }
-
-  const handleSetImagesInReport = (fileArray) => {
-    setReport((prevReport) => ({ ...prevReport, images: fileArray }))
   }
 
   const handleRevokeURL = (fileArray) => {
@@ -107,6 +115,7 @@ const UploadImageForm = () => {
     <StyledWrapper>
       <StyledFlexCenterColumn>
         <input
+          name="images"
           type="file"
           id="upload-button"
           multiple
