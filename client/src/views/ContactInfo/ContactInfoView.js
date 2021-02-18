@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useReport } from '../.././contexts/ReportContext'
 import { StyledError, StyledFormWrapper } from '../../components/styles/form/Form'
 import { StyledInput } from '../../components/styles/form/Form'
@@ -16,9 +16,6 @@ const ContactInfoView = () => {
   const followUp = useRef(false)
   const { handelSetFormInfo, formState } = useReport()
   const { setDisabledNext } = useUpdate()
-  const [errorMsg, setErrorMsg] = useState('')
-
-  const handleClick = (e) => {}
 
   const handleSubmit = (e) => {}
 
@@ -26,13 +23,16 @@ const ContactInfoView = () => {
     if (followUp.current.checked) {
       setDisabledNext(true)
     }
+    if (!followUp.current.checked) {
+      setDisabledNext(false)
+    }
     if (emailPattern.test(email.current.value)) {
       setDisabledNext(false)
     }
     if (mobilePattern.test(phone.current.value)) {
       setDisabledNext(false)
     }
-  }, [userName.current.value, followUp.current.checked, email.current.value, phone.current.value])
+  }, [followUp.current.checked, email.current.value, phone.current.value])
 
   return (
     <>
@@ -64,13 +64,12 @@ const ContactInfoView = () => {
               />
             </label>
           </div>
-          {errorMsg}
           <div>
             <label htmlFor>
               Telefonnummer
               <InputFormSecond
                 placeholder="Skriv ditt telefonnumer"
-                type="number"
+                type="phone"
                 name="phone"
                 defaultValue={formState.phone}
                 ref={phone}
@@ -87,9 +86,10 @@ const ContactInfoView = () => {
               ref={followUp}
               onChange={() => handelSetFormInfo(followUp, followUp.current.checked)}
             />
-            <span> Vill du få uppföljning</span>
+            <span> Vill du få uppföljning på ditt ärende?</span>
           </div>
         </form>
+        {followUp.current.checked && <StyledError>Fyll i telefonnumer eller e-post</StyledError>}
       </StyledFormWrapper>
     </>
   )
