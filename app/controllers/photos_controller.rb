@@ -16,7 +16,7 @@ class PhotosController < ApiController
                        mime_type: photo_params.content_type,
                        filename: photo_params.original_filename)
     @photo.save
-    @photo.external_id = EasyIncidentService.upload(@photo)
+    # @photo.external_id = EasyIncidentService.upload(@photo)
     @photo.save!
     render json: { id: @photo.uuid }, status: :created, location: @photo
     # else
