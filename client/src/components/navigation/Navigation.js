@@ -49,8 +49,6 @@ const Navigation = () => {
       <Button.Inner>
         {!disabledNext && (
           <Button
-            id="my-form"
-            type="submit"
             bgGreen
             onClick={currentView + 1 === formViews.length ? handleSubmit : handleClickNext}>
             {currentView + 1 === formViews.length ? 'Skapa Ny' : 'next'}
