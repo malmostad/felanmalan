@@ -1,6 +1,7 @@
 //react
 import { useEffect, useState, useRef } from 'react'
-
+//utils
+import http from '../../../http-common'
 //libs
 import { v4 as uuidv4 } from 'uuid'
 import styled from 'styled-components/macro'
@@ -17,6 +18,8 @@ import {
   StyledFlexCenterColumn,
   StyledGrid,
 } from '../../../components/styles/containers/Containers'
+
+import { useUpdate } from '../../../contexts/UpdateContext'
 
 //styles (to be moved and changed)
 const StyledImageContainer = styled.div`
@@ -52,12 +55,28 @@ const StyledWrapper = styled(StyledFlexCenter)`
   min-height: 60vh;
 `
 
+const StyledProgressBar = styled.div`
+  height: 5px;
+  width: ${({ progress }) => progress}%;
+  color: green;
+`
+
 const UploadImageForm = () => {
   //global state
-  const { setReport, dispatch } = useReport()
+  const { dispatch } = useReport()
+  const {
+    setUploadProgress,
+    uploadProgress,
+    imageURI,
+    setImageURI,
+    uploadStatus,
+    setUploadStatus,
+    uploading,
+    setUploading,
+  } = useUpdate()
 
   //local states
-  const [filesToBeUploaded, setFilesToBeUploaded] = useState([])
+  const [uploadedImages, setUploadedImages] = useState([])
   const [previewImages, setPreviewImages] = useState([])
 
   //refs
@@ -65,19 +84,51 @@ const UploadImageForm = () => {
 
   //functions
 
-  const setUploadImages = (ref, payload) => {
-    dispatch({
-      type: 'uploadImages',
-      field: ref.current.name,
-      payload,
+  const UploadImage = async (file, endpoint) => {
+    const getBase64 = (file, callback) => {
+      const reader = new FileReader()
+      reader.addEventListener('load', () => callback(reader.result))
+      reader.readAsDataURL(file)
+    }
+
+    setUploading(true)
+
+    const formData = new FormData()
+    formData.append('file', file)
+    try {
+      const res = await http.post(endpoint, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        onUploadProgress: (progressEvent) => {
+          const progress = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100))
+          setUploadProgress(progress)
+        },
+      })
+      const UploadedImageId = await res.data.id
+      setUploadedImages((prevFiles) => [...prevFiles, UploadedImageId])
+      dispatch({
+        type: 'uploadedImage',
+        field: 'images',
+        payload: uploadedImages,
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const setUploadImages = (payload) => {
+    console.log(payload)
+    payload.forEach((file) => {
+      console.log(file)
+      UploadImage(file, 'photos')
     })
   }
 
   const handleUploadImages = (e) => {
+    /* eslint-disable no-debugger */
+    // debugger
     const stagedImagesArray = Array.from(e.target.files)
     handleSetPreviewImages(stagedImagesArray)
-    handleSetFilesToBeUploaded(stagedImagesArray)
-    setUploadImages(fileInput, filesToBeUploaded)
+    setUploadImages(stagedImagesArray)
     handleRevokeURL(stagedImagesArray)
   }
 
@@ -90,15 +141,6 @@ const UploadImageForm = () => {
     })
   }
 
-  const handleSetFilesToBeUploaded = (fileArray) => {
-    fileArray.map((file) => {
-      setFilesToBeUploaded((previousImages) => [
-        ...previousImages,
-        { raw: file, id: uuidv4(), MIME_Type: file.type },
-      ])
-    })
-  }
-
   const handleRevokeURL = (fileArray) => {
     fileArray.map((file) => {
       URL.revokeObjectURL(file)
@@ -107,8 +149,6 @@ const UploadImageForm = () => {
 
   const handleRemoveImage = (image) => {
     setPreviewImages(previewImages.filter((item) => item.id !== image.id))
-    setFilesToBeUploaded(filesToBeUploaded.filter((item) => item.raw !== image.raw))
-    setReport((prevReport) => ({ ...prevReport, images: filesToBeUploaded }))
   }
 
   return (
@@ -136,6 +176,7 @@ const UploadImageForm = () => {
                   <RemoveImageIcon />
                 </StyledImageIcon>
               </StyledImageOverlay>
+              <StyledProgressBar progress={uploadProgress} />
             </StyledImageContainer>
           ))}
         </StyledGrid>

@@ -1,8 +1,10 @@
-import { useContext, createContext, useReducer, useEffect } from 'react'
-import fileUploadSerivce from '../'
+import { useContext, createContext, useReducer, useEffect, useState } from 'react'
 
 export const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
+
+const photosEndpoint = 'photos'
+const reportEndpoint = 'reports'
 
 const initialReportData = {
   images: [],
@@ -18,14 +20,14 @@ const initialReportData = {
 }
 
 export const ReportProvider = ({ children }) => {
-  const formReducer = (formState, { field, payload, type }) => {
+  const formReducer = async (formState, { type, field, payload }) => {
     switch (type) {
       case 'setFormInfo':
         return {
           ...formState,
           [field]: payload,
         }
-      case 'uploadImages':
+      case 'uploadedImage':
         return {
           ...formState,
           [field]: payload,
