@@ -3,8 +3,6 @@ import { useContext, createContext, useReducer, useEffect } from 'react'
 export const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
 
-const config = { headers: { 'Content-type': 'multipart/form-data' } }
-
 const initialReportData = {
   images: [],
   location: {
