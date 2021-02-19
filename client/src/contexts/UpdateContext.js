@@ -16,6 +16,10 @@ export const UpdateProvider = ({ children }) => {
   const [errorMessenger, setErrorMessenger] = useState(null)
   const [disabledNext, setDisabledNext] = useState(false)
   const [currentViewHeading, setCurrentViewHeading] = useState('')
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [imageURI, setImageURI] = useState(null)
+  const [uploadStatus, setUploadStatus] = useState(false)
+  const [uploading, setUploading] = useState(false)
 
   const updateValues = {
     setLoading,
@@ -40,12 +44,20 @@ export const UpdateProvider = ({ children }) => {
     setDisabledNext,
     setCurrentViewHeading,
     currentViewHeading,
+    setUploadProgress,
+    uploadProgress,
+    imageURI,
+    setImageURI,
+    uploadStatus,
+    setUploadStatus,
+    uploading,
+    setUploading,
   }
 
   useEffect(() => {
     switch (true) {
       case errorStatusCode < 499:
-        setErrorMessenger(`${errorStatusCode} a client error, pleas try agin`)
+        setErrorMessenger(`${errorStatusCode} a client error, please try agin`)
         break
       case errorStatusCode < 599:
         setErrorMessenger(`${errorStatusCode} something went wrong on our side, sorry but try agin`)
@@ -55,6 +67,10 @@ export const UpdateProvider = ({ children }) => {
         break
     }
   }, [errorStatusCode])
+
+  useEffect(() => {
+    console.log(uploadProgress)
+  }, [uploadProgress])
 
   return (
     <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
