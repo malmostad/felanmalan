@@ -1,7 +1,6 @@
 import styled from 'styled-components/macro'
 
 export const StyledFormWrapper = styled.div`
-  background: #fff;
   padding: 40px 20px;
   width: 100%;
   margin: 0 auto;
@@ -19,6 +18,11 @@ export const StyledInput = styled.input`
   padding: 5px 0 0;
   margin-bottom: 20px;
 `
+
+export const StyledErrorInput = styled.div`
+  border: 1px solid red;
+`
+
 export const InputFormSecond = styled(StyledInput)`
   font-size: 16px;
 `

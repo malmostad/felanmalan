@@ -27,6 +27,7 @@ const ContactInfoView = () => {
   }
 
   useEffect(() => {
+    console.log(email.current)
     followUp.current.checked ? setDisabledNext(true) : setDisabledNext(false)
     if (emailPattern.test(email.current.value)) {
       setDisabledNext(false)
@@ -41,7 +42,7 @@ const ContactInfoView = () => {
       <StyledFormWrapper>
         <form id="contact-form">
           <div>
-            <label htmlFor>
+            <label htmlFor="name">
               Namn
               <StyledInput
                 placeholder="Skriv ditt namn"
@@ -54,7 +55,7 @@ const ContactInfoView = () => {
             </label>
           </div>
           <div>
-            <label htmlFor>
+            <label htmlFor="email">
               E-post
               <InputFormSecond
                 placeholder="Skriv din email"
@@ -67,7 +68,7 @@ const ContactInfoView = () => {
             </label>
           </div>
           <div>
-            <label htmlFor>
+            <label htmlFor="phone">
               Telefonnummer
               <InputFormSecond
                 placeholder="Skriv ditt telefonnumer"
@@ -79,7 +80,6 @@ const ContactInfoView = () => {
               />
             </label>
           </div>
-
           <div>
             <input
               type="checkbox"
