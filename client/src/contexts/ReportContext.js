@@ -3,8 +3,6 @@ import { useContext, createContext, useReducer, useEffect } from 'react'
 export const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
 
-const url = `http://localhost:3000/photos`
-
 const config = { headers: { 'Content-type': 'multipart/form-data' } }
 
 const initialReportData = {

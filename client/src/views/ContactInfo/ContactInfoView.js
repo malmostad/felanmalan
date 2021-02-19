@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import { useReport } from '../.././contexts/ReportContext'
-import { StyledError, StyledFormWrapper } from '../../components/styles/form/Form'
-import { StyledInput } from '../../components/styles/form/Form'
-import { InputFormSecond } from '../../components/styles/form/Form'
+import {
+  StyledError,
+  StyledFormWrapper,
+  StyledInput,
+  InputFormSecond,
+} from '../../components/styles/form/Form'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -16,8 +19,6 @@ const ContactInfoView = () => {
   const { handelSetFormInfo, formState } = useReport()
   const { setDisabledNext } = useUpdate()
 
-  const handleSubmit = (e) => {}
-
   const handelFormInfo = (e) => {
     handelSetFormInfo('userName', userName.current.value),
       handelSetFormInfo('email', email.current.value),
@@ -26,12 +27,7 @@ const ContactInfoView = () => {
   }
 
   useEffect(() => {
-    if (followUp.current.checked) {
-      setDisabledNext(true)
-    }
-    if (!followUp.current.checked) {
-      setDisabledNext(false)
-    }
+    followUp.current.checked ? setDisabledNext(true) : setDisabledNext(false)
     if (emailPattern.test(email.current.value)) {
       setDisabledNext(false)
     }
@@ -43,7 +39,7 @@ const ContactInfoView = () => {
   return (
     <>
       <StyledFormWrapper>
-        <form id="my-form" onSubmit={handleSubmit()}>
+        <form id="contact-form">
           <div>
             <label htmlFor>
               Namn
