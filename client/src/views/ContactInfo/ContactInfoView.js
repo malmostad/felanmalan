@@ -27,7 +27,6 @@ const ContactInfoView = () => {
   }
 
   useEffect(() => {
-    console.log(email.current)
     followUp.current.checked ? setDisabledNext(true) : setDisabledNext(false)
     if (emailPattern.test(email.current.value)) {
       setDisabledNext(false)
