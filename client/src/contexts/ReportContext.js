@@ -45,7 +45,6 @@ export const ReportProvider = ({ children }) => {
       payload,
     })
   }
-  useEffect(() => {}, [formState])
 
   const reportvalues = {
     formState,

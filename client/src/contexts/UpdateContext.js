@@ -68,10 +68,6 @@ export const UpdateProvider = ({ children }) => {
     }
   }, [errorStatusCode])
 
-  useEffect(() => {
-    console.log(uploadProgress)
-  }, [uploadProgress])
-
   return (
     <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
   )

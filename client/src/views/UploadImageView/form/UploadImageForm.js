@@ -111,14 +111,12 @@ const UploadImageForm = () => {
         payload: uploadedImages,
       })
     } catch (err) {
-      console.error(err)
+      alert('error', err)
     }
   }
 
   const setUploadImages = (payload) => {
-    console.log(payload)
     payload.forEach((file) => {
-      console.log(file)
       UploadImage(file, 'photos')
     })
   }
