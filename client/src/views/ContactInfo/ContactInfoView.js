@@ -16,8 +16,8 @@ const ContactInfoView = () => {
   const email = useRef('')
   const phone = useRef('')
   const followUp = useRef(false)
-  const emailError = useRef('check your email')
-  const phoneError = useRef('check your number')
+  const emailError = useRef('Check your email')
+  const phoneError = useRef('Check your number')
   const { handelSetFormInfo, formState } = useReport()
   const { setDisabledNext } = useUpdate()
 
