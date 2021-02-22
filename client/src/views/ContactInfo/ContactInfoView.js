@@ -28,27 +28,6 @@ const ContactInfoView = () => {
       handelSetFormInfo('followUp', followUp.current.checked)
   }
 
-  const validate = () => {
-    let phoneError = ''
-    let emailError = ''
-
-    if (!emailError.current.includes('@')) {
-      emailError = 'invalid email'
-    }
-    if (emailError) {
-      emailError.current({ emailError })
-      return false
-    }
-    return true
-  }
-
-  const handleSubmit = () => {
-    const isValid = validate()
-    if (isValid) {
-      console.log(isValid)
-    }
-  }
-
   useEffect(() => {
     console.log(email.current)
     console.log(mobilePattern.test(phone.current.value))
@@ -64,7 +43,7 @@ const ContactInfoView = () => {
   return (
     <>
       <StyledFormWrapper>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div>
             <label htmlFor="name">
               Namn
