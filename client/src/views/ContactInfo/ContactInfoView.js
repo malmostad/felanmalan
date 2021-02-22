@@ -16,6 +16,8 @@ const ContactInfoView = () => {
   const email = useRef('')
   const phone = useRef('')
   const followUp = useRef(false)
+  const emailError = useRef('check your email')
+  const phoneError = useRef('check your number')
   const { handelSetFormInfo, formState } = useReport()
   const { setDisabledNext } = useUpdate()
 
@@ -26,7 +28,30 @@ const ContactInfoView = () => {
       handelSetFormInfo('followUp', followUp.current.checked)
   }
 
+  const validate = () => {
+    let phoneError = ''
+    let emailError = ''
+
+    if (!emailError.current.includes('@')) {
+      emailError = 'invalid email'
+    }
+    if (emailError) {
+      emailError.current({ emailError })
+      return false
+    }
+    return true
+  }
+
+  const handleSubmit = () => {
+    const isValid = validate()
+    if (isValid) {
+      console.log(isValid)
+    }
+  }
+
   useEffect(() => {
+    console.log(email.current)
+    console.log(mobilePattern.test(phone.current.value))
     followUp.current.checked ? setDisabledNext(true) : setDisabledNext(false)
     if (emailPattern.test(email.current.value)) {
       setDisabledNext(false)
@@ -39,7 +64,7 @@ const ContactInfoView = () => {
   return (
     <>
       <StyledFormWrapper>
-        <form id="contact-form">
+        <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">
               Namn
@@ -56,6 +81,11 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="email">
               E-post
+              {!email.current ||
+              email.current.value.length < 1 ||
+              emailPattern.test(email.current.value) ? null : (
+                <div style={{ fontSize: 12, color: 'red' }}>{emailError.current}</div>
+              )}
               <InputFormSecond
                 placeholder="Skriv din email"
                 type="email"
@@ -69,6 +99,11 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="phone">
               Telefonnummer
+              {!phone.current ||
+              phone.current.value.length < 1 ||
+              mobilePattern.test(phone.current.value) ? null : (
+                <div style={{ fontSize: 12, color: 'red' }}>{phoneError.current}</div>
+              )}
               <InputFormSecond
                 placeholder="Skriv ditt telefonnumer"
                 type="phone"
