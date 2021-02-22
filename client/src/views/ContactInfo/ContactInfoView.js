@@ -12,7 +12,7 @@ const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+")
 const mobilePattern = /^[0-9]{10}$/
 
 const ContactInfoView = () => {
-  const userName = useRef('')
+  const name = useRef('')
   const email = useRef('')
   const phone = useRef('')
   const followUp = useRef(false)
@@ -20,7 +20,7 @@ const ContactInfoView = () => {
   const { setDisabledNext } = useUpdate()
 
   const handelFormInfo = (e) => {
-    handelSetFormInfo('userName', userName.current.value),
+    handelSetFormInfo('name', name.current.value),
       handelSetFormInfo('email', email.current.value),
       handelSetFormInfo('phone', phone.current.value),
       handelSetFormInfo('followUp', followUp.current.checked)
@@ -48,7 +48,7 @@ const ContactInfoView = () => {
                 type="name"
                 name="name"
                 defaultValue={formState.name}
-                ref={userName}
+                ref={name}
                 onChange={handelFormInfo}
               />
             </label>

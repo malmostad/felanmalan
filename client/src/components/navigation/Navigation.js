@@ -41,7 +41,7 @@ const Navigation = () => {
   }
 
   const handleSubmit = () => {
-    window.location.reload()
+    setCurrentView((prevState) => prevState - currentView)
   }
 
   return (
