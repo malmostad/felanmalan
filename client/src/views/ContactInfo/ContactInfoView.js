@@ -16,8 +16,6 @@ const ContactInfoView = () => {
   const email = useRef('')
   const phone = useRef('')
   const followUp = useRef(false)
-  const emailError = useRef('Check your email')
-  const phoneError = useRef('Check your number')
   const { handelSetFormInfo, formState } = useReport()
   const { setDisabledNext } = useUpdate()
 
@@ -26,6 +24,12 @@ const ContactInfoView = () => {
       handelSetFormInfo('email', email.current.value),
       handelSetFormInfo('phone', phone.current.value),
       handelSetFormInfo('followUp', followUp.current.checked)
+  }
+
+  const isValidEmail = (email) => {
+    return (
+      !email.current || email.current.value.length < 1 || emailPattern.test(email.current.value)
+    )
   }
 
   useEffect(() => {
@@ -61,7 +65,7 @@ const ContactInfoView = () => {
               {!email.current ||
               email.current.value.length < 1 ||
               emailPattern.test(email.current.value) ? null : (
-                <div style={{ fontSize: 12, color: 'red' }}>{emailError.current}</div>
+                <StyledError>Check your phonenumber</StyledError>
               )}
               <InputFormSecond
                 placeholder="Skriv din email"
@@ -79,7 +83,7 @@ const ContactInfoView = () => {
               {!phone.current ||
               phone.current.value.length < 1 ||
               mobilePattern.test(phone.current.value) ? null : (
-                <div style={{ fontSize: 12, color: 'red' }}>{phoneError.current}</div>
+                <StyledError>Check your phonenumber</StyledError>
               )}
               <InputFormSecond
                 placeholder="Skriv ditt telefonnumer"

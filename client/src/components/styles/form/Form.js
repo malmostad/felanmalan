@@ -19,14 +19,10 @@ export const StyledInput = styled.input`
   margin-bottom: 20px;
 `
 
-export const StyledErrorInput = styled.div`
-  border: 1px solid red;
-`
-
 export const InputFormSecond = styled(StyledInput)`
   font-size: 16px;
 `
 export const StyledError = styled.div`
-  font-weight: 700;
-  margin: 30px 0 0px 0px;
+  font-size: 12px;
+  color: red;
 `
