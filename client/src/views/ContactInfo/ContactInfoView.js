@@ -65,6 +65,7 @@ Currently not working
           <div>
             <label htmlFor="email">
               E-post
+              {/* {!isValidEmail && <StyledError>{emailError.current}</StyledError>} */}
               {!email.current ||
               email.current.value.length < 1 ||
               emailPattern.test(email.current.value) ? null : (
