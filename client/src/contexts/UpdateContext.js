@@ -13,7 +13,6 @@ export const UpdateProvider = ({ children }) => {
   const [currentView, setCurrentView] = useState(0)
   const [previousView, setPreviousView] = useState(-1)
   const [nextView, setNextView] = useState(1)
-  const [acceptCookies, setAcceptCookies] = useState(false)
   const [readMore, setReadMore] = useState(false)
   const [error, setError] = useState(false)
   const [errorStatusCode, setErrorStatusCode] = useState(null)
@@ -36,8 +35,6 @@ export const UpdateProvider = ({ children }) => {
     previousView,
     setReadMore,
     readMore,
-    setAcceptCookies,
-    acceptCookies,
     error,
     setError,
     errorStatusCode,

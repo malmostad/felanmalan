@@ -1,12 +1,12 @@
-import { useUpdate } from '../../contexts/UpdateContext'
 import { Button } from '../buttons/Buttons'
 import { StyledLandingContainer } from '../styles/containers/Containers'
+import { useCookies } from 'react-cookie'
 
 const Cookie = () => {
-  const { setAcceptCookies } = useUpdate()
+  const [cookies, setCookie] = useCookies(['cookieConsent'])
 
-  const acceptCookies = () => {
-    setAcceptCookies(true)
+  const handleSetCookie = () => {
+    setCookie('cookieConsent', true, { path: '/' })
   }
 
   return (
@@ -14,11 +14,10 @@ const Cookie = () => {
       <StyledLandingContainer>
         <h1>Malmö stads felanmälan</h1>
         <Button.Outer>
-          <Button onClick={acceptCookies}>Acceptera</Button>
+          <Button onClick={handleSetCookie}>Acceptera</Button>
         </Button.Outer>
       </StyledLandingContainer>
     </>
   )
 }
-
 export default Cookie
