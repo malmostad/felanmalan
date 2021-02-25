@@ -1,7 +1,6 @@
 //react
 import { useEffect, useState, useRef } from 'react'
 //utils
-import http from '../../../http-common'
 //libs
 import { v4 as uuidv4 } from 'uuid'
 import styled from 'styled-components/macro'
@@ -20,6 +19,7 @@ import {
 } from '../../../components/styles/containers/Containers'
 
 import { useUpdate } from '../../../contexts/UpdateContext'
+import { postImages } from '../../../api/api'
 
 //styles (to be moved and changed)
 const StyledImageContainer = styled.div`
@@ -27,6 +27,7 @@ const StyledImageContainer = styled.div`
   text-align: center;
   width: 220px;
   height: 220px;
+  opacity: ${({ progress }) => progress};
   img {
     width: 220px;
     height: 220px;
@@ -57,7 +58,7 @@ const StyledWrapper = styled(StyledFlexCenter)`
 
 const StyledProgressBar = styled.div`
   height: 5px;
-  width: ${({ progress }) => progress}%;
+  width: 50%;
   color: green;
 `
 
@@ -82,42 +83,29 @@ const UploadImageForm = () => {
   //refs
   const fileInput = useRef(null)
 
+  //effects
+  useEffect(() => {
+    dispatch({
+      type: 'uploadImages',
+      field: 'images',
+      payload: uploadedImages,
+    })
+  }, [uploadedImages])
+
   //functions
 
-  const UploadImage = async (file, endpoint) => {
-    const getBase64 = (file, callback) => {
-      const reader = new FileReader()
-      reader.addEventListener('load', () => callback(reader.result))
-      reader.readAsDataURL(file)
-    }
-
-    setUploading(true)
-
-    const formData = new FormData()
-    formData.append('file', file)
-    try {
-      const res = await http.post(endpoint, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        onUploadProgress: (progressEvent) => {
-          const progress = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100))
-          setUploadProgress(progress)
-        },
-      })
-      const UploadedImageId = await res.data.id
-      setUploadedImages((prevFiles) => [...prevFiles, UploadedImageId])
-      dispatch({
-        type: 'uploadedImage',
-        field: 'images',
-        payload: uploadedImages,
-      })
-    } catch (err) {
-      alert('error', err)
-    }
-  }
-
   const setUploadImages = (payload) => {
-    payload.forEach((file) => {
-      UploadImage(file, 'photos')
+    setUploading(true)
+    payload.forEach(async (file) => {
+      const resp = await postImages(
+        process.env.REACT_APP_API_POST_PHOTOS_ENDPOINT,
+        file,
+        (progressEvent) => {
+          const progress = parseInt(Math.round(progressEvent.loaded / progressEvent.total))
+          setUploadProgress(progress)
+        }
+      )
+      setUploadedImages((prevState) => [...prevState, resp.data])
     })
   }
 
@@ -169,7 +157,7 @@ const UploadImageForm = () => {
           {previewImages.map((image, index) => (
             <StyledImageContainer key={uuidv4()}>
               <img key={index} src={image.preview} alt="alt" id={image.id} />
-              <StyledImageOverlay>
+              <StyledImageOverlay progress={uploadProgress}>
                 <StyledImageIcon onClick={() => handleRemoveImage(image)}>
                   <RemoveImageIcon />
                 </StyledImageIcon>
