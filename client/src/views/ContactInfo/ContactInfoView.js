@@ -26,15 +26,6 @@ const ContactInfoView = () => {
       handelSetFormInfo('followUp', followUp.current.checked)
   }
 
-  /*
-Currently not working
-  const isValidEmail = (email) => {
-    return (
-      !email.current || email.current.value.length < 1 || emailPattern.test(email.current.value)
-    )
-  }
-*/
-
   useEffect(() => {
     followUp.current.checked ? setDisabledNext(true) : setDisabledNext(false)
     if (emailPattern.test(email.current.value)) {
@@ -44,6 +35,12 @@ Currently not working
       setDisabledNext(false)
     }
   }, [followUp.current.checked, email.current.value, phone.current.value])
+
+  const isValidEmail =
+    !email.current || email.current.value.length < 1 || emailPattern.test(email.current.value)
+
+  const isValidPhoneNumber =
+    !phone.current || phone.current.value.length < 1 || mobilePattern.test(phone.current.value)
 
   return (
     <>
@@ -65,12 +62,7 @@ Currently not working
           <div>
             <label htmlFor="email">
               E-post
-              {/* {!isValidEmail && <StyledError>{emailError.current}</StyledError>} */}
-              {!email.current ||
-              email.current.value.length < 1 ||
-              emailPattern.test(email.current.value) ? null : (
-                <StyledError>Check your email</StyledError>
-              )}
+              {!isValidEmail && <StyledError>Check your email</StyledError>}
               <InputFormSecond
                 placeholder="Skriv din email"
                 type="email"
@@ -84,11 +76,7 @@ Currently not working
           <div>
             <label htmlFor="phone">
               Telefonnummer
-              {!phone.current ||
-              phone.current.value.length < 1 ||
-              mobilePattern.test(phone.current.value) ? null : (
-                <StyledError>Check your phonenumber</StyledError>
-              )}
+              {!isValidPhoneNumber && <StyledError>Check your phonenumber</StyledError>}
               <InputFormSecond
                 placeholder="Skriv ditt telefonnumer"
                 type="phone"
