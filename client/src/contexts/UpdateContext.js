@@ -23,6 +23,7 @@ export const UpdateProvider = ({ children }) => {
   const [imageURI, setImageURI] = useState(null)
   const [uploadStatus, setUploadStatus] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [imagesToBeUploaded, setImagesToBeUploaded] = useState([])
 
   const updateValues = {
     setLoading,
@@ -53,6 +54,8 @@ export const UpdateProvider = ({ children }) => {
     setUploadStatus,
     uploading,
     setUploading,
+    imagesToBeUploaded,
+    setImagesToBeUploaded,
   }
 
   useEffect(() => {
@@ -68,8 +71,6 @@ export const UpdateProvider = ({ children }) => {
         break
     }
   }, [errorStatusCode])
-
-  useEffect(() => {}, [uploadProgress])
 
   return (
     <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
