@@ -26,11 +26,14 @@ const ContactInfoView = () => {
       handelSetFormInfo('followUp', followUp.current.checked)
   }
 
+  /*
+Currently not working
   const isValidEmail = (email) => {
     return (
       !email.current || email.current.value.length < 1 || emailPattern.test(email.current.value)
     )
   }
+*/
 
   useEffect(() => {
     followUp.current.checked ? setDisabledNext(true) : setDisabledNext(false)
@@ -65,7 +68,7 @@ const ContactInfoView = () => {
               {!email.current ||
               email.current.value.length < 1 ||
               emailPattern.test(email.current.value) ? null : (
-                <StyledError>Check your phonenumber</StyledError>
+                <StyledError>Check your email</StyledError>
               )}
               <InputFormSecond
                 placeholder="Skriv din email"

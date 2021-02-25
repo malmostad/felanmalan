@@ -25,4 +25,5 @@ export const InputFormSecond = styled(StyledInput)`
 export const StyledError = styled.div`
   font-size: 12px;
   color: red;
+  margin-bottom: 2px;
 `
