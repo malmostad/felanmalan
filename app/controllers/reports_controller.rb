@@ -24,7 +24,7 @@ class ReportsController < ApiController
 
     @report = Report.new(report_params.except('images'))
     @report.photos << photos
-    @report.external_id = EasyIncidentService.create(@report)
+    # @report.external_id = EasyIncidentService.create(@report)
 
     if @report.save
       render json: @report, status: :created, location: @report
