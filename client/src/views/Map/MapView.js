@@ -15,14 +15,23 @@ const MapView = () => {
   const { handelSetFormInfo } = useReport()
 
   const coordinates = {
-    lat: '55.59705552372533',
-    lng: '12.977538048269887',
+    latitude: '55.59705552372533',
+    longitude: '12.977538048269887',
   }
 
   return (
     <MapContainer>
-      <button ref={mapRef} name="location" onClick={() => handelSetFormInfo(mapRef, coordinates)}>
-        Min position
+      <button
+        ref={mapRef}
+        name="location"
+        onClick={() => handelSetFormInfo('latitude', coordinates.latitude)}>
+        Lat
+      </button>
+      <button
+        ref={mapRef}
+        name="location"
+        onClick={() => handelSetFormInfo('longitude', coordinates.longitude)}>
+        Long
       </button>
     </MapContainer>
   )
