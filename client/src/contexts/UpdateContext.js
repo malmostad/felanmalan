@@ -2,6 +2,10 @@ import { useContext, useState, createContext, useEffect } from 'react'
 
 const UpdateContext = createContext()
 
+if (!UpdateContext) {
+  throw new Error('AppContext must be used with AppProvider!')
+}
+
 export const useUpdate = () => useContext(UpdateContext)
 
 export const UpdateProvider = ({ children }) => {
@@ -67,6 +71,8 @@ export const UpdateProvider = ({ children }) => {
         break
     }
   }, [errorStatusCode])
+
+  useEffect(() => {}, [uploadProgress])
 
   return (
     <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
