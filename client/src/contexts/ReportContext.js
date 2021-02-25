@@ -3,31 +3,27 @@ import { useContext, createContext, useReducer, useEffect, useState } from 'reac
 export const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
 
-const photosEndpoint = 'photos'
-const reportEndpoint = 'reports'
-
 const initialReportData = {
   images: [],
-  location: {
-    lat: '',
-    lng: '',
-  },
+  latitude: '',
+  longitude: '',
   description: '',
+  address: '',
   name: '',
   email: '',
   phone: '',
-  followUp: false,
+  enable_tracking: false,
 }
 
 export const ReportProvider = ({ children }) => {
-  const formReducer = async (formState, { type, field, payload }) => {
+  const formReducer = (formState, { type, field, payload }) => {
     switch (type) {
       case 'setFormInfo':
         return {
           ...formState,
           [field]: payload,
         }
-      case 'uploadedImage':
+      case 'uploadImages':
         return {
           ...formState,
           [field]: payload,

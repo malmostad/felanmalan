@@ -15,7 +15,7 @@ const ContactInfoView = () => {
   const name = useRef('')
   const email = useRef('')
   const phone = useRef('')
-  const followUp = useRef(false)
+  const enable_tracking = useRef(false)
   const { handelSetFormInfo, formState } = useReport()
   const { setDisabledNext } = useUpdate()
 
@@ -23,18 +23,18 @@ const ContactInfoView = () => {
     handelSetFormInfo('name', name.current.value),
       handelSetFormInfo('email', email.current.value),
       handelSetFormInfo('phone', phone.current.value),
-      handelSetFormInfo('followUp', followUp.current.checked)
+      handelSetFormInfo('enable_tracking', enable_tracking.current.checked)
   }
 
   useEffect(() => {
-    followUp.current.checked ? setDisabledNext(true) : setDisabledNext(false)
+    enable_tracking.current.checked ? setDisabledNext(true) : setDisabledNext(false)
     if (emailPattern.test(email.current.value)) {
       setDisabledNext(false)
     }
     if (mobilePattern.test(phone.current.value)) {
       setDisabledNext(false)
     }
-  }, [followUp.current.checked, email.current.value, phone.current.value])
+  }, [enable_tracking.current.checked, email.current.value, phone.current.value])
 
   const isValidEmail =
     !email.current || email.current.value.length < 1 || emailPattern.test(email.current.value)
@@ -90,15 +90,17 @@ const ContactInfoView = () => {
           <div>
             <input
               type="checkbox"
-              name="followUp"
-              defaultChecked={formState.followUp}
-              ref={followUp}
+              name="enable_tracking"
+              defaultChecked={formState.enable_tracking}
+              ref={enable_tracking}
               onChange={handelFormInfo}
             />
             <span> Vill du få uppföljning på ditt ärende?</span>
           </div>
         </form>
-        {followUp.current.checked && <StyledError>Fyll i telefonnumer eller e-post</StyledError>}
+        {enable_tracking.current.checked && (
+          <StyledError>Fyll i telefonnumer eller e-post</StyledError>
+        )}
       </StyledFormWrapper>
     </>
   )
