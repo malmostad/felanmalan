@@ -36,10 +36,16 @@ const ContactInfoView = () => {
     }
   }, [enable_tracking.current.checked, email.current.value, phone.current.value])
 
+  const isValidEmail =
+    !email.current || email.current.value.length < 1 || emailPattern.test(email.current.value)
+
+  const isValidPhoneNumber =
+    !phone.current || phone.current.value.length < 1 || mobilePattern.test(phone.current.value)
+
   return (
     <>
       <StyledFormWrapper>
-        <form id="contact-form">
+        <form>
           <div>
             <label htmlFor="name">
               Namn
@@ -56,6 +62,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="email">
               E-post
+              {!isValidEmail && <StyledError>Check your email</StyledError>}
               <InputFormSecond
                 placeholder="Skriv din email"
                 type="email"
@@ -69,6 +76,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="phone">
               Telefonnummer
+              {!isValidPhoneNumber && <StyledError>Check your phonenumber</StyledError>}
               <InputFormSecond
                 placeholder="Skriv ditt telefonnumer"
                 type="phone"
