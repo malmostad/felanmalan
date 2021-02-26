@@ -78,7 +78,7 @@ const ContactInfoView = () => {
               Telefonnummer
               {!isValidPhoneNumber && <StyledError>Check your phonenumber</StyledError>}
               <InputFormSecond
-                placeholder="Skriv ditt telefonnumer"
+                placeholder="Skriv ditt telefonnummer"
                 type="phone"
                 name="phone"
                 defaultValue={formState.phone}

@@ -1,7 +1,8 @@
 import { formViews } from '../../views/index'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useReducer } from 'react'
 import { useUpdate } from '../../contexts/UpdateContext'
 import { Button } from '../buttons/Buttons'
+import { navReducer } from '../../contexts/UpdateContext'
 
 const Navigation = () => {
   const [disabledPrevious, setDisabledPrevious] = useState(true)
@@ -16,49 +17,16 @@ const Navigation = () => {
 
   useEffect(() => {}, [currentView, disabledNext, disabledPrevious])
 
-  const handleClickNext = () => {
-    if (currentView + 1 < formViews.length) {
-      setDisabledPrevious(false)
-      setPreviousView(currentView)
-      setCurrentView((prevState) => prevState + 1)
-      setNextView((prevState) => prevState + 1)
-    } else {
-      setDisabledNext(true)
-      setDisabledPrevious(false)
-    }
-  }
-
-  const handleClickPrevious = () => {
-    if (currentView - 1 >= 0) {
-      setDisabledNext(false)
-      setPreviousView((prevState) => prevState - 1)
-      setCurrentView((prevState) => prevState - 1)
-      setNextView(currentView)
-    } else {
-      setDisabledNext(false)
-      setDisabledPrevious(true)
-    }
-  }
-
-  const handleSubmit = () => {
-    setCurrentView((prevState) => prevState - currentView)
+  const handleNext = () => {
+    console.log('test, next')
   }
 
   return (
     <Button.Outer>
       <Button.Inner>
-        {!disabledNext && (
-          <Button
-            bgGreen
-            onClick={currentView + 1 === formViews.length ? handleSubmit : handleClickNext}>
-            {currentView + 1 === formViews.length ? 'Skapa Ny' : 'next'}
-          </Button>
-        )}
-        {!disabledPrevious && (
-          <Button bgGreen onClick={handleClickPrevious}>
-            {currentView + 1 === formViews.length ? setDisabledPrevious(true) : 'previous'}
-          </Button>
-        )}
+        <Button type="handleClickNext" onClick={handleNext}>
+          Next
+        </Button>
       </Button.Inner>
     </Button.Outer>
   )

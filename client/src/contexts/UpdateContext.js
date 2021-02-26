@@ -25,7 +25,25 @@ export const UpdateProvider = ({ children }) => {
   const [uploading, setUploading] = useState(false)
   const [imagesToBeUploaded, setImagesToBeUploaded] = useState([])
 
+  const navReducer = (navstate, action) => {
+    const initialState = {
+      currentView: 0,
+    }
+    switch (action.type) {
+      case 'handleClickNext':
+        return {
+          currentView: navstate.currentView + 1,
+        }
+      case 'handleClickPrevious':
+        return
+      default:
+        console.log('currentView', initialState)
+        initialState
+    }
+  }
+
   const updateValues = {
+    navReducer,
     setLoading,
     loading,
     setCurrentView,
