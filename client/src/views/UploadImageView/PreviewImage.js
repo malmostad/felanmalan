@@ -10,11 +10,13 @@ import { StyledFlexCenterColumn } from '../../components/styles/containers/Conta
 import { StyledImageContainer, StyledImageOverlay, StyledImageIcon } from './styles/styles'
 //icons lib
 import { IoTrashOutline as RemoveImageIcon } from 'react-icons/io5'
+import ProgressBar from './ProgressBar'
 
 const PreviewImage = ({ image }) => {
   //refs (might not be needed)
   let uploadRef = useRef(image)
-  let progressRef = useRef(null)
+  //current file
+  const currentFile = uploadRef.current
 
   //local states
   const [uploadedImages, setUploadedImages] = useState([])
@@ -64,7 +66,6 @@ const PreviewImage = ({ image }) => {
     setImagesToBeUploaded(imagesToBeUploaded.filter((item) => item.id !== image.id))
   }
 
-  const currentFile = uploadRef.current
   // check if the current file
   return (
     <StyledFlexCenterColumn>
@@ -76,11 +77,7 @@ const PreviewImage = ({ image }) => {
           </StyledImageIcon>
         </StyledImageOverlay>
       </StyledImageContainer>
-      {currentFile.id && (
-        <p ref={progressRef} id={currentFile.id}>
-          progress: {uploadProgress}%
-        </p>
-      )}
+      {currentFile.id && <ProgressBar max={100} progress={uploadProgress} />}
     </StyledFlexCenterColumn>
   )
 }
