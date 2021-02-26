@@ -3,12 +3,14 @@ import styled from 'styled-components'
 const StyledImageContainer = styled.div`
   position: relative;
   text-align: center;
-  width: 220px;
-  height: 220px;
+  width: 100%;
+  height: 100%;
+
   opacity: ${({ progress }) => progress};
   img {
-    width: 220px;
-    height: 220px;
+    object-fit: contain;
+    width: 230px;
+    height: 230px;
   }
 `
 const StyledImageOverlay = styled.div`

@@ -46,12 +46,12 @@ export const StyledInnerWrapper = styled.div`
 
 export const StyledFooterContainer = styled.div`
   ${flexCenter}
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   height: 100px;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+  /* background-color: ${({ theme }) => theme.colors.PrimaryGreen}; */
 `
 
 export const StyledGrid = styled.div`
@@ -62,6 +62,8 @@ export const StyledGrid = styled.div`
   grid-column-start: end;
   grid-gap: 10px;
   overflow-x: hidden;
+  place-items: center;
+
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
   }
