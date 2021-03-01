@@ -17,7 +17,7 @@ const ContactInfoView = () => {
   const phone = useRef('')
   const enable_tracking = useRef(false)
   const { handelSetFormInfo, formState } = useReport()
-  const { setDisabledNext } = useUpdate()
+  const { setShowSubmit } = useUpdate()
 
   const handelFormInfo = (e) => {
     handelSetFormInfo('name', name.current.value),
@@ -27,12 +27,12 @@ const ContactInfoView = () => {
   }
 
   useEffect(() => {
-    enable_tracking.current.checked ? setDisabledNext(true) : setDisabledNext(false)
+    enable_tracking.current.checked ? setShowSubmit(false) : setShowSubmit(true)
     if (emailPattern.test(email.current.value)) {
-      setDisabledNext(false)
+      setShowSubmit(true)
     }
     if (mobilePattern.test(phone.current.value)) {
-      setDisabledNext(false)
+      setShowSubmit(true)
     }
   }, [enable_tracking.current.checked, email.current.value, phone.current.value])
 

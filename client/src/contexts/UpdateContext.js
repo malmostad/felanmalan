@@ -25,8 +25,11 @@ export const UpdateProvider = ({ children }) => {
   const [uploading, setUploading] = useState(false)
   const [imagesToBeUploaded, setImagesToBeUploaded] = useState([])
   const [current, setCurrent] = useState()
+  const [showSubmit, setShowSubmit] = useState(false)
 
   const updateValues = {
+    showSubmit,
+    setShowSubmit,
     current,
     setCurrent,
     setLoading,

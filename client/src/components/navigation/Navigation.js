@@ -7,10 +7,17 @@ import { useReport } from '../../contexts/ReportContext'
 
 const Navigation = () => {
   const [disabledPrevious, setDisabledPrevious] = useState(true)
-  const [submit, setSubmit] = useState(false)
   const [create, setCreate] = useState(false)
   const { formState } = useReport()
-  const { setCurrentView, currentView, disabledNext, setDisabledNext, setCurrent } = useUpdate()
+  const {
+    setCurrentView,
+    currentView,
+    disabledNext,
+    setDisabledNext,
+    setCurrent,
+    showSubmit,
+    setShowSubmit,
+  } = useUpdate()
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -37,7 +44,7 @@ const Navigation = () => {
     })
     setDisabledPrevious(true)
     setDisabledNext(true)
-    setSubmit(false)
+    setShowSubmit(false)
     setCreate(false)
     //first page
     if (currentView <= 0) {
@@ -46,8 +53,8 @@ const Navigation = () => {
     }
     //contact page
     if (currentView + 1 === formViews.length - 1) {
-      setSubmit(true)
-      setDisabledNext(true)
+      setShowSubmit(true)
+      setDisabledNext(false)
     }
 
     // following up page
@@ -80,7 +87,7 @@ const Navigation = () => {
     <Button.Outer>
       <Button.Inner>
         {disabledNext && <Button onClick={handleNext}>Next</Button>}
-        {submit && <Button onClick={handleSubmit}>Submit</Button>}
+        {showSubmit && <Button onClick={handleSubmit}>Submit</Button>}
         {create && <Button onClick={createNew}>Skapa ny</Button>}
         {disabledPrevious && <Button onClick={handlePrevious}>previous</Button>}
       </Button.Inner>
