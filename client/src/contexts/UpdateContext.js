@@ -1,4 +1,4 @@
-import { useContext, useState, createContext, useEffect } from 'react'
+import { useContext, useState, createContext, useEffect, useReducer } from 'react'
 
 const UpdateContext = createContext()
 
@@ -24,26 +24,11 @@ export const UpdateProvider = ({ children }) => {
   const [uploadStatus, setUploadStatus] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [imagesToBeUploaded, setImagesToBeUploaded] = useState([])
-
-  const navReducer = (navstate, action) => {
-    const initialState = {
-      currentView: 0,
-    }
-    switch (action.type) {
-      case 'handleClickNext':
-        return {
-          currentView: navstate.currentView + 1,
-        }
-      case 'handleClickPrevious':
-        return
-      default:
-        console.log('currentView', initialState)
-        initialState
-    }
-  }
+  const [current, setCurrent] = useState()
 
   const updateValues = {
-    navReducer,
+    current,
+    setCurrent,
     setLoading,
     loading,
     setCurrentView,

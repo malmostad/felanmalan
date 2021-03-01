@@ -62,7 +62,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="email">
               E-post
-              {!isValidEmail && <StyledError>Check your email</StyledError>}
+              {!isValidEmail && <StyledError>Kontrollera email</StyledError>}
               <InputFormSecond
                 placeholder="Skriv din email"
                 type="email"
@@ -76,7 +76,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="phone">
               Telefonnummer
-              {!isValidPhoneNumber && <StyledError>Check your phonenumber</StyledError>}
+              {!isValidPhoneNumber && <StyledError>Kontrollera telefonnumer</StyledError>}
               <InputFormSecond
                 placeholder="Skriv ditt telefonnummer"
                 type="phone"
