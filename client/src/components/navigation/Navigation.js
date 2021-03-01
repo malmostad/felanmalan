@@ -4,7 +4,7 @@ import { useUpdate } from '../../contexts/UpdateContext'
 import { Button } from '../buttons/Buttons'
 
 const Navigation = () => {
-  const [disabledPrevious, setDisabledPrevious] = useState(false)
+  const [disabledPrevious, setDisabledPrevious] = useState(true)
   const [submit, setSubmit] = useState(false)
   const [create, setCreate] = useState(false)
   const {
@@ -40,35 +40,29 @@ const Navigation = () => {
         setCurrent(View)
       }
     })
-    setCreate(false)
-    setSubmit(false)
-    setDisabledNext(false)
     setDisabledPrevious(true)
-
-    //First Page
-    if (currentView === 0) {
+    setDisabledNext(false)
+    //first page
+    if (currentView <= 0) {
+      setDisabledNext(false)
       setDisabledPrevious(false)
     }
-    //On last page to post the submit
     if (currentView + 1 === formViews.length - 1) {
-      setDisabledNext(true)
       setSubmit(true)
+      setDisabledNext(true)
     }
-  }, [currentView, disabledNext, disabledPrevious])
+  }, [currentView])
 
   const handleNext = () => {
     dispatch({ type: 'handleClickNext' })
-    console.log(currentView, 'clicked next')
   }
 
   const handlePrevious = () => {
     dispatch({ type: 'handleClickPrevious' })
-    console.log(currentView, 'clicked previous')
   }
 
   const handleSubmit = () => {
     dispatch({ type: 'handleSubmit' })
-    console.log('submit')
   }
 
   const createNew = () => {
