@@ -41,15 +41,25 @@ const Navigation = () => {
       }
     })
     setDisabledPrevious(true)
-    setDisabledNext(false)
+    setDisabledNext(true)
+    setSubmit(false)
+    setCreate(false)
     //first page
     if (currentView <= 0) {
-      setDisabledNext(false)
+      setDisabledNext(true)
       setDisabledPrevious(false)
     }
+    //contact page
     if (currentView + 1 === formViews.length - 1) {
       setSubmit(true)
       setDisabledNext(true)
+    }
+
+    // following up page
+    if (currentView + 1 === formViews.length) {
+      setDisabledPrevious(false)
+      setDisabledNext(false)
+      setCreate(true)
     }
   }, [currentView])
 
@@ -72,7 +82,7 @@ const Navigation = () => {
   return (
     <Button.Outer>
       <Button.Inner>
-        {!disabledNext && <Button onClick={handleNext}>Next</Button>}
+        {disabledNext && <Button onClick={handleNext}>Next</Button>}
         {submit && <Button onClick={handleSubmit}>Submit</Button>}
         {create && <Button onClick={createNew}>Skapa ny</Button>}
         {disabledPrevious && <Button onClick={handlePrevious}>previous</Button>}

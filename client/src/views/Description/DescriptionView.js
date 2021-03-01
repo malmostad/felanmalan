@@ -9,9 +9,9 @@ const DescriptionView = () => {
 
   useEffect(() => {
     if (!descriptionRef.current.value) {
-      setDisabledNext(true)
-    } else {
       setDisabledNext(false)
+    } else {
+      setDisabledNext(true)
     }
   }, [descriptionRef.current.value])
 
