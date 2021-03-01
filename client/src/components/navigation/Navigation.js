@@ -2,9 +2,12 @@ import { formViews } from '../../views/index'
 import { useEffect, useState } from 'react'
 import { useUpdate } from '../../contexts/UpdateContext'
 import { Button } from '../buttons/Buttons'
+import { postReport } from '../../api/api'
+import { useReport } from '../../contexts/ReportContext'
 
 const Navigation = () => {
   const [disabledPrevious, setDisabledPrevious] = useState(true)
+  const { formState } = useReport()
   const {
     setNextView,
     setCurrentView,
@@ -40,8 +43,9 @@ const Navigation = () => {
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setCurrentView((prevState) => prevState - currentView)
+    let res = await postReport('reports', formState)
   }
 
   return (
