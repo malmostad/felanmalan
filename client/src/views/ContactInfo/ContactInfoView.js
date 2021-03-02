@@ -17,7 +17,7 @@ const ContactInfoView = () => {
   const phone = useRef('')
   const enable_tracking = useRef(false)
   const { handelSetFormInfo, formState } = useReport()
-  const { setDisabledNext } = useUpdate()
+  const { setDisabledNext, setCurrentViewHeading, currentViewHeading } = useUpdate()
 
   const handelFormInfo = (e) => {
     handelSetFormInfo('name', name.current.value),
@@ -25,6 +25,10 @@ const ContactInfoView = () => {
       handelSetFormInfo('phone', phone.current.value),
       handelSetFormInfo('enable_tracking', enable_tracking.current.checked)
   }
+
+  useEffect(() => {
+    setCurrentViewHeading('Kan vi kontakta dig vid frågor?')
+  }, [currentViewHeading])
 
   useEffect(() => {
     enable_tracking.current.checked ? setDisabledNext(true) : setDisabledNext(false)
