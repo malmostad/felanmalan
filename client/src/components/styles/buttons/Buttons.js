@@ -21,7 +21,7 @@ export const StyledButton = styled.button`
 export const StyledFetchButton = styled.button`
   appearance: none;
   outline: none;
-  background-image: url(/static/media/current-location.8bd4556e.svg);
+  background-image: url('Current-location.svg');
   background-size: 20px;
   background-color: #046a38;
   background-position: 19px;
@@ -34,4 +34,5 @@ export const StyledFetchButton = styled.button`
   position: absolute;
   width: 62px;
   height: 62px;
+  bottom: 180px;
 `
