@@ -18,3 +18,20 @@ export const StyledButton = styled.button`
     color: white;
   }
 `
+export const StyledFetchButton = styled.button`
+  appearance: none;
+  outline: none;
+  background-image: url(/static/media/current-location.8bd4556e.svg);
+  background-size: 20px;
+  background-color: #046a38;
+  background-position: 19px;
+  border: none;
+  border-radius: 31px;
+  margin: 10px;
+  background-repeat: no-repeat;
+  z-index: 98;
+  right: 0;
+  position: absolute;
+  width: 62px;
+  height: 62px;
+`
