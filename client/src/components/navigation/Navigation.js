@@ -1,13 +1,12 @@
 import { formViews } from '../../views/index'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useReducer } from 'react'
 import { useUpdate } from '../../contexts/UpdateContext'
 import { Button } from '../buttons/Buttons'
-import { postReport } from '../../api/api'
-import { useReport } from '../../contexts/ReportContext'
 
 const Navigation = () => {
-  const [disabledPrevious, setDisabledPrevious] = useState(true)
-  const { formState } = useReport()
+  const [disabledPrevious, setDisabledPrevious] = useState(false)
+  const [submit, setSubmit] = useState(false)
+  const [create, setCreate] = useState(false)
   const {
     setNextView,
     setCurrentView,
@@ -15,54 +14,74 @@ const Navigation = () => {
     currentView,
     disabledNext,
     setDisabledNext,
+    setCurrent,
   } = useUpdate()
 
-  useEffect(() => {}, [currentView, disabledNext, disabledPrevious])
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'handleClickNext':
+        return setCurrentView(currentView + 1)
+      case 'handleClickPrevious':
+        return setCurrentView(currentView - 1)
+      case 'handleSubmit':
+        return setCurrentView(currentView + 1)
+      case 'createNew':
+        return setCurrentView((prevState) => prevState - currentView)
+      default:
+        throw new Error()
+    }
+  }
 
-  const handleClickNext = () => {
-    if (currentView + 1 < formViews.length) {
-      setDisabledPrevious(false)
-      setPreviousView(currentView)
-      setCurrentView((prevState) => prevState + 1)
-      setNextView((prevState) => prevState + 1)
-    } else {
+  const [state, dispatch] = useReducer(reducer, currentView)
+
+  useEffect(() => {
+    formViews.forEach((View, index) => {
+      if (currentView === index) {
+        setCurrent(View)
+      }
+    })
+    setCreate(false)
+    setSubmit(false)
+    setDisabledNext(false)
+    setDisabledPrevious(false)
+
+    //First Page
+    if (currentView === 0) {
+      console.log('h')
+    }
+    //On last page to post the submit
+    if (currentView + 1 === formViews.length - 1) {
       setDisabledNext(true)
-      setDisabledPrevious(false)
+      setSubmit(true)
     }
+  }, [currentView, disabledNext, disabledPrevious])
+
+  const handleNext = () => {
+    dispatch({ type: 'handleClickNext' })
+    console.log(currentView, 'clicked next')
   }
 
-  const handleClickPrevious = () => {
-    if (currentView - 1 >= 0) {
-      setDisabledNext(false)
-      setPreviousView((prevState) => prevState - 1)
-      setCurrentView((prevState) => prevState - 1)
-      setNextView(currentView)
-    } else {
-      setDisabledNext(false)
-      setDisabledPrevious(true)
-    }
+  const handlePrevious = () => {
+    dispatch({ type: 'handleClickPrevious' })
+    console.log(currentView, 'clicked previous')
   }
 
-  const handleSubmit = async () => {
-    setCurrentView((prevState) => prevState - currentView)
-    let res = await postReport('reports', formState)
+  const handleSubmit = () => {
+    dispatch({ type: 'handleSubmit' })
+    console.log('submit')
+  }
+
+  const createNew = () => {
+    dispatch({ type: 'createNew' })
   }
 
   return (
     <Button.Outer>
       <Button.Inner>
-        {!disabledNext && (
-          <Button
-            bgGreen
-            onClick={currentView + 1 === formViews.length ? handleSubmit : handleClickNext}>
-            {currentView + 1 === formViews.length ? 'Skapa Ny' : 'next'}
-          </Button>
-        )}
-        {!disabledPrevious && (
-          <Button bgGreen onClick={handleClickPrevious}>
-            {currentView + 1 === formViews.length ? setDisabledPrevious(true) : 'previous'}
-          </Button>
-        )}
+        {!disabledNext && <Button onClick={handleNext}>Next</Button>}
+        {submit && <Button onClick={handleSubmit}>Submit</Button>}
+        {create && <Button onClick={createNew}>Skapa ny</Button>}
+        {disabledPrevious && <Button onClick={handlePrevious}>previous</Button>}
       </Button.Inner>
     </Button.Outer>
   )

@@ -17,7 +17,7 @@ const ContactInfoView = () => {
   const phone = useRef('')
   const enable_tracking = useRef(false)
   const { handelSetFormInfo, formState } = useReport()
-  const { setDisabledNext } = useUpdate()
+  const { setShowSubmit } = useUpdate()
 
   const handelFormInfo = (e) => {
     handelSetFormInfo('name', name.current.value),
@@ -27,12 +27,12 @@ const ContactInfoView = () => {
   }
 
   useEffect(() => {
-    enable_tracking.current.checked ? setDisabledNext(true) : setDisabledNext(false)
+    enable_tracking.current.checked ? setShowSubmit(false) : setShowSubmit(true)
     if (emailPattern.test(email.current.value)) {
-      setDisabledNext(false)
+      setShowSubmit(true)
     }
     if (mobilePattern.test(phone.current.value)) {
-      setDisabledNext(false)
+      setShowSubmit(true)
     }
   }, [enable_tracking.current.checked, email.current.value, phone.current.value])
 
@@ -41,6 +41,9 @@ const ContactInfoView = () => {
 
   const isValidPhoneNumber =
     !phone.current || phone.current.value.length < 1 || mobilePattern.test(phone.current.value)
+
+  const isValidAndChecked =
+    enable_tracking.current.checked && !emailPattern.test(email.current.value)
 
   return (
     <>
@@ -62,7 +65,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="email">
               E-post
-              {!isValidEmail && <StyledError>Check your email</StyledError>}
+              {!isValidEmail && <StyledError>Kontrollera email</StyledError>}
               <InputFormSecond
                 placeholder="Skriv din email"
                 type="email"
@@ -76,9 +79,9 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="phone">
               Telefonnummer
-              {!isValidPhoneNumber && <StyledError>Check your phonenumber</StyledError>}
+              {!isValidPhoneNumber && <StyledError>Kontrollera telefonnummer</StyledError>}
               <InputFormSecond
-                placeholder="Skriv ditt telefonnumer"
+                placeholder="Skriv ditt telefonnummer"
                 type="phone"
                 name="phone"
                 defaultValue={formState.phone}
@@ -98,8 +101,8 @@ const ContactInfoView = () => {
             <span> Vill du få uppföljning på ditt ärende?</span>
           </div>
         </form>
-        {enable_tracking.current.checked && (
-          <StyledError>Fyll i telefonnumer eller e-post</StyledError>
+        {isValidAndChecked && !mobilePattern.test(phone.current.value) && (
+          <StyledError> Fyll i telefonnumer eller e-post </StyledError>
         )}
       </StyledFormWrapper>
     </>
