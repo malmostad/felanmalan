@@ -5,7 +5,11 @@ import { useUpdate } from '../../contexts/UpdateContext'
 const DescriptionView = () => {
   const descriptionRef = useRef('')
   const { handelSetFormInfo, formState } = useReport()
-  const { setDisabledNext } = useUpdate()
+  const { setDisabledNext, setCurrentViewHeading, currentViewHeading } = useUpdate()
+
+  useEffect(() => {
+    setCurrentViewHeading('Beskriv Problemet')
+  }, [currentViewHeading])
 
   useEffect(() => {
     if (!descriptionRef.current.value) {

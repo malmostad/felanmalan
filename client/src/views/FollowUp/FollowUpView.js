@@ -1,4 +1,13 @@
+import { useUpdate } from '../.././contexts/UpdateContext'
+import React, { useEffect } from 'react'
+
 const FollowUpView = () => {
+  const { setCurrentViewHeading, currentViewHeading } = useUpdate()
+
+  useEffect(() => {
+    setCurrentViewHeading('Tack för din felanmälan')
+  }, [currentViewHeading])
+
   return (
     <>
       <h1>Follow up -</h1>
