@@ -28,7 +28,7 @@ const Navigation = () => {
       case 'handleSubmit':
         return setCurrentView(currentView + 1)
       case 'createNew':
-        return setCurrentView((prevState) => prevState - currentView)
+        return setCurrentView(0)
       default:
         throw new Error()
     }
@@ -37,11 +37,7 @@ const Navigation = () => {
   const [state, dispatch] = useReducer(reducer, currentView)
 
   useEffect(() => {
-    formViews.forEach((View, index) => {
-      if (currentView === index) {
-        setCurrent(View)
-      }
-    })
+    setCurrent(formViews[currentView])
     setDisabledPrevious(true)
     setDisabledNext(true)
     setShowSubmit(false)
