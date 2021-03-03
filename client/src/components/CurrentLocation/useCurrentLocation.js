@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
 const useCurrentLocation = () => {
-  const [error, setError] = useState(null)
   const [location, setLocation] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -28,7 +27,7 @@ const useCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition(handleSuccess, handleError)
   }, [])
 
-  return { error, location, loading }
+  return { location, loading }
 }
 
 export default useCurrentLocation
