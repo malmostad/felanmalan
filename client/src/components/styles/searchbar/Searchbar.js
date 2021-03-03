@@ -5,6 +5,7 @@ export const StyledLabelSearchBar = styled.label`
   display: flex;
   justify-content: left;
   align-items: center;
+  max-width: 500px;
 `
 export const StyledInputSearchBar = styled.input`
   height: 36px;
