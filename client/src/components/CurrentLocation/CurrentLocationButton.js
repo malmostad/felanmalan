@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import { StyledFetchButton } from '../styles/buttons/Buttons'
 import { FiNavigation as NavIcon } from 'react-icons/fi'
 
