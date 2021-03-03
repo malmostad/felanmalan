@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import mapboxgl from 'mapbox-gl'
 import './MapBox.css'
+import { FaMapPin as Marker } from 'react-icons/fa'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 const MapBox = () => {
@@ -19,6 +20,19 @@ const MapBox = () => {
     })
   }, [])
 
-  return <div id="mapContainer" className="map"></div>
+  return (
+    <div id="mapContainer" className="map">
+      <Marker
+        alt="Marker"
+        size="1.6rem"
+        style={{
+          color: '#05763C',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+        }}
+      />
+    </div>
+  )
 }
 export default MapBox
