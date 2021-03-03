@@ -21,7 +21,6 @@ export const StyledButton = styled.button`
 export const StyledFetchButton = styled.button`
   appearance: none;
   outline: none;
-  background-image: url('Current-location.svg');
   background-size: 20px;
   background-color: #046a38;
   background-position: 19px;
