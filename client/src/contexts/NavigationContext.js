@@ -6,12 +6,14 @@ export const NavigationContext = createContext()
 const initialState = {
   currentViewIndex: 0,
   disableNext: false,
+  disablePrevious: false,
   disableSubmit: false,
   lastViewIndex: formViews.length - 1,
+  submitViewIndex: formViews.length - 2,
 }
 
 const navigationReducer = (navigationState, action) => {
-  let { currentViewIndex, disableNext, disableSubmit } = navigationState
+  let { currentViewIndex, disableNext, disableSubmit, disablePrevious } = navigationState
 
   switch (action.type) {
     case 'disableNext':
@@ -34,10 +36,23 @@ const navigationReducer = (navigationState, action) => {
       disableNext = false
       return { ...navigationState, currentViewIndex: currentViewIndex, disableNext: disableNext }
     case 'reset':
+      disableNext = false
+      disablePrevious = false
       currentViewIndex = 0
-      return { ...navigationState, currentViewIndex: currentViewIndex }
+      return {
+        ...navigationState,
+        currentViewIndex: currentViewIndex,
+        disableNext: disableNext,
+        disablePrevious: disablePrevious,
+      }
     case 'submit':
-      return { ...navigationState, currentViewIndex: currentViewIndex }
+      ;(disableNext = true), (disablePrevious = true), (currentViewIndex += 1)
+      return {
+        ...navigationState,
+        currentViewIndex: currentViewIndex,
+        disableNext: disableNext,
+        disablePrevious: disablePrevious,
+      }
     default:
       return { ...navigationState }
   }
