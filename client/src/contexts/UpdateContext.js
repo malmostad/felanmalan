@@ -1,4 +1,4 @@
-import { useContext, useState, createContext, useEffect } from 'react'
+import { useContext, useState, createContext, useEffect, useReducer } from 'react'
 
 const UpdateContext = createContext()
 
@@ -10,14 +10,10 @@ export const useUpdate = () => useContext(UpdateContext)
 
 export const UpdateProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
-  const [currentView, setCurrentView] = useState(0)
-  const [previousView, setPreviousView] = useState(-1)
-  const [nextView, setNextView] = useState(1)
   const [readMore, setReadMore] = useState(false)
   const [error, setError] = useState(false)
   const [errorStatusCode, setErrorStatusCode] = useState(null)
   const [errorMessenger, setErrorMessenger] = useState(null)
-  const [disabledNext, setDisabledNext] = useState(false)
   const [currentViewHeading, setCurrentViewHeading] = useState('')
   const [uploadProgress, setUploadProgress] = useState(0)
   const [imageURI, setImageURI] = useState(null)
@@ -28,12 +24,6 @@ export const UpdateProvider = ({ children }) => {
   const updateValues = {
     setLoading,
     loading,
-    setCurrentView,
-    currentView,
-    setNextView,
-    nextView,
-    setPreviousView,
-    previousView,
     setReadMore,
     readMore,
     error,
@@ -42,8 +32,6 @@ export const UpdateProvider = ({ children }) => {
     setErrorStatusCode,
     errorMessenger,
     setErrorMessenger,
-    disabledNext,
-    setDisabledNext,
     setCurrentViewHeading,
     currentViewHeading,
     setUploadProgress,

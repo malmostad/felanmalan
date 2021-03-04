@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useContext } from 'react'
 import { useReport } from '../.././contexts/ReportContext'
+import { NavigationContext } from '../../contexts/NavigationContext'
 import {
   StyledError,
   StyledFormWrapper,
@@ -17,7 +18,7 @@ const ContactInfoView = () => {
   const phone = useRef('')
   const enable_tracking = useRef(false)
   const { handelSetFormInfo, formState } = useReport()
-  const { setDisabledNext, setCurrentViewHeading, currentViewHeading } = useUpdate()
+  const { dispatch } = useContext(NavigationContext)
 
   const handelFormInfo = (e) => {
     handelSetFormInfo('name', name.current.value),
@@ -27,16 +28,14 @@ const ContactInfoView = () => {
   }
 
   useEffect(() => {
-    setCurrentViewHeading('Kan vi kontakta dig vid frågor?')
-  }, [currentViewHeading])
-
-  useEffect(() => {
-    enable_tracking.current.checked ? setDisabledNext(true) : setDisabledNext(false)
+    enable_tracking.current.checked
+      ? dispatch({ type: 'disableSubmit' })
+      : dispatch({ type: 'enableSubmit' })
     if (emailPattern.test(email.current.value)) {
-      setDisabledNext(false)
+      dispatch({ type: 'enableSubmit' })
     }
     if (mobilePattern.test(phone.current.value)) {
-      setDisabledNext(false)
+      dispatch({ type: 'enableSubmit' })
     }
   }, [enable_tracking.current.checked, email.current.value, phone.current.value])
 
@@ -66,7 +65,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="email">
               E-post
-              {!isValidEmail && <StyledError>Check your email</StyledError>}
+              {!isValidEmail && <StyledError>Kontrollera email</StyledError>}
               <InputFormSecond
                 placeholder="Skriv din email"
                 type="email"
@@ -80,9 +79,9 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="phone">
               Telefonnummer
-              {!isValidPhoneNumber && <StyledError>Check your phonenumber</StyledError>}
+              {!isValidPhoneNumber && <StyledError>Kontrollera telefonnumer</StyledError>}
               <InputFormSecond
-                placeholder="Skriv ditt telefonnumer"
+                placeholder="Skriv ditt telefonnummer"
                 type="phone"
                 name="phone"
                 defaultValue={formState.phone}

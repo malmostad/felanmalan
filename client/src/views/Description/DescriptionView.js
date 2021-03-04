@@ -1,22 +1,16 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useContext, useRef } from 'react'
 import { useReport } from '../../contexts/ReportContext'
-import { useUpdate } from '../../contexts/UpdateContext'
+import { NavigationContext } from '../../contexts/NavigationContext'
 
 const DescriptionView = () => {
   const descriptionRef = useRef('')
   const { handelSetFormInfo, formState } = useReport()
-  const { setDisabledNext, setCurrentViewHeading, currentViewHeading } = useUpdate()
+  const { dispatch } = useContext(NavigationContext)
 
   useEffect(() => {
-    setCurrentViewHeading('Beskriv Problemet')
-  }, [currentViewHeading])
-
-  useEffect(() => {
-    if (!descriptionRef.current.value) {
-      setDisabledNext(true)
-    } else {
-      setDisabledNext(false)
-    }
+    descriptionRef.current.value
+      ? dispatch({ type: 'enableNext' })
+      : dispatch({ type: 'disableNext' })
   }, [descriptionRef.current.value])
 
   const handleFormInfo = () => {
