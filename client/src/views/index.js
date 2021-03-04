@@ -13,4 +13,4 @@ export const formViews = [
   <FollowUpView />,
 ]
 
-export { UploadImageView, MapView, DescriptionView, ContactInfoView, FollowUpView }
+export { UploadImageView, MapView, DescriptionView, ContactInfoView }
