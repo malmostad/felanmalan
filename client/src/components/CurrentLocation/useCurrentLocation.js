@@ -12,7 +12,6 @@ const useCurrentLocation = () => {
     }
     const handleSuccess = (position) => {
       const { latitude, longitude } = position.coords
-      console.log(position)
 
       setLocation({
         latitude,
