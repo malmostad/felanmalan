@@ -4,7 +4,7 @@ import { NavigationContext } from '../../contexts/NavigationContext'
 
 const Navigation = () => {
   const { state, dispatch } = useContext(NavigationContext)
-  const { disableNext, currentViewIndex, lastViewIndex } = state
+  const { disableNext, currentViewIndex, lastViewIndex, disableSubmit } = state
 
   return (
     <Button.Outer>
@@ -17,7 +17,7 @@ const Navigation = () => {
             Next
           </Button>
         )}
-        {currentViewIndex === lastViewIndex && (
+        {currentViewIndex === lastViewIndex && !disableSubmit && (
           <Button
             onClick={() => {
               dispatch({ type: 'submit' })

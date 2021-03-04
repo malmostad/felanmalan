@@ -12,7 +12,7 @@ const Steps = () => {
   const { error, errorMessenger, errorStatusCode } = useUpdate()
   const { state } = useContext(NavigationContext)
   const { currentViewIndex } = state
-    
+
   return (
     <>
       {cookies.cookieConsent ? (
