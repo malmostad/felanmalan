@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useContext } from 'react'
 import { useReport } from '../.././contexts/ReportContext'
+import { NavigationContext } from '../../contexts/NavigationContext'
 import {
   StyledError,
   StyledFormWrapper,
@@ -17,7 +18,7 @@ const ContactInfoView = () => {
   const phone = useRef('')
   const enable_tracking = useRef(false)
   const { handelSetFormInfo, formState } = useReport()
-  const { setShowSubmit } = useUpdate()
+  const { dispatch } = useContext(NavigationContext)
 
   const handelFormInfo = (e) => {
     handelSetFormInfo('name', name.current.value),
@@ -27,12 +28,14 @@ const ContactInfoView = () => {
   }
 
   useEffect(() => {
-    enable_tracking.current.checked ? setShowSubmit(false) : setShowSubmit(true)
+    enable_tracking.current.checked
+      ? dispatch({ type: 'disableSubmit' })
+      : dispatch({ type: 'enableSubmit' })
     if (emailPattern.test(email.current.value)) {
-      setShowSubmit(true)
+      dispatch({ type: 'enableSubmit' })
     }
     if (mobilePattern.test(phone.current.value)) {
-      setShowSubmit(true)
+      dispatch({ type: 'enableSubmit' })
     }
   }, [enable_tracking.current.checked, email.current.value, phone.current.value])
 
@@ -79,7 +82,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="phone">
               Telefonnummer
-              {!isValidPhoneNumber && <StyledError>Kontrollera telefonnummer</StyledError>}
+              {!isValidPhoneNumber && <StyledError>Kontrollera telefonnumer</StyledError>}
               <InputFormSecond
                 placeholder="Skriv ditt telefonnummer"
                 type="phone"
