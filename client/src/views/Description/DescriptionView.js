@@ -1,6 +1,5 @@
 import { useEffect, useContext, useRef } from 'react'
 import { useReport } from '../../contexts/ReportContext'
-import { useUpdate } from '../../contexts/UpdateContext'
 import { NavigationContext } from '../../contexts/NavigationContext'
 
 const DescriptionView = () => {
