@@ -1,31 +1,36 @@
 import { useEffect, useState } from 'react'
 
+const positionOptions = {
+  timeout: 10000, // 10 secs
+  maximumAge: 2 * 60 * 60 * 1000, // 2hours
+}
+
 const useCurrentLocation = () => {
   const [error, setError] = useState(null)
   const [location, setLocation] = useState(null)
+  const [requestedLocation, setRequestedLocation] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const positionOptions = {
-      timeout: 10000, // 10 secs
-      maximumAge: 2 * 60 * 60 * 1000, // 2hours
-    }
-    const handleSuccess = (position) => {
-      const { latitude, longitude } = position.coords
+    if (!requestedLocation) {
+      console.log('getting position...')
+      setRequestedLocation(true)
+      const handleSuccess = (position) => {
+        const { latitude, longitude } = position.coords
+        setLocation({
+          latitude,
+          longitude,
+        })
+        console.log(position)
+      }
 
-      setLocation({
-        latitude,
-        longitude,
-      })
-      setLoading(false)
+      const handleError = (error) => {
+        console.error(error)
+      }
+
+      navigator.geolocation.getCurrentPosition(handleSuccess, handleError, positionOptions)
     }
-    const handleError = (error) => {
-      console.error(error)
-      setError(error.message)
-      setLoading(false)
-    }
-    navigator.geolocation.getCurrentPosition(handleSuccess, handleError)
-  }, [])
+  }, [setRequestedLocation])
 
   return { error, location, loading }
 }
