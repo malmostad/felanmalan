@@ -2,9 +2,32 @@ body {
   margin: 0;
   padding: 0;
 }
-.map {
-  position: absolute;
-  top: 0;
-  bottom: 100px;
-  width: 100%;
+
+.react-geocoder {
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.react-geocoder input {
+  height: 36px;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  border: none;
+  font-size: 18px;
+}
+.react-geocoder-results {
+  background-color: white;
+  width: 500px;
+  text-align: left;
+  padding: 10px;
+}
+
+.react-geocoder-item {
+  margin-bottom: 10px;
 }
