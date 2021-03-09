@@ -1,18 +1,11 @@
-import React, { useState } from 'react'
 import ReactMapGl from 'react-map-gl'
-import Geocoder from 'react-mapbox-gl-geocoder'
 import './MapBox.css'
 import { FaMapPin as Marker } from 'react-icons/fa'
-
-const placeholder = (props) => <input {...props} placeholder="Search" />
-const maxBounds = [12.855952171065837, 55.49066310369751, 13.17594041283428, 55.6585718499375]
+import SearchBar from '../searchbar/SearchBar'
+import { useMap } from '../../contexts/MapContext'
 
 const MapBox = () => {
-  const [viewport, setViewport] = useState({
-    latitude: 55.6051458,
-    longitude: 13.003365,
-    zoom: 13,
-  })
+  const { viewport, setViewport } = useMap()
   return (
     <>
       <ReactMapGl
@@ -22,15 +15,7 @@ const MapBox = () => {
         mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
         width="100vw"
         height="100vh">
-        <Geocoder
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-          onSelected={(viewport) => setViewport(viewport)}
-          viewport={viewport}
-          hideOnSelect={true}
-          proximity={viewport}
-          queryParams={{ bbox: maxBounds, proximity: viewport }}
-          inputComponent={placeholder}
-        />
+        <SearchBar />
         <Marker
           alt="Marker"
           size="1.6rem"
