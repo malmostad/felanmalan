@@ -15,7 +15,7 @@ const CurrentLocationButton = () => {
   const handleUserLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       setViewport({
-        zoom: 15,
+        zoom: 17,
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       })
