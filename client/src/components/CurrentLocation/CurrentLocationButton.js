@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { StyledFetchButton } from '../styles/buttons/Buttons'
 import { FiNavigation as NavIcon } from 'react-icons/fi'
+import useCurrentLocation from '../CurrentLocation/useCurrentLocation'
 
 const CurrentLocationButton = () => {
+  location = useCurrentLocation()
   const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        console.log('Latitude: ' + pos.coords.latitude + 'Longitude: ' + pos.coords.longitude)
-      })
-    } else {
-      console.log('Geolocation is not supported by this browser.')
-    }
+    location
   }
 
   return (
