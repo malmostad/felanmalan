@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 const positionOptions = {
   timeout: 10000, // 10 secs
   enableHighAccuracy: true,
-  maximumAge: 2 * 60 * 60 * 1000, // 2hours
+  maximumAge: 0,
 }
 
 const useCurrentLocation = () => {
