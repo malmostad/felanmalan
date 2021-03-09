@@ -21,7 +21,7 @@ const MapBox = () => {
       setViewport((vp) => ({
         ...vp,
         ...location,
-        zoom: 15,
+        zoom: 17,
       }))
     }
   }, [location, setViewport])
@@ -48,6 +48,7 @@ const MapBox = () => {
           alt="Marker"
           size="1.6rem"
           style={{
+            zIndex: '50',
             color: '#05763C',
             position: 'absolute',
             top: '50vh',
@@ -56,7 +57,7 @@ const MapBox = () => {
         />
         {location ? (
           <Marker latitude={location.latitude} longitude={location.longitude}>
-            <div className="pulsating-circle"></div>
+            <div className="blob"></div>
           </Marker>
         ) : null}
       </ReactMapGl>
