@@ -44,11 +44,13 @@ const MapBox = () => {
           queryParams={{ bbox: maxBounds, proximity: viewport }}
           inputComponent={placeholder}
         />
+
         {location ? (
           <Marker latitude={location.latitude} longitude={location.longitude}>
             <div className="blob"></div>
           </Marker>
         ) : null}
+
         <MarkerIcon
           alt="Marker"
           size="1.6rem"
