@@ -1,17 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { StyledFetchButton } from '../styles/buttons/Buttons'
 import { FiNavigation as NavIcon } from 'react-icons/fi'
-import useCurrentLocation from '../CurrentLocation/useCurrentLocation'
+import { useMap } from '../../contexts/MapContext'
+
+const positionOptions = {
+  timeout: 10000, // 10 secs
+  enableHighAccuracy: true,
+  maximumAge: 0,
+}
 
 const CurrentLocationButton = () => {
-  location = useCurrentLocation()
-  const getLocation = () => {
-    location
+  const { setViewport, setShowMarker, setUserLocation, userLocation } = useMap()
+
+  const handleUserLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setViewport({
+        zoom: 15,
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      })
+      setUserLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      })
+      setShowMarker(true),
+        {
+          timeout: 10000, // 10 secs
+          enableHighAccuracy: true,
+          maximumAge: 0,
+        }
+    })
   }
 
   return (
     <>
-      <StyledFetchButton onClick={getLocation}>
+      <StyledFetchButton onClick={handleUserLocation}>
         <NavIcon
           size="1.4rem"
           style={{ color: 'white', marginTop: '5px', transform: 'rotate(-20deg)' }}

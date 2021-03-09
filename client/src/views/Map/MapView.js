@@ -1,12 +1,15 @@
 import MapBox from '../../components/mapBox/MapBox'
 import CurrentLocationButton from '../../components/CurrentLocation/CurrentLocationButton'
 import React from 'react'
+import { MapProvider } from '../../contexts/MapContext'
 
 const MapView = () => {
   return (
     <>
-      <MapBox />
-      <CurrentLocationButton />
+      <MapProvider>
+        <MapBox />
+        <CurrentLocationButton />
+      </MapProvider>
     </>
   )
 }

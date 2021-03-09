@@ -3,28 +3,13 @@ import ReactMapGl, { Marker, GeolocateControl, NavigationControl } from 'react-m
 import Geocoder from 'react-mapbox-gl-geocoder'
 import './MapBox.css'
 import { FaMapPin as MarkerIcon } from 'react-icons/fa'
-import useCurrentLocation from '../../components/CurrentLocation/useCurrentLocation'
+import { useMap } from '../../contexts/MapContext'
 
 const placeholder = (props) => <input {...props} placeholder="Search" />
 const maxBounds = [12.855952171065837, 55.49066310369751, 13.17594041283428, 55.6585718499375]
 
 const MapBox = () => {
-  const location = useCurrentLocation()
-  const [viewport, setViewport] = useState({
-    latitude: 55.6051458,
-    longitude: 13.003365,
-    zoom: 13,
-  })
-
-  useEffect(() => {
-    if (location) {
-      setViewport((vp) => ({
-        ...vp,
-        ...location,
-        zoom: 15,
-      }))
-    }
-  }, [location, setViewport])
+  const { viewport, setViewport, showMarker, userLocation } = useMap()
 
   return (
     <>
@@ -45,8 +30,8 @@ const MapBox = () => {
           inputComponent={placeholder}
         />
 
-        {location ? (
-          <Marker latitude={location.latitude} longitude={location.longitude}>
+        {showMarker ? (
+          <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
             <div className="blob"></div>
           </Marker>
         ) : null}
