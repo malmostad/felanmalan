@@ -21,7 +21,7 @@ const MapBox = () => {
       setViewport((vp) => ({
         ...vp,
         ...location,
-        zoom: 17,
+        zoom: 15,
       }))
     }
   }, [location, setViewport])
@@ -44,22 +44,21 @@ const MapBox = () => {
           queryParams={{ bbox: maxBounds, proximity: viewport }}
           inputComponent={placeholder}
         />
+        {location ? (
+          <Marker latitude={location.latitude} longitude={location.longitude}>
+            <div className="blob"></div>
+          </Marker>
+        ) : null}
         <MarkerIcon
           alt="Marker"
           size="1.6rem"
           style={{
-            zIndex: '50',
             color: '#05763C',
             position: 'absolute',
             top: '50vh',
             left: '50vw',
           }}
         />
-        {location ? (
-          <Marker latitude={location.latitude} longitude={location.longitude}>
-            <div className="blob"></div>
-          </Marker>
-        ) : null}
       </ReactMapGl>
     </>
   )
