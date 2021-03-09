@@ -3,14 +3,8 @@ import { StyledFetchButton } from '../styles/buttons/Buttons'
 import { FiNavigation as NavIcon } from 'react-icons/fi'
 import { useMap } from '../../contexts/MapContext'
 
-const positionOptions = {
-  timeout: 10000, // 10 secs
-  enableHighAccuracy: true,
-  maximumAge: 0,
-}
-
 const CurrentLocationButton = () => {
-  const { setViewport, setShowMarker, setUserLocation, userLocation } = useMap()
+  const { setViewport, setShowMarker, setUserLocation } = useMap()
 
   const handleUserLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
