@@ -21,33 +21,62 @@ const ContactInfoView = () => {
   const { dispatch } = useContext(NavigationContext)
 
   const handelFormInfo = (e) => {
-    handelSetFormInfo('name', name.current.value),
-      handelSetFormInfo('email', email.current.value),
-      handelSetFormInfo('phone', phone.current.value),
-      handelSetFormInfo('enable_tracking', enable_tracking.current.checked)
+    handelSetFormInfo('name', name.current.value)
+    handelSetFormInfo('email', email.current.value)
+    handelSetFormInfo('phone', phone.current.value)
+    handelSetFormInfo('enable_tracking', enable_tracking.current.checked)
   }
 
   useEffect(() => {
-    enable_tracking.current.checked
-      ? dispatch({ type: 'disableSubmit' })
-      : dispatch({ type: 'enableSubmit' })
-    if (emailPattern.test(email.current.value)) {
-      dispatch({ type: 'enableSubmit' })
-    }
-    if (mobilePattern.test(phone.current.value)) {
-      dispatch({ type: 'enableSubmit' })
+    const phoneOrEmailSet =
+      [!isEmptyPhoneNumberInput, !isEmptyEmailInput].filter((isSet) => isSet).length > 0
+
+    if ((isEmptyEmailInput || isValidEmail) && (isEmptyPhoneNumberInput || isValidPhoneNumber)) {
+      if (enable_tracking.current.checked && phoneOrEmailSet) {
+        dispatch({ type: 'enableSubmit' })
+      } else if (!enable_tracking.current.checked) {
+        dispatch({ type: 'enableSubmit' })
+      } else {
+        dispatch({ type: 'disableSubmit' })
+      }
+    } else {
+      dispatch({ type: 'disableSubmit' })
     }
   }, [enable_tracking.current.checked, email.current.value, phone.current.value])
 
-  const isValidEmail =
-    !email.current || email.current.value.length < 1 || emailPattern.test(email.current.value)
+  const isEmptyPhoneNumberInput =
+    !phone.current.value || (phone.current.value && phone.current.value.length === 0)
 
-  const isValidPhoneNumber =
-    !phone.current || phone.current.value.length < 1 || mobilePattern.test(phone.current.value)
+  const isEmptyEmailInput =
+    !email.current.value || (email.current.value && email.current.value.length === 0)
 
-  const isValidAndChecked =
-    enable_tracking.current.checked && !emailPattern.test(email.current.value)
+  const isValidEmail = emailPattern.test(email.current.value)
 
+  const isValidPhoneNumber = mobilePattern.test(phone.current.value)
+
+  const trackingRequirementsFulfilled = () => {
+    const phoneOrEmailSet =
+      [!isEmptyPhoneNumberInput, !isEmptyEmailInput].filter((isSet) => isSet).length > 0
+    return phoneOrEmailSet && (isValidEmail || isValidPhoneNumber)
+  }
+
+  const shoudRenderPhoneError = () => {
+    if (isEmptyPhoneNumberInput) {
+      return false
+    }
+    if (!isValidPhoneNumber) {
+      return true
+    }
+  }
+
+  const shoudRenderEmailError = () => {
+    if (isEmptyEmailInput) {
+      return false
+    }
+    if (!isValidEmail) {
+      return true
+    }
+  }
   return (
     <>
       <StyledFormWrapper>
@@ -68,7 +97,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="email">
               E-post
-              {!isValidEmail && <StyledError>Kontrollera email</StyledError>}
+              {shoudRenderEmailError() && <StyledError>Kontrollera email</StyledError>}
               <InputFormSecond
                 placeholder="Skriv din email"
                 type="email"
@@ -82,7 +111,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="phone">
               Telefonnummer
-              {!isValidPhoneNumber && <StyledError>Kontrollera telefonnumer</StyledError>}
+              {shoudRenderPhoneError() && <StyledError>Kontrollera telefonnummer</StyledError>}
               <InputFormSecond
                 placeholder="Skriv ditt telefonnummer"
                 type="phone"
@@ -104,7 +133,7 @@ const ContactInfoView = () => {
             <span> Vill du få uppföljning på ditt ärende?</span>
           </div>
         </form>
-        {isValidAndChecked && !mobilePattern.test(phone.current.value) && (
+        {enable_tracking.current.checked && !trackingRequirementsFulfilled() && (
           <StyledError> Fyll i telefonnumer eller e-post </StyledError>
         )}
       </StyledFormWrapper>
