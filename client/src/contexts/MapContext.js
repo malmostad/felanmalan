@@ -15,10 +15,11 @@ const initialState = {
     longitude: '',
   },
   showPositionMarker: false,
+  showLocationButton: true,
 }
 
 const mapReducer = (mapState, { type, payload }) => {
-  let { viewport, zoom, maxBounds, userLocation, showPositionMarker } = mapState
+  let { viewport, zoom, maxBounds, userLocation, showPositionMarker, showLocationButton } = mapState
 
   switch (type) {
     case 'handelViewportChange':
@@ -28,6 +29,9 @@ const mapReducer = (mapState, { type, payload }) => {
     case 'handelShowPositionMarker':
       showPositionMarker = true
       return { ...mapState, showPositionMarker: showPositionMarker }
+    case 'handelDisableButton':
+      showLocationButton = false
+      return { ...mapState, showLocationButton: showLocationButton }
     default:
       return { ...mapState }
   }

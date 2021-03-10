@@ -14,10 +14,19 @@ const CurrentLocationButton = () => {
         zoom: 17,
       }
       dispatch({ type: 'handelUserLocation', payload })
-
       dispatch({ type: 'handelShowPositionMarker' })
-
       dispatch({ type: 'handelViewportChange', payload })
+    })
+
+    navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
+      if (permissionStatus.state === 'denied') {
+        dispatch({ type: 'handelDisableButton' })
+      }
+      permissionStatus.onchange = () => {
+        if (permissionStatus.state === 'denied') {
+          dispatch({ type: 'handelDisableButton' })
+        }
+      }
     })
   }
 

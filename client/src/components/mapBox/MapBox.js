@@ -4,14 +4,16 @@ import { FaMapPin as MarkerIcon } from 'react-icons/fa'
 import SearchBar from '../searchbar/SearchBar'
 import { MapContext } from '../../contexts/MapContext'
 import { useContext } from 'react'
+import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
 
 const MapBox = () => {
   const { state, dispatch } = useContext(MapContext)
-  const { viewport, userLocation, showPositionMarker } = state
+  const { viewport, userLocation, showPositionMarker, showLocationButton } = state
 
   const handelViewPortChange = (payload) => {
     dispatch({ type: 'handelViewportChange', payload })
   }
+
   return (
     <>
       <ReactMapGl
@@ -22,6 +24,8 @@ const MapBox = () => {
         width="100vw"
         height="100vh">
         <SearchBar />
+
+        {showLocationButton && <CurrentLocationButton />}
 
         {showPositionMarker && (
           <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
