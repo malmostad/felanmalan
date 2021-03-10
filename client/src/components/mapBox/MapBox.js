@@ -5,7 +5,7 @@ import SearchBar from '../searchbar/SearchBar'
 import { MapContext } from '../../contexts/MapContext'
 import { useContext } from 'react'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
-import LoadingSpinner from '../../components/loading/index'
+import { LoadingSpinner } from '../../components/loading/styles'
 
 const MapBox = () => {
   const { state, dispatch } = useContext(MapContext)
