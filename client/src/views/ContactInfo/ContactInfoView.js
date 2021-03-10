@@ -60,7 +60,7 @@ const ContactInfoView = () => {
     return phoneOrEmailSet && (isValidEmail || isValidPhoneNumber)
   }
 
-  const shoudRenderPhoneError = () => {
+  const shouldRenderPhoneError = () => {
     if (isEmptyPhoneNumberInput) {
       return false
     }
@@ -69,7 +69,7 @@ const ContactInfoView = () => {
     }
   }
 
-  const shoudRenderEmailError = () => {
+  const shouldRenderEmailError = () => {
     if (isEmptyEmailInput) {
       return false
     }
@@ -97,7 +97,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="email">
               E-post
-              {shoudRenderEmailError() && <StyledError>Kontrollera email</StyledError>}
+              {shouldRenderEmailError() && <StyledError>Kontrollera email</StyledError>}
               <InputFormSecond
                 placeholder="Skriv din email"
                 type="email"
@@ -111,7 +111,7 @@ const ContactInfoView = () => {
           <div>
             <label htmlFor="phone">
               Telefonnummer
-              {shoudRenderPhoneError() && <StyledError>Kontrollera telefonnummer</StyledError>}
+              {shouldRenderPhoneError() && <StyledError>Kontrollera telefonnummer</StyledError>}
               <InputFormSecond
                 placeholder="Skriv ditt telefonnummer"
                 type="phone"
