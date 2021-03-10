@@ -24,7 +24,6 @@ const rotate360 = keyframes`
 export const LoadingSpinner = styled.div`
   animation: ${rotate360} 1s linear infinite;
   transform: translateZ(0);
-
   border-top: 2px solid grey;
   border-right: 2px solid grey;
   border-bottom: 2px solid grey;

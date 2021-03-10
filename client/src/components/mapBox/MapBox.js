@@ -9,10 +9,10 @@ import { LoadingSpinner } from '../../components/loading/styles'
 
 const MapBox = () => {
   const { state, dispatch } = useContext(MapContext)
-  const { viewport, userLocation, showPositionMarker, showLocationButton, loader } = state
+  const { viewport, userLocation, showPositionMarker, showLocationButton, isLoading } = state
 
   const handelViewPortChange = (payload) => {
-    dispatch({ type: 'handelViewportChange', payload })
+    dispatch({ type: 'handleViewportChange', payload })
   }
 
   return (
@@ -26,7 +26,7 @@ const MapBox = () => {
         height="100vh">
         <SearchBar />
 
-        {loader && <LoadingSpinner />}
+        {isLoading && <LoadingSpinner />}
 
         {showLocationButton && <CurrentLocationButton />}
 

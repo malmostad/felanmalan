@@ -8,29 +8,29 @@ const CurrentLocationButton = () => {
   const { showLocationButton } = state
 
   const handleUserLocation = () => {
-    dispatch({ type: 'handelStartLoader' })
+    dispatch({ type: 'handleStartLoader' })
     navigator.geolocation.getCurrentPosition((position) => {
       const payload = {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
         zoom: 17,
       }
-      dispatch({ type: 'handelUserLocation', payload })
-      dispatch({ type: 'handelShowPositionMarker' })
-      dispatch({ type: 'handelViewportChange', payload })
-      dispatch({ type: 'handelStopLoader' })
+      dispatch({ type: 'handleUserLocation', payload })
+      dispatch({ type: 'handleShowPositionMarker' })
+      dispatch({ type: 'handleViewportChange', payload })
+      dispatch({ type: 'handleStopLoader' })
     })
   }
 
   useEffect(() => {
     navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
       if (permissionStatus.state === 'denied') {
-        dispatch({ type: 'handelDisableButton' })
+        dispatch({ type: 'handleDisableButton' })
       }
       permissionStatus.onchange = () => {
         if (permissionStatus.state === 'denied') {
-          dispatch({ type: 'handelDisableButton' })
-          dispatch({ type: 'handelStopLoader' })
+          dispatch({ type: 'handleDisableButton' })
+          dispatch({ type: 'handleStopLoader' })
         }
       }
     })

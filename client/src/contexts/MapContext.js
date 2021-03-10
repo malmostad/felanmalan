@@ -16,7 +16,7 @@ const initialState = {
   },
   showPositionMarker: false,
   showLocationButton: true,
-  loader: false,
+  isLoading: false,
 }
 
 const mapReducer = (mapState, { type, payload }) => {
@@ -27,26 +27,26 @@ const mapReducer = (mapState, { type, payload }) => {
     userLocation,
     showPositionMarker,
     showLocationButton,
-    loader,
+    isLoading,
   } = mapState
 
   switch (type) {
-    case 'handelViewportChange':
+    case 'handleViewportChange':
       return { ...mapState, viewport: payload }
-    case 'handelUserLocation':
+    case 'handleUserLocation':
       return { ...mapState, userLocation: payload }
-    case 'handelShowPositionMarker':
+    case 'handleShowPositionMarker':
       showPositionMarker = true
       return { ...mapState, showPositionMarker: showPositionMarker }
-    case 'handelDisableButton':
+    case 'handleDisableButton':
       showLocationButton = false
       return { ...mapState, showLocationButton: showLocationButton }
-    case 'handelStartLoader':
-      loader = true
-      return { ...mapState, loader: loader }
-    case 'handelStopLoader':
-      loader = false
-      return { ...mapState, loader: loader }
+    case 'handleStartLoader':
+      isLoading = true
+      return { ...mapState, isLoading: isLoading }
+    case 'handleStopLoader':
+      isLoading = false
+      return { ...mapState, isLoading: isLoading }
     default:
       return { ...mapState }
   }
