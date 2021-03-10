@@ -1,27 +1,23 @@
+import { useContext } from 'react'
 import { StyledFetchButton } from '../styles/buttons/Buttons'
 import { FiNavigation as NavIcon } from 'react-icons/fi'
-import { useMap } from '../../contexts/MapContext'
+import { MapContext } from '../../contexts/MapContext'
 
 const CurrentLocationButton = () => {
-  const { setViewport, setShowMarker, setUserLocation } = useMap()
+  const { dispatch } = useContext(MapContext)
 
   const handleUserLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      setViewport({
+      const payload = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
         zoom: 17,
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      })
-      setUserLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      })
-      setShowMarker(true),
-        {
-          timeout: 10000, // 10 secs
-          enableHighAccuracy: true,
-          maximumAge: 0,
-        }
+      }
+      dispatch({ type: 'handelUserLocation', payload })
+
+      dispatch({ type: 'handelShowPositionMarker' })
+
+      dispatch({ type: 'handelViewportChange', payload })
     })
   }
 

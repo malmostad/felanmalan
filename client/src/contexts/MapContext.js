@@ -1,33 +1,40 @@
-import { useContext, useState, createContext, useEffect, useReducer } from 'react'
+import { useReducer } from 'react'
+import { createContext } from 'react'
 
-const MapContext = createContext()
+export const MapContext = createContext()
 
-if (!MapContext) {
-  throw new Error('AppContext must be used with AppProvider!')
-}
-
-export const useMap = () => useContext(MapContext)
-
-export const MapProvider = ({ children }) => {
-  const [userLocation, setUserLocation] = useState({})
-  const [showMarker, setShowMarker] = useState(false)
-  const [viewport, setViewport] = useState({
+const initialState = {
+  viewport: {
     latitude: 55.6051458,
     longitude: 13.003365,
     zoom: 13,
-  })
+  },
+  maxBounds: [12.855952171065837, 55.49066310369751, 13.17594041283428, 55.6585718499375],
+  userLocation: {
+    latitude: '',
+    longitude: '',
+  },
+  showPositionMarker: false,
+}
 
-  const maxBounds = [12.855952171065837, 55.49066310369751, 13.17594041283428, 55.6585718499375]
+const mapReducer = (mapState, { type, payload }) => {
+  let { viewport, zoom, maxBounds, userLocation, showPositionMarker } = mapState
 
-  const mapValues = {
-    userLocation,
-    showMarker,
-    setShowMarker,
-    setUserLocation,
-    viewport,
-    setViewport,
-    maxBounds,
+  switch (type) {
+    case 'handelViewportChange':
+      return { ...mapState, viewport: payload }
+    case 'handelUserLocation':
+      return { ...mapState, userLocation: payload }
+    case 'handelShowPositionMarker':
+      showPositionMarker = true
+      return { ...mapState, showPositionMarker: showPositionMarker }
+    default:
+      return { ...mapState }
   }
+}
 
-  return <MapContext.Provider value={mapValues}>{children}</MapContext.Provider>
+export const MapProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(mapReducer, initialState)
+
+  return <MapContext.Provider value={{ state, dispatch }}>{children}</MapContext.Provider>
 }

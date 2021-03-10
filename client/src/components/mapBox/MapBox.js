@@ -1,29 +1,33 @@
-import React, { useState, useEffect } from 'react'
-import ReactMapGl, { Marker, GeolocateControl, NavigationControl } from 'react-map-gl'
+import ReactMapGl, { Marker } from 'react-map-gl'
 import './MapBox.css'
 import { FaMapPin as MarkerIcon } from 'react-icons/fa'
-import { useMap } from '../../contexts/MapContext'
 import SearchBar from '../searchbar/SearchBar'
+import { MapContext } from '../../contexts/MapContext'
+import { useContext } from 'react'
 
 const MapBox = () => {
-  const { viewport, setViewport, showMarker, userLocation } = useMap()
+  const { state, dispatch } = useContext(MapContext)
+  const { viewport, userLocation, showPositionMarker } = state
 
+  const handelViewPortChange = (payload) => {
+    dispatch({ type: 'handelViewportChange', payload })
+  }
   return (
     <>
       <ReactMapGl
         {...viewport}
-        onViewportChange={(viewport) => setViewport(viewport)}
+        onViewportChange={(payload) => handelViewPortChange(payload)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
         width="100vw"
         height="100vh">
         <SearchBar />
 
-        {showMarker ? (
+        {showPositionMarker && (
           <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
             <div className="blob"></div>
           </Marker>
-        ) : null}
+        )}
         <MarkerIcon
           alt="Marker"
           size="1.6rem"
