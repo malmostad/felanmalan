@@ -1,10 +1,11 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { StyledFetchButton } from '../styles/buttons/Buttons'
 import { FiNavigation as NavIcon } from 'react-icons/fi'
 import { MapContext } from '../../contexts/MapContext'
 
 const CurrentLocationButton = () => {
-  const { dispatch } = useContext(MapContext)
+  const { dispatch, state } = useContext(MapContext)
+  const { showLocationButton } = state
 
   const handleUserLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -17,7 +18,9 @@ const CurrentLocationButton = () => {
       dispatch({ type: 'handelShowPositionMarker' })
       dispatch({ type: 'handelViewportChange', payload })
     })
+  }
 
+  useEffect(() => {
     navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
       if (permissionStatus.state === 'denied') {
         dispatch({ type: 'handelDisableButton' })
@@ -28,7 +31,7 @@ const CurrentLocationButton = () => {
         }
       }
     })
-  }
+  }, [showLocationButton])
 
   return (
     <>
