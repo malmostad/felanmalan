@@ -76,7 +76,6 @@ export const StyledSearchBarContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50px;
   position: absolute;
   top: 20px;
   margin: 0 15px;

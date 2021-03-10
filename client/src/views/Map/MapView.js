@@ -1,12 +1,12 @@
 import MapBox from '../../components/mapBox/MapBox'
-import React from 'react'
-import SearchBar from '../../components/searchbar/SearchBar'
+import { MapProvider } from '../../contexts/MapContext'
 
 const MapView = () => {
   return (
     <>
-      <SearchBar />
-      <MapBox />
+      <MapProvider>
+        <MapBox />
+      </MapProvider>
     </>
   )
 }
