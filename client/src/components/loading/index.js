@@ -1,3 +1,4 @@
-import { Loading } from './LoadingSpinner'
-
-export { Loading }
+const LoadingSpinner = () => {
+  return <div>Loading...</div>
+}
+export default LoadingSpinner

@@ -8,6 +8,7 @@ const CurrentLocationButton = () => {
   const { showLocationButton } = state
 
   const handleUserLocation = () => {
+    dispatch({ type: 'handelStartLoader' })
     navigator.geolocation.getCurrentPosition((position) => {
       const payload = {
         latitude: position.coords.latitude,
@@ -17,6 +18,7 @@ const CurrentLocationButton = () => {
       dispatch({ type: 'handelUserLocation', payload })
       dispatch({ type: 'handelShowPositionMarker' })
       dispatch({ type: 'handelViewportChange', payload })
+      dispatch({ type: 'handelStopLoader' })
     })
   }
 
@@ -28,6 +30,7 @@ const CurrentLocationButton = () => {
       permissionStatus.onchange = () => {
         if (permissionStatus.state === 'denied') {
           dispatch({ type: 'handelDisableButton' })
+          dispatch({ type: 'handelStopLoader' })
         }
       }
     })

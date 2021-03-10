@@ -5,10 +5,11 @@ import SearchBar from '../searchbar/SearchBar'
 import { MapContext } from '../../contexts/MapContext'
 import { useContext } from 'react'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
+import LoadingSpinner from '../../components/loading/index'
 
 const MapBox = () => {
   const { state, dispatch } = useContext(MapContext)
-  const { viewport, userLocation, showPositionMarker, showLocationButton } = state
+  const { viewport, userLocation, showPositionMarker, showLocationButton, loader } = state
 
   const handelViewPortChange = (payload) => {
     dispatch({ type: 'handelViewportChange', payload })
@@ -24,6 +25,8 @@ const MapBox = () => {
         width="100vw"
         height="100vh">
         <SearchBar />
+
+        {loader && <LoadingSpinner />}
 
         {showLocationButton && <CurrentLocationButton />}
 
