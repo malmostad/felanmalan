@@ -1,4 +1,4 @@
-import ReactMapGl, { Marker } from 'react-map-gl'
+import ReactMapGl, { Marker, NavigationControl } from 'react-map-gl'
 import './MapBox.css'
 import { FaMapPin as MarkerIcon } from 'react-icons/fa'
 import SearchBar from '../searchbar/SearchBar'
@@ -25,6 +25,8 @@ const MapBox = () => {
         width="100vw"
         height="100vh">
         <SearchBar />
+
+        <NavigationControl style={{ right: 30, bottom: 300 }} />
 
         {isLoading && <LoadingSpinner />}
 
