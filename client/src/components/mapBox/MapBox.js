@@ -1,17 +1,20 @@
-import ReactMapGl from 'react-map-gl'
+import ReactMapGl, { Marker } from 'react-map-gl'
 import './MapBox.css'
-import { FaMapPin as Marker } from 'react-icons/fa'
+import { FaMapPin as MarkerIcon } from 'react-icons/fa'
 import SearchBar from '../searchbar/SearchBar'
 import { MapContext } from '../../contexts/MapContext'
 import { useContext } from 'react'
+import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
+import { LoadingSpinner } from '../../components/loading/styles'
 
 const MapBox = () => {
   const { state, dispatch } = useContext(MapContext)
-  const { viewport } = state
+  const { viewport, userLocation, showPositionMarker, showLocationButton, isLoading } = state
 
   const handelViewPortChange = (payload) => {
-    dispatch({ type: 'handelViewportChange', payload })
+    dispatch({ type: 'handleViewportChange', payload })
   }
+
   return (
     <>
       <ReactMapGl
@@ -22,7 +25,17 @@ const MapBox = () => {
         width="100vw"
         height="100vh">
         <SearchBar />
-        <Marker
+
+        {isLoading && <LoadingSpinner />}
+
+        {showLocationButton && <CurrentLocationButton />}
+
+        {showPositionMarker && (
+          <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
+            <div className="blob"></div>
+          </Marker>
+        )}
+        <MarkerIcon
           alt="Marker"
           size="1.6rem"
           style={{
