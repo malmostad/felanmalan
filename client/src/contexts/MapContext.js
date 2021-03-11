@@ -37,16 +37,16 @@ const mapReducer = (mapState, { type, payload }) => {
       return { ...mapState, userLocation: payload }
     case 'handleShowPositionMarker':
       showPositionMarker = true
-      return { ...mapState, showPositionMarker: showPositionMarker }
+      return { ...mapState, showPositionMarker: true }
     case 'handleDisableButton':
       showLocationButton = false
-      return { ...mapState, showLocationButton: showLocationButton }
+      return { ...mapState, showLocationButton: false }
     case 'handleStartLoader':
       isLoading = true
-      return { ...mapState, isLoading: isLoading }
+      return { ...mapState, isLoading: true }
     case 'handleStopLoader':
       isLoading = false
-      return { ...mapState, isLoading: isLoading }
+      return { ...mapState, isLoading: false }
     default:
       return { ...mapState }
   }
