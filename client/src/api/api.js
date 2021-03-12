@@ -45,3 +45,14 @@ export const postReport = async (endpoint, data) => {
     throw new Error(error)
   }
 }
+
+export const fetchAddressMapBoxAPI = async (viewport) => {
+  try {
+    const response = await http.get(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${viewport.longitude},${viewport.latitude}.json?access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
+    )
+    return `${response.data.features[0].text} ${response.data.features[0].address}`
+  } catch (error) {
+    throw new Error(error)
+  }
+}

@@ -1,30 +1,55 @@
+import { useContext, useRef, useState } from 'react'
 import ReactMapGl, { Marker, NavigationControl } from 'react-map-gl'
-import './MapBox.css'
 import { FaMapPin as MarkerIcon } from 'react-icons/fa'
-import SearchBar from '../searchbar/SearchBar'
 import { MapContext } from '../../contexts/MapContext'
-import { useContext } from 'react'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
 import { LoadingSpinner } from '../../components/loading/styles'
+import Geocoder from 'react-map-gl-geocoder'
+import { fetchAddressMapBoxAPI } from '../../api/api'
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import './MapBox.css'
 
 const MapBox = () => {
+  const mapRef = useRef()
+  const [address, setAddress] = useState('')
   const { state, dispatch } = useContext(MapContext)
-  const { viewport, userLocation, showPositionMarker, showLocationButton, isLoading } = state
+  const {
+    viewport,
+    userLocation,
+    showPositionMarker,
+    showLocationButton,
+    isLoading,
+    maxBounds,
+  } = state
 
-  const handelViewPortChange = (payload) => {
+  const handleViewPortChange = (payload) => {
     dispatch({ type: 'handleViewportChange', payload })
+  }
+
+  const onMouseUp = async () => {
+    const address = await fetchAddressMapBoxAPI(viewport)
+    setAddress(address)
   }
 
   return (
     <>
       <ReactMapGl
         {...viewport}
-        onViewportChange={(payload) => handelViewPortChange(payload)}
+        ref={mapRef}
+        onViewportChange={(payload) => handleViewPortChange(payload)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
         width="100vw"
-        height="100vh">
-        <SearchBar />
+        height="100vh"
+        onMouseUp={onMouseUp}>
+        <Geocoder
+          onViewportChange={(payload) => handleViewPortChange(payload)}
+          mapRef={mapRef}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+          bbox={maxBounds}
+          inputValue={address}
+        />
 
         <NavigationControl style={{ right: 30, bottom: 300 }} />
 
