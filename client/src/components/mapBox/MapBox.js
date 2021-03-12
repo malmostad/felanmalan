@@ -4,13 +4,15 @@ import { FaMapPin as MarkerIcon } from 'react-icons/fa'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
 import { LoadingSpinner } from '../../components/loading/styles'
-import Geocoder from 'react-map-gl-geocoder'
-import { fetchAddressMapBoxAPI } from '../../api/api'
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-import 'mapbox-gl/dist/mapbox-gl.css'
+import { useReport } from '../../contexts/ReportContext'
 import './MapBox.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+import { fetchAddressMapBoxAPI } from '../../api/api'
+import Geocoder from 'react-map-gl-geocoder'
 
 const MapBox = () => {
+  const { handelSetFormInfo } = useReport()
   const mapRef = useRef()
   const [address, setAddress] = useState('')
   const { state, dispatch } = useContext(MapContext)
@@ -24,6 +26,9 @@ const MapBox = () => {
   } = state
 
   const handleViewPortChange = (payload) => {
+    handelSetFormInfo('longitude', payload.longitude)
+    handelSetFormInfo('latitude', payload.latitude)
+    handelSetFormInfo('address', address)
     dispatch({ type: 'handleViewportChange', payload })
   }
 
