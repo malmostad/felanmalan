@@ -5,11 +5,9 @@ import { BsSearch as SearchIcon, BsX as CloseIcon } from 'react-icons/bs'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import '../../components/mapBox/MapBox.css'
 import { MapContext } from '../../contexts/MapContext'
-
-const placeholder = (props) => <input {...props} placeholder="Search" />
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 
 const SearchBar = () => {
-  const searchFieldRef = useRef('')
   const [showCloseIcon, setShowCloseIcon] = useState(false)
   const [searchFieldValue, setSearchFieldValue] = useState('')
   const { state, dispatch } = useContext(MapContext)
@@ -22,8 +20,8 @@ const SearchBar = () => {
   const handleClearSearch = () => {
     setSearchFieldValue('')
   }
-  const handleSearchFieldOnChange = () => {
-    setSearchFieldValue(searchFieldRef.current.value)
+  const handleSearchFieldOnChange = (e) => {
+    setSearchFieldValue(e.target.value)
   }
   const handelViewPortChange = (payload) => {
     dispatch({ type: 'handelViewportChange', payload })
@@ -32,7 +30,7 @@ const SearchBar = () => {
   return (
     <>
       <StyledSearchBarContainer>
-        <StyledLabelSearchBar>
+        <StyledLabelSearchBar onChange={handleSearchFieldOnChange}>
           <SearchIcon size="1rem" style={{ margin: '10px' }} />
           <Geocoder
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
@@ -41,11 +39,7 @@ const SearchBar = () => {
             hideOnSelect={true}
             proximity={viewport}
             queryParams={{ bbox: maxBounds, proximity: viewport }}
-            inputComponent={placeholder}
-            onChange={handleSearchFieldOnChange}
-            value={searchFieldValue}
             type="text"
-            ref={searchFieldRef}
           />
           {showCloseIcon && (
             <CloseIcon

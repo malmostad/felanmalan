@@ -29,9 +29,10 @@ export const StyledFetchButton = styled.button`
   margin: 10px;
   background-repeat: no-repeat;
   z-index: 98;
-  right: 0;
   position: absolute;
   width: 62px;
   height: 62px;
-  bottom: 180px;
+  bottom: 400px;
+  right: 5px;
+  cursor: pointer;
 `

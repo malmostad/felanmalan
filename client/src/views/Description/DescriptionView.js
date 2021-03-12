@@ -1,20 +1,18 @@
-import { useEffect, useContext, useRef } from 'react'
+import { useEffect, useContext } from 'react'
 import { useReport } from '../../contexts/ReportContext'
 import { NavigationContext } from '../../contexts/NavigationContext'
 
 const DescriptionView = () => {
-  const descriptionRef = useRef('')
   const { handelSetFormInfo, formState } = useReport()
   const { dispatch } = useContext(NavigationContext)
 
   useEffect(() => {
-    descriptionRef.current.value
-      ? dispatch({ type: 'enableNext' })
-      : dispatch({ type: 'disableNext' })
-  }, [descriptionRef.current.value])
+    formState.description ? dispatch({ type: 'enableNext' }) : dispatch({ type: 'disableNext' })
+  }, [])
 
-  const handleFormInfo = () => {
-    handelSetFormInfo('description', descriptionRef.current.value)
+  const handleFormInfo = (e) => {
+    handelSetFormInfo('description', e.target.value)
+    e.target.value ? dispatch({ type: 'enableNext' }) : dispatch({ type: 'disableNext' })
   }
 
   return (
@@ -23,7 +21,6 @@ const DescriptionView = () => {
         <label>
           Beskrivning
           <textarea
-            ref={descriptionRef}
             type="text"
             defaultValue={formState.description}
             placeholder="Beskriv problemet du vill felanmäla"
