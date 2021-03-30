@@ -1,22 +1,46 @@
-import { Button } from '../buttons/Buttons'
-import { StyledLandingContainer } from '../styles/containers/Containers'
+import { useState } from 'react'
+import { StyledCookieButton, StyledReadMoreButton } from '../styles/buttons/Buttons'
+import { StyledCookieContainer, StyledOuter } from '../styles/containers/Containers'
 import { useCookies } from 'react-cookie'
+import { StyledHeroHeading, StyledSpanText, StyledInfoText } from '../styles/Typography/Typography'
+import { AiOutlineQuestionCircle as Icon } from 'react-icons/ai'
+import ReadMore from '../readmore/ReadMore'
 
 const Cookie = () => {
+  const [readMore, setReaMore] = useState(false)
   const [cookies, setCookie] = useCookies(['cookieConsent'])
 
   const handleSetCookie = () => {
     setCookie('cookieConsent', true, { path: '/' })
   }
 
+  const handleReadMore = () => {
+    setReaMore(true)
+  }
+
   return (
     <>
-      <StyledLandingContainer>
-        <h1>Malmö stads felanmälan</h1>
-        <Button.Outer>
-          <Button onClick={handleSetCookie}>Acceptera</Button>
-        </Button.Outer>
-      </StyledLandingContainer>
+      <StyledOuter>
+        <StyledCookieContainer>
+          <StyledHeroHeading>Malmö stads felanmälan</StyledHeroHeading>
+          <StyledSpanText>Här anmäler du fel på Malmös gator, torg och parker.</StyledSpanText>
+          {readMore ? (
+            <ReadMore />
+          ) : (
+            <>
+              <StyledInfoText>
+                Vi vill att tjänsten ska fungera så bra som möjligt för dig som besökare. För att
+                kunna ta reda på vad vi kan göra bättre analyserar vi hur våra besökare använder
+                tjänsten med webbkakor (cookies)
+              </StyledInfoText>
+            </>
+          )}
+        </StyledCookieContainer>
+        <StyledReadMoreButton onClick={handleReadMore}>
+          <Icon /> Läs mer
+        </StyledReadMoreButton>
+        <StyledCookieButton onClick={handleSetCookie}>Acceptera</StyledCookieButton>
+      </StyledOuter>
     </>
   )
 }

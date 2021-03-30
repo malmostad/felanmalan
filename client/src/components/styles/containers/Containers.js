@@ -18,7 +18,9 @@ export const StyledOuter = styled.div`
       ? theme.colors.SecondaryGreen
       : theme.colors.PrimaryGreen};
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  overflow: visible;
 `
 // button containers
 export const StyledButtonOuter = styled.div`
@@ -34,11 +36,13 @@ export const StyledButtonInner = styled.div`
 // loading container
 
 // ??
-export const StyledLandingContainer = styled(StyledOuter)`
-  ${flexCenterColumn}
-  min-height: 100vh;
+export const StyledCookieContainer = styled(StyledOuter)`
+  flex-direction: column;
+  justify-content: start;
+  margin: 0 auto;
+  max-width: 500px;
+  margin-top: 100px;
 `
-
 // inner for what?
 export const StyledInnerWrapper = styled.div`
   ${flexCenterColumn}
