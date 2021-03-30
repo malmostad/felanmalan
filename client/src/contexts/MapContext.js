@@ -33,6 +33,24 @@ const mapReducer = (mapState, { type, payload }) => {
   switch (type) {
     case 'handleViewportChange':
       return { ...mapState, viewport: payload }
+    case 'handleZoomIn':
+      return {
+        ...mapState,
+        viewport: {
+          latitude: viewport.latitude,
+          longitude: viewport.longitude,
+          zoom: viewport.zoom + 1.5,
+        },
+      }
+    case 'handleZoomOut':
+      return {
+        ...mapState,
+        viewport: {
+          latitude: viewport.latitude,
+          longitude: viewport.longitude,
+          zoom: viewport.zoom - 1.5,
+        },
+      }
     case 'handleUserLocation':
       return { ...mapState, userLocation: payload }
     case 'handleShowPositionMarker':
