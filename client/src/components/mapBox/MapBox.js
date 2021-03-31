@@ -1,4 +1,4 @@
-import { useContext, useRef, useState, useCallback } from 'react'
+import { useContext, useRef, useState } from 'react'
 import ReactMapGl, { Marker, NavigationControl } from 'react-map-gl'
 import { FaMapPin as MarkerIcon } from 'react-icons/fa'
 import { MapContext } from '../../contexts/MapContext'
