@@ -4,14 +4,13 @@ import { useCookies } from 'react-cookie'
 import Cookie from '../cookie/Cookie'
 import Footer from '../footer/Footer'
 import HeaderSection from '../header/HeaderSection'
-import { useContext, createContext, useReducer } from 'react'
+import { useContext } from 'react'
 import Error from '../errors/Error'
 import { formViews } from '../../views/index'
 const Steps = () => {
   const [cookies, setCookie] = useCookies(['cookieConsent'])
   const { error, errorMessenger, errorStatusCode } = useUpdate()
   const { state } = useContext(NavigationContext)
-  const { currentViewIndex } = state
 
   return (
     <>
