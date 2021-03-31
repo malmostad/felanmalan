@@ -7,11 +7,13 @@ import {
   StyledInput,
   InputFormSecond,
 } from '../../components/styles/form/Form'
+import { useUpdate } from '../.././contexts/UpdateContext'
 
 const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const mobilePattern = /^[0-9]{10}$/
 
 const ContactInfoView = () => {
+  const { setCurrentViewHeading, currentViewHeading } = useUpdate()
   const name = useRef('')
   const email = useRef('')
   const phone = useRef('')
@@ -25,6 +27,10 @@ const ContactInfoView = () => {
     handelSetFormInfo('phone', phone.current.value)
     handelSetFormInfo('enable_tracking', enable_tracking.current.checked)
   }
+
+  useEffect(() => {
+    setCurrentViewHeading('Kan vi kontakta dig vid frågor?')
+  }, [currentViewHeading])
 
   useEffect(() => {
     const phoneOrEmailSet =
