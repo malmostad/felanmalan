@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import { StyledCookieButton, StyledReadMoreButton } from '../styles/buttons/Buttons'
-import { StyledCookieContainer, StyledOuter } from '../styles/containers/Containers'
+import {
+  StyledCookieContainer,
+  StyledOuter,
+  StyledButtonContainer,
+} from '../styles/containers/Containers'
 import { useCookies } from 'react-cookie'
 import { StyledHeroHeading, StyledSpanText, StyledInfoText } from '../styles/Typography/Typography'
 import { AiOutlineQuestionCircle as Icon } from 'react-icons/ai'
@@ -36,10 +40,15 @@ const Cookie = () => {
             </>
           )}
         </StyledCookieContainer>
-        <StyledReadMoreButton onClick={handleReadMore}>
-          <Icon /> Läs mer
-        </StyledReadMoreButton>
-        <StyledCookieButton onClick={handleSetCookie}>Acceptera</StyledCookieButton>
+        <StyledButtonContainer>
+          {!readMore && (
+            <StyledReadMoreButton onClick={handleReadMore}>
+              <Icon /> Läs mer
+            </StyledReadMoreButton>
+          )}
+
+          <StyledCookieButton onClick={handleSetCookie}>Acceptera</StyledCookieButton>
+        </StyledButtonContainer>
       </StyledOuter>
     </>
   )
