@@ -8,7 +8,7 @@ export const StyledHeaderOuter = styled.div`
 `
 
 export const StyledHeaderInner = styled.div`
-  width: 300px;
+  max-width: 217px;
   margin: 0 auto;
   display: flex;
   justify-content: center;

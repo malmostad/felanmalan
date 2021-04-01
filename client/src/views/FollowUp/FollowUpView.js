@@ -4,7 +4,6 @@ import {
   StyledFollowUpContainer,
   StyledFullContainer,
   StyledOuter,
-  StyledCookieContainer,
 } from '../../components/styles/containers/Containers'
 
 const FollowUpView = () => {

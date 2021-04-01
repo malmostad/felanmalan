@@ -2,12 +2,7 @@ import { useContext } from 'react'
 import { Button } from '../buttons/Buttons'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import { StyledButton } from '../styles/buttons/Buttons'
-import {
-  StyledFollowUpContainer,
-  StyledFullContainer,
-  StyledOuter,
-  StyledCookieContainer,
-} from '../../components/styles/containers/Containers'
+import { StyledFullContainer } from '../../components/styles/containers/Containers'
 
 const Navigation = () => {
   const { state, dispatch } = useContext(NavigationContext)

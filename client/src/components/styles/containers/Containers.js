@@ -73,12 +73,11 @@ export const StyledFooterContainer = styled.div`
 export const StyledFullContainer = styled.div`
   position: absolute;
   z-index: 1001;
-  background-color: #037540;
   width: 100vw;
+  height: 100vh;
   background-color: #037540;
   display: flex;
   justify-content: center;
-  height: 100vh;
   align-items: center;
 `
 
