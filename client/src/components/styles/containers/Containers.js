@@ -58,6 +58,26 @@ export const StyledFooterContainer = styled.div`
   justify-content: center;
   width: 100%;
   z-index: 100;
+  position: absolute;
+  z-index: 1002;
+  background-color: #037540;
+`
+export const StyledFullContainer = styled.div`
+  position: absolute;
+  z-index: 1001;
+  background-color: #037540;
+  height: 100%;
+  width: 100%;
+`
+
+export const StyledFollowUpContainer = styled.div`
+  max-width: 560px;
+  margin: 0px auto;
+  padding: 12px;
+  flex-direction: column;
+  background-color: #037540;
+  color: white;
+  font-size: 22px;
 `
 
 export const StyledGrid = styled.div`
