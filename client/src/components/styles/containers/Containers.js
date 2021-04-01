@@ -41,6 +41,7 @@ export const StyledButtonInner = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row-reverse;
+  padding-top: 1rem;
 `
 // loading container
 
@@ -50,14 +51,15 @@ export const StyledCookieContainer = styled.div`
   justify-content: start;
   margin: 0 auto;
   max-width: 500px;
-  margin-top: 100px;
+  margin: 0.8rem;
 `
 export const StyledButtonContainer = styled.div`
   flex-direction: column;
   display: flex;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 1rem;
   width: 100%;
+  height: 200px;
 `
 // inner for what?
 export const StyledInnerWrapper = styled.div`
