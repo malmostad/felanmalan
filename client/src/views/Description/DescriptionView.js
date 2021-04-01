@@ -20,8 +20,6 @@ const DescriptionView = () => {
     e.target.value ? dispatch({ type: 'enableNext' }) : dispatch({ type: 'disableNext' })
   }
 
-  console.log(formState.description, 'test description value')
-
   return (
     <>
       <StyledFormWrapper>
