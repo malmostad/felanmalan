@@ -2,6 +2,12 @@ import { useContext } from 'react'
 import { Button } from '../buttons/Buttons'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import { StyledButton } from '../styles/buttons/Buttons'
+import {
+  StyledFollowUpContainer,
+  StyledFullContainer,
+  StyledOuter,
+  StyledCookieContainer,
+} from '../../components/styles/containers/Containers'
 
 const Navigation = () => {
   const { state, dispatch } = useContext(NavigationContext)
@@ -34,12 +40,14 @@ const Navigation = () => {
           </StyledButton>
         )}
         {currentViewIndex === lastViewIndex && (
-          <Button
-            onClick={() => {
-              dispatch({ type: 'reset' })
-            }}>
-            Skapa Ny
-          </Button>
+          <StyledFullContainer>
+            <Button
+              onClick={() => {
+                dispatch({ type: 'reset' })
+              }}>
+              Skapa Ny
+            </Button>
+          </StyledFullContainer>
         )}
         {!(currentViewIndex === 0 || disablePrevious) && (
           <Button

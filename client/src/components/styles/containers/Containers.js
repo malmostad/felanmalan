@@ -68,20 +68,22 @@ export const StyledFooterContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  z-index: 100;
-  position: absolute;
-  z-index: 1002;
-  background-color: #037540;
+  z-index: 2300;
 `
 export const StyledFullContainer = styled.div`
   position: absolute;
   z-index: 1001;
   background-color: #037540;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  background-color: #037540;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
 `
 
 export const StyledFollowUpContainer = styled.div`
+  width: 100%;
   max-width: 560px;
   margin: 0px auto;
   padding: 12px;
