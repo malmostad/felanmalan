@@ -17,7 +17,7 @@ export const StyledFlexCenterColumn = styled.div`
 `
 export const StyledOuter = styled.div`
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   background-color: ${({ bgWhite, bgSecondary, theme }) =>
     bgWhite
       ? theme.colors.White
@@ -51,7 +51,6 @@ export const StyledCookieContainer = styled.div`
   justify-content: start;
   margin: 0 auto;
   max-width: 500px;
-  margin: 0.8rem;
 `
 export const StyledButtonContainer = styled.div`
   flex-direction: column;
