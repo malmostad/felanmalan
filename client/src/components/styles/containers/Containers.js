@@ -32,6 +32,8 @@ export const StyledButtonInner = styled.div`
   ${flexCenterColumn}
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
 `
 // loading container
 
@@ -60,9 +62,13 @@ export const StyledFooterContainer = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 100px;
+  height: 80px;
   width: 100%;
-  /* background-color: ${({ theme }) => theme.colors.PrimaryGreen}; */
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 100;
 `
 
 export const StyledGrid = styled.div`

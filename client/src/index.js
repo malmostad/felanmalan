@@ -7,7 +7,6 @@ import { NavigationProvider } from './contexts/NavigationContext'
 import { ThemeProvider } from 'styled-components'
 import { Theme } from './globalstyles/Theme'
 import { ReportProvider } from './contexts/ReportContext'
-import { MapProvider } from './contexts/MapContext'
 
 ReactDOM.render(
   <React.StrictMode>

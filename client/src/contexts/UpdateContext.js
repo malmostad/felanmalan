@@ -1,4 +1,4 @@
-import { useContext, useState, createContext, useEffect, useReducer } from 'react'
+import { useContext, useState, createContext, useEffect } from 'react'
 
 const UpdateContext = createContext()
 
@@ -57,7 +57,5 @@ export const UpdateProvider = ({ children }) => {
     }
   }, [errorStatusCode])
 
-  return (
-    <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
-  )
+  return <UpdateContext.Provider value={updateValues}>{children}</UpdateContext.Provider>
 }
