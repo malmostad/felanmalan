@@ -6,7 +6,7 @@ export const StyledButton = styled.button`
   font-size: ${({ theme }) => theme.FontSizes.ButtonText};
   margin: 0 10px;
   max-width: 380px;
-  height: 50px;
+  height: 55px;
   margin-bottom: 10px;
   color: ${({ theme }) => theme.colors.PrimaryWhite};
   width: 270px;

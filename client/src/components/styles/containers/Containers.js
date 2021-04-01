@@ -27,11 +27,10 @@ export const StyledOuter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow-y: hidden;
+  overflow: visible;
 `
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
-  min-height: 72vh;
 `
 
 // button containers
@@ -46,7 +45,6 @@ export const StyledButtonInner = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row-reverse;
-  padding-top: 1rem;
 `
 // loading container
 
@@ -88,11 +86,11 @@ export const StyledFullContainer = styled.div`
   position: absolute;
   z-index: 1001;
   width: 100vw;
-  height: 100vh;
   background-color: #037540;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 75px;
 `
 
 export const StyledContentFollowUpView = styled.div`
