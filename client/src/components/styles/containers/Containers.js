@@ -10,7 +10,7 @@ export const StyledFlexCenterColumn = styled.div`
 `
 export const StyledOuter = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: ${({ bgWhite, bgSecondary, theme }) =>
     bgWhite
       ? theme.colors.White
@@ -18,7 +18,9 @@ export const StyledOuter = styled.div`
       ? theme.colors.SecondaryGreen
       : theme.colors.PrimaryGreen};
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  overflow: visible;
 `
 // button containers
 export const StyledButtonOuter = styled.div`
@@ -36,11 +38,20 @@ export const StyledButtonInner = styled.div`
 // loading container
 
 // ??
-export const StyledLandingContainer = styled(StyledOuter)`
-  ${flexCenterColumn}
-  min-height: 100vh;
+export const StyledCookieContainer = styled.div`
+  flex-direction: column;
+  justify-content: start;
+  margin: 0 auto;
+  max-width: 500px;
+  margin-top: 100px;
 `
-
+export const StyledButtonContainer = styled.div`
+  flex-direction: column;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 100%;
+`
 // inner for what?
 export const StyledInnerWrapper = styled.div`
   ${flexCenterColumn}

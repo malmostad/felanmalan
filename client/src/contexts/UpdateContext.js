@@ -9,7 +9,7 @@ if (!UpdateContext) {
 export const useUpdate = () => useContext(UpdateContext)
 
 export const UpdateProvider = ({ children }) => {
-  const [readMore, setReadMore] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const [errorStatusCode, setErrorStatusCode] = useState(null)
   const [errorMessenger, setErrorMessenger] = useState(null)
@@ -21,8 +21,8 @@ export const UpdateProvider = ({ children }) => {
   const [imagesToBeUploaded, setImagesToBeUploaded] = useState([])
 
   const updateValues = {
-    setReadMore,
-    readMore,
+    setLoading,
+    loading,
     error,
     setError,
     errorStatusCode,
