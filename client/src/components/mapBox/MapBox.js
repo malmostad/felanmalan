@@ -5,6 +5,7 @@ import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
 import { LoadingSpinner } from '../../components/loading/styles'
 import { useReport } from '../../contexts/ReportContext'
+import ZoomButton from './ZoomButton'
 import './MapBox.css'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
@@ -56,7 +57,7 @@ const MapBox = () => {
           inputValue={address}
         />
 
-        <NavigationControl style={{ right: 30, bottom: 300 }} />
+        <ZoomButton />
 
         {isLoading && <LoadingSpinner />}
 
