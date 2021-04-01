@@ -1,6 +1,13 @@
 import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
+export const MainContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 export const StyledFlexCenter = styled.div`
   ${flexCenter}
 `

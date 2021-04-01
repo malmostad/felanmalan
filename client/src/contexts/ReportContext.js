@@ -50,7 +50,6 @@ export const ReportProvider = ({ children }) => {
     formState,
     handelSetFormInfo,
     dispatch,
-    clearFormInfo,
   }
 
   return <ReportContext.Provider value={reportvalues}>{children}</ReportContext.Provider>

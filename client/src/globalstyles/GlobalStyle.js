@@ -26,7 +26,6 @@ html {
   width: 100%;
 }
 
-
 `
 
 export default GlobalStyle
