@@ -20,8 +20,13 @@ export const StyledOuter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: visible;
+  overflow-y: hidden;
 `
+export const StyledOuterFollowUpView = styled(StyledOuter)`
+  overflow: hidden !important;
+  min-height: 72vh;
+`
+
 // button containers
 export const StyledButtonOuter = styled.div`
   ${flexCenterColumn}
@@ -69,6 +74,7 @@ export const StyledFooterContainer = styled.div`
   justify-content: center;
   width: 100%;
   z-index: 2300;
+  overflow: hidden;
 `
 export const StyledFullContainer = styled.div`
   position: absolute;
@@ -81,7 +87,7 @@ export const StyledFullContainer = styled.div`
   align-items: center;
 `
 
-export const StyledFollowUpContainer = styled.div`
+export const StyledContentFollowUpView = styled.div`
   width: 100%;
   max-width: 560px;
   margin: 0px auto;

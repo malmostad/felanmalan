@@ -1,9 +1,8 @@
 import { useUpdate } from '../.././contexts/UpdateContext'
 import React, { useEffect } from 'react'
 import {
-  StyledFollowUpContainer,
-  StyledFullContainer,
-  StyledOuter,
+  StyledOuterFollowUpView,
+  StyledContentFollowUpView,
 } from '../../components/styles/containers/Containers'
 
 const FollowUpView = () => {
@@ -15,13 +14,12 @@ const FollowUpView = () => {
 
   return (
     <>
-      <StyledOuter>
-        <StyledFollowUpContainer>
+      <StyledOuterFollowUpView>
+        <StyledContentFollowUpView>
           <p>Den hjälper oss hålla vår vackra stad iordning</p>
           <h4>Ärende: </h4>
-        </StyledFollowUpContainer>
-      </StyledOuter>
-      <StyledFullContainer></StyledFullContainer>
+        </StyledContentFollowUpView>
+      </StyledOuterFollowUpView>
     </>
   )
 }
