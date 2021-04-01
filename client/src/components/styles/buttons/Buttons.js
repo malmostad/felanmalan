@@ -41,3 +41,21 @@ export const StyledFetchButton = styled.button`
   right: 5px;
   cursor: pointer;
 `
+
+export const StyledCookieButton = styled(StyledButton)`
+  margin: 0 auto 40px auto;
+  color: white;
+  max-width: 500px;
+`
+export const StyledReadMoreButton = styled(StyledButton)`
+  margin: 10px auto;
+  color: white;
+  max-width: 100px;
+  border: none;
+  font-weight: 100;
+  &:hover {
+    filter: brightness(100%);
+    text-decoration: underline;
+    color: white;
+  }
+`
