@@ -29,6 +29,10 @@ export const StyledOuter = styled.div`
   justify-content: space-between;
   overflow: visible;
 `
+export const StyledOuterFollowUpView = styled(StyledOuter)`
+  overflow-y: hidden;
+`
+
 // button containers
 export const StyledButtonOuter = styled.div`
   ${flexCenterColumn}
@@ -41,7 +45,6 @@ export const StyledButtonInner = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row-reverse;
-  padding-top: 1rem;
 `
 // loading container
 
@@ -76,7 +79,29 @@ export const StyledFooterContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  z-index: 100;
+  z-index: 2300;
+  overflow: hidden;
+`
+export const StyledFullContainer = styled.div`
+  position: absolute;
+  z-index: 1001;
+  width: 100vw;
+  background-color: #037540;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+`
+
+export const StyledContentFollowUpView = styled.div`
+  width: 100%;
+  max-width: 560px;
+  margin: 0px auto;
+  padding: 12px;
+  flex-direction: column;
+  background-color: #037540;
+  color: white;
+  font-size: 22px;
 `
 
 export const StyledGrid = styled.div`
