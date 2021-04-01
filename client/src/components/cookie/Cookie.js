@@ -9,17 +9,18 @@ import { useCookies } from 'react-cookie'
 import { StyledHeroHeading, StyledSpanText, StyledInfoText } from '../styles/Typography/Typography'
 import { AiOutlineQuestionCircle as Icon } from 'react-icons/ai'
 import ReadMore from '../readmore/ReadMore'
+import { useUpdate } from '../../contexts/UpdateContext'
 
 const Cookie = () => {
-  const [readMore, setReaMore] = useState(false)
   const [cookies, setCookie] = useCookies(['cookieConsent'])
+  const { readMore, setReadMore } = useUpdate()
 
   const handleSetCookie = () => {
     setCookie('cookieConsent', true, { path: '/' })
   }
 
   const handleReadMore = () => {
-    setReaMore(true)
+    setReadMore(true)
   }
 
   return (
