@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { Button } from '../buttons/Buttons'
 import { NavigationContext } from '../../contexts/NavigationContext'
+import { StyledButton } from '../styles/buttons/Buttons'
 
 const Navigation = () => {
   const { state, dispatch } = useContext(NavigationContext)
@@ -17,20 +18,20 @@ const Navigation = () => {
     <Button.Outer>
       <Button.Inner>
         {!(currentViewIndex === submitViewIndex || disableNext) && (
-          <Button
+          <StyledButton
             onClick={() => {
               dispatch({ type: 'next' })
             }}>
-            Next
-          </Button>
+            Nästa steg
+          </StyledButton>
         )}
         {currentViewIndex === submitViewIndex && !disableSubmit && (
-          <Button
+          <StyledButton
             onClick={() => {
               dispatch({ type: 'submit' })
             }}>
-            Submit
-          </Button>
+            Skicka in
+          </StyledButton>
         )}
         {currentViewIndex === lastViewIndex && (
           <Button
@@ -45,7 +46,7 @@ const Navigation = () => {
             onClick={() => {
               dispatch({ type: 'previous' })
             }}>
-            Previous
+            Tillbaka
           </Button>
         )}
       </Button.Inner>
