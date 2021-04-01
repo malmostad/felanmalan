@@ -7,6 +7,7 @@ import HeaderSection from '../header/HeaderSection'
 import { useContext } from 'react'
 import Error from '../errors/Error'
 import { formViews } from '../../views/index'
+import { MainContainer } from '../styles/containers/Containers'
 const Steps = () => {
   const [cookies, setCookie] = useCookies(['cookieConsent'])
   const { error, errorMessenger, errorStatusCode } = useUpdate()
@@ -14,19 +15,21 @@ const Steps = () => {
 
   return (
     <>
-      {cookies.cookieConsent ? (
-        <>
-          <HeaderSection />
-          {error ? (
-            <Error errorMessage={errorMessenger} statusCode={errorStatusCode} />
-          ) : (
-            <>{formViews[state.currentViewIndex]}</>
-          )}
-          <Footer />
-        </>
-      ) : (
-        <Cookie />
-      )}
+      <MainContainer>
+        {cookies.cookieConsent ? (
+          <>
+            <HeaderSection />
+            {error ? (
+              <Error errorMessage={errorMessenger} statusCode={errorStatusCode} />
+            ) : (
+              <>{formViews[state.currentViewIndex]}</>
+            )}
+            <Footer />
+          </>
+        ) : (
+          <Cookie />
+        )}
+      </MainContainer>
     </>
   )
 }
