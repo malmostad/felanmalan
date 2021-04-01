@@ -10,7 +10,6 @@ export const useUpdate = () => useContext(UpdateContext)
 
 export const UpdateProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
-  const [readMore, setReadMore] = useState(false)
   const [error, setError] = useState(false)
   const [errorStatusCode, setErrorStatusCode] = useState(null)
   const [errorMessenger, setErrorMessenger] = useState(null)
@@ -24,8 +23,6 @@ export const UpdateProvider = ({ children }) => {
   const updateValues = {
     setLoading,
     loading,
-    setReadMore,
-    readMore,
     error,
     setError,
     errorStatusCode,
