@@ -1,10 +1,12 @@
 import { useContext } from 'react'
 import { Button } from '../buttons/Buttons'
 import { NavigationContext } from '../../contexts/NavigationContext'
+import { useReport } from '../../contexts/ReportContext'
 import { StyledButton } from '../styles/buttons/Buttons'
 import { StyledFullContainer } from '../../components/styles/containers/Containers'
 
 const Navigation = () => {
+  const { dispatch: reportDispatch } = useReport()
   const { state, dispatch } = useContext(NavigationContext)
   const {
     disableNext,
@@ -38,6 +40,7 @@ const Navigation = () => {
           <StyledFullContainer>
             <Button
               onClick={() => {
+                reportDispatch({ type: 'clearFormInfo' })
                 dispatch({ type: 'reset' })
               }}>
               Skapa Ny

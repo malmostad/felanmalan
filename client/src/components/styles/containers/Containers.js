@@ -1,6 +1,13 @@
 import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
+export const MainContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 export const StyledFlexCenter = styled.div`
   ${flexCenter}
 `
@@ -10,7 +17,7 @@ export const StyledFlexCenterColumn = styled.div`
 `
 export const StyledOuter = styled.div`
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   background-color: ${({ bgWhite, bgSecondary, theme }) =>
     bgWhite
       ? theme.colors.White
@@ -23,7 +30,7 @@ export const StyledOuter = styled.div`
   overflow-y: hidden;
 `
 export const StyledOuterFollowUpView = styled(StyledOuter)`
-  overflow: hidden !important;
+  overflow-y: hidden;
   min-height: 72vh;
 `
 
@@ -39,6 +46,7 @@ export const StyledButtonInner = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row-reverse;
+  padding-top: 1rem;
 `
 // loading container
 
@@ -48,14 +56,14 @@ export const StyledCookieContainer = styled.div`
   justify-content: start;
   margin: 0 auto;
   max-width: 500px;
-  margin-top: 100px;
 `
 export const StyledButtonContainer = styled.div`
   flex-direction: column;
   display: flex;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 1rem;
   width: 100%;
+  height: 200px;
 `
 // inner for what?
 export const StyledInnerWrapper = styled.div`

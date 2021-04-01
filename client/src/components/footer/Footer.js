@@ -2,11 +2,7 @@ import Navigation from '../navigation/Navigation'
 import { StyledFooterContainer } from '../styles/containers/Containers'
 
 const Footer = () => {
-  return (
-    <StyledFooterContainer>
-      <Navigation />
-    </StyledFooterContainer>
-  )
+  return <Navigation />
 }
 
 export default Footer
