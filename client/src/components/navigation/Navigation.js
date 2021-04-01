@@ -1,9 +1,11 @@
 import { useContext } from 'react'
 import { Button } from '../buttons/Buttons'
 import { NavigationContext } from '../../contexts/NavigationContext'
+import { useReport } from '../../contexts/ReportContext'
 import { StyledButton } from '../styles/buttons/Buttons'
 
 const Navigation = () => {
+  const { dispatch: reportDispatch } = useReport()
   const { state, dispatch } = useContext(NavigationContext)
   const {
     disableNext,
@@ -36,6 +38,7 @@ const Navigation = () => {
         {currentViewIndex === lastViewIndex && (
           <Button
             onClick={() => {
+              reportDispatch({ type: 'clearFormInfo' })
               dispatch({ type: 'reset' })
             }}>
             Skapa Ny

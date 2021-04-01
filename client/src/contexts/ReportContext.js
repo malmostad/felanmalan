@@ -28,6 +28,10 @@ export const ReportProvider = ({ children }) => {
           ...formState,
           [field]: payload,
         }
+      case 'clearFormInfo':
+        return {
+          initialReportData,
+        }
       default:
         return formState
     }
@@ -46,6 +50,7 @@ export const ReportProvider = ({ children }) => {
     formState,
     handelSetFormInfo,
     dispatch,
+    clearFormInfo,
   }
 
   return <ReportContext.Provider value={reportvalues}>{children}</ReportContext.Provider>
