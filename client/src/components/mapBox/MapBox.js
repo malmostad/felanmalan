@@ -27,10 +27,10 @@ const MapBox = () => {
   } = state
 
   const handleViewPortChange = (payload) => {
+    dispatch({ type: 'handleViewportChange', payload })
     handelSetFormInfo('longitude', payload.longitude)
     handelSetFormInfo('latitude', payload.latitude)
     handelSetFormInfo('address', address)
-    dispatch({ type: 'handleViewportChange', payload })
   }
 
   const onMouseUp = async () => {
