@@ -1,6 +1,11 @@
 import { useEffect, useContext } from 'react'
 import { useReport } from '../../contexts/ReportContext'
 import { NavigationContext } from '../../contexts/NavigationContext'
+import {
+  StyledFormWrapper,
+  StyledTextArea,
+  DescriptionSpan,
+} from '../../components/styles/form/Form'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const DescriptionView = () => {
@@ -23,17 +28,20 @@ const DescriptionView = () => {
 
   return (
     <>
-      <form>
-        <label>
-          Beskrivning
-          <textarea
+      <StyledFormWrapper>
+        <form>
+          <label htmlFor="Beskrivning">
+            Beskriv problemet du vill felanmäla
+            {!formState.description && <DescriptionSpan> * </DescriptionSpan>}
+          </label>
+          <StyledTextArea
             type="text"
             defaultValue={formState.description}
-            placeholder="Beskriv problemet du vill felanmäla"
+            placeholder="Beskrivning..."
             onChange={handleFormInfo}
           />
-        </label>
-      </form>
+        </form>
+      </StyledFormWrapper>
     </>
   )
 }

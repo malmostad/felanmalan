@@ -27,3 +27,18 @@ export const StyledError = styled.div`
   color: red;
   margin-bottom: 2px;
 `
+export const DescriptionSpan = styled.span`
+  color: red;
+  font-size: 21px;
+`
+
+export const StyledTextArea = styled.textarea`
+  margin-top: 5px;
+  font-size: 16px;
+  width: 100%;
+  height: 200px;
+  padding: 2px 2px 2px 4px;
+  resize: none;
+  border: 1px solid #888;
+  font-family: Tahoma, sans-serif;
+`
