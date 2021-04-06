@@ -37,9 +37,22 @@ export const StyledFetchButton = styled.button`
   position: absolute;
   width: 62px;
   height: 62px;
-  bottom: 400px;
+  bottom: 100px;
   right: 5px;
   cursor: pointer;
+`
+export const StyledZoomButtons = styled.button`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 10%);
+  border: 0;
+`
+export const StyledZoomButton = styled.button`
+  width: 25px;
+  height: 30px;
 `
 
 export const StyledCookieButton = styled(StyledButton)`
