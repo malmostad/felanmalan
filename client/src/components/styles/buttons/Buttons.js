@@ -32,9 +32,28 @@ export const StyledFetchButton = styled.button`
   position: absolute;
   width: 62px;
   height: 62px;
-  bottom: 400px;
+  bottom: 100px;
   right: 5px;
   cursor: pointer;
+`
+export const StyledZoomButtons = styled.button`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  border: 0;
+`
+export const StyledZoomInButton = styled.button`
+  width: 25px;
+  height: 33px;
+  font-size: 21px;
+  border: 0.1px solid #00000045;
+  border-radius: 7px 7px 0px 0px;
+`
+
+export const StyledZoomOutButton = styled(StyledZoomInButton)`
+  border-radius: 0px 0px 7px 7px;
 `
 
 export const StyledOutlineButtonGreen = styled(StyledButton)`
