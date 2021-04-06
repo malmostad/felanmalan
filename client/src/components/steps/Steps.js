@@ -18,7 +18,7 @@ const Steps = () => {
       <MainContainer>
         {cookies.cookieConsent ? (
           <>
-            <HeaderSection />
+            {formViews[state.currentViewIndex].type.name != 'MapView' && <HeaderSection />}
             {error ? (
               <Error errorMessage={errorMessenger} statusCode={errorStatusCode} />
             ) : (
