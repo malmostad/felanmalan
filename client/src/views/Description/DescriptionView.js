@@ -5,6 +5,7 @@ import {
   StyledFormWrapper,
   StyledTextArea,
   DescriptionSpan,
+  StyledLabel,
 } from '../../components/styles/form/Form'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
@@ -30,10 +31,10 @@ const DescriptionView = () => {
     <>
       <StyledFormWrapper>
         <form>
-          <label htmlFor="Beskrivning">
+          <StyledLabel htmlFor="Beskrivning">
             Beskriv problemet du vill felanmäla
             {!formState.description && <DescriptionSpan> * </DescriptionSpan>}
-          </label>
+          </StyledLabel>
           <StyledTextArea
             type="text"
             defaultValue={formState.description}
