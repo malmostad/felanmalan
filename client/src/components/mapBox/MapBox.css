@@ -42,6 +42,11 @@
   background-color: greenyellow;
   display: contents !important;
 }
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+  margin: 10px 10px 0 0;
+  min-width: 450px;
+  float: left;
+}
 
 /* ------------------------------------------------- */
 
