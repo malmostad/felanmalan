@@ -6,10 +6,16 @@ import {
   StyledTextArea,
   DescriptionSpan,
 } from '../../components/styles/form/Form'
+import { useUpdate } from '../.././contexts/UpdateContext'
 
 const DescriptionView = () => {
+  const { setCurrentViewHeading, currentViewHeading } = useUpdate()
   const { handelSetFormInfo, formState } = useReport()
   const { dispatch } = useContext(NavigationContext)
+
+  useEffect(() => {
+    setCurrentViewHeading('Beskriv problemet')
+  }, [currentViewHeading])
 
   useEffect(() => {
     formState.description ? dispatch({ type: 'enableNext' }) : dispatch({ type: 'disableNext' })

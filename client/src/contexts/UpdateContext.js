@@ -1,4 +1,4 @@
-import { useContext, useState, createContext, useEffect, useReducer } from 'react'
+import { useContext, useState, createContext, useEffect } from 'react'
 
 const UpdateContext = createContext()
 
@@ -10,7 +10,6 @@ export const useUpdate = () => useContext(UpdateContext)
 
 export const UpdateProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
-  const [readMore, setReadMore] = useState(false)
   const [error, setError] = useState(false)
   const [errorStatusCode, setErrorStatusCode] = useState(null)
   const [errorMessenger, setErrorMessenger] = useState(null)
@@ -24,8 +23,6 @@ export const UpdateProvider = ({ children }) => {
   const updateValues = {
     setLoading,
     loading,
-    setReadMore,
-    readMore,
     error,
     setError,
     errorStatusCode,
@@ -60,7 +57,5 @@ export const UpdateProvider = ({ children }) => {
     }
   }, [errorStatusCode])
 
-  return (
-    <UpdateContext.Provider value={updateValues}>{!loading && children}</UpdateContext.Provider>
-  )
+  return <UpdateContext.Provider value={updateValues}>{children}</UpdateContext.Provider>
 }

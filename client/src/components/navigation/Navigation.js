@@ -1,8 +1,12 @@
 import { useContext } from 'react'
 import { Button } from '../buttons/Buttons'
 import { NavigationContext } from '../../contexts/NavigationContext'
+import { useReport } from '../../contexts/ReportContext'
+import { StyledButton } from '../styles/buttons/Buttons'
+import { StyledFullContainer } from '../../components/styles/containers/Containers'
 
 const Navigation = () => {
+  const { dispatch: reportDispatch } = useReport()
   const { state, dispatch } = useContext(NavigationContext)
   const {
     disableNext,
@@ -17,35 +21,38 @@ const Navigation = () => {
     <Button.Outer>
       <Button.Inner>
         {!(currentViewIndex === submitViewIndex || disableNext) && (
-          <Button
+          <StyledButton
             onClick={() => {
               dispatch({ type: 'next' })
             }}>
-            Next
-          </Button>
+            Nästa steg
+          </StyledButton>
         )}
         {currentViewIndex === submitViewIndex && !disableSubmit && (
-          <Button
+          <StyledButton
             onClick={() => {
               dispatch({ type: 'submit' })
             }}>
-            Submit
-          </Button>
+            Skicka in
+          </StyledButton>
         )}
         {currentViewIndex === lastViewIndex && (
-          <Button
-            onClick={() => {
-              dispatch({ type: 'reset' })
-            }}>
-            Skapa Ny
-          </Button>
+          <StyledFullContainer>
+            <Button
+              onClick={() => {
+                reportDispatch({ type: 'clearFormInfo' })
+                dispatch({ type: 'reset' })
+              }}>
+              Skapa Ny
+            </Button>
+          </StyledFullContainer>
         )}
         {!(currentViewIndex === 0 || disablePrevious) && (
           <Button
             onClick={() => {
               dispatch({ type: 'previous' })
             }}>
-            Previous
+            Tillbaka
           </Button>
         )}
       </Button.Inner>

@@ -28,6 +28,10 @@ export const ReportProvider = ({ children }) => {
           ...formState,
           [field]: payload,
         }
+      case 'clearFormInfo':
+        return {
+          initialReportData,
+        }
       default:
         return formState
     }
