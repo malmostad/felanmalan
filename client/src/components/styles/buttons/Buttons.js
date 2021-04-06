@@ -10,17 +10,12 @@ export const StyledButton = styled.button`
   margin-bottom: 10px;
   color: ${({ theme }) => theme.colors.PrimaryWhite};
   width: 270px;
-  background: #076339;
+  background: ${({ theme }) => theme.colors.PrimaryGreen};
   border-radius: 2px;
-  border: 2px solid #193f2d;
+  border: 2px solid ${({ theme }) => theme.colors.PrimaryGreen};
   justify-content: center;
   align-items: center;
   color: white;
-
-  &:hover {
-    filter: brightness(150%);
-    color: black;
-  }
 `
 
 export const StyledFetchButton = styled.button`
@@ -40,6 +35,26 @@ export const StyledFetchButton = styled.button`
   bottom: 400px;
   right: 5px;
   cursor: pointer;
+`
+
+export const StyledOutlineButtonGreen = styled(StyledButton)`
+  color: ${({ theme }) => theme.colors.PrimaryGreen};
+  background-color: ${({ theme }) => theme.colors.White};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+    color: ${({ theme }) => theme.colors.White};
+  }
+`
+export const StyledOutlineButtonWhite = styled(StyledButton)`
+  color: ${({ theme }) => theme.colors.White};
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+  border: 2px solid ${({ theme }) => theme.colors.White};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.White};
+    color: ${({ theme }) => theme.colors.PrimaryGreen};
+  }
 `
 
 export const StyledCookieButton = styled(StyledButton)`
