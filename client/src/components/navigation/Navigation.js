@@ -2,7 +2,11 @@ import { useContext } from 'react'
 import { Button } from '../buttons/Buttons'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import { useReport } from '../../contexts/ReportContext'
-import { StyledButton } from '../styles/buttons/Buttons'
+import {
+  StyledButton,
+  StyledOutlineButtonGreen,
+  StyledOutlineButtonWhite,
+} from '../styles/buttons/Buttons'
 import { StyledFullContainer } from '../../components/styles/containers/Containers'
 
 const Navigation = () => {
@@ -38,22 +42,22 @@ const Navigation = () => {
         )}
         {currentViewIndex === lastViewIndex && (
           <StyledFullContainer>
-            <Button
+            <StyledOutlineButtonWhite
               onClick={() => {
                 reportDispatch({ type: 'clearFormInfo' })
                 dispatch({ type: 'reset' })
               }}>
               Skapa Ny
-            </Button>
+            </StyledOutlineButtonWhite>
           </StyledFullContainer>
         )}
         {!(currentViewIndex === 0 || disablePrevious) && (
-          <Button
+          <StyledOutlineButtonGreen
             onClick={() => {
               dispatch({ type: 'previous' })
             }}>
             Tillbaka
-          </Button>
+          </StyledOutlineButtonGreen>
         )}
       </Button.Inner>
     </Button.Outer>
