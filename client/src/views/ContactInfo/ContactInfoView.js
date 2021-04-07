@@ -38,7 +38,7 @@ const ContactInfoView = () => {
     setCurrentViewHeading(
       <StyledHeroHeadingThin>
         <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
-        <StyledSpanWord> frågor</StyledSpanWord>
+        <StyledSpanWord> frågor</StyledSpanWord>?
       </StyledHeroHeadingThin>
     )
   }, [currentViewHeading])

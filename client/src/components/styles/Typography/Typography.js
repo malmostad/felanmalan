@@ -9,7 +9,8 @@ export const StyledHeroHeading = styled.h1`
   padding-top: 40px;
   font-size: 4rem;
   color: white;
-  font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
+  font-family: 'MyriadPro';
+  font-weight: bold;
 `
 export const StyledHeroHeadingThin = styled(StyledHeroHeading)`
   font-weight: lighter;
