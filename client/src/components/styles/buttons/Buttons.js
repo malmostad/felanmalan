@@ -16,6 +16,8 @@ export const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   color: white;
+  font-family: 'MyriadPro';
+  font-weight: bold;
 `
 
 export const StyledFetchButton = styled.button`
@@ -66,6 +68,8 @@ export const StyledOutlineButtonGreen = styled(StyledButton)`
   }
 `
 export const StyledOutlineButtonWhite = styled(StyledButton)`
+  margin: 0 auto;
+  width: 100%;
   color: ${({ theme }) => theme.colors.White};
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   border: 2px solid ${({ theme }) => theme.colors.White};
@@ -76,11 +80,6 @@ export const StyledOutlineButtonWhite = styled(StyledButton)`
   }
 `
 
-export const StyledCookieButton = styled(StyledButton)`
-  margin: 0 auto 40px auto;
-  color: white;
-  max-width: 500px;
-`
 export const StyledReadMoreButton = styled(StyledButton)`
   margin: 10px auto;
   color: white;
