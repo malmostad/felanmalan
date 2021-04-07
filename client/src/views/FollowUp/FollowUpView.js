@@ -1,4 +1,8 @@
 import { useUpdate } from '../.././contexts/UpdateContext'
+import {
+  StyledHeroHeadingThin,
+  StyledSpanWord,
+} from '../../components/styles/Typography/Typography'
 import React, { useEffect } from 'react'
 import {
   StyledOuterFollowUpView,
@@ -9,7 +13,11 @@ const FollowUpView = () => {
   const { setCurrentViewHeading, currentViewHeading } = useUpdate()
 
   useEffect(() => {
-    setCurrentViewHeading('Tack för din felanmälan')
+    setCurrentViewHeading(
+      <StyledHeroHeadingThin>
+        <StyledSpanWord>Tack</StyledSpanWord> för din <StyledSpanWord>felanmälan</StyledSpanWord>
+      </StyledHeroHeadingThin>
+    )
   }, [currentViewHeading])
 
   return (

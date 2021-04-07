@@ -5,8 +5,13 @@ import {
   StyledFormWrapper,
   StyledTextArea,
   DescriptionSpan,
+  StyledLabel,
 } from '../../components/styles/form/Form'
 import { StyledBoldHeader } from '../../components/styles/Typography/Typography'
+import {
+  StyledHeroHeadingThin,
+  StyledSpanWord,
+} from '../../components/styles/Typography/Typography'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const DescriptionView = () => {
@@ -15,7 +20,11 @@ const DescriptionView = () => {
   const { dispatch } = useContext(NavigationContext)
 
   useEffect(() => {
-    setCurrentViewHeading('Beskriv problemet')
+    setCurrentViewHeading(
+      <StyledHeroHeadingThin>
+        <StyledSpanWord>Beskriv problemet </StyledSpanWord>
+      </StyledHeroHeadingThin>
+    )
   }, [currentViewHeading])
 
   useEffect(() => {
@@ -31,10 +40,10 @@ const DescriptionView = () => {
     <>
       <StyledFormWrapper>
         <form>
-          <label htmlFor="Beskrivning">
+          <StyledLabel htmlFor="Beskrivning">
             <StyledBoldHeader>Beskriv problemet du vill felanmäla</StyledBoldHeader>
             {!formState.description && <DescriptionSpan> * </DescriptionSpan>}
-          </label>
+          </StyledLabel>
           <StyledTextArea
             type="text"
             defaultValue={formState.description}
