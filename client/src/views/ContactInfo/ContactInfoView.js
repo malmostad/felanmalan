@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useContext } from 'react'
 import { useReport } from '../.././contexts/ReportContext'
+import {
+  StyledHeroHeadingThin,
+  StyledSpanWord,
+} from '../../components/styles/Typography/Typography'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import {
   StyledError,
@@ -29,7 +33,12 @@ const ContactInfoView = () => {
   }
 
   useEffect(() => {
-    setCurrentViewHeading('Kan vi kontakta dig vid frågor?')
+    setCurrentViewHeading(
+      <StyledHeroHeadingThin>
+        <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
+        <StyledSpanWord> frågor</StyledSpanWord>
+      </StyledHeroHeadingThin>
+    )
   }, [currentViewHeading])
 
   useEffect(() => {

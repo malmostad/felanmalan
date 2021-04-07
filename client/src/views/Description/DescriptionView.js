@@ -6,6 +6,10 @@ import {
   StyledTextArea,
   DescriptionSpan,
 } from '../../components/styles/form/Form'
+import {
+  StyledHeroHeadingThin,
+  StyledSpanWord,
+} from '../../components/styles/Typography/Typography'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const DescriptionView = () => {
@@ -14,7 +18,11 @@ const DescriptionView = () => {
   const { dispatch } = useContext(NavigationContext)
 
   useEffect(() => {
-    setCurrentViewHeading('Beskriv problemet')
+    setCurrentViewHeading(
+      <StyledHeroHeadingThin>
+        <StyledSpanWord>Beskriv problemet </StyledSpanWord>
+      </StyledHeroHeadingThin>
+    )
   }, [currentViewHeading])
 
   useEffect(() => {

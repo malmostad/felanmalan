@@ -131,3 +131,18 @@ export const StyledSearchBarContainer = styled.div`
   margin: 0 15px;
   z-index: 19;
 `
+
+export const StyledHeaderContainer = styled.div`
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  align-content: center;
+  height: auto;
+  min-height: 270px;
+  padding-bottom: 40px;
+`
+export const StyledHeaderContainerText = styled.div`
+  max-width: 450px;
+  margin: 0 auto;
+`
