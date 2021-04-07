@@ -35,12 +35,14 @@ const ContactInfoView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <StyledHeroHeadingThin>
-        <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
-        <StyledSpanWord> frågor</StyledSpanWord>
-      </StyledHeroHeadingThin>
+      <div>
+        <StyledHeroHeadingThin>
+          <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
+          <StyledSpanWord> frågor</StyledSpanWord>
+        </StyledHeroHeadingThin>
+      </div>
     )
-  }, [currentViewHeading])
+  }, [])
 
   useEffect(() => {
     const phoneOrEmailSet =

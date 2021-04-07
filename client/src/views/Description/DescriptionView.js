@@ -20,11 +20,13 @@ const DescriptionView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <StyledHeroHeadingThin>
-        <StyledSpanWord>Beskriv problemet </StyledSpanWord>
-      </StyledHeroHeadingThin>
+      <div>
+        <StyledHeroHeadingThin>
+          <StyledSpanWord>Beskriv problemet </StyledSpanWord>
+        </StyledHeroHeadingThin>
+      </div>
     )
-  }, [currentViewHeading])
+  }, [])
 
   useEffect(() => {
     formState.description ? dispatch({ type: 'enableNext' }) : dispatch({ type: 'disableNext' })

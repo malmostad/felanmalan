@@ -13,12 +13,14 @@ const UploadImageView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <StyledHeroHeadingThin>
-        Lägg till <StyledSpanWord>bilder</StyledSpanWord> på{' '}
-        <StyledSpanWord>problemet</StyledSpanWord> &<StyledSpanWord> platsen</StyledSpanWord>
-      </StyledHeroHeadingThin>
+      <div>
+        <StyledHeroHeadingThin>
+          Lägg till <StyledSpanWord>bilder</StyledSpanWord> på{' '}
+          <StyledSpanWord>problemet</StyledSpanWord> &<StyledSpanWord> platsen</StyledSpanWord>
+        </StyledHeroHeadingThin>
+      </div>
     )
-  }, [currentViewHeading])
+  }, [])
 
   useEffect(() => {
     if (imagesToBeUploaded.length) {

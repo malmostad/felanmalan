@@ -14,11 +14,13 @@ const FollowUpView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <StyledHeroHeadingThin>
-        <StyledSpanWord>Tack</StyledSpanWord> för din <StyledSpanWord>felanmälan</StyledSpanWord>
-      </StyledHeroHeadingThin>
+      <div>
+        <StyledHeroHeadingThin>
+          <StyledSpanWord>Tack</StyledSpanWord> för din <StyledSpanWord>felanmälan</StyledSpanWord>
+        </StyledHeroHeadingThin>
+      </div>
     )
-  }, [currentViewHeading])
+  }, [])
 
   return (
     <>
