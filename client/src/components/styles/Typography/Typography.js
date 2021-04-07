@@ -25,3 +25,11 @@ export const StyledInfoText = styled.p`
   font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
   font-weight: lighter;
 `
+
+export const StyledBoldHeader = styled.span`
+  font-family: MyriadPro, Open sans, Verdana;
+  font-weight: bold;
+`
+export const StyledThinHeader = styled(StyledBoldHeader)`
+  font-weight: lighter;
+`

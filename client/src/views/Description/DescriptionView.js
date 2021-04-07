@@ -6,6 +6,7 @@ import {
   StyledTextArea,
   DescriptionSpan,
 } from '../../components/styles/form/Form'
+import { StyledBoldHeader } from '../../components/styles/Typography/Typography'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const DescriptionView = () => {
@@ -31,7 +32,7 @@ const DescriptionView = () => {
       <StyledFormWrapper>
         <form>
           <label htmlFor="Beskrivning">
-            Beskriv problemet du vill felanmäla
+            <StyledBoldHeader>Beskriv problemet du vill felanmäla</StyledBoldHeader>
             {!formState.description && <DescriptionSpan> * </DescriptionSpan>}
           </label>
           <StyledTextArea
