@@ -6,9 +6,17 @@ export const StyledHeading = styled.h1`
   font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
 `
 export const StyledHeroHeading = styled.h1`
+  padding-top: 40px;
   font-size: 4rem;
   color: white;
   font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
+`
+export const StyledHeroHeadingThin = styled(StyledHeroHeading)`
+  font-weight: lighter;
+`
+
+export const StyledSpanWord = styled.span`
+  font-weight: bold;
 `
 
 export const StyledSpanText = styled.p`

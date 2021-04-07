@@ -2,13 +2,22 @@ import UploadImageForm from './form/UploadImageForm'
 import { useUpdate } from '../../contexts/UpdateContext'
 import { useEffect, useState } from 'react'
 import Grid from './Grid'
+import {
+  StyledHeroHeadingThin,
+  StyledSpanWord,
+} from '../../components/styles/Typography/Typography'
 
 const UploadImageView = () => {
   const { setCurrentViewHeading, imagesToBeUploaded, currentViewHeading } = useUpdate()
   const [uploading, setUploading] = useState(false)
 
   useEffect(() => {
-    setCurrentViewHeading('Lägg till bild på problemet')
+    setCurrentViewHeading(
+      <StyledHeroHeadingThin>
+        Lägg till <StyledSpanWord>bilder</StyledSpanWord> på{' '}
+        <StyledSpanWord>problemet</StyledSpanWord> &<StyledSpanWord> platsen</StyledSpanWord>
+      </StyledHeroHeadingThin>
+    )
   }, [currentViewHeading])
 
   useEffect(() => {

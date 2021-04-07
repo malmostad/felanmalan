@@ -1,14 +1,17 @@
 import { useUpdate } from '../../contexts/UpdateContext'
-import { Header } from './index'
+import { StyledHeaderContainer, StyledHeaderContainerText } from '../styles/containers/Containers'
+import { StyledHeroHeadingThin } from '../styles/Typography/Typography'
 
 const HeaderSection = () => {
   const { currentViewHeading } = useUpdate()
   return (
-    <Header>
-      <Header.Inner>
-        <Header.Title>{currentViewHeading}</Header.Title>
-      </Header.Inner>
-    </Header>
+    <>
+      <StyledHeaderContainer>
+        <StyledHeaderContainerText>
+          <StyledHeroHeadingThin>{currentViewHeading}</StyledHeroHeadingThin>
+        </StyledHeaderContainerText>
+      </StyledHeaderContainer>
+    </>
   )
 }
 
