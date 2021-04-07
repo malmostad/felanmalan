@@ -14,7 +14,7 @@ import {
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const DescriptionView = () => {
-  const { setCurrentViewHeading, currentViewHeading } = useUpdate()
+  const { setCurrentViewHeading } = useUpdate()
   const { handelSetFormInfo, formState } = useReport()
   const { dispatch } = useContext(NavigationContext)
 

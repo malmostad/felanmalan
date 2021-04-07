@@ -18,7 +18,7 @@ const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+")
 const mobilePattern = /^[0-9]{10}$/
 
 const ContactInfoView = () => {
-  const { setCurrentViewHeading, currentViewHeading } = useUpdate()
+  const { setCurrentViewHeading } = useUpdate()
   const name = useRef('')
   const email = useRef('')
   const phone = useRef('')

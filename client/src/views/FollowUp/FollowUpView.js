@@ -10,7 +10,7 @@ import {
 } from '../../components/styles/containers/Containers'
 
 const FollowUpView = () => {
-  const { setCurrentViewHeading, currentViewHeading } = useUpdate()
+  const { setCurrentViewHeading } = useUpdate()
 
   useEffect(() => {
     setCurrentViewHeading(
