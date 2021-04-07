@@ -1,5 +1,4 @@
-import { useReducer } from 'react'
-import { createContext } from 'react'
+import { createContext, useReducer, useEffect } from 'react'
 
 export const MapContext = createContext()
 

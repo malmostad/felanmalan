@@ -1,11 +1,16 @@
 import React, { useEffect, useRef, useContext } from 'react'
 import { useReport } from '../.././contexts/ReportContext'
+import {
+  StyledHeroHeadingThin,
+  StyledSpanWord,
+} from '../../components/styles/Typography/Typography'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import {
   StyledError,
   StyledFormWrapper,
   StyledInput,
   InputFormSecond,
+  StyledLabel,
 } from '../../components/styles/form/Form'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
@@ -29,7 +34,12 @@ const ContactInfoView = () => {
   }
 
   useEffect(() => {
-    setCurrentViewHeading('Kan vi kontakta dig vid frågor?')
+    setCurrentViewHeading(
+      <StyledHeroHeadingThin>
+        <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
+        <StyledSpanWord> frågor</StyledSpanWord>
+      </StyledHeroHeadingThin>
+    )
   }, [currentViewHeading])
 
   useEffect(() => {
@@ -87,7 +97,7 @@ const ContactInfoView = () => {
       <StyledFormWrapper>
         <form>
           <div>
-            <label htmlFor="name">
+            <StyledLabel htmlFor="name">
               Namn
               <StyledInput
                 placeholder="Skriv ditt namn"
@@ -97,10 +107,10 @@ const ContactInfoView = () => {
                 ref={name}
                 onChange={handelFormInfo}
               />
-            </label>
+            </StyledLabel>
           </div>
           <div>
-            <label htmlFor="email">
+            <StyledLabel htmlFor="email">
               E-post
               {shouldRenderEmailError() && <StyledError>Kontrollera email</StyledError>}
               <InputFormSecond
@@ -111,10 +121,10 @@ const ContactInfoView = () => {
                 ref={email}
                 onChange={handelFormInfo}
               />
-            </label>
+            </StyledLabel>
           </div>
           <div>
-            <label htmlFor="phone">
+            <StyledLabel htmlFor="phone">
               Telefonnummer
               {shouldRenderPhoneError() && <StyledError>Kontrollera telefonnummer</StyledError>}
               <InputFormSecond
@@ -125,7 +135,7 @@ const ContactInfoView = () => {
                 ref={phone}
                 onChange={handelFormInfo}
               />
-            </label>
+            </StyledLabel>
           </div>
           <div>
             <input
