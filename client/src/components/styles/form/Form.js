@@ -5,6 +5,7 @@ export const StyledFormWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   max-width: 560px;
+  flex-grow: 1;
 `
 
 export const StyledInput = styled.input`
@@ -30,6 +31,13 @@ export const StyledError = styled.div`
 export const DescriptionSpan = styled.span`
   color: red;
   font-size: 21px;
+`
+export const StyledLabel = styled.label`
+  font-size: 16px;
+  line-height: 16px;
+  color: #000;
+  margin-bottom: 5px;
+  font-weight: 700;
 `
 
 export const StyledTextArea = styled.textarea`
