@@ -49,13 +49,15 @@ const MapBox = () => {
         width="100vw"
         height="100vh"
         onMouseUp={onMouseUp}>
-        <Geocoder
-          onViewportChange={(payload) => handleViewPortChange(payload)}
-          mapRef={mapRef}
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-          bbox={maxBounds}
-          inputValue={address}
-        />
+        <div className="searchbar">
+          <Geocoder
+            onViewportChange={(payload) => handleViewPortChange(payload)}
+            mapRef={mapRef}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+            bbox={maxBounds}
+            inputValue={address}
+          />
+        </div>
 
         <ZoomButton />
 
