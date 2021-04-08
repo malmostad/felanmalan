@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react'
-import ReactMapGl, { Marker, NavigationControl } from 'react-map-gl'
+import ReactMapGl, { Marker } from 'react-map-gl'
 import { FaMapPin as MarkerIcon } from 'react-icons/fa'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
@@ -76,7 +76,7 @@ const MapBox = () => {
           style={{
             color: '#05763C',
             position: 'absolute',
-            top: '50vh',
+            top: '45vh',
             left: '50vw',
           }}
         />
