@@ -138,7 +138,10 @@ export const StyledHeaderContainer = styled.div`
   justify-content: center;
   text-align: left;
   align-content: center;
-  height: 330px;
+  height: 350px;
+  @media (max-width: 560px) {
+    height: 252px;
+  }
 `
 export const StyledHeaderContainerText = styled.div`
   width: 100%;
