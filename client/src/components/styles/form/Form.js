@@ -50,4 +50,7 @@ export const StyledTextArea = styled.textarea`
   resize: none;
   border: 1px solid #888;
   font-family: Tahoma, sans-serif;
+  @media (max-width: 560px) {
+    margin-bottom: 3rem;
+  }
 `

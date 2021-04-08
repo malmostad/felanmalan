@@ -90,7 +90,6 @@ export const StyledFullContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 75px;
 `
 
 export const StyledContentFollowUpView = styled.div`
@@ -139,6 +138,7 @@ export const StyledHeaderContainer = styled.div`
   text-align: left;
   align-content: center;
   height: 350px;
+  margin-bottom: -0.1rem;
   @media (max-width: 560px) {
     height: 252px;
   }
