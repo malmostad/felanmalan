@@ -43,17 +43,13 @@ export const StyledZoomButtons = styled.button`
   bottom: 30px;
   right: 30px;
   border: 0;
+  border-radius: 5px 5px 5px 5px;
+  border: 0.1px solid #404040;
 `
-export const StyledZoomInButton = styled.button`
+export const StyledZoomButton = styled.button`
   width: 25px;
   height: 33px;
   font-size: 21px;
-  border: 0.1px solid #00000045;
-  border-radius: 7px 7px 0px 0px;
-`
-
-export const StyledZoomOutButton = styled(StyledZoomInButton)`
-  border-radius: 0px 0px 7px 7px;
 `
 
 export const StyledOutlineButtonGreen = styled(StyledButton)`
