@@ -4,7 +4,7 @@ import { FiNavigation as NavIcon } from 'react-icons/fi'
 import { MapContext } from '../../contexts/MapContext'
 
 const CurrentLocationButton = () => {
-  const { dispatch, state } = useContext(MapContext)
+  const { dispatch } = useContext(MapContext)
 
   useEffect(() => {
     if (window.navigator) {

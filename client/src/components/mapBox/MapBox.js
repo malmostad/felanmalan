@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react'
+import { useContext, useRef, useState, useEffect } from 'react'
 import ReactMapGl, { Marker } from 'react-map-gl'
 import { FaMapPin as MarkerIcon } from 'react-icons/fa'
 import { MapContext } from '../../contexts/MapContext'
@@ -16,6 +16,7 @@ const MapBox = () => {
   const { handelSetFormInfo } = useReport()
   const mapRef = useRef()
   const [address, setAddress] = useState('')
+  const [updateUserLocation, setUpdateUserLocation] = useState(false)
   const { state, dispatch } = useContext(MapContext)
   const {
     viewport,
@@ -37,6 +38,16 @@ const MapBox = () => {
     const address = await fetchAddressMapBoxAPI(viewport)
     setAddress(address)
   }
+  const updateSearchbarUserLocation = async () => {
+    const usersAddress = await fetchAddressMapBoxAPI(userLocation)
+    setAddress(usersAddress)
+  }
+  useEffect(() => {
+    if (updateUserLocation) {
+      updateSearchbarUserLocation()
+    }
+    setUpdateUserLocation(true)
+  }, [userLocation])
 
   return (
     <>
