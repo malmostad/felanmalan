@@ -138,9 +138,11 @@ export const StyledHeaderContainer = styled.div`
   justify-content: center;
   text-align: left;
   align-content: center;
-  height: 280px;
+  height: 330px;
 `
 export const StyledHeaderContainerText = styled.div`
   width: 100%;
-  margin: 0 auto;
+  max-width: 560px;
+  margin: 0px auto;
+  overflow: hidden;
 `

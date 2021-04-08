@@ -9,7 +9,7 @@ export const StyledHeroHeading = styled.h1`
   padding-top: 53px;
   padding-left: 10px;
   padding-right: 10px;
-  font-size: 4rem;
+  font-size: 3.6rem;
   color: white;
   font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
   @media (max-width: 560px) {
