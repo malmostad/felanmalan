@@ -12,6 +12,7 @@ import {
   InputFormSecond,
   StyledLabel,
 } from '../../components/styles/form/Form'
+import { StyledBoldHeader, StyledThinHeader } from '../../components/styles/Typography/Typography'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -37,7 +38,7 @@ const ContactInfoView = () => {
     setCurrentViewHeading(
       <StyledHeroHeadingThin>
         <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
-        <StyledSpanWord> frågor</StyledSpanWord>
+        <StyledSpanWord> frågor</StyledSpanWord>?
       </StyledHeroHeadingThin>
     )
   }, [currentViewHeading])
@@ -98,7 +99,7 @@ const ContactInfoView = () => {
         <form>
           <div>
             <StyledLabel htmlFor="name">
-              Namn
+              <StyledBoldHeader>Namn</StyledBoldHeader>
               <StyledInput
                 placeholder="Skriv ditt namn"
                 type="name"
@@ -111,7 +112,7 @@ const ContactInfoView = () => {
           </div>
           <div>
             <StyledLabel htmlFor="email">
-              E-post
+              <StyledBoldHeader>E-post</StyledBoldHeader>
               {shouldRenderEmailError() && <StyledError>Kontrollera email</StyledError>}
               <InputFormSecond
                 placeholder="Skriv din email"
@@ -125,7 +126,7 @@ const ContactInfoView = () => {
           </div>
           <div>
             <StyledLabel htmlFor="phone">
-              Telefonnummer
+              <StyledBoldHeader>Telefonnummer</StyledBoldHeader>
               {shouldRenderPhoneError() && <StyledError>Kontrollera telefonnummer</StyledError>}
               <InputFormSecond
                 placeholder="Skriv ditt telefonnummer"
@@ -145,7 +146,7 @@ const ContactInfoView = () => {
               ref={enable_tracking}
               onChange={handelFormInfo}
             />
-            <span> Vill du få uppföljning på ditt ärende?</span>
+            <StyledThinHeader> Vill du få uppföljning på ditt ärende?</StyledThinHeader>
           </div>
         </form>
         {enable_tracking.current.checked && !trackingRequirementsFulfilled() && (

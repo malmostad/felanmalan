@@ -24,9 +24,11 @@ export const InputFormSecond = styled(StyledInput)`
   font-size: 16px;
 `
 export const StyledError = styled.div`
-  font-size: 12px;
+  font-size: 15px;
   color: red;
   margin-bottom: 2px;
+  font-family: MyriadPro, Open sans, Verdana;
+  font-weight: lighter;
 `
 export const DescriptionSpan = styled.span`
   color: red;
