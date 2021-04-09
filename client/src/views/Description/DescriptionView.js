@@ -7,6 +7,7 @@ import {
   DescriptionSpan,
   StyledLabel,
 } from '../../components/styles/form/Form'
+import { StyledBoldHeader } from '../../components/styles/Typography/Typography'
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
@@ -42,7 +43,7 @@ const DescriptionView = () => {
       <StyledFormWrapper>
         <form>
           <StyledLabel htmlFor="Beskrivning">
-            Beskriv problemet du vill felanmäla
+            <StyledBoldHeader>Beskriv problemet du vill felanmäla</StyledBoldHeader>
             {!formState.description && <DescriptionSpan> * </DescriptionSpan>}
           </StyledLabel>
           <StyledTextArea

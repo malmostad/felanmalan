@@ -95,7 +95,7 @@ export const StyledFullContainer = styled.div`
 
 export const StyledContentFollowUpView = styled.div`
   width: 100%;
-  max-width: 560px;
+  max-width: 600px;
   margin: 0px auto;
   padding: 12px;
   flex-direction: column;
@@ -143,6 +143,7 @@ export const StyledHeaderContainer = styled.div`
   padding-bottom: 40px;
 `
 export const StyledHeaderContainerText = styled.div`
-  max-width: 450px;
+  max-width: 560px;
   margin: 0 auto;
+  overflow: hidden;
 `
