@@ -65,6 +65,10 @@
   margin: 0 auto;
 }
 
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+  margin: 10px 10px 10px 10px !important;
+}
+
 /* ------------------------------------------------- */
 
 .blob {

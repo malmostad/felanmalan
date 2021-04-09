@@ -90,7 +90,6 @@ export const StyledFullContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 75px;
 `
 
 export const StyledContentFollowUpView = styled.div`
@@ -138,12 +137,20 @@ export const StyledHeaderContainer = styled.div`
   justify-content: center;
   text-align: left;
   align-content: center;
-  height: auto;
-  min-height: 270px;
-  padding-bottom: 40px;
+  height: 350px;
+  margin-bottom: -0.1rem;
+  @media (max-width: 560px) {
+    height: 252px;
+  }
 `
 export const StyledHeaderContainerText = styled.div`
+<<<<<<< HEAD
+  width: 100%;
+  max-width: 560px;
+  margin: 0px auto;
+=======
   max-width: 560px;
   margin: 0 auto;
+>>>>>>> master
   overflow: hidden;
 `

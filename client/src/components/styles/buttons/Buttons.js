@@ -6,7 +6,7 @@ export const StyledButton = styled.button`
   font-size: ${({ theme }) => theme.FontSizes.ButtonText};
   margin: 0 10px;
   max-width: 380px;
-  height: 55px;
+  height: 70px;
   margin-bottom: 10px;
   color: ${({ theme }) => theme.colors.PrimaryWhite};
   width: 270px;
@@ -16,8 +16,11 @@ export const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   color: white;
-  font-family: 'MyriadPro';
-  font-weight: bold;
+  @media (max-width: 560px) {
+    height: 60px;
+    font-family: 'MyriadPro';
+    font-weight: bold;
+  }
 `
 
 export const StyledFetchButton = styled.button`
@@ -45,17 +48,13 @@ export const StyledZoomButtons = styled.div`
   bottom: 30px;
   right: 30px;
   border: 0;
+  border-radius: 5px 5px 5px 5px;
+  border: 0.1px solid #404040;
 `
-export const StyledZoomInButton = styled.button`
+export const StyledZoomButton = styled.button`
   width: 25px;
   height: 33px;
   font-size: 21px;
-  border: 0.1px solid #00000045;
-  border-radius: 7px 7px 0px 0px;
-`
-
-export const StyledZoomOutButton = styled(StyledZoomInButton)`
-  border-radius: 0px 0px 7px 7px;
 `
 
 export const StyledOutlineButtonGreen = styled(StyledButton)`

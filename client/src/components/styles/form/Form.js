@@ -1,11 +1,12 @@
 import styled from 'styled-components/macro'
 
 export const StyledFormWrapper = styled.div`
-  padding: 40px 20px;
+  padding: 0px 20px;
   width: 100%;
   margin: 0 auto;
   max-width: 560px;
   flex-grow: 1;
+  margin-top: 2rem;
 `
 
 export const StyledInput = styled.input`
@@ -51,4 +52,7 @@ export const StyledTextArea = styled.textarea`
   resize: none;
   border: 1px solid #888;
   font-family: Tahoma, sans-serif;
+  @media (max-width: 560px) {
+    margin-bottom: 3rem;
+  }
 `
