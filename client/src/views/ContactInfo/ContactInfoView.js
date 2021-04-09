@@ -36,19 +36,12 @@ const ContactInfoView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-<<<<<<< HEAD
       <div>
         <StyledHeroHeadingThin>
           <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
           <StyledSpanWord> frågor</StyledSpanWord>
         </StyledHeroHeadingThin>
       </div>
-=======
-      <StyledHeroHeadingThin>
-        <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
-        <StyledSpanWord> frågor</StyledSpanWord>?
-      </StyledHeroHeadingThin>
->>>>>>> master
     )
   }, [])
 
