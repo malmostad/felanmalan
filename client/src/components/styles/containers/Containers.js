@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
 export const MainContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,7 +17,8 @@ export const StyledFlexCenterColumn = styled.div`
 `
 export const StyledOuter = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   background-color: ${({ bgWhite, bgSecondary, theme }) =>
     bgWhite
       ? theme.colors.White
@@ -31,6 +32,7 @@ export const StyledOuter = styled.div`
 `
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
+  min-height: 50vh;
 `
 
 // button containers
@@ -54,6 +56,9 @@ export const StyledCookieContainer = styled.div`
   justify-content: start;
   margin: 0 auto;
   max-width: 500px;
+  @media (max-width: 560px) {
+    padding: 15px;
+  }
 `
 export const StyledButtonContainer = styled.div`
   flex-direction: column;
@@ -101,6 +106,7 @@ export const StyledContentFollowUpView = styled.div`
   background-color: #037540;
   color: white;
   font-size: 22px;
+  z-index: 50;
 `
 
 export const StyledGrid = styled.div`
@@ -153,4 +159,15 @@ export const StyledHeaderContainerText = styled.div`
   margin: 0 auto;
 >>>>>>> master
   overflow: hidden;
+`
+
+export const GreenBGContainer = styled.div`
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
 `

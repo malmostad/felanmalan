@@ -47,7 +47,7 @@ const MapBox = () => {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
         width="100vw"
-        height="100vh"
+        height="87vh"
         onMouseUp={onMouseUp}>
         <div className="searchbar">
           <Geocoder
@@ -76,7 +76,7 @@ const MapBox = () => {
           style={{
             color: '#05763C',
             position: 'absolute',
-            top: '45vh',
+            top: '43vh',
             left: '50vw',
           }}
         />
