@@ -7,6 +7,7 @@ import React, { useEffect } from 'react'
 import {
   StyledOuterFollowUpView,
   StyledContentFollowUpView,
+  GreenBGContainer,
 } from '../../components/styles/containers/Containers'
 
 const FollowUpView = () => {
@@ -24,6 +25,7 @@ const FollowUpView = () => {
 
   return (
     <>
+      <GreenBGContainer></GreenBGContainer>
       <StyledOuterFollowUpView>
         <StyledContentFollowUpView>
           <p>Den hjälper oss hålla vår vackra stad iordning</p>

@@ -11,7 +11,6 @@ export const StyledHeroHeading = styled.h1`
   padding-right: 10px;
   font-size: 3.6rem;
   color: white;
-  font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
   @media (max-width: 560px) {
     padding: 15px 10px;
     line-height: 39px;
@@ -34,15 +33,18 @@ export const StyledSpanText = styled.p`
   font-size: 1.06rem;
   font-weight: 700;
   color: white;
-  font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
+  font-family: 'MyriadPro';
   margin: 20px 0;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5715;
 `
 export const StyledInfoText = styled.p`
-  font-size: 1rem;
-  font-weight: 100;
+  font-size: 1.06rem;
   color: white;
-  font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
+  font-family: 'MyriadPro';
   font-weight: lighter;
+  line-height: 1.5715;
+  -moz-osx-font-smoothing: grayscale;
 `
 
 export const StyledBoldHeader = styled.span`

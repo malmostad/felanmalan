@@ -84,7 +84,9 @@ export const StyledReadMoreButton = styled(StyledButton)`
   color: white;
   max-width: 100px;
   border: none;
-  font-weight: 100;
+  font-family: 'MyriadPro';
+  font-weight: lighter;
+  -moz-osx-font-smoothing: grayscale;
   &:hover {
     filter: brightness(100%);
     text-decoration: underline;
