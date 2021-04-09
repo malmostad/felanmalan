@@ -38,7 +38,7 @@ export const StyledFetchButton = styled.button`
   right: 5px;
   cursor: pointer;
 `
-export const StyledZoomButtons = styled.button`
+export const StyledZoomButtons = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;

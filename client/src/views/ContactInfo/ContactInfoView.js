@@ -19,7 +19,7 @@ const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+")
 const mobilePattern = /^[0-9]{10}$/
 
 const ContactInfoView = () => {
-  const { setCurrentViewHeading, currentViewHeading } = useUpdate()
+  const { setCurrentViewHeading } = useUpdate()
   const name = useRef('')
   const email = useRef('')
   const phone = useRef('')
@@ -36,12 +36,14 @@ const ContactInfoView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <StyledHeroHeadingThin>
-        <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
-        <StyledSpanWord> frågor</StyledSpanWord>?
-      </StyledHeroHeadingThin>
+      <div>
+        <StyledHeroHeadingThin>
+          <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
+          <StyledSpanWord> frågor</StyledSpanWord>
+        </StyledHeroHeadingThin>
+      </div>
     )
-  }, [currentViewHeading])
+  }, [])
 
   useEffect(() => {
     const phoneOrEmailSet =

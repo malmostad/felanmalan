@@ -8,17 +8,19 @@ import {
 } from '../../components/styles/Typography/Typography'
 
 const UploadImageView = () => {
-  const { setCurrentViewHeading, imagesToBeUploaded, currentViewHeading } = useUpdate()
+  const { setCurrentViewHeading, imagesToBeUploaded } = useUpdate()
   const [uploading, setUploading] = useState(false)
 
   useEffect(() => {
     setCurrentViewHeading(
-      <StyledHeroHeadingThin>
-        Lägg till <StyledSpanWord>bilder</StyledSpanWord> på{' '}
-        <StyledSpanWord>problemet</StyledSpanWord> &<StyledSpanWord> platsen</StyledSpanWord>
-      </StyledHeroHeadingThin>
+      <div>
+        <StyledHeroHeadingThin>
+          Lägg till <StyledSpanWord>bilder</StyledSpanWord> på{' '}
+          <StyledSpanWord>problemet</StyledSpanWord> &<StyledSpanWord> platsen</StyledSpanWord>
+        </StyledHeroHeadingThin>
+      </div>
     )
-  }, [currentViewHeading])
+  }, [])
 
   useEffect(() => {
     if (imagesToBeUploaded.length) {

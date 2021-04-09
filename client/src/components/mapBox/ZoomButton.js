@@ -18,10 +18,12 @@ const ZoomButton = () => {
   }
 
   return (
-    <StyledZoomButtons>
-      <StyledZoomInButton onClick={handleZoomIn}>+</StyledZoomInButton>
-      <StyledZoomOutButton onClick={handleZoomOut}>-</StyledZoomOutButton>
-    </StyledZoomButtons>
+    <div>
+      <StyledZoomButtons>
+        <StyledZoomInButton onClick={handleZoomIn}>+</StyledZoomInButton>
+        <StyledZoomOutButton onClick={handleZoomOut}>-</StyledZoomOutButton>
+      </StyledZoomButtons>
+    </div>
   )
 }
 
