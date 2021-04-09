@@ -18,6 +18,8 @@ export const StyledButton = styled.button`
   color: white;
   @media (max-width: 560px) {
     height: 60px;
+    font-family: 'MyriadPro';
+    font-weight: bold;
   }
 `
 
@@ -39,7 +41,7 @@ export const StyledFetchButton = styled.button`
   right: 5px;
   cursor: pointer;
 `
-export const StyledZoomButtons = styled.button`
+export const StyledZoomButtons = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -65,6 +67,8 @@ export const StyledOutlineButtonGreen = styled(StyledButton)`
   }
 `
 export const StyledOutlineButtonWhite = styled(StyledButton)`
+  margin: 0 auto;
+  width: 100%;
   color: ${({ theme }) => theme.colors.White};
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   border: 2px solid ${({ theme }) => theme.colors.White};
@@ -75,11 +79,6 @@ export const StyledOutlineButtonWhite = styled(StyledButton)`
   }
 `
 
-export const StyledCookieButton = styled(StyledButton)`
-  margin: 0 auto 40px auto;
-  color: white;
-  max-width: 500px;
-`
 export const StyledReadMoreButton = styled(StyledButton)`
   margin: 10px auto;
   color: white;

@@ -7,6 +7,7 @@ import {
   DescriptionSpan,
   StyledLabel,
 } from '../../components/styles/form/Form'
+import { StyledBoldHeader } from '../../components/styles/Typography/Typography'
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
@@ -14,17 +15,19 @@ import {
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const DescriptionView = () => {
-  const { setCurrentViewHeading, currentViewHeading } = useUpdate()
+  const { setCurrentViewHeading } = useUpdate()
   const { handelSetFormInfo, formState } = useReport()
   const { dispatch } = useContext(NavigationContext)
 
   useEffect(() => {
     setCurrentViewHeading(
-      <StyledHeroHeadingThin>
-        <StyledSpanWord>Beskriv problemet </StyledSpanWord>
-      </StyledHeroHeadingThin>
+      <div>
+        <StyledHeroHeadingThin>
+          <StyledSpanWord>Beskriv problemet </StyledSpanWord>
+        </StyledHeroHeadingThin>
+      </div>
     )
-  }, [currentViewHeading])
+  }, [])
 
   useEffect(() => {
     formState.description ? dispatch({ type: 'enableNext' }) : dispatch({ type: 'disableNext' })
@@ -40,7 +43,7 @@ const DescriptionView = () => {
       <StyledFormWrapper>
         <form>
           <StyledLabel htmlFor="Beskrivning">
-            Beskriv problemet du vill felanmäla
+            <StyledBoldHeader>Beskriv problemet du vill felanmäla</StyledBoldHeader>
             {!formState.description && <DescriptionSpan> * </DescriptionSpan>}
           </StyledLabel>
           <StyledTextArea

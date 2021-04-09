@@ -17,6 +17,8 @@ export const StyledHeroHeading = styled.h1`
     line-height: 39px;
     font-size: 2rem;
     max-width: 20rem;
+    font-family: 'MyriadPro';
+    font-weight: bold;
   }
 `
 
@@ -40,5 +42,13 @@ export const StyledInfoText = styled.p`
   font-weight: 100;
   color: white;
   font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+`
+
+export const StyledBoldHeader = styled.span`
+  font-family: MyriadPro, Open sans, Verdana;
+  font-weight: bold;
+`
+export const StyledThinHeader = styled(StyledBoldHeader)`
   font-weight: lighter;
 `

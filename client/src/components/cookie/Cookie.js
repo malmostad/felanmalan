@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyledCookieButton, StyledReadMoreButton } from '../styles/buttons/Buttons'
+import { StyledOutlineButtonWhite, StyledReadMoreButton } from '../styles/buttons/Buttons'
 import {
   StyledCookieContainer,
   StyledOuter,
@@ -47,7 +47,7 @@ const Cookie = () => {
             </StyledReadMoreButton>
           )}
 
-          <StyledCookieButton onClick={handleSetCookie}>Acceptera</StyledCookieButton>
+          <StyledOutlineButtonWhite onClick={handleSetCookie}>Acceptera</StyledOutlineButtonWhite>
         </StyledButtonContainer>
       </StyledOuter>
     </>
