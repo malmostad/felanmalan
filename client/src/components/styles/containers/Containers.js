@@ -38,7 +38,6 @@ export const StyledOuterFollowUpView = styled(StyledOuter)`
 // button containers
 export const StyledButtonOuter = styled.div`
   ${flexCenterColumn}
-  height: 100px;
   background-color: transparent;
 `
 export const StyledButtonInner = styled.div`
@@ -67,6 +66,8 @@ export const StyledButtonContainer = styled.div`
   margin-top: 1rem;
   width: 100%;
   height: 200px;
+  justify-content: end;
+  margin-bottom: 20px;
 `
 // inner for what?
 export const StyledInnerWrapper = styled.div`
@@ -150,14 +151,8 @@ export const StyledHeaderContainer = styled.div`
   }
 `
 export const StyledHeaderContainerText = styled.div`
-<<<<<<< HEAD
-  width: 100%;
-  max-width: 560px;
-  margin: 0px auto;
-=======
   max-width: 560px;
   margin: 0 auto;
->>>>>>> master
   overflow: hidden;
 `
 

@@ -39,7 +39,7 @@ const ContactInfoView = () => {
       <div>
         <StyledHeroHeadingThin>
           <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
-          <StyledSpanWord> frågor</StyledSpanWord>
+          <StyledSpanWord> frågor</StyledSpanWord>?
         </StyledHeroHeadingThin>
       </div>
     )
@@ -148,7 +148,7 @@ const ContactInfoView = () => {
               ref={enable_tracking}
               onChange={handelFormInfo}
             />
-            <StyledThinHeader> Vill du få uppföljning på ditt ärende?</StyledThinHeader>
+            <StyledThinHeader> Vill du få uppföljning?</StyledThinHeader>
           </div>
         </form>
         {enable_tracking.current.checked && !trackingRequirementsFulfilled() && (
