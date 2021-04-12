@@ -45,15 +45,13 @@ const Navigation = () => {
             </StyledButton>
           )}
           {currentViewIndex === lastViewIndex && (
-            <StyledFullContainer>
-              <StyledOutlineButtonWhite
-                onClick={() => {
-                  reportDispatch({ type: 'clearFormInfo' })
-                  dispatch({ type: 'reset' })
-                }}>
-                Skapa Ny
-              </StyledOutlineButtonWhite>
-            </StyledFullContainer>
+            <StyledOutlineButtonWhite
+              onClick={() => {
+                reportDispatch({ type: 'clearFormInfo' })
+                dispatch({ type: 'reset' })
+              }}>
+              Skapa Ny
+            </StyledOutlineButtonWhite>
           )}
           {!(currentViewIndex === 0 || disablePrevious) && (
             <StyledOutlineButtonGreen
