@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react'
-import ReactMapGl, { Marker } from 'react-map-gl'
+import ReactMapGl, { Marker, FlyToInterpolator } from 'react-map-gl'
 import { FaMapPin as MarkerIcon } from 'react-icons/fa'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
@@ -44,6 +44,8 @@ const MapBox = () => {
         {...viewport}
         ref={mapRef}
         onViewportChange={(payload) => handleViewPortChange(payload)}
+        transitionDuration={2500}
+        transitionInterpolator={new FlyToInterpolator()}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
         width="100vw"
