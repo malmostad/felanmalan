@@ -97,9 +97,11 @@
   0% {
     transform: scale(0.33);
   }
-  80%,
+  80% {
+    opacity: 60%;
+  }
   100% {
-    opacity: 0;
+    opacity: 75%;
   }
 }
 

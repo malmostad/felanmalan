@@ -28,6 +28,11 @@ export const StyledHeroHeadingThin = styled(StyledHeroHeading)`
 export const StyledSpanWord = styled.span`
   font-weight: bold;
 `
+export const StyledTextFollowUp = styled.p`
+  align-self: flex-end;
+  font-family: 'Titillium Web', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+`
 
 export const StyledSpanText = styled.p`
   font-size: 1.06rem;
