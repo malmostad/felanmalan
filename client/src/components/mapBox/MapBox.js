@@ -25,6 +25,7 @@ const MapBox = () => {
     showLocationButton,
     isLoading,
     maxBounds,
+    transitionDuration,
   } = state
 
   const handleViewPortChange = (payload) => {
@@ -55,7 +56,7 @@ const MapBox = () => {
         <ReactMapGl
           {...viewport}
           ref={mapRef}
-          transitionDuration={2500}
+          transitionDuration={transitionDuration}
           transitionInterpolator={new FlyToInterpolator()}
           onViewportChange={(payload) => handleViewPortChange(payload)}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
