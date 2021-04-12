@@ -6,7 +6,7 @@ export const StyledButton = styled.button`
   font-size: ${({ theme }) => theme.FontSizes.ButtonText};
   margin: 0 10px;
   max-width: 380px;
-  height: 70px;
+  height: 50px;
   margin-bottom: 10px;
   color: ${({ theme }) => theme.colors.PrimaryWhite};
   width: 270px;
@@ -17,7 +17,7 @@ export const StyledButton = styled.button`
   align-items: center;
   color: white;
   @media (max-width: 560px) {
-    height: 60px;
+    height: 50px;
     font-family: 'MyriadPro';
     font-weight: bold;
   }

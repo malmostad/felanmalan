@@ -69,6 +69,16 @@
   margin: 10px 10px 10px 10px !important;
 }
 
+.map-style {
+  height: 91vh;
+}
+
+@media screen and (max-height: 667px) {
+  .map-style {
+    height: 88vh;
+  }
+}
+
 /* ------------------------------------------------- */
 
 .blob {

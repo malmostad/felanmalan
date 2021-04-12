@@ -40,47 +40,49 @@ const MapBox = () => {
 
   return (
     <>
-      <ReactMapGl
-        {...viewport}
-        ref={mapRef}
-        onViewportChange={(payload) => handleViewPortChange(payload)}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-        mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
-        width="100vw"
-        height="87vh"
-        onMouseUp={onMouseUp}>
-        <div className="searchbar">
-          <Geocoder
-            onViewportChange={(payload) => handleViewPortChange(payload)}
-            mapRef={mapRef}
-            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-            bbox={maxBounds}
-            inputValue={address}
+      <div className="map-style">
+        <ReactMapGl
+          {...viewport}
+          ref={mapRef}
+          onViewportChange={(payload) => handleViewPortChange(payload)}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+          mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
+          width="100vw"
+          height="100%"
+          onMouseUp={onMouseUp}>
+          <div className="searchbar">
+            <Geocoder
+              onViewportChange={(payload) => handleViewPortChange(payload)}
+              mapRef={mapRef}
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+              bbox={maxBounds}
+              inputValue={address}
+            />
+          </div>
+
+          <ZoomButton />
+
+          {isLoading && <LoadingSpinner />}
+
+          {showLocationButton && <CurrentLocationButton />}
+
+          {showPositionMarker && (
+            <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
+              <div className="blob"></div>
+            </Marker>
+          )}
+          <MarkerIcon
+            alt="Marker"
+            size="1.6rem"
+            style={{
+              color: '#05763C',
+              position: 'absolute',
+              top: '46vh',
+              left: '50vw',
+            }}
           />
-        </div>
-
-        <ZoomButton />
-
-        {isLoading && <LoadingSpinner />}
-
-        {showLocationButton && <CurrentLocationButton />}
-
-        {showPositionMarker && (
-          <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
-            <div className="blob"></div>
-          </Marker>
-        )}
-        <MarkerIcon
-          alt="Marker"
-          size="1.6rem"
-          style={{
-            color: '#05763C',
-            position: 'absolute',
-            top: '43vh',
-            left: '50vw',
-          }}
-        />
-      </ReactMapGl>
+        </ReactMapGl>
+      </div>
     </>
   )
 }
