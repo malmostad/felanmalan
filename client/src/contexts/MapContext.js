@@ -16,6 +16,7 @@ const initialState = {
   showPositionMarker: false,
   showLocationButton: true,
   isLoading: false,
+  transitionDuration: 0,
 }
 
 const mapReducer = (mapState, { type, payload }) => {
@@ -27,6 +28,7 @@ const mapReducer = (mapState, { type, payload }) => {
     showPositionMarker,
     showLocationButton,
     isLoading,
+    transitionDuration,
   } = mapState
 
   switch (type) {
@@ -40,6 +42,16 @@ const mapReducer = (mapState, { type, payload }) => {
           longitude: viewport.longitude,
           zoom: viewport.zoom + 1.5,
         },
+      }
+    case 'handleFlyOver':
+      return {
+        ...mapState,
+        transitionDuration: 2300,
+      }
+    case 'removeFlyOver':
+      return {
+        ...mapState,
+        transitionDuration: 0,
       }
     case 'handleZoomOut':
       return {

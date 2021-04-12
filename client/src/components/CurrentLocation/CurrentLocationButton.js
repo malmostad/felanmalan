@@ -25,10 +25,12 @@ const CurrentLocationButton = () => {
           longitude: position.coords.longitude,
           zoom: 17,
         }
+        dispatch({ type: 'handleFlyOver' })
         dispatch({ type: 'handleUserLocation', payload })
         dispatch({ type: 'handleShowPositionMarker' })
         dispatch({ type: 'handleViewportChange', payload })
         dispatch({ type: 'handleStopLoader' })
+        dispatch({ type: 'removeFlyOver' })
       },
       (error) => {
         dispatch({ type: 'handleDisableButton' })
