@@ -91,6 +91,7 @@
   box-shadow: 0 0 0 0 rgb(118, 168, 243, 0);
   transform: scale(1);
   animation: pulse 2s infinite;
+  z-index: 1;
 }
 
 @keyframes pulse {

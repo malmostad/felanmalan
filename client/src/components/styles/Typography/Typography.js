@@ -31,7 +31,7 @@ export const StyledSpanWord = styled.span`
 export const StyledTextFollowUp = styled.p`
   align-self: flex-end;
   font-family: 'Titillium Web', Arial, Helvetica, sans-serif;
-  font-weight: 400;
+  color: #8f8787;
 `
 
 export const StyledSpanText = styled.p`

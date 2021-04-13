@@ -22,8 +22,8 @@ export const StyledInput = styled.input`
 `
 
 export const StyledCheckBox = styled.input`
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
 `
 export const StyledFollowUpBox = styled.div`
