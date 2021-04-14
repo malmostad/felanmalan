@@ -32,9 +32,9 @@ export const StyledOuter = styled.div`
 `
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
-  min-height: 61vh;
-  @media (max-height: 710px) {
-    min-height: 50vh;
+  min-height: calc(100vh - 270px);
+  @media (max-width: 560px) {
+    min-height: calc(100vh - 220px);
   }
 `
 
@@ -131,6 +131,10 @@ export const StyledContentFollowUpView = styled.div`
   color: white;
   font-size: 22px;
   z-index: 50;
+  @media (max-width: 560px) {
+    width: 300px;
+    margin: 0 auto;
+  }
 `
 
 export const StyledGrid = styled.div`
@@ -177,15 +181,4 @@ export const StyledHeaderContainerText = styled.div`
   max-width: 560px;
   margin: 0 auto;
   overflow: hidden;
-`
-
-export const GreenBGContainer = styled.div`
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1;
-  width: 100vw;
-  height: 100vh;
-  background-attachment: fixed;
-  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
 `
