@@ -22,7 +22,6 @@ const MapBox = () => {
     userLocation,
     showPositionMarker,
     showLocationButton,
-    isLoading,
     maxBounds,
     transitionDuration,
   } = state
