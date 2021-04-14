@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import checkIcon from '../../../assets/img/checked.png'
 
 export const StyledFormWrapper = styled.div`
   padding: 0px 20px;
@@ -22,9 +23,25 @@ export const StyledInput = styled.input`
 `
 
 export const StyledCheckBox = styled.input`
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-right: 10px;
+  border: 1px solid #c4c4c4;
+  background: #fff;
+  border-radius: 0;
   width: 30px;
   height: 30px;
-  margin-right: 10px;
+  padding: 0;
+  position: relative;
+  :checked {
+    background-image: url(${checkIcon});
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0 0 white;
+  }
 `
 export const StyledFollowUpBox = styled.div`
   display: flex;
@@ -34,6 +51,7 @@ export const InputFormSecond = styled(StyledInput)`
   font-size: 16px;
 `
 export const StyledError = styled.div`
+  margin-top: 10px;
   font-size: 15px;
   color: red;
   margin-bottom: 2px;
