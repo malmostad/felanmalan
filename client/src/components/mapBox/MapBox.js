@@ -83,9 +83,7 @@ const MapBox = () => {
 
           {showPositionMarker && (
             <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
-              <div className="center">
-                <div className="blob"></div>
-              </div>
+              <div className="blob"></div>
             </Marker>
           )}
           <MarkerIcon
