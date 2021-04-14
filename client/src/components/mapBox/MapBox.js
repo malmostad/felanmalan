@@ -2,7 +2,6 @@ import { useContext, useRef, useState, useEffect } from 'react'
 import ReactMapGl, { Marker, FlyToInterpolator } from 'react-map-gl'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
-import { LoadingSpinner } from '../../components/loading/styles'
 import { useReport } from '../../contexts/ReportContext'
 import ZoomButton from './ZoomButton'
 import './MapBox.css'
@@ -76,8 +75,6 @@ const MapBox = () => {
           </div>
 
           <ZoomButton />
-
-          {isLoading && <LoadingSpinner />}
 
           {showLocationButton && <CurrentLocationButton />}
 
