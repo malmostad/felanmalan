@@ -5,7 +5,8 @@ import { MapContext } from '../../contexts/MapContext'
 import { LoadingSpinner } from '../../components/loading/styles'
 
 const CurrentLocationButton = () => {
-  const { dispatch } = useContext(MapContext)
+  const { state, dispatch } = useContext(MapContext)
+  const { isLoading } = state
 
   useEffect(() => {
     if (window.navigator) {
