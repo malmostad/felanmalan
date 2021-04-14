@@ -21,7 +21,6 @@ export const StyledButton = styled.button`
     font-weight: bold;
   }
 `
-
 export const StyledFetchButton = styled.button`
   appearance: none;
   outline: none;
