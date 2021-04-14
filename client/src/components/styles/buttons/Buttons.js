@@ -36,24 +36,43 @@ export const StyledFetchButton = styled.button`
   position: absolute;
   width: 62px;
   height: 62px;
-  bottom: 100px;
+  bottom: 140px;
   right: 5px;
   cursor: pointer;
 `
 export const StyledZoomButtons = styled.div`
+  box-shadow: 0 0 0 1.5px rgb(0 0 0 / 10%);
   display: flex;
   flex-direction: column;
   position: absolute;
-  bottom: 30px;
+  bottom: 45px;
   right: 30px;
   border: 0;
-  border-radius: 5px 5px 5px 5px;
-  border: 0.1px solid #404040;
+  border-radius: 4px;
+  background: #fff;
 `
 export const StyledZoomButton = styled.button`
-  width: 25px;
-  height: 33px;
   font-size: 21px;
+  background-color: initial;
+  width: 29px;
+  height: 29px;
+  display: block;
+  outline: none;
+  border: 0;
+  box-sizing: border-box;
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+`
+export const StyledZoomInIcon = styled.span`
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E%3Cpath d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3h-3c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h3v3c0 .75.75 1.5 1.5 1.5S16 19.75 16 19v-3h3c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-3v-3c0-.75-.75-1.5-1.5-1.5z'/%3E%3C/svg%3E");
+`
+export const StyledZoomOutIcon = styled(StyledZoomInIcon)`
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-9z'/%3E%3C/svg%3E");
 `
 
 export const StyledOutlineButtonGreen = styled(StyledButton)`
