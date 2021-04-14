@@ -1,6 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { MapContext } from '../../contexts/MapContext'
-import { StyledZoomButtons, StyledZoomButton } from '../styles/buttons/Buttons'
+import {
+  StyledZoomButtons,
+  StyledZoomButton,
+  StyledZoomInIcon,
+  StyledZoomOutIcon,
+} from '../styles/buttons/Buttons'
 
 const ZoomButton = () => {
   const { state, dispatch } = useContext(MapContext)
@@ -24,8 +29,12 @@ const ZoomButton = () => {
 
   return (
     <StyledZoomButtons>
-      <StyledZoomButton onClick={handleZoomIn}>+</StyledZoomButton>
-      <StyledZoomButton onClick={handleZoomOut}>-</StyledZoomButton>
+      <StyledZoomButton onClick={handleZoomIn}>
+        <StyledZoomInIcon></StyledZoomInIcon>
+      </StyledZoomButton>
+      <StyledZoomButton onClick={handleZoomOut}>
+        <StyledZoomOutIcon></StyledZoomOutIcon>
+      </StyledZoomButton>
     </StyledZoomButtons>
   )
 }
