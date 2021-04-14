@@ -91,8 +91,8 @@ const MapBox = () => {
             style={{
               color: '#05763C',
               position: 'absolute',
-              top: '50%',
-              left: '50vw',
+              top: '51%',
+              left: '52vw',
             }}
           />
         </ReactMapGl>
