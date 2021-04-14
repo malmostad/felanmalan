@@ -3,6 +3,7 @@ import { useReport } from '../.././contexts/ReportContext'
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
+  StyledTextFollowUp,
 } from '../../components/styles/Typography/Typography'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import {
@@ -11,6 +12,8 @@ import {
   StyledInput,
   InputFormSecond,
   StyledLabel,
+  StyledCheckBox,
+  StyledFollowUpBox,
 } from '../../components/styles/form/Form'
 import { StyledBoldHeader, StyledThinHeader } from '../../components/styles/Typography/Typography'
 import { useUpdate } from '../.././contexts/UpdateContext'
@@ -140,16 +143,16 @@ const ContactInfoView = () => {
               />
             </StyledLabel>
           </div>
-          <div>
-            <input
+          <StyledFollowUpBox>
+            <StyledCheckBox
               type="checkbox"
               name="enable_tracking"
               defaultChecked={formState.enable_tracking}
               ref={enable_tracking}
               onChange={handelFormInfo}
             />
-            <StyledThinHeader> Vill du få uppföljning?</StyledThinHeader>
-          </div>
+            <StyledTextFollowUp> Vill du få uppföljning på ditt ärende?</StyledTextFollowUp>
+          </StyledFollowUpBox>
         </form>
         {enable_tracking.current.checked && !trackingRequirementsFulfilled() && (
           <StyledError> Fyll i telefonnumer eller e-post </StyledError>

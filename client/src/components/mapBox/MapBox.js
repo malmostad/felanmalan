@@ -90,9 +90,6 @@ const MapBox = () => {
             className="pin-marker"
             style={{
               color: '#05763C',
-              position: 'absolute',
-              top: '49%',
-              left: '50vw',
             }}
           />
         </ReactMapGl>
