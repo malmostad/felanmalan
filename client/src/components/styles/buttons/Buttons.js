@@ -7,7 +7,6 @@ export const StyledButton = styled.button`
   margin: 0 10px;
   max-width: 380px;
   height: 50px;
-  margin-bottom: 10px;
   color: ${({ theme }) => theme.colors.PrimaryWhite};
   width: 270px;
   background: ${({ theme }) => theme.colors.PrimaryGreen};

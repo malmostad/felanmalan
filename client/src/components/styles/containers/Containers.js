@@ -19,32 +19,55 @@ export const StyledOuter = styled.div`
   width: 100vw;
   min-height: 100vh;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible;
   background-color: ${({ bgWhite, bgSecondary, theme }) =>
     bgWhite
       ? theme.colors.White
       : bgSecondary
       ? theme.colors.SecondaryGreen
       : theme.colors.PrimaryGreen};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: visible;
 `
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
-  min-height: 50vh;
+  min-height: 61vh;
+  @media (max-height: 710px) {
+    min-height: 50vh;
+  }
 `
 
 // button containers
 export const StyledButtonOuter = styled.div`
-  ${flexCenterColumn}
-  background-color: transparent;
+  transition: transform 0.3s ease-out;
+  display: flex;
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  background-color: ${({ green, theme }) =>
+    green ? theme.colors.PrimaryGreen : theme.colors.White};
+`
+export const StyledButtonOuterGreenBg = styled.div`
+  transition: transform 0.3s ease-out;
+  display: flex;
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
 `
 export const StyledButtonInner = styled.div`
-  ${flexCenterColumn}
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
   width: 100%;
   height: 100%;
-  display: flex;
   flex-direction: row-reverse;
 `
 // loading container
@@ -65,7 +88,7 @@ export const StyledButtonContainer = styled.div`
   margin: 0 auto;
   margin-top: 1rem;
   width: 100%;
-  height: 200px;
+  height: 160px;
   justify-content: end;
   margin-bottom: 20px;
 `
@@ -100,7 +123,7 @@ export const StyledFullContainer = styled.div`
 
 export const StyledContentFollowUpView = styled.div`
   width: 100%;
-  max-width: 600px;
+  max-width: 535px;
   margin: 0px auto;
   padding: 12px;
   flex-direction: column;
@@ -144,10 +167,10 @@ export const StyledHeaderContainer = styled.div`
   justify-content: center;
   text-align: left;
   align-content: center;
-  height: 350px;
+  height: 270px;
   margin-bottom: -0.1rem;
   @media (max-width: 560px) {
-    height: 252px;
+    height: 220px;
   }
 `
 export const StyledHeaderContainerText = styled.div`

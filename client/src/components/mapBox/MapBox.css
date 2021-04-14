@@ -70,13 +70,12 @@
 }
 
 .map-style {
-  height: 91vh;
+  height: calc(100vh - 70px);
 }
 
-@media screen and (max-height: 667px) {
-  .map-style {
-    height: 88vh;
-  }
+.pin-marker {
+  width: 30px;
+  height: 30px;
 }
 
 /* ------------------------------------------------- */

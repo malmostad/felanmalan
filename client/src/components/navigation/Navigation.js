@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import { useReport } from '../../contexts/ReportContext'
 import {
@@ -10,6 +10,7 @@ import {
   StyledFullContainer,
   StyledButtonOuter,
   StyledButtonInner,
+  StyledButtonOuterGreenBg,
 } from '../../components/styles/containers/Containers'
 
 const Navigation = () => {
@@ -45,7 +46,7 @@ const Navigation = () => {
             </StyledButton>
           )}
           {currentViewIndex === lastViewIndex && (
-            <StyledFullContainer>
+            <StyledButtonOuter green>
               <StyledOutlineButtonWhite
                 onClick={() => {
                   reportDispatch({ type: 'clearFormInfo' })
@@ -53,7 +54,7 @@ const Navigation = () => {
                 }}>
                 Skapa Ny
               </StyledOutlineButtonWhite>
-            </StyledFullContainer>
+            </StyledButtonOuter>
           )}
           {!(currentViewIndex === 0 || disablePrevious) && (
             <StyledOutlineButtonGreen
