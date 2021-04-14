@@ -19,16 +19,16 @@ export const StyledOuter = styled.div`
   width: 100vw;
   min-height: 100vh;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible;
   background-color: ${({ bgWhite, bgSecondary, theme }) =>
     bgWhite
       ? theme.colors.White
       : bgSecondary
       ? theme.colors.SecondaryGreen
       : theme.colors.PrimaryGreen};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: visible;
 `
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
@@ -40,16 +40,35 @@ export const StyledOuterFollowUpView = styled(StyledOuter)`
 
 // button containers
 export const StyledButtonOuter = styled.div`
-  ${flexCenterColumn}
-  background-color: transparent;
+  transition: transform 0.3s ease-out;
+  display: flex;
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  background-color: ${({ green, theme }) =>
+    green ? theme.colors.PrimaryGreen : theme.colors.White};
+`
+export const StyledButtonOuterGreenBg = styled.div`
+  transition: transform 0.3s ease-out;
+  display: flex;
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
 `
 export const StyledButtonInner = styled.div`
-  ${flexCenterColumn}
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
   width: 100%;
   height: 100%;
-  display: flex;
   flex-direction: row-reverse;
-  margin-bottom: 10px;
 `
 // loading container
 
