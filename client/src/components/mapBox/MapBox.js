@@ -1,6 +1,5 @@
 import { useContext, useRef, useState, useEffect } from 'react'
 import ReactMapGl, { Marker, FlyToInterpolator } from 'react-map-gl'
-import { FaMapPin as MarkerIcon } from 'react-icons/fa'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
 import { LoadingSpinner } from '../../components/loading/styles'
@@ -11,6 +10,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import { fetchAddressMapBoxAPI } from '../../api/api'
 import Geocoder from 'react-map-gl-geocoder'
+import { ReactComponent as MarkerIcon } from './pin.svg'
 
 const MapBox = () => {
   const { handelSetFormInfo } = useReport()
@@ -63,6 +63,7 @@ const MapBox = () => {
           mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
           width="100vw"
           height="100%"
+          maxBounds={maxBounds}
           onMouseUp={onMouseUp}>
           <div className="searchbar">
             <Geocoder
@@ -88,12 +89,11 @@ const MapBox = () => {
             </Marker>
           )}
           <MarkerIcon
-            alt="Marker"
-            size="1.6rem"
+            className="pin-marker"
             style={{
               color: '#05763C',
               position: 'absolute',
-              top: '50%',
+              top: '49%',
               left: '50vw',
             }}
           />
