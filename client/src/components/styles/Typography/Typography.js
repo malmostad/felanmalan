@@ -59,3 +59,19 @@ export const StyledBoldHeader = styled.span`
 export const StyledThinHeader = styled(StyledBoldHeader)`
   font-weight: lighter;
 `
+
+export const Errand = styled.a`
+  cursor: pointer;
+  color: white;
+  font-family: MyriadPro, Open sans, Verdana;
+  font-weight: bold;
+  text-decoration: underline;
+`
+export const Description = styled.a`
+  font-size: 1.6rem;
+  color: white;
+  font-family: 'MyriadPro';
+  font-weight: lighter;
+  line-height: 1.5715;
+  -moz-osx-font-smoothing: grayscale;
+`

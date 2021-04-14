@@ -2,12 +2,13 @@ import { useUpdate } from '../.././contexts/UpdateContext'
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
+  Description,
+  Errand,
 } from '../../components/styles/Typography/Typography'
 import React, { useEffect } from 'react'
 import {
   StyledOuterFollowUpView,
   StyledContentFollowUpView,
-  GreenBGContainer,
 } from '../../components/styles/containers/Containers'
 
 const FollowUpView = () => {
@@ -25,11 +26,10 @@ const FollowUpView = () => {
 
   return (
     <>
-      <GreenBGContainer></GreenBGContainer>
       <StyledOuterFollowUpView>
         <StyledContentFollowUpView>
-          <p>Den hjälper oss hålla vår vackra stad iordning</p>
-          <h4>Ärende: </h4>
+          <Description>Den hjälper oss hålla vår vackra stad iordning. </Description>
+          <Errand href="#">Ärende: 5624805</Errand>
         </StyledContentFollowUpView>
       </StyledOuterFollowUpView>
     </>
