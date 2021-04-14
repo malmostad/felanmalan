@@ -42,7 +42,7 @@ export const StyledFetchButton = styled.button`
   cursor: pointer;
 `
 export const StyledZoomButtons = styled.div`
-  box-shadow: 0 0 0 1px rgb(0 0 0 / 10%);
+  box-shadow: 0 0 0 1.5px rgb(0 0 0 / 10%);
   display: flex;
   flex-direction: column;
   position: absolute;
