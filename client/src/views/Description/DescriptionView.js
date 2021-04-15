@@ -6,12 +6,14 @@ import {
   StyledTextArea,
   DescriptionSpan,
   StyledLabel,
+  StyledFormDescription,
 } from '../../components/styles/form/Form'
 import { StyledBoldHeader } from '../../components/styles/Typography/Typography'
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
 } from '../../components/styles/Typography/Typography'
+import { StyledHeroContainer } from '../../components/styles/containers/Containers'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const DescriptionView = () => {
@@ -21,11 +23,11 @@ const DescriptionView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <div>
+      <StyledHeroContainer>
         <StyledHeroHeadingThin>
           <StyledSpanWord>Beskriv problemet </StyledSpanWord>
         </StyledHeroHeadingThin>
-      </div>
+      </StyledHeroContainer>
     )
   }, [])
 
@@ -41,7 +43,7 @@ const DescriptionView = () => {
   return (
     <>
       <StyledFormWrapper>
-        <form>
+        <StyledFormDescription>
           <StyledLabel htmlFor="Beskrivning">
             <StyledBoldHeader>Beskriv problemet du vill felanmäla</StyledBoldHeader>
             {!formState.description && <DescriptionSpan> * </DescriptionSpan>}
@@ -52,7 +54,7 @@ const DescriptionView = () => {
             placeholder="Beskrivning..."
             onChange={handleFormInfo}
           />
-        </form>
+        </StyledFormDescription>
       </StyledFormWrapper>
     </>
   )

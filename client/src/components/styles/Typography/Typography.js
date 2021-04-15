@@ -6,23 +6,28 @@ export const StyledHeading = styled.h1`
   font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
 `
 export const StyledHeroHeading = styled.h1`
-  padding-top: 53px;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 3.6rem;
+  padding-top: 90px;
+  font-size: 4rem;
   color: white;
+  font-weight: 700;
   @media (max-width: 560px) {
-    padding: 15px 10px;
+    padding: 15px 0px;
     line-height: 39px;
-    font-size: 2rem;
+    font-size: 2.1rem;
     max-width: 20rem;
     font-family: 'MyriadPro';
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 0.2px;
   }
 `
 
 export const StyledHeroHeadingThin = styled(StyledHeroHeading)`
   font-weight: lighter;
+  line-height: 64px;
+  padding: 0;
+  @media (max-width: 560px) {
+    line-height: 39px;
+  }
 `
 
 export const StyledSpanWord = styled.span`
@@ -67,11 +72,12 @@ export const Errand = styled.a`
   font-weight: bold;
   text-decoration: underline;
 `
-export const Description = styled.a`
-  font-size: 1.6rem;
+export const StyledDescription = styled.a`
+  font-size: 26px;
+  line-height: 27px;
   color: white;
   font-family: 'MyriadPro';
   font-weight: lighter;
-  line-height: 1.5715;
+
   -moz-osx-font-smoothing: grayscale;
 `
