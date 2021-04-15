@@ -64,6 +64,6 @@ export const fetchSearchResultMapBoxApi = async (address) => {
     )
     return response.data.features
   } catch (error) {
-    console.log(error, 'error')
+    throw new Error(error)
   }
 }

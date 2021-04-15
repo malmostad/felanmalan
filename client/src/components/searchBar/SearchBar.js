@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
+import { MapContext } from '../../contexts/MapContext'
 import './style.css'
 
 const SearchBar = () => {
+  const { dispatch } = useContext(MapContext)
   const [searchResult, setSearchResult] = useState(null)
 
   const handleInputChange = async (e) => {
     if (e.target.value.length > 3) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
-      console.log('this is our response', response)
       setSearchResult(response)
     }
   }
@@ -16,9 +17,14 @@ const SearchBar = () => {
     setSearchResult(null)
   }
 
-  const handleClick = (e) => {
-    const coordinates = e.target.attributes.coordinates.nodeValue
-    console.log(coordinates)
+  const handleClickAddress = (e) => {
+    const findAddress = searchResult.find((address) => address.id === e.target.attributes.id.value)
+    const payload = {
+      latitude: findAddress.center[1],
+      longitude: findAddress.center[0],
+      zoom: 15,
+    }
+    dispatch({ type: 'handleViewportChange', payload })
   }
 
   return (
@@ -35,10 +41,7 @@ const SearchBar = () => {
             {searchResult.map((address) => {
               return (
                 <li key={address.id}>
-                  <button
-                    className="style-button"
-                    coordinates={address.center}
-                    onClick={handleClick}>
+                  <button id={address.id} className="style-button" onClick={handleClickAddress}>
                     {address.place_name}
                   </button>
                 </li>
