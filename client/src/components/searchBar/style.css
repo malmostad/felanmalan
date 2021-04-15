@@ -1,0 +1,33 @@
+.search-result {
+  width: 100%;
+  height: auto;
+  background-color: white;
+}
+.search-result li {
+  border-bottom: 1px solid gray;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+.searchbar {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.searchbar input {
+  width: 100%;
+  height: 30px;
+}
+
+.style-button {
+  width: 100%;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0;
+  text-align: left;
+}
+
+.style-button:hover {
+  background-color: rgb(192, 192, 192);
+}

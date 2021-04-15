@@ -6,9 +6,7 @@ import SearchBar from '../searchBar/SearchBar'
 import { useReport } from '../../contexts/ReportContext'
 import ZoomButton from './ZoomButton'
 import './MapBox.css'
-import 'mapbox-gl/dist/mapbox-gl.css'
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-import { fetchAddressMapBoxAPI, fetchSearchResultMapBoxApi } from '../../api/api'
+import { fetchAddressMapBoxAPI } from '../../api/api'
 import { ReactComponent as MarkerIcon } from './pin.svg'
 
 const MapBox = () => {
@@ -25,8 +23,6 @@ const MapBox = () => {
     maxBounds,
     transitionDuration,
   } = state
-
-  fetchSearchResultMapBoxApi('Östra stallmästaregatan')
 
   const handleViewPortChange = (payload) => {
     dispatch({ type: 'handleViewportChange', payload })
