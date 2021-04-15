@@ -14,7 +14,9 @@ import {
   StyledLabel,
   StyledCheckBox,
   StyledFollowUpBox,
+  StyledFormDescription,
 } from '../../components/styles/form/Form'
+import { StyledHeroContainer } from '../../components/styles/containers/Containers'
 import { StyledBoldHeader, StyledThinHeader } from '../../components/styles/Typography/Typography'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
@@ -39,12 +41,12 @@ const ContactInfoView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <div>
+      <StyledHeroContainer>
         <StyledHeroHeadingThin>
           <StyledSpanWord>Kan</StyledSpanWord> vi <StyledSpanWord>kontakta</StyledSpanWord> dig vid
           <StyledSpanWord> frågor</StyledSpanWord>?
         </StyledHeroHeadingThin>
-      </div>
+      </StyledHeroContainer>
     )
   }, [])
 
@@ -101,7 +103,7 @@ const ContactInfoView = () => {
   return (
     <>
       <StyledFormWrapper>
-        <form>
+        <StyledFormDescription>
           <div>
             <StyledLabel htmlFor="name">
               <StyledBoldHeader>Namn</StyledBoldHeader>
@@ -153,7 +155,7 @@ const ContactInfoView = () => {
             />
             <StyledTextFollowUp> Vill du få uppföljning på ditt ärende?</StyledTextFollowUp>
           </StyledFollowUpBox>
-        </form>
+        </StyledFormDescription>
         {enable_tracking.current.checked && !trackingRequirementsFulfilled() && (
           <StyledError> Fyll i telefonnumer eller e-post </StyledError>
         )}
