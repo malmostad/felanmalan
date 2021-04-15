@@ -2,13 +2,13 @@ import { useContext, useRef, useState, useEffect } from 'react'
 import ReactMapGl, { Marker, FlyToInterpolator } from 'react-map-gl'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
+import SearchBar from '../searchBar/SearchBar'
 import { useReport } from '../../contexts/ReportContext'
 import ZoomButton from './ZoomButton'
 import './MapBox.css'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-import { fetchAddressMapBoxAPI } from '../../api/api'
-import Geocoder from 'react-map-gl-geocoder'
+import { fetchAddressMapBoxAPI, fetchSearchResultMapBoxApi } from '../../api/api'
 import { ReactComponent as MarkerIcon } from './pin.svg'
 
 const MapBox = () => {
@@ -25,6 +25,8 @@ const MapBox = () => {
     maxBounds,
     transitionDuration,
   } = state
+
+  fetchSearchResultMapBoxApi('Östra stallmästaregatan')
 
   const handleViewPortChange = (payload) => {
     dispatch({ type: 'handleViewportChange', payload })
@@ -63,17 +65,9 @@ const MapBox = () => {
           height="100%"
           maxBounds={maxBounds}
           onMouseUp={onMouseUp}>
-          <div className="searchbar">
-            <Geocoder
-              onViewportChange={(payload) => handleViewPortChange(payload)}
-              mapRef={mapRef}
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-              bbox={maxBounds}
-              inputValue={address}
-            />
-          </div>
-
           <ZoomButton />
+
+          <SearchBar />
 
           {showLocationButton && <CurrentLocationButton />}
 
