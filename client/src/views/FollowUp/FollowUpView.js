@@ -2,13 +2,14 @@ import { useUpdate } from '../.././contexts/UpdateContext'
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
-  Description,
+  StyledDescription,
   Errand,
 } from '../../components/styles/Typography/Typography'
 import React, { useEffect } from 'react'
 import {
   StyledOuterFollowUpView,
   StyledContentFollowUpView,
+  StyledHeroContainer,
 } from '../../components/styles/containers/Containers'
 
 const FollowUpView = () => {
@@ -16,11 +17,11 @@ const FollowUpView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <div>
+      <StyledHeroContainer>
         <StyledHeroHeadingThin>
           <StyledSpanWord>Tack</StyledSpanWord> för din <StyledSpanWord>felanmälan</StyledSpanWord>
         </StyledHeroHeadingThin>
-      </div>
+      </StyledHeroContainer>
     )
   }, [])
 
@@ -28,8 +29,10 @@ const FollowUpView = () => {
     <>
       <StyledOuterFollowUpView>
         <StyledContentFollowUpView>
-          <Description>Den hjälper oss hålla vår vackra stad iordning. </Description>
-          <Errand href="#">Ärende: 5624805</Errand>
+          <StyledDescription>
+            Den hjälper oss hålla vår vackra stad iordning.{' '}
+            <Errand href="#">Ärende: 5624805</Errand>
+          </StyledDescription>
         </StyledContentFollowUpView>
       </StyledOuterFollowUpView>
     </>

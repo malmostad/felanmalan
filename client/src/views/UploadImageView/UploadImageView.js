@@ -6,6 +6,7 @@ import {
   StyledHeroHeadingThin,
   StyledSpanWord,
 } from '../../components/styles/Typography/Typography'
+import { StyledHeroContainer } from '../../components/styles/containers/Containers'
 
 const UploadImageView = () => {
   const { setCurrentViewHeading, imagesToBeUploaded } = useUpdate()
@@ -13,12 +14,12 @@ const UploadImageView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <div>
+      <StyledHeroContainer>
         <StyledHeroHeadingThin>
           Lägg till <StyledSpanWord>bilder</StyledSpanWord> på{' '}
           <StyledSpanWord>problemet</StyledSpanWord> &<StyledSpanWord> platsen</StyledSpanWord>
         </StyledHeroHeadingThin>
-      </div>
+      </StyledHeroContainer>
     )
   }, [])
 

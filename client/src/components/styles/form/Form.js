@@ -2,7 +2,6 @@ import styled from 'styled-components/macro'
 import checkIcon from '../../../assets/img/checked.png'
 
 export const StyledFormWrapper = styled.div`
-  padding: 0px 20px;
   width: 100%;
   margin: 0 auto;
   max-width: 560px;
@@ -82,4 +81,8 @@ export const StyledTextArea = styled.textarea`
   @media (max-height: 580px) {
     height: 160px;
   }
+`
+
+export const StyledFormDescription = styled.form`
+  padding: 0px 20px;
 `

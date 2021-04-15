@@ -34,7 +34,7 @@ export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
   min-height: calc(100vh - 270px);
   @media (max-width: 560px) {
-    min-height: calc(100vh - 220px);
+    min-height: calc(100vh - 270px);
   }
 `
 
@@ -77,7 +77,7 @@ export const StyledCookieContainer = styled.div`
   flex-direction: column;
   justify-content: start;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 560px;
   @media (max-width: 560px) {
     padding: 15px;
   }
@@ -123,9 +123,8 @@ export const StyledFullContainer = styled.div`
 
 export const StyledContentFollowUpView = styled.div`
   width: 100%;
-  max-width: 535px;
+  max-width: 560px;
   margin: 0px auto;
-  padding: 12px;
   flex-direction: column;
   background-color: #037540;
   color: white;
@@ -171,14 +170,31 @@ export const StyledHeaderContainer = styled.div`
   justify-content: center;
   text-align: left;
   align-content: center;
-  height: 270px;
+  height: auto;
+  min-height: 270px;
+  padding-bottom: 40px;
   margin-bottom: -0.1rem;
   @media (max-width: 560px) {
-    height: 220px;
+    min-height: 280px;
+  }
+  @media (max-height: 620px) {
+    min-height: 240px;
   }
 `
 export const StyledHeaderContainerText = styled.div`
   max-width: 560px;
   margin: 0 auto;
   overflow: hidden;
+  width: 100%;
+`
+export const StyledHeroContainer = styled.div`
+  padding-top: 90px;
+  @media (max-width: 560px) {
+    padding-top: 33px;
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 560px;
+  }
 `
