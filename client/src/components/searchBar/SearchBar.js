@@ -24,8 +24,9 @@ const SearchBar = () => {
     const payload = {
       latitude: findAddress.center[1],
       longitude: findAddress.center[0],
-      zoom: 15,
+      zoom: 16,
     }
+    dispatch({ type: 'handleFlyOver' })
     dispatch({ type: 'handleViewportChange', payload })
     setSearchResult(null)
   }
