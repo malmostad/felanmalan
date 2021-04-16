@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useRef } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
 import './style.css'
@@ -6,6 +6,7 @@ import './style.css'
 const SearchBar = () => {
   const { dispatch } = useContext(MapContext)
   const [searchResult, setSearchResult] = useState(null)
+  const inputRef = useRef()
 
   const handleInputChange = async (e) => {
     if (e.target.value.length > 3) {
@@ -24,12 +25,14 @@ const SearchBar = () => {
       longitude: findAddress.center[0],
       zoom: 15,
     }
+    inputRef.current.value = findAddress.place_name
     dispatch({ type: 'handleViewportChange', payload })
   }
 
   return (
     <div className="searchbar">
       <input
+        ref={inputRef}
         onClick={clearSearchbar}
         type="text"
         placeholder="search new address"
