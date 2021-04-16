@@ -1,7 +1,17 @@
 import { useState, useContext, useRef } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
-import './style.css'
+import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
+import {
+  StyledLabelSearchBar,
+  StyledInputSearchBar,
+  StyledSearchResult,
+  StyledSearchResultList,
+  StyledListButton,
+  StyledSearchLabel,
+  StyledDivBar,
+  StyledResultUl,
+} from '../styles/searchbar/Searchbar'
 
 const SearchBar = () => {
   const { dispatch } = useContext(MapContext)
@@ -30,30 +40,38 @@ const SearchBar = () => {
   }
 
   return (
-    <div className="searchbar">
-      <input
-        ref={inputRef}
-        onClick={clearSearchbar}
-        type="text"
-        placeholder="search new address"
-        onChange={handleInputChange}
-      />
-      {searchResult && (
-        <div className="search-result">
-          <ul>
-            {searchResult.map((address) => {
-              return (
-                <li key={address.id}>
-                  <button id={address.id} className="style-button" onClick={handleClickAddress}>
-                    {address.place_name}
-                  </button>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      )}
-    </div>
+    <StyledLabelSearchBar>
+      <StyledSearchLabel>
+        <StyledDivBar>
+          <SearchIcon
+            size="1.4rem"
+            style={{ color: '#757575', marginLeft: '10px', marginTop: '7px' }}
+          />
+          <StyledInputSearchBar
+            ref={inputRef}
+            onClick={clearSearchbar}
+            type="text"
+            placeholder="search"
+            onChange={handleInputChange}
+          />
+        </StyledDivBar>
+        {searchResult && (
+          <StyledSearchResult>
+            <StyledResultUl>
+              {searchResult.map((address) => {
+                return (
+                  <StyledSearchResultList key={address.id}>
+                    <StyledListButton id={address.id} onClick={handleClickAddress}>
+                      {address.place_name}
+                    </StyledListButton>
+                  </StyledSearchResultList>
+                )
+              })}
+            </StyledResultUl>
+          </StyledSearchResult>
+        )}
+      </StyledSearchLabel>
+    </StyledLabelSearchBar>
   )
 }
 
