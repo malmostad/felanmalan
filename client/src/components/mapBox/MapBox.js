@@ -32,17 +32,12 @@ const MapBox = () => {
     handelSetFormInfo('address', address)
   }
 
-  const handleNavigationControlViewportChange = (viewport) => {
+  const addZoomAnimation = (viewport) => {
     dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 400 } })
   }
 
   const handleTransitionEnd = () => {
     dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 0 } })
-  }
-
-  const navControlStyle = {
-    right: 10,
-    bottom: 10,
   }
 
   const onMouseUp = async () => {
@@ -60,7 +55,6 @@ const MapBox = () => {
     setUpdateUserLocation(true)
   }, [userLocation])
 
-  handleNavigationControlViewportChange
   return (
     <>
       <div className="map-style">
@@ -78,8 +72,8 @@ const MapBox = () => {
           onMouseUp={onMouseUp}>
           <NavigationControl
             showCompass={false}
-            onViewportChange={handleNavigationControlViewportChange}
-            style={navControlStyle}
+            onViewportChange={addZoomAnimation}
+            style={{ right: 30, bottom: 80 }}
           />
           {showLocationButton && <CurrentLocationButton />}
 
