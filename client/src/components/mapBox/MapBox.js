@@ -31,6 +31,9 @@ const MapBox = () => {
     handelSetFormInfo('address', address)
   }
 
+  const onMouseDown = () => {
+    dispatch({ type: 'removeFlyOver' })
+  }
   const onMouseUp = async () => {
     const address = await fetchAddressMapBoxAPI(viewport)
     setAddress(address)
@@ -60,6 +63,7 @@ const MapBox = () => {
           width="100vw"
           height="100%"
           maxBounds={maxBounds}
+          onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}>
           <ZoomButton />
 

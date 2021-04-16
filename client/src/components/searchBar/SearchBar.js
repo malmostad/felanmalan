@@ -14,18 +14,19 @@ import {
 } from '../styles/searchbar/Searchbar'
 
 const SearchBar = () => {
+  const searchbarRef = useRef('')
   const { dispatch } = useContext(MapContext)
   const [searchResult, setSearchResult] = useState(null)
-  const inputRef = useRef()
 
   const handleInputChange = async (e) => {
-    if (e.target.value.length > 3) {
+    if (e.target.value.length > 1) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
       setSearchResult(response)
     }
   }
   const clearSearchbar = () => {
     setSearchResult(null)
+    searchbarRef.current.value = ''
   }
 
   const handleClickAddress = (e) => {
@@ -33,10 +34,17 @@ const SearchBar = () => {
     const payload = {
       latitude: findAddress.center[1],
       longitude: findAddress.center[0],
-      zoom: 15,
+      zoom: 16,
     }
-    inputRef.current.value = findAddress.place_name
+    // const revert = str1.replace(/\,/g,"");
+    const myString = findAddress.place_name.split(' ', 2)
+    var newArray = myString.reduce((a, b) => {
+      return a + ' ' + b
+    })
+    searchbarRef.current.value = newArray
+    dispatch({ type: 'handleFlyOver' })
     dispatch({ type: 'handleViewportChange', payload })
+    setSearchResult(null)
   }
 
   return (
@@ -48,7 +56,7 @@ const SearchBar = () => {
             style={{ color: '#757575', marginLeft: '10px', marginTop: '7px' }}
           />
           <StyledInputSearchBar
-            ref={inputRef}
+            ref={searchbarRef}
             onClick={clearSearchbar}
             type="text"
             placeholder="search"
