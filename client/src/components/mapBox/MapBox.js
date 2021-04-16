@@ -28,7 +28,6 @@ const MapBox = () => {
     dispatch({ type: 'handleViewportChange', payload })
     handelSetFormInfo('longitude', payload.longitude)
     handelSetFormInfo('latitude', payload.latitude)
-    handelSetFormInfo('address', address)
   }
 
   const onMouseDown = () => {
@@ -37,6 +36,7 @@ const MapBox = () => {
   const onMouseUp = async () => {
     const address = await fetchAddressMapBoxAPI(viewport)
     setAddress(address)
+    handelSetFormInfo('address', address)
   }
   const updateSearchbarUserLocation = async () => {
     const usersAddress = await fetchAddressMapBoxAPI(userLocation)
@@ -67,7 +67,7 @@ const MapBox = () => {
           onMouseUp={onMouseUp}>
           <ZoomButton />
 
-          <SearchBar />
+          <SearchBar address={address} />
 
           {showLocationButton && <CurrentLocationButton />}
 

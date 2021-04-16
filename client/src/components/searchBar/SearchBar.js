@@ -3,7 +3,7 @@ import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
 import './style.css'
 
-const SearchBar = () => {
+const SearchBar = (address) => {
   const searchbarRef = useRef('')
   const { dispatch } = useContext(MapContext)
   const [searchResult, setSearchResult] = useState(null)
@@ -39,6 +39,7 @@ const SearchBar = () => {
         placeholder="search new address"
         onChange={handleInputChange}
         ref={searchbarRef}
+        defaultValue={address.address}
       />
       {searchResult && (
         <div className="search-result">
