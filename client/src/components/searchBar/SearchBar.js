@@ -13,7 +13,7 @@ import {
   StyledResultUl,
 } from '../styles/searchbar/Searchbar'
 
-const SearchBar = () => {
+const SearchBar = (address) => {
   const searchbarRef = useRef('')
   const { dispatch } = useContext(MapContext)
   const [searchResult, setSearchResult] = useState(null)
@@ -36,7 +36,6 @@ const SearchBar = () => {
       longitude: findAddress.center[0],
       zoom: 16,
     }
-    // const revert = str1.replace(/\,/g,"");
     const myString = findAddress.place_name.split(' ', 2)
     var newArray = myString.reduce((a, b) => {
       return a + ' ' + b
@@ -61,6 +60,7 @@ const SearchBar = () => {
             type="text"
             placeholder="search"
             onChange={handleInputChange}
+            defaultValue={address.address}
           />
         </StyledDivBar>
         {searchResult && (
