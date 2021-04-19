@@ -11,6 +11,8 @@ import {
   StyledSearchLabel,
   StyledDivBar,
   StyledResultUl,
+  StyledPrimaryAddress,
+  StyledSecondaryAddress,
 } from '../styles/searchbar/Searchbar'
 
 const SearchBar = (address) => {
@@ -64,9 +66,8 @@ const SearchBar = (address) => {
             ref={searchbarRef}
             onClick={clearSearchbar}
             type="text"
-            placeholder="search"
+            placeholder="Search"
             onChange={handleInputChange}
-            defaultValue={address.address}
           />
         </StyledDivBar>
         {searchResult && (
@@ -76,14 +77,14 @@ const SearchBar = (address) => {
                 return (
                   <StyledSearchResult key={address.id}>
                     <StyledListButton id={address.id} onClick={handleClickAddress}>
-                      <div>
+                      <StyledPrimaryAddress>
                         {address.text} {address.address}
-                      </div>
-                      <div>
+                      </StyledPrimaryAddress>
+                      <StyledSecondaryAddress>
                         {address.properties.address} {address.context[0].text}{' '}
                         {address.context[1].text}, {address.context[2].text}{' '}
                         {address.context[3].text}
-                      </div>
+                      </StyledSecondaryAddress>
                     </StyledListButton>
                   </StyledSearchResult>
                 )

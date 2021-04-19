@@ -33,14 +33,15 @@ export const StyledDivBar = styled.div`
 `
 
 export const StyledInputSearchBar = styled.input`
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.75);
   height: 35px;
   width: 500px;
-  margin-left: 7px;
+  margin-left: 13px;
   margin-right: auto;
   left: 0;
   right: 0;
   border: none;
-  font-size: 18px;
 `
 export const StyledSearchResultList = styled.div`
   width: 100%;
@@ -58,17 +59,29 @@ export const StyledSearchResult = styled.li`
 `
 
 export const StyledListButton = styled.button`
-  line-height: 66px;
+  padding: 20px 15px 20px 20px;
+  border-bottom: 1px solid #c8c7cc;
   width: 100%;
   background-color: white;
   border: none;
   cursor: pointer;
-  padding: 10px 0;
   text-align: left;
   input:focus {
     outline: none;
   }
   &:hover {
-    background-color: rgb(192, 192, 192);
+    color: #404040;
+    background-color: #f3f3f3;
+    cursor: pointer;
   }
+`
+
+export const StyledPrimaryAddress = styled.div`
+  font-size: 0.9rem;
+  color: #12181f;
+  font-weight: 400;
+`
+export const StyledSecondaryAddress = styled.div`
+  font-size: 0.8rem;
+  color: #8a8a8d;
 `
