@@ -11,7 +11,6 @@ import {
   StyledSearchLabel,
   StyledDivBar,
   StyledResultUl,
-  StyledListAddress,
 } from '../styles/searchbar/Searchbar'
 
 const SearchBar = (address) => {
@@ -31,7 +30,9 @@ const SearchBar = (address) => {
   }
 
   const handleClickAddress = (e) => {
-    const findAddress = searchResult.find((address) => address.id === e.target.attributes.id.value)
+    const findAddress = searchResult.find(
+      (address) => address.id || address.place_name === e.target.attributes.id.value
+    )
     const payload = {
       latitude: findAddress.center[1],
       longitude: findAddress.center[0],
@@ -77,7 +78,7 @@ const SearchBar = (address) => {
                   <StyledSearchResult key={address.id}>
                     <StyledListButton id={address.id} onClick={handleClickAddress}>
                       <div>{address.properties.address}</div>
-                      {address.place_name}
+                      <div>{address.place_name}</div>
                     </StyledListButton>
                   </StyledSearchResult>
                 )
