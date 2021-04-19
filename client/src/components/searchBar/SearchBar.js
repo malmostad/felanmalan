@@ -47,7 +47,7 @@ const SearchBar = (address) => {
     } else {
       searchbarRef.current.value = setFullAddress + ' ' + setNumberToAdress
     }
-
+    console.log(findAddress, 'address')
     dispatch({ type: 'handleFlyOver' })
     dispatch({ type: 'handleViewportChange', payload })
     setSearchResult(null)
@@ -77,8 +77,14 @@ const SearchBar = (address) => {
                 return (
                   <StyledSearchResult key={address.id}>
                     <StyledListButton id={address.id} onClick={handleClickAddress}>
-                      <div>{address.properties.address}</div>
-                      <div>{address.place_name}</div>
+                      <div>
+                        {address.text} {address.address}
+                      </div>
+                      <div>
+                        {address.properties.address} {address.context[0].text}{' '}
+                        {address.context[1].text}, {address.context[2].text}{' '}
+                        {address.context[3].text}
+                      </div>
                     </StyledListButton>
                   </StyledSearchResult>
                 )
