@@ -1,9 +1,8 @@
 import { useContext, useRef, useState, useEffect } from 'react'
-import ReactMapGl, { Marker, FlyToInterpolator } from 'react-map-gl'
+import ReactMapGl, { Marker, NavigationControl, FlyToInterpolator } from 'react-map-gl'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
 import { useReport } from '../../contexts/ReportContext'
-import ZoomButton from './ZoomButton'
 import './MapBox.css'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
@@ -33,6 +32,14 @@ const MapBox = () => {
     handelSetFormInfo('address', address)
   }
 
+  const addZoomAnimation = (viewport) => {
+    dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 400 } })
+  }
+
+  const handleTransitionEnd = () => {
+    dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 0 } })
+  }
+
   const onMouseUp = async () => {
     const address = await fetchAddressMapBoxAPI(viewport)
     setAddress(address)
@@ -54,27 +61,20 @@ const MapBox = () => {
         <ReactMapGl
           {...viewport}
           ref={mapRef}
-          transitionDuration={transitionDuration}
           transitionInterpolator={new FlyToInterpolator()}
           onViewportChange={(payload) => handleViewPortChange(payload)}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
           mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
           width="100vw"
           height="100%"
+          onTransitionEnd={handleTransitionEnd}
           maxBounds={maxBounds}
           onMouseUp={onMouseUp}>
-          <div className="searchbar">
-            <Geocoder
-              onViewportChange={(payload) => handleViewPortChange(payload)}
-              mapRef={mapRef}
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-              bbox={maxBounds}
-              inputValue={address}
-            />
-          </div>
-
-          <ZoomButton />
-
+          <NavigationControl
+            showCompass={false}
+            onViewportChange={addZoomAnimation}
+            style={{ right: 30, bottom: 80 }}
+          />
           {showLocationButton && <CurrentLocationButton />}
 
           {showPositionMarker && (
