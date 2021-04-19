@@ -42,7 +42,7 @@ export const StyledInputSearchBar = styled.input`
   border: none;
   font-size: 18px;
 `
-export const StyledSearchResult = styled.div`
+export const StyledSearchResultList = styled.div`
   width: 100%;
   height: auto;
   background-color: white;
@@ -53,7 +53,12 @@ export const StyledResultUl = styled.ul`
   }
 `
 
-export const StyledSearchResultList = styled.li`
+export const StyledListAddress = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const StyledSearchResult = styled.li`
   border-top: 1px solid #e4e4e4;
 `
 

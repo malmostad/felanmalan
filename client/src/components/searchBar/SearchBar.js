@@ -11,6 +11,7 @@ import {
   StyledSearchLabel,
   StyledDivBar,
   StyledResultUl,
+  StyledListAddress,
 } from '../styles/searchbar/Searchbar'
 
 const SearchBar = (address) => {
@@ -36,11 +37,16 @@ const SearchBar = (address) => {
       longitude: findAddress.center[0],
       zoom: 16,
     }
-    const myString = findAddress.place_name.split(' ', 2)
-    var newArray = myString.reduce((a, b) => {
-      return a + ' ' + b
-    })
-    searchbarRef.current.value = newArray
+
+    const setNumberToAdress = findAddress.address
+    const setFullAddress = findAddress.text
+
+    if (findAddress.address === undefined) {
+      searchbarRef.current.value = setFullAddress
+    } else {
+      searchbarRef.current.value = setFullAddress + ' ' + setNumberToAdress
+    }
+
     dispatch({ type: 'handleFlyOver' })
     dispatch({ type: 'handleViewportChange', payload })
     setSearchResult(null)
@@ -64,19 +70,20 @@ const SearchBar = (address) => {
           />
         </StyledDivBar>
         {searchResult && (
-          <StyledSearchResult>
+          <StyledSearchResultList>
             <StyledResultUl>
               {searchResult.map((address) => {
                 return (
-                  <StyledSearchResultList key={address.id}>
+                  <StyledSearchResult key={address.id}>
                     <StyledListButton id={address.id} onClick={handleClickAddress}>
+                      <div>{address.properties.address}</div>
                       {address.place_name}
                     </StyledListButton>
-                  </StyledSearchResultList>
+                  </StyledSearchResult>
                 )
               })}
             </StyledResultUl>
-          </StyledSearchResult>
+          </StyledSearchResultList>
         )}
       </StyledSearchLabel>
     </StyledLabelSearchBar>

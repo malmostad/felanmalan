@@ -27,7 +27,7 @@ export const LoadingSpinner = styled.div`
   border-top: 2px solid white;
   border-right: 2px solid white;
   border-bottom: 2px solid white;
-  border-left: 2px solid #010101;
+  border-left: 2px solid #046a38;
   background: transparent;
   width: 24px;
   height: 24px;
