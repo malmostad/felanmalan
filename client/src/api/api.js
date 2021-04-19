@@ -51,7 +51,10 @@ export const fetchAddressMapBoxAPI = async (viewport) => {
     const response = await http.get(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${viewport.longitude},${viewport.latitude}.json?access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
     )
-    return response.data.features[0].place_name
+    return {
+      address: response.data.features[0].text,
+      number: response.data.features[0].address,
+    }
   } catch (error) {
     throw new Error(error)
   }

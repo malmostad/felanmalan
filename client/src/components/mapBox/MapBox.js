@@ -34,13 +34,22 @@ const MapBox = () => {
     dispatch({ type: 'removeFlyOver' })
   }
   const onMouseUp = async () => {
-    const address = await fetchAddressMapBoxAPI(viewport)
-    setAddress(address)
-    handelSetFormInfo('address', address)
+    const findAddress = await fetchAddressMapBoxAPI(viewport)
+
+    if (findAddress.number === undefined) {
+      setAddress(findAddress.address)
+    } else {
+      setAddress(`${findAddress.address} ${findAddress.number}`)
+    }
+    handelSetFormInfo('address', `${findAddress.address} ${findAddress.number}`)
   }
   const updateSearchbarUserLocation = async () => {
     const usersAddress = await fetchAddressMapBoxAPI(userLocation)
-    setAddress(usersAddress)
+    if (usersAddress.number === undefined) {
+      setAddress(usersAddress.address)
+    } else {
+      setAddress(`${usersAddress.address} ${usersAddress.number}`)
+    }
   }
   useEffect(() => {
     if (updateUserLocation) {
