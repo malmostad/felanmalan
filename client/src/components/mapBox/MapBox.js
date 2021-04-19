@@ -59,7 +59,7 @@ const MapBox = () => {
           transitionInterpolator={new FlyToInterpolator()}
           onViewportChange={(payload) => handleViewPortChange(payload)}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-          mapStyle="mapbox://styles/iandwe/cjxcy8xsy0h5f1cmrapgba9q0"
+          mapStyle="mapbox://styles/iandwe/ck0i4nprb08w91cmkp1939q6z"
           width="100vw"
           height="100%"
           maxBounds={maxBounds}
