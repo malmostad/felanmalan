@@ -47,7 +47,6 @@ const SearchBar = (address) => {
     } else {
       searchbarRef.current.value = setFullAddress + ' ' + setNumberToAdress
     }
-    console.log(findAddress, 'address')
     dispatch({ type: 'handleFlyOver' })
     dispatch({ type: 'handleViewportChange', payload })
     setSearchResult(null)
