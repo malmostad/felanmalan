@@ -18,6 +18,10 @@ const SearchBar = (address) => {
   const { dispatch } = useContext(MapContext)
   const [searchResult, setSearchResult] = useState(null)
 
+  useEffect(() => {
+    searchbarRef.current.value = address.address
+  }, [address.address])
+
   const handleInputChange = async (e) => {
     if (e.target.value.length > 1) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
