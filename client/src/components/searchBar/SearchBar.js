@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from 'react'
+import { useState, useContext, useRef, useEffect } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
@@ -19,6 +19,10 @@ const SearchBar = (address) => {
   const searchbarRef = useRef('')
   const { dispatch } = useContext(MapContext)
   const [searchResult, setSearchResult] = useState(null)
+
+  useEffect(() => {
+    searchbarRef.current.value = address.address
+  }, [address.address])
 
   const handleInputChange = async (e) => {
     if (e.target.value.length > 1) {
@@ -41,13 +45,10 @@ const SearchBar = (address) => {
       zoom: 16,
     }
 
-    const setNumberToAdress = findAddress.address
-    const setFullAddress = findAddress.text
-
     if (findAddress.address === undefined) {
-      searchbarRef.current.value = setFullAddress
+      searchbarRef.current.value = findAddress.text
     } else {
-      searchbarRef.current.value = setFullAddress + ' ' + setNumberToAdress
+      searchbarRef.current.value = findAddress.text + ' ' + findAddress.address
     }
     dispatch({ type: 'handleFlyOver' })
     dispatch({ type: 'handleViewportChange', payload })
@@ -63,6 +64,7 @@ const SearchBar = (address) => {
             style={{ color: '#757575', marginLeft: '10px', marginTop: '7px' }}
           />
           <StyledInputSearchBar
+            id="my-searchbar"
             ref={searchbarRef}
             onClick={clearSearchbar}
             type="text"
