@@ -21,7 +21,6 @@ const SearchBar = (address) => {
   const [searchResult, setSearchResult] = useState(null)
 
   useEffect(() => {
-    console.log(address.address)
     if (address.address) {
       searchbarRef.current.value = `near ${address.address}`
     }
