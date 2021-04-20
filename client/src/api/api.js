@@ -65,6 +65,7 @@ export const fetchSearchResultMapBoxApi = async (address) => {
     const response = await http.get(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?bbox=12.855952171065837,55.49066310369751,13.17594041283428,55.6585718499375&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
     )
+
     return response.data.features
   } catch (error) {
     throw new Error(error)

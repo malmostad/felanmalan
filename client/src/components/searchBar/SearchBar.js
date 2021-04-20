@@ -13,12 +13,14 @@ import {
   StyledResultUl,
   StyledPrimaryAddress,
   StyledSecondaryAddress,
+  StyledNoResult,
 } from '../styles/searchbar/Searchbar'
 
 const SearchBar = (address) => {
   const searchbarRef = useRef('')
   const { dispatch } = useContext(MapContext)
   const [searchResults, setSearchResults] = useState([])
+  const [noResult, setNoResult] = useState(false)
 
   useEffect(() => {
     if (address.address) {
@@ -27,14 +29,27 @@ const SearchBar = (address) => {
   }, [address.address])
 
   const handleInputChange = async (e) => {
+    setNoResult(true)
     if (e.target.value.length > 1) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
+      if (response.length === 0) {
+        setNoResult(true)
+      }
+      if (response.length > 1) {
+        setNoResult(false)
+      }
       setSearchResults(response)
     }
+    if (searchbarRef.current.value.length === 0) {
+      setSearchResults([])
+      setNoResult(false)
+    }
   }
+
   const clearSearchbar = () => {
     setSearchResults([])
     searchbarRef.current.value = ''
+    setNoResult(false)
   }
 
   const handleClickAddress = (e) => {
@@ -46,7 +61,6 @@ const SearchBar = (address) => {
       longitude: findAddress.center[0],
       zoom: 16,
     }
-
     if (findAddress.address === undefined) {
       searchbarRef.current.value = findAddress.text
     } else {
@@ -74,7 +88,9 @@ const SearchBar = (address) => {
             onChange={handleInputChange}
           />
         </StyledDivBar>
-        {searchResults && (
+        {noResult ? (
+          <StyledNoResult>No result found</StyledNoResult>
+        ) : (
           <StyledSearchResultList>
             <StyledResultUl>
               {searchResults.map((address) => {
@@ -86,8 +102,7 @@ const SearchBar = (address) => {
                       </StyledPrimaryAddress>
                       <StyledSecondaryAddress>
                         {address.properties.address} {address.context[0].text}{' '}
-                        {address.context[1].text}, {address.context[2].text}{' '}
-                        {address.context[3].text}
+                        {address.context[1].text},
                       </StyledSecondaryAddress>
                     </StyledListButton>
                   </StyledSearchResult>

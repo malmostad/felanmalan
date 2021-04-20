@@ -85,3 +85,10 @@ export const StyledSecondaryAddress = styled.div`
   font-size: 0.8rem;
   color: #8a8a8d;
 `
+export const StyledNoResult = styled(StyledSecondaryAddress)`
+  font-size: 1rem;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
