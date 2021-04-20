@@ -1,10 +1,9 @@
 import { useContext, useRef, useState, useEffect } from 'react'
-import ReactMapGl, { Marker, FlyToInterpolator } from 'react-map-gl'
+import ReactMapGl, { Marker, NavigationControl, FlyToInterpolator } from 'react-map-gl'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
 import SearchBar from '../searchBar/SearchBar'
 import { useReport } from '../../contexts/ReportContext'
-import ZoomButton from './ZoomButton'
 import './MapBox.css'
 import { fetchAddressMapBoxAPI } from '../../api/api'
 import { ReactComponent as MarkerIcon } from './pin.svg'
@@ -33,6 +32,14 @@ const MapBox = () => {
   const onMouseDown = () => {
     dispatch({ type: 'removeFlyOver' })
   }
+  const addZoomAnimation = (viewport) => {
+    dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 400 } })
+  }
+
+  const handleTransitionEnd = () => {
+    dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 0 } })
+  }
+
   const onMouseUp = async () => {
     const findAddress = await fetchAddressMapBoxAPI(viewport)
 
@@ -64,20 +71,23 @@ const MapBox = () => {
         <ReactMapGl
           {...viewport}
           ref={mapRef}
-          transitionDuration={transitionDuration}
           transitionInterpolator={new FlyToInterpolator()}
           onViewportChange={(payload) => handleViewPortChange(payload)}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
           mapStyle="mapbox://styles/iandwe/ck0i4nprb08w91cmkp1939q6z"
           width="100vw"
           height="100%"
+          onTransitionEnd={handleTransitionEnd}
           maxBounds={maxBounds}
           onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}>
-          <ZoomButton />
-
           <SearchBar address={address} />
 
+          <NavigationControl
+            showCompass={false}
+            onViewportChange={addZoomAnimation}
+            style={{ right: 30, bottom: 80 }}
+          />
           {showLocationButton && <CurrentLocationButton />}
 
           {showPositionMarker && (
