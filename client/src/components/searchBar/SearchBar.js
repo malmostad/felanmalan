@@ -18,27 +18,27 @@ import {
 const SearchBar = (address) => {
   const searchbarRef = useRef('')
   const { dispatch } = useContext(MapContext)
-  const [searchResult, setSearchResult] = useState(null)
+  const [searchResults, setSearchResults] = useState([])
 
   useEffect(() => {
     if (address.address) {
-      searchbarRef.current.value = `near ${address.address}`
+      searchbarRef.current.value = `I närheten av: ${address.address}`
     }
   }, [address.address])
 
   const handleInputChange = async (e) => {
     if (e.target.value.length > 1) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
-      setSearchResult(response)
+      setSearchResults(response)
     }
   }
   const clearSearchbar = () => {
-    setSearchResult(null)
+    setSearchResults([])
     searchbarRef.current.value = ''
   }
 
   const handleClickAddress = (e) => {
-    const findAddress = searchResult.find(
+    const findAddress = searchResults.find(
       (address) => address.id || address.place_name === e.target.attributes.id.value
     )
     const payload = {
@@ -54,7 +54,7 @@ const SearchBar = (address) => {
     }
     dispatch({ type: 'handleFlyOver' })
     dispatch({ type: 'handleViewportChange', payload })
-    setSearchResult(null)
+    setSearchResults([])
   }
 
   return (
@@ -74,10 +74,10 @@ const SearchBar = (address) => {
             onChange={handleInputChange}
           />
         </StyledDivBar>
-        {searchResult && (
+        {searchResults && (
           <StyledSearchResultList>
             <StyledResultUl>
-              {searchResult.map((address) => {
+              {searchResults.map((address) => {
                 return (
                   <StyledSearchResult key={address.id}>
                     <StyledListButton id={address.id} onClick={handleClickAddress}>
