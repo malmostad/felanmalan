@@ -1,11 +1,12 @@
-import { DebounceInput } from 'react-debounce-input'
-import { useState, useContext, useRef, useEffect } from 'react'
+import { useState, useContext, useRef, useEffect, useCallback } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
 import '../mapBox/MapBox.css'
+import _, { debounce } from 'lodash'
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
 import {
   StyledLabelSearchBar,
+  StyledInputSearchBar,
   StyledSearchResult,
   StyledSearchResultList,
   StyledListButton,
@@ -33,6 +34,7 @@ const SearchBar = (address) => {
     setNoResult(true)
     if (e.target.value.length > 1) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
+
       if (response.length === 0) {
         setNoResult(true)
       }
@@ -72,6 +74,14 @@ const SearchBar = (address) => {
     setSearchResults([])
   }
 
+  const deb = useCallback(
+    debounce((text) => handleInputChange(text), 800),
+    []
+  )
+  const handleText = (text) => {
+    deb(text)
+  }
+
   return (
     <StyledLabelSearchBar>
       <StyledSearchLabel>
@@ -80,16 +90,13 @@ const SearchBar = (address) => {
             size="1.4rem"
             style={{ color: '#757575', marginLeft: '10px', marginTop: '7px' }}
           />
-          <DebounceInput
-            className="StyledInputSearchBar"
-            id="my-searchbar"
-            minLength={1}
-            debounceTimeout={400}
+
+          <StyledInputSearchBar
             ref={searchbarRef}
             onClick={clearSearchbar}
             type="text"
             placeholder="Search"
-            onChange={handleInputChange}
+            onChange={handleText}
           />
         </StyledDivBar>
         {noResult ? (

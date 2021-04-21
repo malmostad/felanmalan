@@ -32,6 +32,17 @@ export const StyledDivBar = styled.div`
   display: flex;
 `
 
+export const StyledInputSearchBar = styled.input`
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.75);
+  height: 35px;
+  width: 500px;
+  margin-left: 13px;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  border: none;
+`
 export const StyledSearchResultList = styled.div`
   width: 100%;
   height: auto;
