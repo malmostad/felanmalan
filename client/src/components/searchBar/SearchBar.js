@@ -1,10 +1,11 @@
+import { DebounceInput } from 'react-debounce-input'
 import { useState, useContext, useRef, useEffect } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
+import '../mapBox/MapBox.css'
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
 import {
   StyledLabelSearchBar,
-  StyledInputSearchBar,
   StyledSearchResult,
   StyledSearchResultList,
   StyledListButton,
@@ -79,8 +80,11 @@ const SearchBar = (address) => {
             size="1.4rem"
             style={{ color: '#757575', marginLeft: '10px', marginTop: '7px' }}
           />
-          <StyledInputSearchBar
+          <DebounceInput
+            className="StyledInputSearchBar"
             id="my-searchbar"
+            minLength={1}
+            debounceTimeout={400}
             ref={searchbarRef}
             onClick={clearSearchbar}
             type="text"
