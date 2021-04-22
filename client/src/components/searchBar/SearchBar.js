@@ -17,6 +17,7 @@ import {
   StyledSecondaryAddress,
   StyledNoResult,
 } from '../styles/searchbar/Searchbar'
+import SearchResult from './SearchResult'
 
 const SearchBar = (address) => {
   const searchbarRef = useRef('')
@@ -103,23 +104,7 @@ const SearchBar = (address) => {
           <StyledNoResult>No result found</StyledNoResult>
         ) : (
           <StyledSearchResultList>
-            <StyledResultUl>
-              {searchResults.map((address) => {
-                return (
-                  <StyledSearchResult key={address.id}>
-                    <StyledListButton id={address.id} onClick={handleClickAddress}>
-                      <StyledPrimaryAddress>
-                        {address.text} {address.address}
-                      </StyledPrimaryAddress>
-                      <StyledSecondaryAddress>
-                        {address.properties.address} {address.context[0].text}{' '}
-                        {address.context[1].text},
-                      </StyledSecondaryAddress>
-                    </StyledListButton>
-                  </StyledSearchResult>
-                )
-              })}
-            </StyledResultUl>
+            <SearchResult searchResults={searchResults} />
           </StyledSearchResultList>
         )}
       </StyledSearchLabel>
