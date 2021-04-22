@@ -13,6 +13,8 @@ import {
   StyledSearchLabel,
   StyledDivBar,
   StyledResultUl,
+  StyledPrimaryAddress,
+  StyledSecondaryAddress,
   StyledNoResult,
 } from '../styles/searchbar/Searchbar'
 import SearchResult from './SearchResult'
@@ -102,7 +104,17 @@ const SearchBar = (address) => {
           <StyledNoResult>No result found</StyledNoResult>
         ) : (
           <StyledSearchResultList>
-            <SearchResult searchResults={searchResults} />
+            <StyledResultUl>
+              {searchResults.map((address) => {
+                return (
+                  <StyledSearchResult key={address.id}>
+                    <StyledListButton id={address.id} onClick={handleClickAddress}>
+                      <SearchResult address={address} />
+                    </StyledListButton>
+                  </StyledSearchResult>
+                )
+              })}
+            </StyledResultUl>
           </StyledSearchResultList>
         )}
       </StyledSearchLabel>
