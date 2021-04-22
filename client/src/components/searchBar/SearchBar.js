@@ -13,8 +13,6 @@ import {
   StyledSearchLabel,
   StyledDivBar,
   StyledResultUl,
-  StyledPrimaryAddress,
-  StyledSecondaryAddress,
   StyledNoResult,
 } from '../styles/searchbar/Searchbar'
 import SearchResult from './SearchResult'
