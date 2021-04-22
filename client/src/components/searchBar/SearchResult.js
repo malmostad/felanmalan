@@ -7,7 +7,7 @@ const SearchResult = ({ address }) => {
         {address.text} {address.address}
       </StyledPrimaryAddress>
       <StyledSecondaryAddress>
-        {address.properties.address} {address.context[0].text} {address.context[1].text},
+        {address.properties.address} {address.context[0].text} {address.context[1].text}
       </StyledSecondaryAddress>
     </>
   )
