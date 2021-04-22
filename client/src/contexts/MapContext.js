@@ -34,16 +34,6 @@ const mapReducer = (mapState, { type, payload }) => {
   switch (type) {
     case 'handleViewportChange':
       return { ...mapState, viewport: payload }
-    case 'handleFlyOver':
-      return {
-        ...mapState,
-        transitionDuration: 2300,
-      }
-    case 'removeFlyOver':
-      return {
-        ...mapState,
-        transitionDuration: 0,
-      }
     case 'handleUserLocation':
       return { ...mapState, userLocation: payload }
     case 'handleShowPositionMarker':

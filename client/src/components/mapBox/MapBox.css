@@ -7,8 +7,8 @@
   height: 30px;
   position: fixed;
   z-index: 98;
-  top: calc(50% - 70px);
-  left: 50%;
+  top: calc(50% - 40px);
+  left: 50.3%;
   z-index: 1;
 }
 
