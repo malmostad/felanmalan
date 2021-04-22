@@ -2,7 +2,7 @@ import { useState, useContext, useRef, useEffect, useCallback } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
 import '../mapBox/MapBox.css'
-import _, { debounce } from 'lodash'
+import { debounce } from 'lodash'
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
 import {
   StyledLabelSearchBar,
