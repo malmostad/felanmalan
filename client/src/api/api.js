@@ -51,7 +51,25 @@ export const fetchAddressMapBoxAPI = async (viewport) => {
     const response = await http.get(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${viewport.longitude},${viewport.latitude}.json?access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
     )
-    return response.data.features[0].place_name
+    return {
+      address: response.data.features[0].text,
+      number: response.data.features[0].address,
+    }
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+export const fetchSearchResultMapBoxApi = async (address) => {
+  const maxBounds = [12.855952171065837, 55.49066310369751, 13.17594041283428, 55.6585718499375]
+  try {
+    const response = await http.get(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?bbox=${maxBounds.join(
+        ','
+      )}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
+    )
+
+    return response.data.features
   } catch (error) {
     throw new Error(error)
   }

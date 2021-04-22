@@ -6,6 +6,7 @@ export const StyledHeading = styled.h1`
   font-family: 'MalmoRubik Regular', Arial, Helvetica, sans-serif;
 `
 export const StyledHeroHeading = styled.h1`
+  overflow: hidden;
   padding-top: 90px;
   font-size: 4rem;
   color: white;
