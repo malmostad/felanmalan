@@ -1,5 +1,10 @@
 import { useContext, useRef, useState, useEffect } from 'react'
-import ReactMapGl, { Marker, NavigationControl, FlyToInterpolator } from 'react-map-gl'
+import ReactMapGl, {
+  Marker,
+  NavigationControl,
+  FlyToInterpolator,
+  WebMercatorViewport,
+} from 'react-map-gl'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
 import SearchBar from '../searchBar/SearchBar'
@@ -9,6 +14,10 @@ import { fetchAddressMapBoxAPI } from '../../api/api'
 import { ReactComponent as MarkerIcon } from './pin.svg'
 
 const MapBox = () => {
+  const maxBounds = [
+    [12.855952171065837, 55.49066310369751],
+    [13.17594041283428, 55.6585718499375],
+  ]
   const { handelSetFormInfo } = useReport()
   const mapRef = useRef()
   const [address, setAddress] = useState('')
@@ -19,11 +28,25 @@ const MapBox = () => {
     userLocation,
     showPositionMarker,
     showLocationButton,
-    maxBounds,
     transitionDuration,
   } = state
 
+  const isCoordinatesOutOfBounds = (coordinates, maxBounds) => {
+    const [[swLng, swLat], [neLng, neLat]] = maxBounds
+    const [longitude, latitude] = coordinates
+    return longitude < swLng || longitude > neLng || latitude < swLat || latitude > neLat
+  }
+
+  const isOutOfBounds = (bounds, maxBounds) => {
+    const [sw, ne] = bounds
+    return isCoordinatesOutOfBounds(sw, maxBounds) || isCoordinatesOutOfBounds(ne, maxBounds)
+  }
+
   const handleViewPortChange = (payload) => {
+    const bounds = new WebMercatorViewport(payload).getBounds()
+    if (isOutOfBounds(bounds, maxBounds)) {
+      return
+    }
     dispatch({ type: 'handleViewportChange', payload })
     handelSetFormInfo('longitude', payload.longitude)
     handelSetFormInfo('latitude', payload.latitude)
@@ -32,7 +55,11 @@ const MapBox = () => {
   const onMouseDown = () => {
     dispatch({ type: 'removeFlyOver' })
   }
-  const addZoomAnimation = (viewport) => {
+  const onZoom = (viewport) => {
+    const bounds = new WebMercatorViewport(viewport).getBounds()
+    if (isOutOfBounds(bounds, maxBounds)) {
+      return
+    }
     dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 400 } })
   }
 
@@ -78,14 +105,13 @@ const MapBox = () => {
           width="100vw"
           height="100%"
           onTransitionEnd={handleTransitionEnd}
-          maxBounds={maxBounds}
           onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}>
           <SearchBar address={address} />
 
           <NavigationControl
             showCompass={false}
-            onViewportChange={addZoomAnimation}
+            onViewportChange={onZoom}
             style={{ right: 30, bottom: 80 }}
           />
           {showLocationButton && <CurrentLocationButton />}
