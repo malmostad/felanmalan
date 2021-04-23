@@ -32,13 +32,13 @@ const SearchBar = (address) => {
 
   const handleInputChange = async (e) => {
     setNoResult(true)
-    if (e.target.value.length > 1) {
+    if (e.target.value.length >= 1) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
 
       if (response.length === 0) {
         setNoResult(true)
       }
-      if (response.length > 1) {
+      if (response.length >= 1) {
         setNoResult(false)
       }
       setSearchResults(response)
