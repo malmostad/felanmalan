@@ -1,14 +1,30 @@
-import { StyledPrimaryAddress, StyledSecondaryAddress } from '../styles/searchbar/Searchbar'
+import {
+  StyledSearchResult,
+  StyledListButton,
+  StyledResultUl,
+  StyledPrimaryAddress,
+  StyledSecondaryAddress,
+} from '../styles/searchbar/Searchbar'
 
-const SearchResult = ({ address }) => {
+const SearchResult = ({ searchResults, handleClickAddress }) => {
   return (
     <>
-      <StyledPrimaryAddress>
-        {address.text} {address.address}
-      </StyledPrimaryAddress>
-      <StyledSecondaryAddress>
-        {address.properties.address} {address.context[0].text} {address.context[1].text}
-      </StyledSecondaryAddress>
+      <StyledResultUl>
+        {searchResults.map((address) => {
+          return (
+            <StyledSearchResult key={address.id}>
+              <StyledListButton id={address.id} onClick={handleClickAddress}>
+                <StyledPrimaryAddress>
+                  {address.text} {address.address}
+                </StyledPrimaryAddress>
+                <StyledSecondaryAddress>
+                  {address.properties.address} {address.context[0].text} {address.context[1].text}
+                </StyledSecondaryAddress>
+              </StyledListButton>
+            </StyledSearchResult>
+          )
+        })}
+      </StyledResultUl>
     </>
   )
 }

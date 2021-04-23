@@ -7,14 +7,9 @@ import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
 import {
   StyledLabelSearchBar,
   StyledInputSearchBar,
-  StyledSearchResult,
   StyledSearchResultList,
-  StyledListButton,
   StyledSearchLabel,
   StyledDivBar,
-  StyledResultUl,
-  StyledPrimaryAddress,
-  StyledSecondaryAddress,
   StyledNoResult,
 } from '../styles/searchbar/Searchbar'
 import SearchResult from './SearchResult'
@@ -104,17 +99,7 @@ const SearchBar = (address) => {
           <StyledNoResult>No result found</StyledNoResult>
         ) : (
           <StyledSearchResultList>
-            <StyledResultUl>
-              {searchResults.map((address) => {
-                return (
-                  <StyledSearchResult key={address.id}>
-                    <StyledListButton id={address.id} onClick={handleClickAddress}>
-                      <SearchResult address={address} />
-                    </StyledListButton>
-                  </StyledSearchResult>
-                )
-              })}
-            </StyledResultUl>
+            <SearchResult searchResults={searchResults} handleClickAddress={handleClickAddress} />
           </StyledSearchResultList>
         )}
       </StyledSearchLabel>
