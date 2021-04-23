@@ -4,8 +4,8 @@ export const MapContext = createContext()
 
 const initialState = {
   viewport: {
-    latitude: 55.6051458,
-    longitude: 13.003365,
+    latitude: '',
+    longitude: '',
     zoom: 13,
   },
   maxBounds: [12.855952171065837, 55.49066310369751, 13.17594041283428, 55.6585718499375],
@@ -32,6 +32,8 @@ const mapReducer = (mapState, { type, payload }) => {
   } = mapState
 
   switch (type) {
+    case 'handleViewportCoordinates':
+      return { ...mapState, viewport: payload }
     case 'handleViewportChange':
       return { ...mapState, viewport: payload }
     case 'handleUserLocation':
