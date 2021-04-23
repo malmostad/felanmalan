@@ -122,6 +122,7 @@ export const StyledFullContainer = styled.div`
 `
 
 export const StyledContentFollowUpView = styled.div`
+  overflow: hidden;
   width: 100%;
   max-width: 560px;
   margin: 0px auto;

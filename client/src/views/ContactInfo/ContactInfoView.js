@@ -17,7 +17,7 @@ import {
   StyledFormDescription,
 } from '../../components/styles/form/Form'
 import { StyledHeroContainer } from '../../components/styles/containers/Containers'
-import { StyledBoldHeader, StyledThinHeader } from '../../components/styles/Typography/Typography'
+import { StyledBoldHeader } from '../../components/styles/Typography/Typography'
 import { useUpdate } from '../.././contexts/UpdateContext'
 
 const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

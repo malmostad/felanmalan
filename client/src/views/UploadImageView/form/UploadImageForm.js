@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid' //genereate random ID
 import { MdAddAPhoto as AddImageIcon } from 'react-icons/md' //Icon library
 
 //styled-components
-import { Button } from '../../../components/buttons/Buttons'
+
 import { StyledFlexCenter } from '../../../components/styles/containers/Containers'
 
 //context api hook
@@ -58,13 +58,13 @@ const UploadImageForm = () => {
         accept="image/*"
       />
       <StyledFlexCenter>
-        <Button.Outer>
+        {/*    <Button.Outer>
           <Button.Inner>
             <Button bgGreen onClick={() => fileInput.current.click()}>
               <AddImageIcon size="1.6rem" style={{ marginTop: '5px', color: 'white' }} />
             </Button>
           </Button.Inner>
-        </Button.Outer>
+        </Button.Outer> */}
       </StyledFlexCenter>
     </>
   )

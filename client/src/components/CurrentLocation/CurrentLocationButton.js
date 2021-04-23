@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react'
 import { StyledFetchButton } from '../styles/buttons/Buttons'
 import { FiNavigation as NavIcon } from 'react-icons/fi'
 import { MapContext } from '../../contexts/MapContext'
-import { LoadingSpinner } from '../../components/loading/styles'
+import { LoadingSpinner } from '../styles/Spinners/Spinners'
 
 const CurrentLocationButton = () => {
   const { state, dispatch } = useContext(MapContext)
