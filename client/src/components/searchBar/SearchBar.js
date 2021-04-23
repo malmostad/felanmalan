@@ -96,7 +96,7 @@ const SearchBar = (address) => {
           />
         </StyledDivBar>
         {noResult ? (
-          <StyledNoResult>No result found</StyledNoResult>
+          <StyledNoResult>Inga resultat hittade</StyledNoResult>
         ) : (
           <StyledSearchResultList>
             <SearchResult searchResults={searchResults} handleClickAddress={handleClickAddress} />
