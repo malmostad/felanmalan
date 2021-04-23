@@ -1,19 +1,31 @@
-import React from 'react'
+import {
+  StyledSearchResult,
+  StyledListButton,
+  StyledResultUl,
+  StyledPrimaryAddress,
+  StyledSecondaryAddress,
+} from '../styles/searchbar/Searchbar'
 
-const SearchResult = (searchResult) => {
-  console.log('this is the object that we are returning', searchResult)
+const SearchResult = ({ searchResults, handleClickAddress }) => {
   return (
-    <div className="search-result">
-      <ul>
-        {searchResult.map((address) => {
+    <>
+      <StyledResultUl>
+        {searchResults.map((address) => {
           return (
-            <li key={address.id}>
-              <div>{address.place_name}</div>
-            </li>
+            <StyledSearchResult key={address.id}>
+              <StyledListButton id={address.id} onClick={handleClickAddress}>
+                <StyledPrimaryAddress>
+                  {address.text} {address.address}
+                </StyledPrimaryAddress>
+                <StyledSecondaryAddress>
+                  {address.properties.address} {address.context[0].text} {address.context[1].text}
+                </StyledSecondaryAddress>
+              </StyledListButton>
+            </StyledSearchResult>
           )
         })}
-      </ul>
-    </div>
+      </StyledResultUl>
+    </>
   )
 }
 

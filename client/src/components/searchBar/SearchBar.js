@@ -7,16 +7,12 @@ import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
 import {
   StyledLabelSearchBar,
   StyledInputSearchBar,
-  StyledSearchResult,
   StyledSearchResultList,
-  StyledListButton,
   StyledSearchLabel,
   StyledDivBar,
-  StyledResultUl,
-  StyledPrimaryAddress,
-  StyledSecondaryAddress,
   StyledNoResult,
 } from '../styles/searchbar/Searchbar'
+import SearchResult from './SearchResult'
 
 const SearchBar = (address) => {
   const searchbarRef = useRef('')
@@ -100,26 +96,10 @@ const SearchBar = (address) => {
           />
         </StyledDivBar>
         {noResult ? (
-          <StyledNoResult>No result found</StyledNoResult>
+          <StyledNoResult>Inga resultat hittade</StyledNoResult>
         ) : (
           <StyledSearchResultList>
-            <StyledResultUl>
-              {searchResults.map((address) => {
-                return (
-                  <StyledSearchResult key={address.id}>
-                    <StyledListButton id={address.id} onClick={handleClickAddress}>
-                      <StyledPrimaryAddress>
-                        {address.text} {address.address}
-                      </StyledPrimaryAddress>
-                      <StyledSecondaryAddress>
-                        {address.properties.address} {address.context[0].text}{' '}
-                        {address.context[1].text},
-                      </StyledSecondaryAddress>
-                    </StyledListButton>
-                  </StyledSearchResult>
-                )
-              })}
-            </StyledResultUl>
+            <SearchResult searchResults={searchResults} handleClickAddress={handleClickAddress} />
           </StyledSearchResultList>
         )}
       </StyledSearchLabel>
