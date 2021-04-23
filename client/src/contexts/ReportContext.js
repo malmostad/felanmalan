@@ -5,8 +5,8 @@ export const useReport = () => useContext(ReportContext)
 
 const initialReportData = {
   images: [],
-  latitude: '',
-  longitude: '',
+  latitude: 55.6051458,
+  longitude: 13.003365,
   description: '',
   address: '',
   name: '',
