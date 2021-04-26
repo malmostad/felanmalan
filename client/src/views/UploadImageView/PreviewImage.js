@@ -19,11 +19,10 @@ const PreviewImage = ({ image }) => {
   const currentFile = uploadRef.current
 
   //local states
-  const [uploadedImages, setUploadedImages] = useState()
   const [uploadProgress, setUploadProgress] = useState(uploadRef.current.uploadStatus)
 
   //context hook
-  const { dispatch } = useReport()
+  const { dispatch, formState } = useReport()
   const { setImagesToBeUploaded, imagesToBeUploaded } = useUpdate()
 
   const Upload = async (file) => {
@@ -38,7 +37,6 @@ const PreviewImage = ({ image }) => {
         //sets the current progress state to the status of the ref
       }
     )
-
     dispatch({
       type: 'uploadImages',
       field: 'images',
@@ -59,6 +57,15 @@ const PreviewImage = ({ image }) => {
   //removes the image preview but doe snot actually delete the image from being uploaded
   const handleRemoveImage = (image) => {
     setImagesToBeUploaded(imagesToBeUploaded.filter((item) => item.id !== image.id))
+    const removeImageFromArray = imagesToBeUploaded.filter((item) => item.id !== image.id)
+    const transformToIdOnly = removeImageFromArray.map((item) => {
+      return item.id
+    })
+    dispatch({
+      type: 'removeImages',
+      field: 'images',
+      payload: transformToIdOnly,
+    })
   }
 
   // check if the current file

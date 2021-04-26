@@ -28,6 +28,11 @@ export const ReportProvider = ({ children }) => {
           ...formState,
           images: [...formState.images, payload],
         }
+      case 'removeImages':
+        return {
+          ...formState,
+          images: payload,
+        }
       case 'clearFormInfo':
         return {
           initialReportData,
