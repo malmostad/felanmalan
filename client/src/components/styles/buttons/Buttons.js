@@ -97,4 +97,7 @@ export const StyledDropzone = styled.button`
   -moz-box-shadow: inset 0 0 5px #000000;
   -webkit-box-shadow: inset 0 5px #000000;
   box-shadow: inset 0 0 5px #000000;
+  @media (max-width: 560px) {
+    display: none;
+  }
 `
