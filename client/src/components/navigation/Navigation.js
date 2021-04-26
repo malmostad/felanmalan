@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext } from 'react'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import { useReport } from '../../contexts/ReportContext'
 import {
@@ -6,16 +6,11 @@ import {
   StyledOutlineButtonGreen,
   StyledOutlineButtonWhite,
 } from '../styles/buttons/Buttons'
-import {
-  StyledFullContainer,
-  StyledButtonOuter,
-  StyledButtonInner,
-  StyledButtonOuterGreenBg,
-} from '../../components/styles/containers/Containers'
+import { StyledButtonOuter, StyledButtonInner } from '../../components/styles/containers/Containers'
 
 const Navigation = () => {
   const { dispatch: reportDispatch } = useReport()
-  const { state, dispatch } = useContext(NavigationContext)
+  const { state, dispatch: navigationDispatch } = useContext(NavigationContext)
   const {
     disableNext,
     currentViewIndex,
@@ -32,7 +27,7 @@ const Navigation = () => {
           {!(currentViewIndex === submitViewIndex || disableNext) && (
             <StyledButton
               onClick={() => {
-                dispatch({ type: 'next' })
+                navigationDispatch({ type: 'next' })
               }}>
               Nästa steg
             </StyledButton>
@@ -40,7 +35,7 @@ const Navigation = () => {
           {currentViewIndex === submitViewIndex && !disableSubmit && (
             <StyledButton
               onClick={() => {
-                dispatch({ type: 'submit' })
+                navigationDispatch({ type: 'submit' })
               }}>
               Skicka in
             </StyledButton>
@@ -50,7 +45,7 @@ const Navigation = () => {
               <StyledOutlineButtonWhite
                 onClick={() => {
                   reportDispatch({ type: 'clearFormInfo' })
-                  dispatch({ type: 'reset' })
+                  navigationDispatch({ type: 'reset' })
                 }}>
                 Skapa Ny
               </StyledOutlineButtonWhite>
@@ -59,7 +54,7 @@ const Navigation = () => {
           {!(currentViewIndex === 0 || disablePrevious) && (
             <StyledOutlineButtonGreen
               onClick={() => {
-                dispatch({ type: 'previous' })
+                navigationDispatch({ type: 'previous' })
               }}>
               Tillbaka
             </StyledOutlineButtonGreen>

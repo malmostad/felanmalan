@@ -1,4 +1,4 @@
-import { StyledHeading, StyledSpanText, StyledInfoText } from '../styles/Typography/Typography'
+import { StyledSpanText, StyledInfoText } from '../styles/Typography/Typography'
 
 const ReadMore = () => {
   return (

@@ -23,13 +23,7 @@ const MapBox = () => {
   const [address, setAddress] = useState('')
   const [updateUserLocation, setUpdateUserLocation] = useState(false)
   const { state, dispatch } = useContext(MapContext)
-  const {
-    viewport,
-    userLocation,
-    showPositionMarker,
-    showLocationButton,
-    transitionDuration,
-  } = state
+  const { viewport, userLocation, showPositionMarker, showLocationButton } = state
 
   useEffect(() => {
     const payload = {
@@ -80,21 +74,21 @@ const MapBox = () => {
   }
 
   const onMouseUp = async () => {
-    const findAddress = await fetchAddressMapBoxAPI(viewport)
+    const fetchAddress = await fetchAddressMapBoxAPI(viewport)
 
-    if (findAddress.number === undefined) {
-      setAddress(findAddress.address)
+    if (fetchAddress.number === undefined) {
+      setAddress(fetchAddress.address)
     } else {
-      setAddress(`${findAddress.address} ${findAddress.number}`)
+      setAddress(`${fetchAddress.address} ${fetchAddress.number}`)
     }
-    handelSetFormInfo('address', `${findAddress.address} ${findAddress.number}`)
+    handelSetFormInfo('address', `${fetchAddress.address} ${fetchAddress.number}`)
   }
   const updateSearchbarUserLocation = async () => {
-    const usersAddress = await fetchAddressMapBoxAPI(userLocation)
-    if (usersAddress.number === undefined) {
-      setAddress(usersAddress.address)
+    const userLocationAddress = await fetchAddressMapBoxAPI(userLocation)
+    if (userLocationAddress.number === undefined) {
+      setAddress(userLocationAddress.address)
     } else {
-      setAddress(`${usersAddress.address} ${usersAddress.number}`)
+      setAddress(`${userLocationAddress.address} ${userLocationAddress.number}`)
     }
   }
   useEffect(() => {
