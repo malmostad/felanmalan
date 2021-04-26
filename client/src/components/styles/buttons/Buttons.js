@@ -76,3 +76,25 @@ export const StyledReadMoreButton = styled(StyledButton)`
     color: white;
   }
 `
+
+export const StyledDropzoneContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 55vh;
+`
+
+export const StyledDropzone = styled.button`
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.PrimaryGreen};
+  width: 100%;
+  max-width: 560px;
+  height: 100%;
+  max-height: 230px;
+  cursor: pointer;
+  border-radius: 10px;
+  -moz-box-shadow: inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 5px #000000;
+  box-shadow: inset 0 0 5px #000000;
+`

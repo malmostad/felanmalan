@@ -19,7 +19,7 @@ const PreviewImage = ({ image }) => {
   const currentFile = uploadRef.current
 
   //local states
-  const [uploadedImages, setUploadedImages] = useState([])
+  const [uploadedImages, setUploadedImages] = useState()
   const [uploadProgress, setUploadProgress] = useState(uploadRef.current.uploadStatus)
 
   //context hook
@@ -38,8 +38,12 @@ const PreviewImage = ({ image }) => {
         //sets the current progress state to the status of the ref
       }
     )
-    // sets the response id
-    setUploadedImages((prevState) => [...prevState, resp.data])
+
+    dispatch({
+      type: 'uploadImages',
+      field: 'images',
+      payload: resp.data,
+    })
   }
 
   //callback hook for memoizing the upload task
@@ -51,15 +55,6 @@ const PreviewImage = ({ image }) => {
   useEffect(() => {
     memoizedUploadTask(image)
   }, [])
-
-  // sends a dispatch event to the context setting the uploaded image ids in the report image array
-  useEffect(() => {
-    dispatch({
-      type: 'uploadedImage',
-      field: 'images',
-      payload: uploadedImages,
-    })
-  }, [uploadedImages])
 
   //removes the image preview but doe snot actually delete the image from being uploaded
   const handleRemoveImage = (image) => {

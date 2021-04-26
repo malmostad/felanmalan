@@ -6,8 +6,7 @@ import { v4 as uuidv4 } from 'uuid' //genereate random ID
 import { MdAddAPhoto as AddImageIcon } from 'react-icons/md' //Icon library
 
 //styled-components
-
-import { StyledFlexCenter } from '../../../components/styles/containers/Containers'
+import { StyledDropzone, StyledDropzoneContainer } from '../../../components/styles/buttons/Buttons'
 
 //context api hook
 import { useUpdate } from '../../../contexts/UpdateContext'
@@ -57,15 +56,11 @@ const UploadImageForm = () => {
         style={{ display: 'none' }}
         accept="image/*"
       />
-      <StyledFlexCenter>
-        {/*    <Button.Outer>
-          <Button.Inner>
-            <Button bgGreen onClick={() => fileInput.current.click()}>
-              <AddImageIcon size="1.6rem" style={{ marginTop: '5px', color: 'white' }} />
-            </Button>
-          </Button.Inner>
-        </Button.Outer> */}
-      </StyledFlexCenter>
+      <StyledDropzoneContainer>
+        <StyledDropzone bgGreen onClick={() => fileInput.current.click()}>
+          <AddImageIcon size="1.6rem" style={{ marginTop: '5px', color: 'green' }} />
+        </StyledDropzone>
+      </StyledDropzoneContainer>
     </>
   )
 }
