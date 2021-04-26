@@ -14,16 +14,28 @@ import { fetchAddressMapBoxAPI } from '../../api/api'
 import { ReactComponent as MarkerIcon } from './pin.svg'
 
 const MapBox = () => {
+  const { handelSetFormInfo, formState } = useReport()
   const maxBounds = [
     [12.855952171065837, 55.49066310369751],
     [13.17594041283428, 55.6585718499375],
   ]
-  const { handelSetFormInfo } = useReport()
   const mapRef = useRef()
   const [address, setAddress] = useState('')
   const [updateUserLocation, setUpdateUserLocation] = useState(false)
   const { state, dispatch } = useContext(MapContext)
   const { viewport, userLocation, showPositionMarker, showLocationButton } = state
+
+  useEffect(() => {
+    const payload = {
+      latitude: formState.latitude,
+      longitude: formState.longitude,
+      zoom: 13,
+    }
+    dispatch({
+      type: 'handleViewportCoordinates',
+      payload,
+    })
+  }, [])
 
   const isCoordinatesOutOfBounds = (coordinates, maxBounds) => {
     const [[swLng, swLat], [neLng, neLat]] = maxBounds
