@@ -58,6 +58,15 @@ export const StyledInfoText = styled.p`
   -moz-osx-font-smoothing: grayscale;
 `
 
+export const StyledText = styled(StyledInfoText)`
+  color: black;
+  margin-bottom: 1rem;
+`
+export const StyledTextTitle = styled(StyledText)`
+  margin-top: 1rem;
+  font-weight: 600;
+`
+
 export const StyledBoldHeader = styled.span`
   font-family: MyriadPro, Open sans, Verdana;
   font-weight: bold;
