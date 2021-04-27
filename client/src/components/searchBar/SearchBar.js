@@ -50,10 +50,8 @@ const SearchBar = (address) => {
     setNoResult(false)
   }
 
-  const handleClickAddress = (e) => {
-    console.log(e.target.attributes.id)
-
-    const findAddress = searchResults.find((address) => address.id === e.target.attributes.id.value)
+  const handleClickAddress = (id) => {
+    const findAddress = searchResults.find((address) => address.id === id)
     const payload = {
       latitude: findAddress.center[1],
       longitude: findAddress.center[0],

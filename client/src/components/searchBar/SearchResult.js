@@ -12,8 +12,8 @@ const SearchResult = ({ searchResults, handleClickAddress }) => {
       <StyledResultUl>
         {searchResults.map((address) => {
           return (
-            <StyledSearchResult key={address.id} onClick={handleClickAddress}>
-              <StyledListButton id={address.id}>
+            <StyledSearchResult key={address.id} onClick={() => handleClickAddress(address.id)}>
+              <StyledListButton>
                 <span>
                   {address.text} {address.address}
                 </span>
