@@ -51,9 +51,7 @@ const SearchBar = (address) => {
   }
 
   const handleClickAddress = (e) => {
-    const findAddress = searchResults.find(
-      (address) => address.id || address.place_name === e.target.attributes.id.value
-    )
+    const findAddress = searchResults.find((address) => address.id === e.target.attributes.id.value)
     const payload = {
       latitude: findAddress.center[1],
       longitude: findAddress.center[0],

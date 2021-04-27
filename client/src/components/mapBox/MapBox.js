@@ -101,6 +101,7 @@ const MapBox = () => {
   return (
     <>
       <div className="map-style">
+        <SearchBar address={address} />
         <ReactMapGl
           {...viewport}
           ref={mapRef}
@@ -113,8 +114,6 @@ const MapBox = () => {
           onTransitionEnd={handleTransitionEnd}
           onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}>
-          <SearchBar address={address} />
-
           <NavigationControl
             showCompass={false}
             onViewportChange={onZoom}
