@@ -1,18 +1,20 @@
 //react hooks
-import { useRef } from 'react'
-
+import { useRef, useEffect, useState, useContext } from 'react'
+import { NavigationContext } from '../../../contexts/NavigationContext'
 //libraries
 import { v4 as uuidv4 } from 'uuid' //genereate random ID
 import { MdAddAPhoto as AddImageIcon } from 'react-icons/md' //Icon library
 
 //styled-components
-
-import { StyledFlexCenter } from '../../../components/styles/containers/Containers'
-
+import { StyledDropzone, StyledDropzoneContainer } from '../../../components/styles/buttons/Buttons'
+import { useReport } from '../../../contexts/ReportContext'
 //context api hook
 import { useUpdate } from '../../../contexts/UpdateContext'
 
 const UploadImageForm = () => {
+  const { dispatch: navigationDispatch } = useContext(NavigationContext)
+  const { formState } = useReport()
+
   //context hook
   const { setImagesToBeUploaded } = useUpdate()
 
@@ -43,6 +45,14 @@ const UploadImageForm = () => {
     })
   }
 
+  useEffect(() => {
+    if (formState.images.length === 0) {
+      navigationDispatch({ type: 'disableNext' })
+    }
+    if (formState.images.length > 0) {
+      navigationDispatch({ type: 'enableNext' })
+    }
+  }, [formState.images])
   /* note: the button onclick method takes the onChange event from the input, by using a ref to get the current elements event handler (or something like that i think, dont quote me on it) */
 
   return (
@@ -57,15 +67,11 @@ const UploadImageForm = () => {
         style={{ display: 'none' }}
         accept="image/*"
       />
-      <StyledFlexCenter>
-        {/*    <Button.Outer>
-          <Button.Inner>
-            <Button bgGreen onClick={() => fileInput.current.click()}>
-              <AddImageIcon size="1.6rem" style={{ marginTop: '5px', color: 'white' }} />
-            </Button>
-          </Button.Inner>
-        </Button.Outer> */}
-      </StyledFlexCenter>
+      <StyledDropzoneContainer>
+        <StyledDropzone bgGreen onClick={() => fileInput.current.click()}>
+          <AddImageIcon size="1.6rem" style={{ marginTop: '5px', color: 'green' }} />
+        </StyledDropzone>
+      </StyledDropzoneContainer>
     </>
   )
 }
