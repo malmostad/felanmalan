@@ -51,20 +51,22 @@ const SearchBar = (address) => {
   }
 
   const handleClickAddress = (e) => {
-    const findAddress = searchResults.find((address) => address.id === e.target.attributes.id.value)
-    const payload = {
-      latitude: findAddress.center[1],
-      longitude: findAddress.center[0],
-      zoom: 16,
-    }
-    if (findAddress.address === undefined) {
-      searchbarRef.current.value = findAddress.text
-    } else {
-      searchbarRef.current.value = findAddress.text + ' ' + findAddress.address
-    }
-    dispatch({ type: 'handleFlyOver' })
-    dispatch({ type: 'handleViewportChange', payload })
-    setSearchResults([])
+    console.log(e.target.attributes.id)
+
+    // const findAddress = searchResults.find((address) => address.id === e.target.attributes.id.value)
+    // const payload = {
+    //   latitude: findAddress.center[1],
+    //   longitude: findAddress.center[0],
+    //   zoom: 16,
+    // }
+    // if (findAddress.address === undefined) {
+    //   searchbarRef.current.value = findAddress.text
+    // } else {
+    //   searchbarRef.current.value = findAddress.text + ' ' + findAddress.address
+    // }
+    // dispatch({ type: 'handleFlyOver' })
+    // dispatch({ type: 'handleViewportChange', payload })
+    // setSearchResults([])
   }
 
   const deb = useCallback(
