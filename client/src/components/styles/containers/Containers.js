@@ -131,7 +131,9 @@ export const StyledContentFollowUpView = styled.div`
   color: white;
   font-size: 22px;
   z-index: 50;
+  height: 415px;
   @media (max-width: 560px) {
+    height: 282px;
     width: 300px;
     margin: 0 auto;
   }

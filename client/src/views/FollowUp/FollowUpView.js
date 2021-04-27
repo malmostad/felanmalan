@@ -1,4 +1,5 @@
 import { useUpdate } from '../.././contexts/UpdateContext'
+import { AiOutlineExclamationCircle as Exclamation } from 'react-icons/ai'
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
@@ -6,6 +7,8 @@ import {
   Errand,
   StyledText,
   StyledTextTitle,
+  StyledBorder,
+  StyledTitleContainer,
 } from '../../components/styles/Typography/Typography'
 import React, { useEffect } from 'react'
 import {
@@ -19,11 +22,17 @@ const FollowUpView = () => {
 
   useEffect(() => {
     setCurrentViewHeading(
-      <StyledHeroContainer>
-        <StyledHeroHeadingThin>
-          <StyledSpanWord>Tack</StyledSpanWord> för din <StyledSpanWord>felanmälan</StyledSpanWord>
-        </StyledHeroHeadingThin>
-      </StyledHeroContainer>
+      <div>
+        <StyledHeroContainer>
+          <StyledHeroHeadingThin>
+            <StyledSpanWord>Tack</StyledSpanWord> för din{' '}
+            <StyledSpanWord>felanmälan</StyledSpanWord>
+          </StyledHeroHeadingThin>
+        </StyledHeroContainer>{' '}
+        <StyledDescription>
+          Den hjälper oss hålla vår vackra stad iordning. <Errand href="#">Ärende: 5624805</Errand>
+        </StyledDescription>
+      </div>
     )
   }, [])
 
@@ -31,15 +40,23 @@ const FollowUpView = () => {
     <>
       <StyledOuterFollowUpView>
         <StyledContentFollowUpView>
-          <StyledDescription>
-            <StyledTextTitle>Akut felanmälan på kvällar och helger.</StyledTextTitle>
+          <StyledBorder>
+            <StyledTitleContainer>
+              <Exclamation
+                size="1.6em"
+                style={{
+                  color: '#f8c900',
+                  marginTop: '5px',
+                  marginLeft: '5px',
+                }}
+              />
+              <StyledTextTitle>Akut felanmälan på kvällar och helger</StyledTextTitle>
+            </StyledTitleContainer>
             <StyledText>
               Om du vill felanmäla något som inte kan vänta på kvällar eller helger ringer du 040-34
               10 00 och väljer att bli kopplad till vår jourtjänst.
             </StyledText>
-            Den hjälper oss hålla vår vackra stad iordning.{' '}
-            <Errand href="#">Ärende: 5624805</Errand>
-          </StyledDescription>
+          </StyledBorder>
         </StyledContentFollowUpView>
       </StyledOuterFollowUpView>
     </>

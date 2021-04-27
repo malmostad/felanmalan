@@ -59,12 +59,35 @@ export const StyledInfoText = styled.p`
 `
 
 export const StyledText = styled(StyledInfoText)`
-  color: black;
-  margin-bottom: 1rem;
+  padding: 10px;
+  color: white;
 `
 export const StyledTextTitle = styled(StyledText)`
-  margin-top: 1rem;
+  margin-top: 10px;
+  flex-grow: 1;
+  overflow: hidden;
+  font-size: 22px;
+  line-height: 27px;
+  color: white;
+  font-family: MyriadPro, Open sans, Verdana;
+  font-weight: bold;
+  margin-bottom: 0;
   font-weight: 600;
+  @media (max-width: 560px) {
+    margin-left: 10px;
+    padding: 0;
+  }
+`
+
+export const StyledBorder = styled.div`
+  overflow: hidden;
+  max-width: 90%;
+  border: solid #f8c900 1px;
+`
+
+export const StyledTitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 export const StyledBoldHeader = styled.span`
@@ -76,6 +99,7 @@ export const StyledThinHeader = styled(StyledBoldHeader)`
 `
 
 export const Errand = styled.a`
+  overflow: hidden;
   cursor: pointer;
   color: white;
   font-family: MyriadPro, Open sans, Verdana;
@@ -83,11 +107,19 @@ export const Errand = styled.a`
   text-decoration: underline;
 `
 export const StyledDescription = styled.a`
+  margin-top: 3rem !important;
+  max-width: 87%;
   font-size: 26px;
   line-height: 27px;
   color: white;
   font-family: 'MyriadPro';
   font-weight: lighter;
-
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  margin: auto;
+  justify-content: end;
+  flex-direction: column;
+  @media (max-width: 560px) {
+    max-width: 81%;
+  }
 `

@@ -6,13 +6,7 @@ import {
   StyledButtonContainer,
 } from '../styles/containers/Containers'
 import { useCookies } from 'react-cookie'
-import {
-  StyledHeroHeading,
-  StyledSpanText,
-  StyledInfoText,
-  StyledText,
-  StyledTextTitle,
-} from '../styles/Typography/Typography'
+import { StyledHeroHeading, StyledSpanText, StyledInfoText } from '../styles/Typography/Typography'
 import { AiOutlineQuestionCircle as Icon } from 'react-icons/ai'
 import ReadMore from '../readmore/ReadMore'
 
@@ -33,11 +27,6 @@ const Cookie = () => {
       <StyledOuter>
         <StyledCookieContainer>
           <StyledHeroHeading>Malmö stads felanmälan</StyledHeroHeading>
-          <StyledTextTitle>Akut felanmälan på kvällar och helger.</StyledTextTitle>
-          <StyledText>
-            Om du vill felanmäla något som inte kan vänta på kvällar eller helger ringer du 040-34
-            10 00 och väljer att bli kopplad till vår jourtjänst.
-          </StyledText>
           <StyledSpanText>Här anmäler du fel på Malmös gator, torg och parker.</StyledSpanText>
           {readMore ? (
             <ReadMore />
