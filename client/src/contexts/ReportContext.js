@@ -1,4 +1,4 @@
-import { useContext, createContext, useReducer } from 'react'
+import { useContext, createContext, useReducer, useEffect } from 'react'
 
 export const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
@@ -26,7 +26,12 @@ export const ReportProvider = ({ children }) => {
       case 'uploadImages':
         return {
           ...formState,
-          [field]: payload,
+          images: [...formState.images, payload],
+        }
+      case 'removeImages':
+        return {
+          ...formState,
+          images: payload,
         }
       case 'clearFormInfo':
         return {
@@ -37,6 +42,10 @@ export const ReportProvider = ({ children }) => {
     }
   }
   const [formState, dispatch] = useReducer(formReducer, initialReportData)
+
+  useEffect(() => {
+    console.log('this us our report', formState)
+  }, [formState])
 
   const handelSetFormInfo = (name, payload) => {
     dispatch({
