@@ -10,6 +10,7 @@ import {
   StyledCell,
   StyledImg,
   StyledAddImages,
+  StyledAddImage,
 } from '../../components/styles/containers/Containers'
 import { StyledImageContainer, StyledImageOverlay, StyledImageIcon } from './styles/styles'
 //icons lib
@@ -74,16 +75,18 @@ const PreviewImage = ({ image }) => {
 
   // check if the current file
   return (
-    <StyledCell>
-      <StyledImg id={image.id} src={image.preview_URL} alt="alt" />
-      {/* <StyledImageOverlay>
+    <>
+      <div>
+        <StyledCell id={image.id} src={image.preview_URL} alt="alt" />
+
+        {/* <StyledImageOverlay>
         <StyledImageIcon onClick={() => handleRemoveImage(image)}>
           <RemoveImageIcon />
         </StyledImageIcon>
       </StyledImageOverlay> */}
-      {currentFile.id && <ProgressBar max={100} progress={uploadProgress} />}
-      <div>Lägg till bild</div>
-    </StyledCell>
+        {currentFile.id && <ProgressBar max={100} progress={uploadProgress} />}
+      </div>
+    </>
   )
 }
 

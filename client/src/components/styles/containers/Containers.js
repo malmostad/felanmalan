@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
 export const MainContainer = styled.div`
-  min-height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -201,20 +201,58 @@ export const StyledHeroContainer = styled.div`
 `
 
 export const StyledTable = styled.div`
-  display: table;
+  overflow-x: scroll;
+  padding-bottom: 2rem;
+  display: flex;
   width: 1000px;
-  height: 250px;
-  background: blue;
+  height: 100%;
 `
 
 export const StyledRow = styled.div`
-  display: table-row;
+  display: flex;
+  flex-direction: row;
 `
 
-export const StyledCell = styled.div`
-  max-width: 250px;
+export const StyledCell = styled.img`
+  box-shadow: 0 2px 10px rgb(96 96 96 / 18%);
+  width: 250px;
   max-height: 250px;
-  display: table-cell;
+  display: flex;
+  padding-top: 10px;
+  padding-right: 10px;
+  object-fit: cover;
+`
+export const StyledAddImage = styled.div`
+  margin-top: 10px;
+  background: #f8f8fa;
+  color: yellow;
+  width: 250px;
+  max-height: 250px;
+`
+export const StyledButtonImage = styled.button`
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background: #f8f8fa;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+  &:hover {
+    background: #e3e3e5;
+  }
+`
+export const StyledTouchCharter = styled.div`
+  overflow: scroll;
+  width: 100%;
+  background: transparent;
+  position: absolute;
+  top: 45%;
+  left: 0;
 `
 
 export const StyledImg = styled.img`
