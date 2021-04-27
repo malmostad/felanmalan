@@ -14,12 +14,11 @@ const SearchResult = ({ searchResults, handleClickAddress }) => {
           return (
             <StyledSearchResult key={address.id} onClick={handleClickAddress}>
               <StyledListButton id={address.id}>
-                <StyledPrimaryAddress>
+                <span>
                   {address.text} {address.address}
-                </StyledPrimaryAddress>
-                <StyledSecondaryAddress>
-                  {address.properties.address} {address.context[0].text} {address.context[1].text}
-                </StyledSecondaryAddress>
+                </span>
+                <br />
+                {address.properties.address} {address.context[0].text} {address.context[1].text}
               </StyledListButton>
             </StyledSearchResult>
           )
