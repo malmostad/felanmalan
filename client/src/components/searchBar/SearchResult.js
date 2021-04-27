@@ -14,9 +14,7 @@ const SearchResult = ({ searchResults, handleClickAddress }) => {
           return (
             <StyledSearchResult key={address.id} onClick={handleClickAddress}>
               <StyledListButton id={address.id}>
-                <span>
-                  {address.text} {address.address}
-                </span>
+                {address.text} {address.address}
                 <br />
                 {address.properties.address} {address.context[0].text} {address.context[1].text}
               </StyledListButton>
