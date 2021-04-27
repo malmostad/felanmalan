@@ -62,8 +62,10 @@ const SearchBar = (address) => {
     } else {
       searchbarRef.current.value = findAddress.text + ' ' + findAddress.address
     }
-    dispatch({ type: 'handleFlyOver' })
-    dispatch({ type: 'handleViewportChange', payload })
+    dispatch({
+      type: 'handleViewportChange',
+      payload: { ...payload, transitionDuration: 2300 },
+    })
     setSearchResults([])
   }
 
