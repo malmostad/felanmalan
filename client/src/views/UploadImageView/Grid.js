@@ -1,6 +1,12 @@
-import { StyledFlexCenter, StyledGrid } from '../../components/styles/containers/Containers'
+import {
+  StyledTable,
+  StyledRow,
+  StyledAddImages,
+  StyledCell,
+} from '../../components/styles/containers/Containers'
 import PreviewImage from './PreviewImage'
 import { useEffect, useState } from 'react'
+import styled from 'styled-components'
 
 const Grid = ({ images }) => {
   const [gridImages, setGridImages] = useState(images)
@@ -11,13 +17,17 @@ const Grid = ({ images }) => {
   }, [images])
 
   return (
-    <StyledFlexCenter>
-      <StyledGrid>
+    <StyledTable>
+      <StyledRow>
         {images.map((img, index) => (
           <PreviewImage key={index} image={img} />
         ))}
-      </StyledGrid>
-    </StyledFlexCenter>
+        <StyledCell>
+          <StyledAddImages>Lägg till bild</StyledAddImages>
+          <h1>hhej</h1>
+        </StyledCell>
+      </StyledRow>
+    </StyledTable>
   )
 }
 

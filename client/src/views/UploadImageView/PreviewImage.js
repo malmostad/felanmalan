@@ -6,7 +6,11 @@ import { postImages } from '../../api/api'
 import { useReport } from '../../contexts/ReportContext'
 import { useUpdate } from '../../contexts/UpdateContext'
 // styles
-import { StyledFlexCenterColumn } from '../../components/styles/containers/Containers'
+import {
+  StyledCell,
+  StyledImg,
+  StyledAddImages,
+} from '../../components/styles/containers/Containers'
 import { StyledImageContainer, StyledImageOverlay, StyledImageIcon } from './styles/styles'
 //icons lib
 import { IoTrashOutline as RemoveImageIcon } from 'react-icons/io5'
@@ -70,17 +74,16 @@ const PreviewImage = ({ image }) => {
 
   // check if the current file
   return (
-    <StyledFlexCenterColumn>
-      <StyledImageContainer>
-        <img id={image.id} src={image.preview_URL} alt="alt" />
-        <StyledImageOverlay>
-          <StyledImageIcon onClick={() => handleRemoveImage(image)}>
-            <RemoveImageIcon />
-          </StyledImageIcon>
-        </StyledImageOverlay>
-      </StyledImageContainer>
+    <StyledCell>
+      <StyledImg id={image.id} src={image.preview_URL} alt="alt" />
+      {/* <StyledImageOverlay>
+        <StyledImageIcon onClick={() => handleRemoveImage(image)}>
+          <RemoveImageIcon />
+        </StyledImageIcon>
+      </StyledImageOverlay> */}
       {currentFile.id && <ProgressBar max={100} progress={uploadProgress} />}
-    </StyledFlexCenterColumn>
+      <div>Lägg till bild</div>
+    </StyledCell>
   )
 }
 

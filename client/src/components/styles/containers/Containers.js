@@ -199,3 +199,36 @@ export const StyledHeroContainer = styled.div`
     max-width: 560px;
   }
 `
+
+export const StyledTable = styled.div`
+  display: table;
+  width: 1000px;
+  height: 250px;
+  background: blue;
+`
+
+export const StyledRow = styled.div`
+  display: table-row;
+`
+
+export const StyledCell = styled.div`
+  max-width: 250px;
+  max-height: 250px;
+  display: table-cell;
+`
+
+export const StyledImg = styled.img`
+  padding-top: 10px;
+  padding-right: 10px;
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+`
+export const StyledAddImages = styled.div`
+  padding-top: 10px;
+  padding-right: 10px;
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+`

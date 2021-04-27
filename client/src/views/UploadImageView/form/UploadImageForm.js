@@ -57,21 +57,25 @@ const UploadImageForm = () => {
 
   return (
     <>
-      <input
-        name="images"
-        type="file"
-        id="upload-button"
-        multiple
-        onChange={handleUploadImages}
-        ref={fileInput}
-        style={{ display: 'none' }}
-        accept="image/*"
-      />
-      <StyledDropzoneContainer>
-        <StyledDropzone bgGreen onClick={() => fileInput.current.click()}>
-          <AddImageIcon size="1.6rem" style={{ marginTop: '5px', color: 'green' }} />
-        </StyledDropzone>
-      </StyledDropzoneContainer>
+      {!formState.images.length && (
+        <>
+          <input
+            name="images"
+            type="file"
+            id="upload-button"
+            multiple
+            onChange={handleUploadImages}
+            ref={fileInput}
+            style={{ display: 'none' }}
+            accept="image/*"
+          />
+          <StyledDropzoneContainer>
+            <StyledDropzone bgGreen onClick={() => fileInput.current.click()}>
+              <AddImageIcon size="1.6rem" style={{ marginTop: '5px', color: 'green' }} />
+            </StyledDropzone>
+          </StyledDropzoneContainer>
+        </>
+      )}
     </>
   )
 }
