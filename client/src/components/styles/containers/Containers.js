@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
 export const MainContainer = styled.div`
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

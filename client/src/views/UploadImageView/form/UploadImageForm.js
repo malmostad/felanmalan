@@ -1,12 +1,14 @@
 //react hooks
-import { useRef, useEffect, useState, useContext } from 'react'
+import { useRef, useEffect, useState, useContext, useCallback } from 'react'
 import { NavigationContext } from '../../../contexts/NavigationContext'
+
 //libraries
 import { v4 as uuidv4 } from 'uuid' //genereate random ID
-import { MdAddAPhoto as AddImageIcon } from 'react-icons/md' //Icon library
+import { useDropzone } from 'react-dropzone'
+import { IoArrowUpCircle } from 'react-icons/io5'
 
 //styled-components
-import { StyledDropzone, StyledDropzoneContainer } from '../../../components/styles/buttons/Buttons'
+import { Dropzone } from '../styles/styles'
 import { useReport } from '../../../contexts/ReportContext'
 //context api hook
 import { useUpdate } from '../../../contexts/UpdateContext'
@@ -14,17 +16,18 @@ import { useUpdate } from '../../../contexts/UpdateContext'
 const UploadImageForm = () => {
   const { dispatch: navigationDispatch } = useContext(NavigationContext)
   const { formState } = useReport()
+  const [droppedImages, setDroppedImages] = useState([])
 
   //context hook
   const { setImagesToBeUploaded } = useUpdate()
-
   //refs
   const fileInput = useRef(null)
-
   //functions
-  const handleUploadImages = (e) => {
+  const handleUploadImages = (acceptedFiles) => {
+    console.log('this is acceptedFiles inside handelUploadImages', acceptedFiles)
+
     //create array from the input files
-    const stagedImagesArray = Array.from(e.target.files)
+    const stagedImagesArray = acceptedFiles
     //calls the function with the files array
     createStatefulArrayOfObjectsFromTheFilesArray(stagedImagesArray)
     //removes the URL from the JS object to prevent a memory leak
@@ -53,25 +56,28 @@ const UploadImageForm = () => {
       navigationDispatch({ type: 'enableNext' })
     }
   }, [formState.images])
-  /* note: the button onclick method takes the onChange event from the input, by using a ref to get the current elements event handler (or something like that i think, dont quote me on it) */
+
+  const onDrop = useCallback((acceptedFiles) => {
+    handleUploadImages(acceptedFiles)
+  }, [])
+  const { getRootProps, getInputProps, isDragAccept } = useDropzone({ onDrop })
 
   return (
     <>
-      <input
-        name="images"
-        type="file"
-        id="upload-button"
-        multiple
-        onChange={handleUploadImages}
-        ref={fileInput}
-        style={{ display: 'none' }}
-        accept="image/*"
-      />
-      <StyledDropzoneContainer>
-        <StyledDropzone bgGreen onClick={() => fileInput.current.click()}>
-          <AddImageIcon size="1.6rem" style={{ marginTop: '5px', color: 'green' }} />
-        </StyledDropzone>
-      </StyledDropzoneContainer>
+      <Dropzone {...getRootProps()}>
+        <input
+          name="images"
+          type="file"
+          id="upload-button"
+          multiple
+          ref={fileInput}
+          style={{ display: 'none' }}
+          accept="image/*"
+          {...getInputProps()}
+        />
+        <IoArrowUpCircle size="3rem" style={{ color: '#037540', marginBottom: '10px' }} />
+        Klicka eller dra hit för att starta uppladdning
+      </Dropzone>
     </>
   )
 }
