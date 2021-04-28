@@ -201,10 +201,10 @@ export const StyledHeroContainer = styled.div`
 `
 
 export const StyledTable = styled.div`
+  width: fit-content;
   overflow-x: scroll;
   padding-bottom: 2rem;
   display: flex;
-  width: 1000px;
   height: 100%;
   @media (min-width: 560px) {
     margin: auto;
@@ -226,6 +226,7 @@ export const StyledRow = styled.div`
   flex-direction: row;
   @media (min-width: 560px) {
     flex-wrap: wrap;
+    justify-content: center;
   }
 `
 
@@ -295,4 +296,13 @@ export const StyledAddImages = styled.div`
   width: 250px;
   height: 250px;
   border: 1px solid black;
+`
+
+export const StyledUploadContainer = styled.div`
+  width: 100vw;
+  height: calc(100vh - 360px);
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+  @media (min-width: 560px) {
+    background-color: ${({ theme }) => theme.colors.White};
+  }
 `

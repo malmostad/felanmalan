@@ -50,10 +50,8 @@ const SearchBar = (address) => {
     setNoResult(false)
   }
 
-  const handleClickAddress = (e) => {
-    const findAddress = searchResults.find(
-      (address) => address.id || address.place_name === e.target.attributes.id.value
-    )
+  const handleClickAddress = (id) => {
+    const findAddress = searchResults.find((address) => address.id === id)
     const payload = {
       latitude: findAddress.center[1],
       longitude: findAddress.center[0],
@@ -64,8 +62,10 @@ const SearchBar = (address) => {
     } else {
       searchbarRef.current.value = findAddress.text + ' ' + findAddress.address
     }
-    dispatch({ type: 'handleFlyOver' })
-    dispatch({ type: 'handleViewportChange', payload })
+    dispatch({
+      type: 'handleViewportChange',
+      payload: { ...payload, transitionDuration: 2300 },
+    })
     setSearchResults([])
   }
 
