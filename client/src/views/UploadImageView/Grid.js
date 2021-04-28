@@ -9,26 +9,18 @@ import {
   StyledFlexTheContainer,
 } from '../../components/styles/containers/Containers'
 import PreviewImage from './PreviewImage'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import { CgMathPlus as OutlinePlus } from 'react-icons/cg'
 
-const Grid = ({ images }) => {
-  const [isHover, setIsHover] = useState(false)
+const Grid = ({ images, handleUploadImages }) => {
   const [gridImages, setGridImages] = useState(images)
+  const fileInput = useRef(null)
 
   //append new image to grid if added
   useEffect(() => {
     setGridImages(images)
   }, [images])
-
-  const onMouseEnter = () => {
-    setIsHover(false)
-  }
-
-  const onMouseLeave = () => {
-    setIsHover(true)
-  }
 
   return (
     <StyledTouchCharter>
@@ -39,29 +31,26 @@ const Grid = ({ images }) => {
               <PreviewImage key={index} image={img} />
             ))}{' '}
             <StyledAddImage>
-              {isHover ? (
-                <StyledButtonImage onMouseEnter={onMouseEnter}>
+              <>
+                <input
+                  name="images"
+                  type="file"
+                  id="upload-button"
+                  multiple
+                  onChange={handleUploadImages}
+                  ref={fileInput}
+                  style={{ display: 'none' }}
+                  accept="image/*"
+                />
+                <StyledButtonImage onClick={() => fileInput.current.click()}>
                   <OutlinePlus
                     size="2.4rem"
                     style={{
                       color: '#046a38',
-                      transform: 'scale(1)',
-                      transition: 'transform 400ms ease-in',
                     }}
                   />
                 </StyledButtonImage>
-              ) : (
-                <StyledButtonImage onMouseLeave={onMouseLeave}>
-                  <OutlinePlus
-                    size="2.4rem"
-                    style={{
-                      color: '#046a38',
-                      transform: 'scale(1.4)',
-                      transition: 'transform 400ms ease-out',
-                    }}
-                  />
-                </StyledButtonImage>
-              )}
+              </>
             </StyledAddImage>
           </StyledRow>
         </StyledFlexTheContainer>
