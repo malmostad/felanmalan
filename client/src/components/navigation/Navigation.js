@@ -24,6 +24,14 @@ const Navigation = () => {
     <>
       <StyledButtonOuter>
         <StyledButtonInner>
+          {currentViewIndex === 0 && (
+            <StyledButton
+              onClick={() => {
+                navigationDispatch({ type: 'next' })
+              }}>
+              Hoppa över
+            </StyledButton>
+          )}
           {!(currentViewIndex === submitViewIndex || disableNext) && (
             <StyledButton
               onClick={() => {
