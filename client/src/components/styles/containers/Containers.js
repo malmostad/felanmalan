@@ -2,6 +2,7 @@ import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
 export const MainContainer = styled.div`
+  height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -300,9 +301,10 @@ export const StyledAddImages = styled.div`
 
 export const StyledUploadContainer = styled.div`
   width: 100vw;
-  height: calc(100vh - 360px);
+  height: calc(100vh - 280px);
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   @media (min-width: 560px) {
     background-color: ${({ theme }) => theme.colors.White};
+    height: calc(100vh - 360px);
   }
 `
