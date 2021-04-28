@@ -206,11 +206,27 @@ export const StyledTable = styled.div`
   display: flex;
   width: 1000px;
   height: 100%;
+  @media (min-width: 560px) {
+    margin: auto;
+    overflow-x: auto;
+    width: 560px;
+  }
+`
+export const StyledFlexTheContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  @media (min-width: 560px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const StyledRow = styled.div`
   display: flex;
   flex-direction: row;
+  @media (min-width: 560px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const StyledCell = styled.img`
@@ -222,12 +238,19 @@ export const StyledCell = styled.img`
   padding-right: 10px;
   object-fit: cover;
 `
+export const StyledImagesSize = styled.div`
+  max-width: 250px;
+  min-width: 250px;
+  box-shadow: 0 2px 10px rgb(96 96 96 / 18%);
+`
+
 export const StyledAddImage = styled.div`
   margin-top: 10px;
   background: #f8f8fa;
   color: yellow;
   width: 250px;
-  max-height: 250px;
+
+  min-height: 250px;
 `
 export const StyledButtonImage = styled.button`
   border: none;
@@ -239,7 +262,7 @@ export const StyledButtonImage = styled.button`
   align-items: center;
   background: #f8f8fa;
   width: 100%;
-  height: 100%;
+  height: 96%;
   margin: 0;
   cursor: pointer;
   &:hover {
@@ -247,12 +270,15 @@ export const StyledButtonImage = styled.button`
   }
 `
 export const StyledTouchCharter = styled.div`
+  overflow-y: hidden;
   overflow: scroll;
   width: 100%;
   background: transparent;
-  position: absolute;
-  top: 45%;
+  top: 0;
   left: 0;
+  @media (min-width: 560px) {
+    overflow: hidden;
+  }
 `
 
 export const StyledImg = styled.img`

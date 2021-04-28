@@ -8,6 +8,7 @@ import { useUpdate } from '../../contexts/UpdateContext'
 // styles
 import {
   StyledCell,
+  StyledImagesSize,
   StyledImg,
   StyledAddImages,
   StyledAddImage,
@@ -76,7 +77,7 @@ const PreviewImage = ({ image }) => {
   // check if the current file
   return (
     <>
-      <div>
+      <StyledImagesSize>
         <StyledCell id={image.id} src={image.preview_URL} alt="alt" />
 
         {/* <StyledImageOverlay>
@@ -84,8 +85,8 @@ const PreviewImage = ({ image }) => {
           <RemoveImageIcon />
         </StyledImageIcon>
       </StyledImageOverlay> */}
-        {currentFile.id && <ProgressBar max={100} progress={uploadProgress} />}
-      </div>
+        {/* {currentFile.id && <ProgressBar max={100} progress={uploadProgress} />}*/}
+      </StyledImagesSize>
     </>
   )
 }
