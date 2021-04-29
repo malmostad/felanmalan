@@ -37,9 +37,7 @@ export const Dropzone = styled.div`
   max-width: 560px;
   height: 230px;
   margin: 50px auto;
-
   color: ${({ theme }) => theme.colors.PrimaryGreen};
-
   cursor: pointer;
   border: none;
   margin-bottom: 60px;
@@ -49,6 +47,9 @@ export const Dropzone = styled.div`
   flex-direction: column;
   box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.15), inset 0 2px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  @media (max-width: 560px) {
+    display: none;
+  }
 `
 
 export { StyledImageContainer, StyledImageOverlay, StyledImageIcon }

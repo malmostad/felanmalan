@@ -2,7 +2,9 @@ import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
 export const MainContainer = styled.div`
-  min-height: 50vh;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -22,7 +24,7 @@ export const StyledOuter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: visible;
+  overflow-y: scroll;
   background-color: ${({ bgWhite, bgSecondary, theme }) =>
     bgWhite
       ? theme.colors.White
@@ -197,5 +199,122 @@ export const StyledHeroContainer = styled.div`
     width: 100%;
     margin: 0 auto;
     max-width: 560px;
+  }
+`
+
+export const StyledTable = styled.div`
+  width: fit-content;
+  overflow-x: scroll;
+  padding-bottom: 2rem;
+  display: flex;
+
+  @media (min-width: 560px) {
+    margin: auto;
+    overflow: hidden;
+    align-content: space-evenly;
+  }
+`
+export const StyledFlexTheContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  @media (min-width: 560px) {
+    max-width: 520px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    margin-right: 0;
+  }
+`
+
+export const StyledRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media (min-width: 560px) {
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+`
+
+export const StyledCell = styled.img`
+  width: 250px;
+  max-height: 250px;
+  min-height: 250px;
+  display: flex;
+  object-fit: cover;
+
+  margin: 0 10px;
+`
+export const StyledImagesSize = styled.div`
+  max-width: 250px;
+  min-width: 250px;
+  margin-top: 10px;
+  margin-right: 10px;
+`
+
+export const StyledAddImage = styled.div`
+  margin-top: 10px;
+  color: yellow;
+  width: 250px;
+  height: 250px;
+`
+export const StyledButtonImage = styled.button`
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background-color: #d5d5d5;
+  width: 100%;
+  height: 250px;
+  margin: 0 10px;
+  cursor: pointer;
+  box-sizing: content-box;
+  &:hover {
+    background-color: #a6a6a6;
+  }
+`
+export const StyledTouchCharter = styled.div`
+  overflow-y: hidden;
+  overflow-x: scroll;
+  width: 100%;
+  background: transparent;
+  top: 0;
+  left: 0;
+  height: 58vh;
+  padding-top: 12px;
+  @media (min-width: 560px) {
+    overflow: revert;
+    height: 58vh;
+    padding-bottom: 22px;
+  }
+`
+
+export const StyledImg = styled.img`
+  padding-top: 10px;
+  padding-right: 10px;
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+`
+export const StyledAddImages = styled.div`
+  padding-top: 10px;
+  padding-right: 10px;
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+`
+
+export const StyledUploadContainer = styled.div`
+  width: 100vw;
+  height: calc(100vh - 280px);
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+  @media (min-width: 560px) {
+    background-color: ${({ theme }) => theme.colors.White};
+    height: calc(100vh - 360px);
   }
 `
