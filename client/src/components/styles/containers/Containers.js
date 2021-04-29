@@ -3,7 +3,8 @@ import { flexCenterColumn, flexCenter } from '../mixins'
 
 export const MainContainer = styled.div`
   height: 100vh;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -278,7 +279,7 @@ export const StyledButtonImage = styled.button`
 `
 export const StyledTouchCharter = styled.div`
   overflow-y: hidden;
-  overflow: scroll;
+  overflow-x: scroll;
   width: 100%;
   background: transparent;
   top: 0;
@@ -286,7 +287,7 @@ export const StyledTouchCharter = styled.div`
   height: 58vh;
   padding-top: 12px;
   @media (min-width: 560px) {
-    overflow: scroll;
+    overflow: revert;
     height: 60vh;
     padding-bottom: 22px;
   }
