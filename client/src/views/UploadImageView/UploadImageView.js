@@ -36,7 +36,7 @@ const UploadImageView = () => {
     revokeFileURLs(acceptedFiles)
   }
 
-  const handleSingleImages = (e) => {
+  const handleImages = (e) => {
     const stagedImagesArray = Array.from(e.target.files)
     return handleImagesDropZone(stagedImagesArray)
   }
@@ -56,7 +56,7 @@ const UploadImageView = () => {
 
   return (
     <>
-      {uploading && <Grid handleSingleImages={handleSingleImages} images={imagesToBeUploaded} />}
+      {uploading && <Grid handleImages={handleImages} images={imagesToBeUploaded} />}
       <UploadImageForm handleImagesDropZone={handleImagesDropZone} />
     </>
   )
