@@ -210,7 +210,6 @@ export const StyledTable = styled.div`
   @media (min-width: 560px) {
     margin: auto;
     overflow-x: auto;
-    width: 560px;
     align-content: space-evenly;
   }
 `
@@ -219,10 +218,12 @@ export const StyledFlexTheContainer = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   @media (min-width: 560px) {
+    max-width: 505px;
     flex-wrap: wrap;
     width: 100%;
-    margin: 0 auto;
+    margin: auto;
     justify-content: center;
+    margin-right: 0;
   }
 `
 
@@ -231,7 +232,6 @@ export const StyledRow = styled.div`
   flex-direction: row;
   @media (min-width: 560px) {
     flex-wrap: wrap;
-    justify-content: start;
     flex-grow: 1;
   }
 `
