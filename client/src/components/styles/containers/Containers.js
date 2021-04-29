@@ -3,7 +3,7 @@ import { flexCenterColumn, flexCenter } from '../mixins'
 
 export const MainContainer = styled.div`
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
