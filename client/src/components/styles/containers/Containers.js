@@ -23,7 +23,7 @@ export const StyledOuter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: visible;
+  overflow-y: scroll;
   background-color: ${({ bgWhite, bgSecondary, theme }) =>
     bgWhite
       ? theme.colors.White
@@ -206,10 +206,10 @@ export const StyledTable = styled.div`
   overflow-x: scroll;
   padding-bottom: 2rem;
   display: flex;
-  height: 100%;
+
   @media (min-width: 560px) {
     margin: auto;
-    overflow-x: auto;
+    overflow: hidden;
     align-content: space-evenly;
   }
 `
@@ -286,7 +286,7 @@ export const StyledTouchCharter = styled.div`
   height: 58vh;
   padding-top: 12px;
   @media (min-width: 560px) {
-    overflow: hidden;
+    overflow: scroll;
     height: 60vh;
     padding-bottom: 22px;
   }
