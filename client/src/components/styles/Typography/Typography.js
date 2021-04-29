@@ -62,6 +62,7 @@ export const StyledText = styled(StyledInfoText)`
   padding: 10px;
   color: white;
 `
+
 export const StyledTextTitle = styled(StyledText)`
   margin-top: 10px;
   flex-grow: 1;
@@ -107,8 +108,7 @@ export const Errand = styled.a`
   text-decoration: underline;
 `
 export const StyledDescription = styled.a`
-  margin-top: 3rem !important;
-  max-width: 87%;
+  margin-top: 1.5rem !important;
   font-size: 26px;
   line-height: 27px;
   color: white;
@@ -119,7 +119,4 @@ export const StyledDescription = styled.a`
   margin: auto;
   justify-content: end;
   flex-direction: column;
-  @media (max-width: 560px) {
-    max-width: 81%;
-  }
 `

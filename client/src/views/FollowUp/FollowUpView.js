@@ -16,23 +16,21 @@ import {
   StyledContentFollowUpView,
   StyledHeroContainer,
 } from '../../components/styles/containers/Containers'
+import '../../globalstyles/GlobalStyle'
 
 const FollowUpView = () => {
   const { setCurrentViewHeading } = useUpdate()
 
   useEffect(() => {
     setCurrentViewHeading(
-      <div>
-        <StyledHeroContainer>
-          <StyledHeroHeadingThin>
-            <StyledSpanWord>Tack</StyledSpanWord> för din{' '}
-            <StyledSpanWord>felanmälan</StyledSpanWord>
-          </StyledHeroHeadingThin>
-        </StyledHeroContainer>{' '}
+      <StyledHeroContainer>
+        <StyledHeroHeadingThin>
+          <StyledSpanWord>Tack</StyledSpanWord> för din <StyledSpanWord>felanmälan</StyledSpanWord>
+        </StyledHeroHeadingThin>
         <StyledDescription>
           Den hjälper oss hålla vår vackra stad iordning. <Errand href="#">Ärende: 5624805</Errand>
         </StyledDescription>
-      </div>
+      </StyledHeroContainer>
     )
   }, [])
 
@@ -53,8 +51,9 @@ const FollowUpView = () => {
               <StyledTextTitle>Akut felanmälan på kvällar och helger</StyledTextTitle>
             </StyledTitleContainer>
             <StyledText>
-              Om du vill felanmäla något som inte kan vänta på kvällar eller helger ringer du 040-34
-              10 00 och väljer att bli kopplad till vår jourtjänst.
+              Om du vill felanmäla något som inte kan vänta på kvällar eller helger ringer du{' '}
+              <a href="tel:040341000">040-34 10 00</a> och väljer att bli kopplad till vår
+              jourtjänst.
             </StyledText>
           </StyledBorder>
         </StyledContentFollowUpView>

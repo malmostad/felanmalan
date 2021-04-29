@@ -122,11 +122,13 @@ export const StyledFullContainer = styled.div`
 `
 
 export const StyledContentFollowUpView = styled.div`
+  display: flex;
   overflow: hidden;
   width: 100%;
   max-width: 560px;
   margin: 0px auto;
   flex-direction: column;
+  align-items: center;
   background-color: #037540;
   color: white;
   font-size: 22px;
@@ -198,6 +200,6 @@ export const StyledHeroContainer = styled.div`
     padding-right: 12px;
     width: 100%;
     margin: 0 auto;
-    max-width: 560px;
+    max-width: 296px;
   }
 `
