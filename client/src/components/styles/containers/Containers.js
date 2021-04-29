@@ -219,7 +219,7 @@ export const StyledFlexTheContainer = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   @media (min-width: 560px) {
-    max-width: 505px;
+    max-width: 520px;
     flex-wrap: wrap;
     width: 100%;
     margin: auto;
@@ -233,7 +233,7 @@ export const StyledRow = styled.div`
   flex-direction: row;
   @media (min-width: 560px) {
     flex-wrap: wrap;
-    flex-grow: 1;
+    margin-bottom: 40px;
   }
 `
 
@@ -242,15 +242,15 @@ export const StyledCell = styled.img`
   max-height: 250px;
   min-height: 250px;
   display: flex;
-  padding-top: 10px;
-  padding-right: 10px;
   object-fit: cover;
-  box-sizing: content-box;
+
   margin: 0 10px;
 `
 export const StyledImagesSize = styled.div`
   max-width: 250px;
   min-width: 250px;
+  margin-top: 10px;
+  margin-right: 10px;
 `
 
 export const StyledAddImage = styled.div`
@@ -288,7 +288,7 @@ export const StyledTouchCharter = styled.div`
   padding-top: 12px;
   @media (min-width: 560px) {
     overflow: revert;
-    height: 60vh;
+    height: 58vh;
     padding-bottom: 22px;
   }
 `
