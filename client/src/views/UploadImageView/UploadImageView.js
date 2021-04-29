@@ -31,15 +31,14 @@ const UploadImageView = () => {
     }
   }, [imagesToBeUploaded])
 
-  const handleUploadImagesDropZone = (acceptedFiles) => {
+  const handleImagesDropZone = (acceptedFiles) => {
     createStatefulArrayOfObjectsFromTheFilesArray(acceptedFiles)
     revokeFileURLs(acceptedFiles)
   }
 
-  const handleUploadImages = (e) => {
+  const handleSingleImages = (e) => {
     const stagedImagesArray = Array.from(e.target.files)
-    createStatefulArrayOfObjectsFromTheFilesArray(stagedImagesArray)
-    revokeFileURLs(stagedImagesArray)
+    return handleImagesDropZone(stagedImagesArray)
   }
 
   const createStatefulArrayOfObjectsFromTheFilesArray = (fileArray) => {
@@ -57,8 +56,8 @@ const UploadImageView = () => {
 
   return (
     <>
-      {uploading && <Grid handleUploadImages={handleUploadImages} images={imagesToBeUploaded} />}
-      <UploadImageForm handleUploadImages={handleUploadImagesDropZone} />
+      {uploading && <Grid handleSingleImages={handleSingleImages} images={imagesToBeUploaded} />}
+      <UploadImageForm handleImagesDropZone={handleImagesDropZone} />
     </>
   )
 }

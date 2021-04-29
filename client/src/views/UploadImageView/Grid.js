@@ -13,7 +13,7 @@ import { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import { CgMathPlus as OutlinePlus } from 'react-icons/cg'
 
-const Grid = ({ images, handleUploadImages }) => {
+const Grid = ({ images, handleSingleImages }) => {
   const [gridImages, setGridImages] = useState(images)
   const fileInput = useRef(null)
 
@@ -37,7 +37,7 @@ const Grid = ({ images, handleUploadImages }) => {
                   type="file"
                   id="upload-button"
                   multiple
-                  onChange={handleUploadImages}
+                  onChange={handleSingleImages}
                   ref={fileInput}
                   style={{ display: 'none' }}
                   accept="image/*"

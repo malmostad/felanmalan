@@ -6,7 +6,7 @@ import { StyledUploadContainer } from '../../../components/styles/containers/Con
 import { Dropzone } from '../styles/styles'
 import { useReport } from '../../../contexts/ReportContext'
 
-const UploadImageForm = ({ handleUploadImages }) => {
+const UploadImageForm = ({ handleImagesDropZone }) => {
   const { dispatch: navigationDispatch } = useContext(NavigationContext)
   const { formState } = useReport()
   const fileInput = useRef(null)
@@ -21,7 +21,7 @@ const UploadImageForm = ({ handleUploadImages }) => {
   }, [formState.images])
 
   const onDrop = useCallback((acceptedFiles) => {
-    handleUploadImages(acceptedFiles)
+    handleImagesDropZone(acceptedFiles)
   }, [])
   const { getRootProps, getInputProps, isDragAccept } = useDropzone({ onDrop })
 
