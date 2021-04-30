@@ -9,10 +9,12 @@ const StyledProgressBarOuter = styled.div`
 `
 
 const StyledProgressBar = styled.progress`
-  width: 190.5px;
+  width: 250px;
   border: none;
   height: 10px;
   color: green !important;
+  margin-left: 20px;
+  margin-top: 5px;
 
   //style web kits might be needed for moz/ie/etc, also for styling purposes
 
@@ -33,11 +35,8 @@ const ProgressBar = ({ max, progress }) => {
   return (
     <StyledProgressBarOuter>
       <StyledFlexCenter>
-        <StyledProgressBar value={progress} max={max}>
-          {progress}%
-        </StyledProgressBar>
+        <StyledProgressBar value={progress} max={max}></StyledProgressBar>
       </StyledFlexCenter>
-      <label>{progress}%</label>
     </StyledProgressBarOuter>
   )
 }

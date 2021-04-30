@@ -236,21 +236,32 @@ export const StyledRow = styled.div`
     margin-bottom: 40px;
   }
 `
-
 export const StyledCell = styled.img`
   width: 250px;
   max-height: 250px;
   min-height: 250px;
   display: flex;
   object-fit: cover;
-
   margin: 0 10px;
+`
+
+export const StyledCellUpload = styled.div`
+  width: 250px;
+  max-height: 250px;
+  min-height: 250px;
+  display: flex;
+  margin: 0 10px;
+  position: absolute;
+  top: 0;
+  opacity: 0.5;
+  background-color: ${({ theme }) => theme.colors.White};
 `
 export const StyledImagesSize = styled.div`
   max-width: 250px;
   min-width: 250px;
   margin-top: 10px;
   margin-right: 10px;
+  position: relative;
 `
 
 export const StyledAddImage = styled.div`

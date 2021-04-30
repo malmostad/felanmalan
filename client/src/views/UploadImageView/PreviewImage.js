@@ -5,16 +5,23 @@ import { postImages } from '../../api/api'
 // global state
 import { useReport } from '../../contexts/ReportContext'
 import { useUpdate } from '../../contexts/UpdateContext'
-import { StyledCell, StyledImagesSize } from '../../components/styles/containers/Containers'
+import {
+  StyledCell,
+  StyledImagesSize,
+  StyledCellUpload,
+} from '../../components/styles/containers/Containers'
+import ProgressBar from './ProgressBar'
 
 const PreviewImage = ({ image }) => {
   let uploadRef = useRef(image)
   const currentFile = uploadRef.current
   const [uploadProgress, setUploadProgress] = useState(uploadRef.current.uploadStatus)
+  const [showProgressBar, setShowProgressBar] = useState(false)
   const { dispatch, formState } = useReport()
   const { setImagesToBeUploaded, imagesToBeUploaded } = useUpdate()
 
   const Upload = async (file) => {
+    setShowProgressBar(true)
     const resp = await postImages(
       process.env.REACT_APP_API_POST_PHOTOS_ENDPOINT,
       file.data,
@@ -23,6 +30,7 @@ const PreviewImage = ({ image }) => {
         setUploadProgress(progress)
       }
     )
+    setShowProgressBar(false)
     dispatch({
       type: 'uploadImages',
       field: 'images',
@@ -61,6 +69,8 @@ const PreviewImage = ({ image }) => {
           src={image.preview_URL}
           alt="alt"
         />
+        {showProgressBar && <StyledCellUpload></StyledCellUpload>}
+        {showProgressBar && <ProgressBar max={100} progress={uploadProgress} />}
       </StyledImagesSize>
     </>
   )
