@@ -318,3 +318,7 @@ export const StyledUploadContainer = styled.div`
     height: calc(100vh - 360px);
   }
 `
+export const StyledImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
