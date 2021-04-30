@@ -32,6 +32,7 @@ const UploadImageView = () => {
       navigationDispatch({ type: 'disableSkip' })
       setUploading(true)
     } else {
+      setUploading(false)
       navigationDispatch({ type: 'enableNext' })
       navigationDispatch({ type: 'disableNext' })
     }

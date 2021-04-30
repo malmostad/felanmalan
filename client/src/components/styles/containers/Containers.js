@@ -243,7 +243,6 @@ export const StyledCell = styled.img`
   min-height: 250px;
   display: flex;
   object-fit: cover;
-
   margin: 0 10px;
 `
 export const StyledImagesSize = styled.div`
@@ -251,6 +250,7 @@ export const StyledImagesSize = styled.div`
   min-width: 250px;
   margin-top: 10px;
   margin-right: 10px;
+  position: relative;
 `
 
 export const StyledAddImage = styled.div`
