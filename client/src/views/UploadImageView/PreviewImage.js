@@ -6,9 +6,12 @@ import { postImages } from '../../api/api'
 import { useReport } from '../../contexts/ReportContext'
 import { useUpdate } from '../../contexts/UpdateContext'
 import { StyledCell, StyledImagesSize } from '../../components/styles/containers/Containers'
+import { RemoveImg } from './styles/styles'
+import { BsTrash } from 'react-icons/bs'
 
 const PreviewImage = ({ image }) => {
   let uploadRef = useRef(image)
+  const [isHovering, setIsHoovering] = useState(false)
   const currentFile = uploadRef.current
   const [uploadProgress, setUploadProgress] = useState(uploadRef.current.uploadStatus)
   const { dispatch, formState } = useReport()
@@ -50,17 +53,24 @@ const PreviewImage = ({ image }) => {
       payload: transformToIdOnly,
     })
   }
+  const onMouseEnter = () => {
+    setIsHoovering(true)
+  }
+
+  const onMouseLeave = () => {
+    setIsHoovering(false)
+  }
 
   // check if the current file
   return (
     <>
-      <StyledImagesSize>
-        <StyledCell
-          handleRemoveImage={handleRemoveImage}
-          id={image.id}
-          src={image.preview_URL}
-          alt="alt"
-        />
+      <StyledImagesSize onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter}>
+        <StyledCell id={image.id} src={image.preview_URL} alt="alt" />
+        {isHovering && (
+          <RemoveImg onClick={() => handleRemoveImage(image)}>
+            <BsTrash style={{ margin: '10px auto', display: 'flex' }} size="2rem" />
+          </RemoveImg>
+        )}
       </StyledImagesSize>
     </>
   )
