@@ -16,6 +16,7 @@ const UploadImageForm = ({ handleImagesDropZone }) => {
   useEffect(() => {
     if (formState.images.length === 0) {
       navigationDispatch({ type: 'disableNext' })
+      navigationDispatch({ type: 'enableSkip' })
     }
     if (formState.images.length > 0) {
       navigationDispatch({ type: 'enableNext' })
