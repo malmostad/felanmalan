@@ -19,16 +19,18 @@ const Navigation = () => {
     disableSubmit,
     submitViewIndex,
     disablePrevious,
+    disableSkip,
   } = state
 
   return (
     <>
       <StyledButtonOuter>
         <StyledButtonInner>
-          {currentViewIndex === 0 && (
+          {currentViewIndex === 0 && !disableSkip && (
             <StyledButtonSkip
               onClick={() => {
                 navigationDispatch({ type: 'next' })
+                navigationDispatch({ type: 'enableNext' })
               }}>
               Hoppa över
             </StyledButtonSkip>

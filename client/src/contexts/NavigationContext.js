@@ -10,10 +10,17 @@ const initialState = {
   disableSubmit: false,
   lastViewIndex: formViews.length - 1,
   submitViewIndex: formViews.length - 2,
+  disableSkip: false,
 }
 
 const navigationReducer = (navigationState, action) => {
-  let { currentViewIndex, disableNext, disableSubmit, disablePrevious } = navigationState
+  let {
+    currentViewIndex,
+    disableNext,
+    disableSubmit,
+    disablePrevious,
+    disableSkip,
+  } = navigationState
 
   switch (action.type) {
     case 'disableNext':
@@ -22,6 +29,12 @@ const navigationReducer = (navigationState, action) => {
     case 'enableNext':
       disableNext = false
       return { ...navigationState, disableNext: disableNext }
+    case 'disableSkip':
+      disableSkip = true
+      return { ...navigationState, disableSkip: disableSkip }
+    case 'enableSkip':
+      disableSkip = false
+      return { ...navigationState, disableSkip: disableSkip }
     case 'disableSubmit':
       disableSubmit = true
       return { ...navigationState, disableSubmit: disableSubmit }
