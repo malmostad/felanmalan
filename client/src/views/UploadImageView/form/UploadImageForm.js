@@ -27,24 +27,22 @@ const UploadImageForm = ({ handleImagesDropZone }) => {
 
   return (
     <>
-      {!formState.images.length && (
-        <StyledUploadContainer>
-          <Dropzone {...getRootProps()}>
-            <input
-              name="images"
-              type="file"
-              id="upload-button"
-              multiple
-              ref={fileInput}
-              style={{ display: 'none' }}
-              accept="image/*"
-              {...getInputProps()}
-            />
-            <IoArrowUpCircle size="3rem" style={{ color: '#037540', marginBottom: '10px' }} />
-            Klicka eller dra hit för att starta uppladdning
-          </Dropzone>
-        </StyledUploadContainer>
-      )}
+      <StyledUploadContainer>
+        <Dropzone {...getRootProps()}>
+          <input
+            name="images"
+            type="file"
+            id="upload-button"
+            multiple
+            ref={fileInput}
+            style={{ display: 'none' }}
+            accept="image/*"
+            {...getInputProps()}
+          />
+          <IoArrowUpCircle size="3rem" style={{ color: '#037540', marginBottom: '10px' }} />
+          Klicka eller dra hit för att starta uppladdning
+        </Dropzone>
+      </StyledUploadContainer>
     </>
   )
 }

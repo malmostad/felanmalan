@@ -56,8 +56,11 @@ const UploadImageView = () => {
 
   return (
     <>
-      {uploading && <Grid handleImages={handleImages} images={imagesToBeUploaded} />}
-      <UploadImageForm handleImagesDropZone={handleImagesDropZone} />
+      {uploading ? (
+        <Grid handleImages={handleImages} images={imagesToBeUploaded} />
+      ) : (
+        <UploadImageForm handleImagesDropZone={handleImagesDropZone} />
+      )}
     </>
   )
 }
