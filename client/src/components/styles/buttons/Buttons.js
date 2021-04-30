@@ -21,6 +21,13 @@ export const StyledButton = styled.button`
     font-weight: bold;
   }
 `
+
+export const StyledButtonSkip = styled(StyledButton)`
+  margin: 0;
+  max-width: 500px;
+  width: 90%;
+`
+
 export const StyledFetchButton = styled.button`
   appearance: none;
   outline: none;
@@ -65,6 +72,8 @@ export const StyledOutlineButtonWhite = styled(StyledButton)`
 export const StyledButtonAddImg = styled(StyledOutlineButtonWhite)`
   bottom: 90px;
   position: absolute;
+  max-width: 485px;
+  width: 83%;
   @media (min-width: 560px) {
     display: none;
   }

@@ -47,7 +47,6 @@ const UploadImageForm = ({ handleImagesDropZone }) => {
           </Dropzone>
           <StyledImageContainer>
             <StyledButtonAddImg {...getRootProps()}>
-              {' '}
               <input
                 name="images"
                 type="file"
