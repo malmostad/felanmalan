@@ -1,8 +1,9 @@
+import { useEffect, useState, useContext } from 'react'
 import UploadImageForm from './form/UploadImageForm'
 import { v4 as uuidv4 } from 'uuid'
 import { useUpdate } from '../../contexts/UpdateContext'
-import { useEffect, useState } from 'react'
 import Grid from './Grid'
+import { NavigationContext } from '../../contexts/NavigationContext'
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
@@ -13,6 +14,7 @@ const UploadImageView = () => {
   const { setCurrentViewHeading, imagesToBeUploaded } = useUpdate()
   const [uploading, setUploading] = useState(false)
   const { setImagesToBeUploaded } = useUpdate()
+  const { dispatch: navigationDispatch } = useContext(NavigationContext)
 
   useEffect(() => {
     setCurrentViewHeading(
@@ -27,7 +29,11 @@ const UploadImageView = () => {
 
   useEffect(() => {
     if (imagesToBeUploaded.length) {
+      navigationDispatch({ type: 'disableSkip' })
       setUploading(true)
+    } else {
+      navigationDispatch({ type: 'enableNext' })
+      navigationDispatch({ type: 'disableNext' })
     }
   }, [imagesToBeUploaded])
 
