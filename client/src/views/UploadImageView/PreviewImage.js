@@ -11,9 +11,12 @@ import {
   StyledCellUpload,
 } from '../../components/styles/containers/Containers'
 import ProgressBar from './ProgressBar'
+import { RemoveImg } from './styles/styles'
+import { BsTrash } from 'react-icons/bs'
 
 const PreviewImage = ({ image }) => {
   let uploadRef = useRef(image)
+  const [isHovering, setIsHoovering] = useState(false)
   const currentFile = uploadRef.current
   const [uploadProgress, setUploadProgress] = useState(uploadRef.current.uploadStatus)
   const [showProgressBar, setShowProgressBar] = useState(false)
@@ -58,17 +61,24 @@ const PreviewImage = ({ image }) => {
       payload: transformToIdOnly,
     })
   }
+  const onMouseEnter = () => {
+    setIsHoovering(true)
+  }
+
+  const onMouseLeave = () => {
+    setIsHoovering(false)
+  }
 
   // check if the current file
   return (
     <>
-      <StyledImagesSize>
-        <StyledCell
-          handleRemoveImage={handleRemoveImage}
-          id={image.id}
-          src={image.preview_URL}
-          alt="alt"
-        />
+      <StyledImagesSize onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter}>
+        <StyledCell id={image.id} src={image.preview_URL} alt="alt" />
+        {isHovering && (
+          <RemoveImg onClick={() => handleRemoveImage(image)}>
+            <BsTrash style={{ margin: '10px auto', display: 'flex' }} size="2rem" />
+          </RemoveImg>
+        )}
         {showProgressBar && <StyledCellUpload></StyledCellUpload>}
         {showProgressBar && <ProgressBar max={100} progress={uploadProgress} />}
       </StyledImagesSize>

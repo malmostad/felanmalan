@@ -21,6 +21,13 @@ export const StyledButton = styled.button`
     font-weight: bold;
   }
 `
+
+export const StyledButtonSkip = styled(StyledButton)`
+  margin: 0;
+  max-width: 500px;
+  width: 90%;
+`
+
 export const StyledFetchButton = styled.button`
   appearance: none;
   outline: none;
@@ -49,6 +56,7 @@ export const StyledOutlineButtonGreen = styled(StyledButton)`
     color: ${({ theme }) => theme.colors.White};
   }
 `
+
 export const StyledOutlineButtonWhite = styled(StyledButton)`
   margin: 0 auto;
   width: 100%;
@@ -59,6 +67,15 @@ export const StyledOutlineButtonWhite = styled(StyledButton)`
   &:hover {
     background-color: ${({ theme }) => theme.colors.White};
     color: ${({ theme }) => theme.colors.PrimaryGreen};
+  }
+`
+export const StyledButtonAddImg = styled(StyledOutlineButtonWhite)`
+  bottom: 90px;
+  position: absolute;
+  max-width: 485px;
+  width: 83%;
+  @media (min-width: 560px) {
+    display: none;
   }
 `
 

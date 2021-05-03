@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import { useReport } from '../../contexts/ReportContext'
 import {
+  StyledButtonSkip,
   StyledButton,
   StyledOutlineButtonGreen,
   StyledOutlineButtonWhite,
@@ -18,19 +19,21 @@ const Navigation = () => {
     disableSubmit,
     submitViewIndex,
     disablePrevious,
+    disableSkip,
   } = state
 
   return (
     <>
       <StyledButtonOuter>
         <StyledButtonInner>
-          {currentViewIndex === 0 && (
-            <StyledButton
+          {currentViewIndex === 0 && !disableSkip && (
+            <StyledButtonSkip
               onClick={() => {
                 navigationDispatch({ type: 'next' })
+                navigationDispatch({ type: 'enableNext' })
               }}>
               Hoppa över
-            </StyledButton>
+            </StyledButtonSkip>
           )}
           {!(currentViewIndex === submitViewIndex || disableNext) && (
             <StyledButton
