@@ -16,6 +16,9 @@ const StyledProgressBar = styled.progress`
   margin-top: 5px;
   position: absolute;
   bottom: 0;
+  @media (max-height: 595px) {
+    width: 210px;
+  }
 
   //style web kits might be needed for moz/ie/etc, also for styling purposes
 

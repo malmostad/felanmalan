@@ -243,6 +243,11 @@ export const StyledCell = styled.img`
   display: flex;
   object-fit: cover;
   margin: 0 10px;
+  @media (max-height: 595px) {
+    width: 210px;
+    max-height: 210px;
+    min-height: 210px;
+  }
 `
 
 export const StyledCellUpload = styled.div`
@@ -253,7 +258,12 @@ export const StyledCellUpload = styled.div`
   margin: 0 10px;
   position: absolute;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.5); ;
+  background-color: rgba(255, 255, 255, 0.5);
+  @media (max-height: 595px) {
+    width: 210px;
+    max-height: 210px;
+    min-height: 210px;
+  }
 `
 export const StyledImagesSize = styled.div`
   max-width: 250px;
@@ -261,6 +271,12 @@ export const StyledImagesSize = styled.div`
   margin-top: 10px;
   margin-right: 10px;
   position: relative;
+  @media (max-height: 595px) {
+    max-height: 210px;
+    min-height: 210px;
+    max-width: 210px;
+    min-width: 210px;
+  }
 `
 
 export const StyledAddImage = styled.div`
@@ -268,6 +284,10 @@ export const StyledAddImage = styled.div`
   color: yellow;
   width: 250px;
   height: 250px;
+  @media (max-height: 595px) {
+    width: 210px;
+    height: 210px;
+  }
 `
 export const StyledButtonImage = styled.button`
   border: none;
@@ -279,7 +299,7 @@ export const StyledButtonImage = styled.button`
   align-items: center;
   background-color: #d5d5d5;
   width: 100%;
-  height: 250px;
+  height: 100%;
   margin: 0 10px;
   cursor: pointer;
   box-sizing: content-box;
@@ -309,6 +329,10 @@ export const StyledImg = styled.img`
   object-fit: cover;
   width: 250px;
   height: 250px;
+  @media (max-height: 595px) {
+    width: 210px;
+    height: 210px;
+  }
 `
 export const StyledAddImages = styled.div`
   padding-top: 10px;
@@ -317,6 +341,10 @@ export const StyledAddImages = styled.div`
   width: 250px;
   height: 250px;
   border: 1px solid black;
+  @media (max-height: 595px) {
+    width: 210px;
+    height: 210px;
+  }
 `
 
 export const StyledUploadContainer = styled.div`
