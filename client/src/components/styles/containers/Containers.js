@@ -321,7 +321,7 @@ export const StyledAddImages = styled.div`
 
 export const StyledUploadContainer = styled.div`
   width: 100vw;
-  height: calc(100vh - 280px);
+  height: calc(100vh - 230px);
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   @media (min-width: 560px) {
     background-color: ${({ theme }) => theme.colors.White};
