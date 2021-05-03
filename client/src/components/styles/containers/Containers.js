@@ -242,7 +242,6 @@ export const StyledCell = styled.img`
   min-height: 250px;
   display: flex;
   object-fit: cover;
-<<<<<<< HEAD
   margin: 0 10px;
 `
 
@@ -251,13 +250,10 @@ export const StyledCellUpload = styled.div`
   max-height: 250px;
   min-height: 250px;
   display: flex;
-=======
->>>>>>> master
   margin: 0 10px;
   position: absolute;
   top: 0;
-  opacity: 0.5;
-  background-color: ${({ theme }) => theme.colors.White};
+  background-color: rgba(255, 255, 255, 0.5); ;
 `
 export const StyledImagesSize = styled.div`
   max-width: 250px;

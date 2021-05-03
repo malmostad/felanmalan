@@ -30,10 +30,10 @@ const UploadImageView = () => {
   useEffect(() => {
     if (imagesToBeUploaded.length) {
       navigationDispatch({ type: 'disableSkip' })
+      navigationDispatch({ type: 'enableNext' })
       setUploading(true)
     } else {
       setUploading(false)
-      navigationDispatch({ type: 'enableNext' })
       navigationDispatch({ type: 'disableNext' })
     }
   }, [imagesToBeUploaded])
