@@ -2,12 +2,16 @@ import { useContext } from 'react'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import { useReport } from '../../contexts/ReportContext'
 import {
-  StyledButtonSkip,
   StyledButton,
   StyledOutlineButtonGreen,
   StyledOutlineButtonWhite,
+  StyledOutlineButtonWhiteFirstPage,
 } from '../styles/buttons/Buttons'
-import { StyledButtonOuter, StyledButtonInner } from '../../components/styles/containers/Containers'
+import {
+  StyledButtonOuter,
+  StyledButtonInner,
+  StyledButtonOuterFirstPage,
+} from '../../components/styles/containers/Containers'
 
 const Navigation = () => {
   const { dispatch: reportDispatch } = useReport()
@@ -27,13 +31,15 @@ const Navigation = () => {
       <StyledButtonOuter>
         <StyledButtonInner>
           {currentViewIndex === 0 && !disableSkip && (
-            <StyledButtonSkip
-              onClick={() => {
-                navigationDispatch({ type: 'next' })
-                navigationDispatch({ type: 'enableNext' })
-              }}>
-              Hoppa över
-            </StyledButtonSkip>
+            <StyledButtonOuterFirstPage>
+              <StyledOutlineButtonWhiteFirstPage
+                onClick={() => {
+                  navigationDispatch({ type: 'next' })
+                  navigationDispatch({ type: 'enableNext' })
+                }}>
+                Hoppa över
+              </StyledOutlineButtonWhiteFirstPage>
+            </StyledButtonOuterFirstPage>
           )}
           {!(currentViewIndex === submitViewIndex || disableNext) && (
             <StyledButton

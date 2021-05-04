@@ -69,6 +69,14 @@ export const StyledOutlineButtonWhite = styled(StyledButton)`
     color: ${({ theme }) => theme.colors.PrimaryGreen};
   }
 `
+export const StyledOutlineButtonWhiteFirstPage = styled(StyledButton)`
+  margin: 0 auto;
+  max-width: 485px;
+  width: 83%;
+  color: ${({ theme }) => theme.colors.White};
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+  border: 2px solid ${({ theme }) => theme.colors.White};
+`
 export const StyledButtonAddImg = styled(StyledOutlineButtonWhite)`
   bottom: 90px;
   position: absolute;
