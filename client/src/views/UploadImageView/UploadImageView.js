@@ -30,10 +30,10 @@ const UploadImageView = () => {
   useEffect(() => {
     if (imagesToBeUploaded.length) {
       navigationDispatch({ type: 'disableSkip' })
+      navigationDispatch({ type: 'enableNext' })
       setUploading(true)
     } else {
       setUploading(false)
-      navigationDispatch({ type: 'enableNext' })
       navigationDispatch({ type: 'disableNext' })
     }
   }, [imagesToBeUploaded])
@@ -63,8 +63,11 @@ const UploadImageView = () => {
 
   return (
     <>
-      {uploading && <Grid handleImages={handleImages} images={imagesToBeUploaded} />}
-      <UploadImageForm handleImagesDropZone={handleImagesDropZone} />
+      {uploading ? (
+        <Grid handleImages={handleImages} images={imagesToBeUploaded} />
+      ) : (
+        <UploadImageForm handleImagesDropZone={handleImagesDropZone} />
+      )}
     </>
   )
 }
