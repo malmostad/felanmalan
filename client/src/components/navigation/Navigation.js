@@ -8,9 +8,11 @@ import {
   StyledOutlineButtonWhite,
 } from '../styles/buttons/Buttons'
 import { StyledButtonOuter, StyledButtonInner } from '../../components/styles/containers/Containers'
+import { useUpdate } from '../../contexts/UpdateContext'
 
 const Navigation = () => {
   const { dispatch: reportDispatch } = useReport()
+  const { setImagesToBeUploaded } = useUpdate()
   const { state, dispatch: navigationDispatch } = useContext(NavigationContext)
   const {
     disableNext,
@@ -55,6 +57,7 @@ const Navigation = () => {
             <StyledButtonOuter green>
               <StyledOutlineButtonWhite
                 onClick={() => {
+                  setImagesToBeUploaded([])
                   reportDispatch({ type: 'clearFormInfo' })
                   navigationDispatch({ type: 'reset' })
                 }}>

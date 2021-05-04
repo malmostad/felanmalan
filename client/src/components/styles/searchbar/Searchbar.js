@@ -49,6 +49,7 @@ export const StyledSearchResultList = styled.div`
   background-color: white;
 `
 export const StyledResultUl = styled.ul`
+  list-style: none;
   :focus {
     outline: none;
   }
