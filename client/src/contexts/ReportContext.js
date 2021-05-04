@@ -51,10 +51,6 @@ export const ReportProvider = ({ children }) => {
   }
   const [formState, dispatch] = useReducer(formReducer, initialReportData)
 
-  useEffect(() => {
-    console.log('this us our report', formState)
-  }, [formState])
-
   const handelSetFormInfo = (name, payload) => {
     dispatch({
       type: 'setFormInfo',
