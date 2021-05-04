@@ -52,6 +52,13 @@ export const StyledButtonOuter = styled.div`
   background-color: ${({ green, theme }) =>
     green ? theme.colors.PrimaryGreen : theme.colors.White};
 `
+export const StyledButtonOuterFirstPage = styled(StyledButtonOuter)`
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+  align-self: center;
+  @media (min-width: 560px) {
+    background-color: ${({ theme }) => theme.colors.White};
+  }
+`
 export const StyledButtonOuterGreenBg = styled.div`
   transition: transform 0.3s ease-out;
   display: flex;
@@ -71,6 +78,17 @@ export const StyledButtonInner = styled.div`
   width: 100%;
   height: 100%;
   flex-direction: row-reverse;
+`
+export const StyledButtonInnerFirstPage = styled.div`
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+  width: 100%;
+  height: 100%;
+  flex-direction: row-reverse;
+  background-color: #037540;
 `
 // loading container
 
