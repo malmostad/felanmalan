@@ -42,6 +42,10 @@ export const StyledInputSearchBar = styled.input`
   left: 0;
   right: 0;
   border: none;
+  @media (max-width: 560px) {
+    font-size: 1rem;
+    height: 50px;
+  }
 `
 export const StyledSearchResultList = styled.div`
   width: 100%;
