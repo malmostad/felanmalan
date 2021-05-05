@@ -69,13 +69,7 @@ const SearchBar = (address) => {
     setSearchResults([])
   }
 
-  const deb = useCallback(
-    debounce((text) => handleInputChange(text), 800),
-    []
-  )
-  const handleText = (text) => {
-    deb(text)
-  }
+  const onChange = debounce((text) => handleInputChange(text), 800)
 
   return (
     <StyledLabelSearchBar>
@@ -91,7 +85,7 @@ const SearchBar = (address) => {
             onClick={clearSearchbar}
             type="text"
             placeholder="Search"
-            onChange={handleText}
+            onChange={onChange}
           />
         </StyledDivBar>
         {noResult ? (
