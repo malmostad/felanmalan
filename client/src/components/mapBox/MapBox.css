@@ -3,21 +3,10 @@
 }
 
 .pin-marker {
-  width: 30px;
-  height: 30px;
   position: fixed;
   z-index: 98;
-  top: calc(50% - 40px);
-  left: 50.3%;
-  z-index: 1;
-}
-
-.blob {
-  position: relative;
-  background: #199bff;
-  border-radius: 50%;
-  border: 3.5px solid white;
-  height: 25px;
-  width: 25px;
-  box-shadow: 0 0 0 0 rgb(118, 168, 243, 1);
+  height: 30px;
+  width: 30px;
+  top: calc(50% - 65px);
+  left: calc(50% - 15px);
 }
