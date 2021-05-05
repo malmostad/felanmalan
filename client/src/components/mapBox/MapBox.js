@@ -1,5 +1,10 @@
 import { useContext, useRef, useState, useEffect } from 'react'
-import ReactMapGl, { NavigationControl, FlyToInterpolator, WebMercatorViewport } from 'react-map-gl'
+import ReactMapGl, {
+  Marker,
+  NavigationControl,
+  FlyToInterpolator,
+  WebMercatorViewport,
+} from 'react-map-gl'
 import { MapContext } from '../../contexts/MapContext'
 import CurrentLocationButton from '../CurrentLocation/CurrentLocationButton'
 import SearchBar from '../searchBar/SearchBar'
@@ -118,6 +123,12 @@ const MapBox = () => {
             style={{ right: 30, bottom: 80 }}
           />
           {showLocationButton && <CurrentLocationButton />}
+
+          {showPositionMarker && (
+            <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
+              <div className="blob"></div>
+            </Marker>
+          )}
           <MarkerIcon className="pin-marker" />
         </ReactMapGl>
       </div>
