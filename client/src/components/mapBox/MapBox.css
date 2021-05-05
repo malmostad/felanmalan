@@ -21,3 +21,20 @@
   width: 25px;
   box-shadow: 0 0 0 0 rgb(118, 168, 243, 1);
 }
+
+.search-icon {
+  display: flex;
+  align-self: center;
+  color: #757575;
+  margin-left: 10px;
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 560px) {
+  .search-icon {
+    font-size: 2rem;
+  }
+}
+
+/* size="1.4rem"
+style={{ color: '#757575', marginLeft: '10px', marginTop: '7px' }} */

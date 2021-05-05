@@ -3,6 +3,7 @@ import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
 import { debounce } from 'lodash'
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
+import '../mapBox/MapBox.css'
 import {
   StyledLabelSearchBar,
   StyledInputSearchBar,
@@ -81,16 +82,13 @@ const SearchBar = (address) => {
     <StyledLabelSearchBar>
       <StyledSearchLabel>
         <StyledDivBar>
-          <SearchIcon
-            size="1.4rem"
-            style={{ color: '#757575', marginLeft: '10px', marginTop: '7px' }}
-          />
+          <SearchIcon className="search-icon" />
 
           <StyledInputSearchBar
             ref={searchbarRef}
             onClick={clearSearchbar}
             type="text"
-            placeholder="Search"
+            placeholder="Sök efter en adress"
             onChange={handleText}
           />
         </StyledDivBar>
