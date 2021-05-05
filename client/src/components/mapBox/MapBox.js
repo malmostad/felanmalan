@@ -125,7 +125,11 @@ const MapBox = () => {
           {showLocationButton && <CurrentLocationButton />}
 
           {showPositionMarker && (
-            <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
+            <Marker
+              latitude={userLocation.latitude}
+              longitude={userLocation.longitude}
+              offsetLeft={-12.5}
+              offsetTop={-12.5}>
               <div className="blob"></div>
             </Marker>
           )}
