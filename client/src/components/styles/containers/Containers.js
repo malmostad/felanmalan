@@ -38,8 +38,8 @@ export const StyledOuterFollowUpView = styled(StyledOuter)`
   @media (max-width: 560px) {
     min-height: calc(100vh - 268px);
   }
-  @media (max-width: 560px) and (max-height: 568px) {
-    min-height: calc(100vh - 266px);
+  @media (max-width: 560px) and (max-height: 620px) {
+    min-height: calc(100vh - 256px);
   }
 `
 
@@ -202,7 +202,7 @@ export const StyledHeaderContainer = styled.div`
   padding-bottom: 40px;
   margin-bottom: -0.1rem;
   @media (max-height: 620px) {
-    min-height: 230px;
+    min-height: 225px;
   }
 `
 export const StyledHeaderContainerText = styled.div`
@@ -369,7 +369,7 @@ export const StyledAddImages = styled.div`
 
 export const StyledUploadContainer = styled.div`
   width: 100vw;
-  height: calc(100vh - 230px);
+  height: calc(100vh - 225px);
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   @media (min-width: 560px) {
     background-color: ${({ theme }) => theme.colors.White};
