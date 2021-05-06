@@ -10,7 +10,6 @@ import {
   StyledError,
   StyledFormWrapper,
   StyledInput,
-  InputFormSecond,
   StyledLabel,
   StyledCheckBox,
   StyledFollowUpBox,
@@ -121,7 +120,7 @@ const ContactInfoView = () => {
             <StyledLabel htmlFor="email">
               <StyledBoldHeader>E-post</StyledBoldHeader>
               {shouldRenderEmailError() && <StyledError>Kontrollera email</StyledError>}
-              <InputFormSecond
+              <StyledInput
                 placeholder="Skriv din email"
                 type="email"
                 name="email"
@@ -135,7 +134,7 @@ const ContactInfoView = () => {
             <StyledLabel htmlFor="phone">
               <StyledBoldHeader>Telefonnummer</StyledBoldHeader>
               {shouldRenderPhoneError() && <StyledError>Kontrollera telefonnummer</StyledError>}
-              <InputFormSecond
+              <StyledInput
                 placeholder="Skriv ditt telefonnummer"
                 type="phone"
                 name="phone"

@@ -46,7 +46,7 @@ const DescriptionView = () => {
         <StyledFormDescription>
           <StyledLabel htmlFor="Beskrivning">
             <StyledBoldHeader>Beskriv problemet du vill felanmäla</StyledBoldHeader>
-            {!formState.description && <DescriptionSpan> * </DescriptionSpan>}
+            <DescriptionSpan> * </DescriptionSpan>
           </StyledLabel>
           <StyledTextArea
             type="text"
