@@ -34,17 +34,7 @@ export const ReportProvider = ({ children }) => {
           images: payload,
         }
       case 'clearFormInfo':
-        return {
-          images: [],
-          latitude: 55.6051458,
-          longitude: 13.003365,
-          description: '',
-          address: '',
-          name: '',
-          email: '',
-          phone: '',
-          enable_tracking: false,
-        }
+        return { ...initialReportData }
       default:
         return formState
     }
