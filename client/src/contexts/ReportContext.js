@@ -34,18 +34,12 @@ export const ReportProvider = ({ children }) => {
           images: payload,
         }
       case 'clearFormInfo':
-        return {
-          initialReportData,
-        }
+        return { ...initialReportData }
       default:
         return formState
     }
   }
   const [formState, dispatch] = useReducer(formReducer, initialReportData)
-
-  useEffect(() => {
-    console.log('this us our report', formState)
-  }, [formState])
 
   const handelSetFormInfo = (name, payload) => {
     dispatch({

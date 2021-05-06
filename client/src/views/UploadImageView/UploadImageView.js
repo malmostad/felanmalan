@@ -11,9 +11,8 @@ import {
 import { StyledHeroContainer } from '../../components/styles/containers/Containers'
 
 const UploadImageView = () => {
-  const { setCurrentViewHeading, imagesToBeUploaded } = useUpdate()
+  const { setCurrentViewHeading, imagesToBeUploaded, setImagesToBeUploaded } = useUpdate()
   const [uploading, setUploading] = useState(false)
-  const { setImagesToBeUploaded } = useUpdate()
   const { dispatch: navigationDispatch } = useContext(NavigationContext)
 
   useEffect(() => {

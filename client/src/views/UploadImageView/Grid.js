@@ -1,23 +1,19 @@
 import {
   StyledTable,
   StyledRow,
-  StyledAddImages,
   StyledAddImage,
-  StyledCell,
   StyledTouchCharter,
   StyledButtonImage,
   StyledFlexTheContainer,
 } from '../../components/styles/containers/Containers'
 import PreviewImage from './PreviewImage'
 import { useEffect, useState, useRef } from 'react'
-import styled from 'styled-components'
 import { CgMathPlus as OutlinePlus } from 'react-icons/cg'
 
 const Grid = ({ images, handleImages }) => {
   const [gridImages, setGridImages] = useState(images)
   const fileInput = useRef(null)
 
-  //append new image to grid if added
   useEffect(() => {
     setGridImages(images)
   }, [images])
