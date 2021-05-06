@@ -45,6 +45,10 @@ html {
   width: 100%;
 }
 
+a {
+  color: white;
+}
+
 `
 
 export default GlobalStyle

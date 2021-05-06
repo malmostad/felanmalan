@@ -34,9 +34,12 @@ export const StyledOuter = styled.div`
 `
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
-  min-height: calc(100vh - 270px);
+  min-height: calc(100vh - 337px);
   @media (max-width: 560px) {
-    min-height: calc(100vh - 270px);
+    min-height: calc(100vh - 268px);
+  }
+  @media (max-width: 560px) and (max-height: 620px) {
+    min-height: calc(100vh - 256px);
   }
 `
 
@@ -142,17 +145,20 @@ export const StyledFullContainer = styled.div`
 `
 
 export const StyledContentFollowUpView = styled.div`
+  display: flex;
   overflow: hidden;
   width: 100%;
   max-width: 560px;
   margin: 0px auto;
   flex-direction: column;
+  align-items: center;
   background-color: #037540;
   color: white;
   font-size: 22px;
   z-index: 50;
+  height: 415px;
   @media (max-width: 560px) {
-    width: 300px;
+    height: auto;
     margin: 0 auto;
   }
 `
@@ -195,11 +201,8 @@ export const StyledHeaderContainer = styled.div`
   min-height: 270px;
   padding-bottom: 40px;
   margin-bottom: -0.1rem;
-  @media (max-width: 560px) {
-    min-height: 280px;
-  }
   @media (max-height: 620px) {
-    min-height: 240px;
+    min-height: 225px;
   }
 `
 export const StyledHeaderContainerText = styled.div`
@@ -216,7 +219,7 @@ export const StyledHeroContainer = styled.div`
     padding-right: 12px;
     width: 100%;
     margin: 0 auto;
-    max-width: 560px;
+    max-width: 296px;
   }
 `
 
@@ -366,7 +369,7 @@ export const StyledAddImages = styled.div`
 
 export const StyledUploadContainer = styled.div`
   width: 100vw;
-  height: calc(100vh - 230px);
+  height: calc(100vh - 225px);
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   @media (min-width: 560px) {
     background-color: ${({ theme }) => theme.colors.White};
