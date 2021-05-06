@@ -21,6 +21,13 @@ export const StyledButton = styled.button`
     font-weight: bold;
   }
 `
+
+export const StyledButtonSkip = styled(StyledButton)`
+  margin: 0;
+  max-width: 500px;
+  width: 90%;
+`
+
 export const StyledFetchButton = styled.button`
   appearance: none;
   outline: none;
@@ -49,6 +56,7 @@ export const StyledOutlineButtonGreen = styled(StyledButton)`
     color: ${({ theme }) => theme.colors.White};
   }
 `
+
 export const StyledOutlineButtonWhite = styled(StyledButton)`
   margin: 0 auto;
   width: 100%;
@@ -59,6 +67,23 @@ export const StyledOutlineButtonWhite = styled(StyledButton)`
   &:hover {
     background-color: ${({ theme }) => theme.colors.White};
     color: ${({ theme }) => theme.colors.PrimaryGreen};
+  }
+`
+export const StyledOutlineButtonWhiteFirstPage = styled(StyledButton)`
+  margin: 0 auto;
+  max-width: 485px;
+  width: 83%;
+  color: ${({ theme }) => theme.colors.White};
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+  border: 2px solid ${({ theme }) => theme.colors.White};
+`
+export const StyledButtonAddImg = styled(StyledOutlineButtonWhite)`
+  bottom: 90px;
+  position: absolute;
+  max-width: 485px;
+  width: 83%;
+  @media (min-width: 560px) {
+    display: none;
   }
 `
 
@@ -74,5 +99,30 @@ export const StyledReadMoreButton = styled(StyledButton)`
     filter: brightness(100%);
     text-decoration: underline;
     color: white;
+  }
+`
+
+export const StyledDropzoneContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 55vh;
+`
+
+export const StyledDropzone = styled.button`
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.PrimaryGreen};
+  width: 100%;
+  max-width: 560px;
+  height: 100%;
+  max-height: 230px;
+  cursor: pointer;
+  border-radius: 10px;
+  -moz-box-shadow: inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 5px #000000;
+  box-shadow: inset 0 0 5px #000000;
+  @media (max-width: 560px) {
+    display: none;
   }
 `

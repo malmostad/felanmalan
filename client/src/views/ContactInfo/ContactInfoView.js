@@ -155,10 +155,10 @@ const ContactInfoView = () => {
             />
             <StyledTextFollowUp> Vill du få uppföljning på ditt ärende?</StyledTextFollowUp>
           </StyledFollowUpBox>
+          {enable_tracking.current.checked && !trackingRequirementsFulfilled() && (
+            <StyledError> Fyll i telefonnumer eller e-post </StyledError>
+          )}
         </StyledFormDescription>
-        {enable_tracking.current.checked && !trackingRequirementsFulfilled() && (
-          <StyledError> Fyll i telefonnumer eller e-post </StyledError>
-        )}
       </StyledFormWrapper>
     </>
   )

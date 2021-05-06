@@ -1,8 +1,9 @@
-import { useState, useContext, useRef, useEffect, useCallback } from 'react'
+import { useState, useContext, useRef, useEffect } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
 import { debounce } from 'lodash'
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
+import '../mapBox/MapBox.css'
 import {
   StyledLabelSearchBar,
   StyledInputSearchBar,
@@ -26,7 +27,6 @@ const SearchBar = (address) => {
   }, [address.address])
 
   const handleInputChange = async (e) => {
-    setNoResult(true)
     if (e.target.value.length >= 1) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
 
@@ -50,10 +50,8 @@ const SearchBar = (address) => {
     setNoResult(false)
   }
 
-  const handleClickAddress = (e) => {
-    const findAddress = searchResults.find(
-      (address) => address.id || address.place_name === e.target.attributes.id.value
-    )
+  const handleClickAddress = (id) => {
+    const findAddress = searchResults.find((address) => address.id === id)
     const payload = {
       latitude: findAddress.center[1],
       longitude: findAddress.center[0],
@@ -64,34 +62,27 @@ const SearchBar = (address) => {
     } else {
       searchbarRef.current.value = findAddress.text + ' ' + findAddress.address
     }
-    dispatch({ type: 'handleFlyOver' })
-    dispatch({ type: 'handleViewportChange', payload })
+    dispatch({
+      type: 'handleViewportChange',
+      payload: { ...payload, transitionDuration: 2300 },
+    })
     setSearchResults([])
   }
 
-  const deb = useCallback(
-    debounce((text) => handleInputChange(text), 800),
-    []
-  )
-  const handleText = (text) => {
-    deb(text)
-  }
+  const onChange = debounce((text) => handleInputChange(text), 800)
 
   return (
     <StyledLabelSearchBar>
       <StyledSearchLabel>
         <StyledDivBar>
-          <SearchIcon
-            size="1.4rem"
-            style={{ color: '#757575', marginLeft: '10px', marginTop: '7px' }}
-          />
+          <SearchIcon className="search-icon" />
 
           <StyledInputSearchBar
             ref={searchbarRef}
             onClick={clearSearchbar}
             type="text"
-            placeholder="Search"
-            onChange={handleText}
+            placeholder="Sök efter en adress"
+            onChange={onChange}
           />
         </StyledDivBar>
         {noResult ? (

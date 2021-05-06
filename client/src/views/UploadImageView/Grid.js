@@ -1,23 +1,57 @@
-import { StyledFlexCenter, StyledGrid } from '../../components/styles/containers/Containers'
+import {
+  StyledTable,
+  StyledRow,
+  StyledAddImage,
+  StyledTouchCharter,
+  StyledButtonImage,
+  StyledFlexTheContainer,
+} from '../../components/styles/containers/Containers'
 import PreviewImage from './PreviewImage'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import { CgMathPlus as OutlinePlus } from 'react-icons/cg'
 
-const Grid = ({ images }) => {
+const Grid = ({ images, handleImages }) => {
   const [gridImages, setGridImages] = useState(images)
+  const fileInput = useRef(null)
 
-  //append new image to grid if added
   useEffect(() => {
     setGridImages(images)
   }, [images])
 
   return (
-    <StyledFlexCenter>
-      <StyledGrid>
-        {images.map((img, index) => (
-          <PreviewImage key={index} image={img} />
-        ))}
-      </StyledGrid>
-    </StyledFlexCenter>
+    <StyledTouchCharter>
+      <StyledTable>
+        <StyledFlexTheContainer>
+          <StyledRow>
+            {images.map((img, index) => (
+              <PreviewImage key={index} image={img} />
+            ))}{' '}
+            <StyledAddImage>
+              <>
+                <input
+                  name="images"
+                  type="file"
+                  id="upload-button"
+                  multiple
+                  onChange={handleImages}
+                  ref={fileInput}
+                  style={{ display: 'none' }}
+                  accept="image/*"
+                />
+                <StyledButtonImage onClick={() => fileInput.current.click()}>
+                  <OutlinePlus
+                    size="2.4rem"
+                    style={{
+                      color: '#046a38',
+                    }}
+                  />
+                </StyledButtonImage>
+              </>
+            </StyledAddImage>
+          </StyledRow>
+        </StyledFlexTheContainer>
+      </StyledTable>
+    </StyledTouchCharter>
   )
 }
 

@@ -1,4 +1,4 @@
-import { useContext, createContext, useReducer } from 'react'
+import { useContext, createContext, useReducer, useEffect } from 'react'
 
 export const ReportContext = createContext()
 export const useReport = () => useContext(ReportContext)
@@ -26,12 +26,15 @@ export const ReportProvider = ({ children }) => {
       case 'uploadImages':
         return {
           ...formState,
-          [field]: payload,
+          images: [...formState.images, payload],
+        }
+      case 'removeImages':
+        return {
+          ...formState,
+          images: payload,
         }
       case 'clearFormInfo':
-        return {
-          initialReportData,
-        }
+        return { ...initialReportData }
       default:
         return formState
     }

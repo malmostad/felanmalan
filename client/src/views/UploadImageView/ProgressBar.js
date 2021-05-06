@@ -9,14 +9,20 @@ const StyledProgressBarOuter = styled.div`
 `
 
 const StyledProgressBar = styled.progress`
-  width: 190.5px;
+  width: 250px;
   border: none;
   height: 10px;
   color: green !important;
+  margin-top: 5px;
+  position: absolute;
+  bottom: 0;
+  @media (max-height: 595px) {
+    width: 210px;
+  }
 
   //style web kits might be needed for moz/ie/etc, also for styling purposes
 
-  /* ::-moz-orient {
+  ::-moz-orient {
   }
   ::-moz-progress-bar {
   }
@@ -27,17 +33,14 @@ const StyledProgressBar = styled.progress`
   ::-webkit-progress-value {
   }
   ::-webkit-progress-inner-element {
-  } */
+  }
 `
 const ProgressBar = ({ max, progress }) => {
   return (
     <StyledProgressBarOuter>
       <StyledFlexCenter>
-        <StyledProgressBar value={progress} max={max}>
-          {progress}%
-        </StyledProgressBar>
+        <StyledProgressBar value={progress} max={max}></StyledProgressBar>
       </StyledFlexCenter>
-      <label>{progress}%</label>
     </StyledProgressBarOuter>
   )
 }

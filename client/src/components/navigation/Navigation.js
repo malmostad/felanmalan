@@ -1,15 +1,22 @@
 import { useContext } from 'react'
 import { NavigationContext } from '../../contexts/NavigationContext'
 import { useReport } from '../../contexts/ReportContext'
+import { useUpdate } from '../../contexts/UpdateContext'
 import {
   StyledButton,
   StyledOutlineButtonGreen,
   StyledOutlineButtonWhite,
+  StyledOutlineButtonWhiteFirstPage,
 } from '../styles/buttons/Buttons'
-import { StyledButtonOuter, StyledButtonInner } from '../../components/styles/containers/Containers'
+import {
+  StyledButtonOuter,
+  StyledButtonInner,
+  StyledButtonOuterFirstPage,
+} from '../../components/styles/containers/Containers'
 
 const Navigation = () => {
   const { dispatch: reportDispatch } = useReport()
+  const { setImagesToBeUploaded } = useUpdate()
   const { state, dispatch: navigationDispatch } = useContext(NavigationContext)
   const {
     disableNext,
@@ -18,12 +25,24 @@ const Navigation = () => {
     disableSubmit,
     submitViewIndex,
     disablePrevious,
+    disableSkip,
   } = state
 
   return (
     <>
       <StyledButtonOuter>
         <StyledButtonInner>
+          {currentViewIndex === 0 && !disableSkip && (
+            <StyledButtonOuterFirstPage>
+              <StyledOutlineButtonWhiteFirstPage
+                onClick={() => {
+                  navigationDispatch({ type: 'next' })
+                  navigationDispatch({ type: 'enableNext' })
+                }}>
+                Hoppa över
+              </StyledOutlineButtonWhiteFirstPage>
+            </StyledButtonOuterFirstPage>
+          )}
           {!(currentViewIndex === submitViewIndex || disableNext) && (
             <StyledButton
               onClick={() => {
@@ -44,6 +63,7 @@ const Navigation = () => {
             <StyledButtonOuter green>
               <StyledOutlineButtonWhite
                 onClick={() => {
+                  setImagesToBeUploaded([])
                   reportDispatch({ type: 'clearFormInfo' })
                   navigationDispatch({ type: 'reset' })
                 }}>

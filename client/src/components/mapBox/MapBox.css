@@ -3,45 +3,37 @@
 }
 
 .pin-marker {
-  width: 30px;
-  height: 30px;
   position: fixed;
   z-index: 98;
-  top: calc(50% - 40px);
-  left: 50.3%;
-  z-index: 1;
+  height: 30px;
+  width: 30px;
+  top: calc(50% - 65px);
+  left: calc(50% - 15px);
 }
 
 .blob {
   position: relative;
   background: #199bff;
   border-radius: 50%;
-  border: 3px solid white;
-  height: 20px;
-  width: 20px;
-  margin: 10px;
+  border: 3.5px solid white;
+  height: 25px;
+  width: 25px;
   box-shadow: 0 0 0 0 rgb(118, 168, 243, 1);
-  transform: scale(2);
-  animation: pulse 2s infinite;
-}
-.mapboxgl-marker {
-  left: -5px;
-  top: -25px;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgb(118, 168, 243, 1);
-  }
+.search-icon {
+  display: flex;
+  align-self: center;
+  color: #757575;
+  margin-left: 10px;
+  font-size: 1.4rem;
+}
 
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-  }
-
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+@media screen and (max-width: 560px) {
+  .search-icon {
+    font-size: 2rem;
   }
 }
+
+/* size="1.4rem"
+style={{ color: '#757575', marginLeft: '10px', marginTop: '7px' }} */
