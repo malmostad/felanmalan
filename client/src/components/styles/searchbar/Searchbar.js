@@ -42,6 +42,10 @@ export const StyledInputSearchBar = styled.input`
   left: 0;
   right: 0;
   border: none;
+  @media (max-width: 560px) {
+    font-size: 1rem;
+    height: 50px;
+  }
 `
 export const StyledSearchResultList = styled.div`
   width: 100%;
@@ -49,6 +53,7 @@ export const StyledSearchResultList = styled.div`
   background-color: white;
 `
 export const StyledResultUl = styled.ul`
+  list-style: none;
   :focus {
     outline: none;
   }
@@ -87,6 +92,7 @@ export const StyledSecondaryAddress = styled.span`
   color: #8a8a8d;
 `
 export const StyledNoResult = styled(StyledSecondaryAddress)`
+  border-top: 1px solid #e4e4e4;
   font-size: 1rem;
   height: 80px;
   display: flex;

@@ -58,9 +58,10 @@ const MapBox = () => {
     handelSetFormInfo('latitude', payload.latitude)
   }
 
-  const onMouseDown = () => {
+  const removeFlyOver = () => {
     dispatch({ type: 'removeFlyOver' })
   }
+
   const onZoom = (viewport) => {
     const bounds = new WebMercatorViewport(viewport).getBounds()
     if (isOutOfBounds(bounds, maxBounds)) {
@@ -73,7 +74,7 @@ const MapBox = () => {
     dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 0 } })
   }
 
-  const onMouseUp = async () => {
+  const updateAddress = async () => {
     const fetchAddress = await fetchAddressMapBoxAPI(viewport)
 
     if (fetchAddress.number === undefined) {
@@ -112,8 +113,10 @@ const MapBox = () => {
           width="100vw"
           height="100%"
           onTransitionEnd={handleTransitionEnd}
-          onMouseDown={onMouseDown}
-          onMouseUp={onMouseUp}>
+          onMouseDown={removeFlyOver}
+          onMouseUp={updateAddress}
+          onTouchStart={removeFlyOver}
+          onTouchEnd={updateAddress}>
           <NavigationControl
             showCompass={false}
             onViewportChange={onZoom}
@@ -122,16 +125,15 @@ const MapBox = () => {
           {showLocationButton && <CurrentLocationButton />}
 
           {showPositionMarker && (
-            <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
+            <Marker
+              latitude={userLocation.latitude}
+              longitude={userLocation.longitude}
+              offsetLeft={-12.5}
+              offsetTop={-12.5}>
               <div className="blob"></div>
             </Marker>
           )}
-          <MarkerIcon
-            className="pin-marker"
-            style={{
-              color: '#05763C',
-            }}
-          />
+          <MarkerIcon className="pin-marker" />
         </ReactMapGl>
       </div>
     </>

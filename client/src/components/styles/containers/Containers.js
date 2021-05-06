@@ -222,7 +222,6 @@ export const StyledHeroContainer = styled.div`
 
 export const StyledTable = styled.div`
   width: fit-content;
-  overflow-x: scroll;
   padding-bottom: 2rem;
   display: flex;
 
@@ -327,7 +326,7 @@ export const StyledButtonImage = styled.button`
 `
 export const StyledTouchCharter = styled.div`
   overflow-y: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   width: 100%;
   background: transparent;
   top: 0;
