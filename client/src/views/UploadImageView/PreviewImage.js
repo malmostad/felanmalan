@@ -72,7 +72,10 @@ const PreviewImage = ({ image }) => {
   // check if the current file
   return (
     <>
-      <StyledImagesSize onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter}>
+      <StyledImagesSize
+        onTouchStart={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onMouseEnter={onMouseEnter}>
         <StyledCell id={image.id} src={image.preview_URL} alt="alt" />
         {showProgressBar && (
           <StyledCellUpload>
