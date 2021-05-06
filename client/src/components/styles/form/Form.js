@@ -7,6 +7,9 @@ export const StyledFormWrapper = styled.div`
   max-width: 560px;
   flex-grow: 1;
   margin-top: 2rem;
+  @media (max-height: 568px) {
+    margin-top: 10px;
+  }
 `
 
 export const StyledInput = styled.input`

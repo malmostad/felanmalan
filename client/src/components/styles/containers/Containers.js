@@ -34,9 +34,9 @@ export const StyledOuter = styled.div`
 `
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
-  min-height: calc(100vh - 270px);
+  min-height: calc(100vh - 337px);
   @media (max-width: 560px) {
-    min-height: calc(100vh - 270px);
+    min-height: calc(100vh - 266px);
   }
 `
 
@@ -199,11 +199,8 @@ export const StyledHeaderContainer = styled.div`
   min-height: 270px;
   padding-bottom: 40px;
   margin-bottom: -0.1rem;
-  @media (max-width: 560px) {
-    min-height: 280px;
-  }
   @media (max-height: 620px) {
-    min-height: 240px;
+    min-height: 230px;
   }
 `
 export const StyledHeaderContainerText = styled.div`

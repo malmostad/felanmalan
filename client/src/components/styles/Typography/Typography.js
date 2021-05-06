@@ -26,6 +26,7 @@ export const StyledHeroHeadingThin = styled(StyledHeroHeading)`
   font-weight: lighter;
   line-height: 64px;
   padding: 0;
+  padding-bottom: 4px;
   @media (max-width: 560px) {
     line-height: 39px;
   }
