@@ -27,7 +27,6 @@ const SearchBar = (address) => {
   }, [address.address])
 
   const handleInputChange = async (e) => {
-    setNoResult(true)
     if (e.target.value.length >= 1) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
 
