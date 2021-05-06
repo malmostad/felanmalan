@@ -3,13 +3,12 @@
 }
 
 .pin-marker {
-  width: 30px;
-  height: 30px;
   position: fixed;
   z-index: 98;
-  top: calc(50% - 40px);
-  left: 50.3%;
-  z-index: 1;
+  height: 30px;
+  width: 30px;
+  top: calc(50% - 65px);
+  left: calc(50% - 15px);
 }
 
 .blob {
