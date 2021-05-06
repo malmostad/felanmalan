@@ -46,9 +46,6 @@ export const StyledFollowUpBox = styled.div`
   display: flex;
 `
 
-export const InputFormSecond = styled(StyledInput)`
-  font-size: 16px;
-`
 export const StyledError = styled.div`
   margin-top: 10px;
   font-size: 15px;
