@@ -53,6 +53,7 @@ export const StyledSearchResultList = styled.div`
   background-color: white;
 `
 export const StyledResultUl = styled.ul`
+  list-style: none;
   :focus {
     outline: none;
   }
@@ -91,6 +92,7 @@ export const StyledSecondaryAddress = styled.span`
   color: #8a8a8d;
 `
 export const StyledNoResult = styled(StyledSecondaryAddress)`
+  border-top: 1px solid #e4e4e4;
   font-size: 1rem;
   height: 80px;
   display: flex;
