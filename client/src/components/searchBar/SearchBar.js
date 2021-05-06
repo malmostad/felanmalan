@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useEffect, useCallback } from 'react'
+import { useState, useContext, useRef, useEffect } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
 import { MapContext } from '../../contexts/MapContext'
 import { debounce } from 'lodash'
@@ -69,13 +69,7 @@ const SearchBar = (address) => {
     setSearchResults([])
   }
 
-  const deb = useCallback(
-    debounce((text) => handleInputChange(text), 800),
-    []
-  )
-  const handleText = (text) => {
-    deb(text)
-  }
+  const onChange = debounce((text) => handleInputChange(text), 800)
 
   return (
     <StyledLabelSearchBar>
@@ -88,7 +82,7 @@ const SearchBar = (address) => {
             onClick={clearSearchbar}
             type="text"
             placeholder="Sök efter en adress"
-            onChange={handleText}
+            onChange={onChange}
           />
         </StyledDivBar>
         {noResult ? (
