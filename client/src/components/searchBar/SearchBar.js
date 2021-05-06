@@ -13,19 +13,19 @@ import {
 import SearchResult from './SearchResult'
 
 const SearchBar = ({ address, renderPrefix, onResultSelect }) => {
-  const searchbarRef = useRef('')
   const [searchResults, setSearchResults] = useState([])
   const [noResult, setNoResult] = useState(false)
+  const [value, setValue] = useState('')
 
   useEffect(() => {
     if (address && renderPrefix) {
-      searchbarRef.current.value = `I närheten av: ${address}`
+      setValue(`I närheten av: ${address}`)
     } else {
-      searchbarRef.current.value = `${address}`
+      setValue(address)
     }
   }, [address])
 
-  const handleInputChange = async (e) => {
+  const updateSearchResults = async (e) => {
     if (e.target.value.length >= 1) {
       const response = await fetchSearchResultMapBoxApi(e.target.value)
 
@@ -37,15 +37,19 @@ const SearchBar = ({ address, renderPrefix, onResultSelect }) => {
       }
       setSearchResults(response)
     }
-    if (searchbarRef.current.value.length === 0) {
+    if (value === 0) {
       setSearchResults([])
       setNoResult(false)
     }
   }
-
+  const updateSearchResultsDebounced = debounce((e) => updateSearchResults(e), 800)
+  const onChange = (e) => {
+    setValue(e.target.value)
+    updateSearchResultsDebounced(e)
+  }
   const clearSearchbar = () => {
     setSearchResults([])
-    searchbarRef.current.value = ''
+    setValue('')
     setNoResult(false)
   }
 
@@ -61,8 +65,6 @@ const SearchBar = ({ address, renderPrefix, onResultSelect }) => {
     setSearchResults([])
   }
 
-  const onChange = debounce((text) => handleInputChange(text), 800)
-
   return (
     <StyledLabelSearchBar>
       <StyledSearchLabel>
@@ -70,9 +72,9 @@ const SearchBar = ({ address, renderPrefix, onResultSelect }) => {
           <SearchIcon className="search-icon" />
 
           <StyledInputSearchBar
-            ref={searchbarRef}
             onClick={clearSearchbar}
             type="text"
+            value={value}
             placeholder="Sök efter en adress"
             onChange={onChange}
           />
