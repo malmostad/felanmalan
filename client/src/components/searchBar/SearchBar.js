@@ -1,9 +1,7 @@
 import { useState, useContext, useRef, useEffect } from 'react'
 import { fetchSearchResultMapBoxApi } from '../../api/api'
-import { MapContext } from '../../contexts/MapContext'
 import { debounce } from 'lodash'
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
-import '../mapBox/MapBox.css'
 import {
   StyledLabelSearchBar,
   StyledInputSearchBar,
@@ -14,17 +12,18 @@ import {
 } from '../styles/searchbar/Searchbar'
 import SearchResult from './SearchResult'
 
-const SearchBar = (address) => {
+const SearchBar = ({ address, renderPrefix, onResultSelect }) => {
   const searchbarRef = useRef('')
-  const { dispatch } = useContext(MapContext)
   const [searchResults, setSearchResults] = useState([])
   const [noResult, setNoResult] = useState(false)
 
   useEffect(() => {
-    if (address.address) {
-      searchbarRef.current.value = `I närheten av: ${address.address}`
+    if (address && renderPrefix) {
+      searchbarRef.current.value = `I närheten av: ${address}`
+    } else {
+      searchbarRef.current.value = `${address}`
     }
-  }, [address.address])
+  }, [address])
 
   const handleInputChange = async (e) => {
     if (e.target.value.length >= 1) {
@@ -51,21 +50,14 @@ const SearchBar = (address) => {
   }
 
   const handleClickAddress = (id) => {
-    const findAddress = searchResults.find((address) => address.id === id)
+    const result = searchResults.find((address) => address.id === id)
     const payload = {
-      latitude: findAddress.center[1],
-      longitude: findAddress.center[0],
+      latitude: result.center[1],
+      longitude: result.center[0],
+      address: [result.text, result.address].join(' '),
       zoom: 16,
     }
-    if (findAddress.address === undefined) {
-      searchbarRef.current.value = findAddress.text
-    } else {
-      searchbarRef.current.value = findAddress.text + ' ' + findAddress.address
-    }
-    dispatch({
-      type: 'handleViewportChange',
-      payload: { ...payload, transitionDuration: 2300 },
-    })
+    onResultSelect(payload)
     setSearchResults([])
   }
 
