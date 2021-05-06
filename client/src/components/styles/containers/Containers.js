@@ -36,7 +36,7 @@ export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
   min-height: calc(100vh - 337px);
   @media (max-width: 560px) {
-    min-height: calc(100vh - 270px);
+    min-height: calc(100vh - 268px);
   }
   @media (max-width: 560px) and (max-height: 568px) {
     min-height: calc(100vh - 266px);
@@ -158,8 +158,7 @@ export const StyledContentFollowUpView = styled.div`
   z-index: 50;
   height: 415px;
   @media (max-width: 560px) {
-    height: 282px;
-    width: 300px;
+    height: auto;
     margin: 0 auto;
   }
 `

@@ -83,8 +83,12 @@ export const StyledTextTitle = styled(StyledText)`
 
 export const StyledBorder = styled.div`
   overflow: hidden;
-  max-width: 90%;
+  max-width: 100%;
   border: solid #f8c900 1px;
+  @media (max-width: 560px) {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
 `
 
 export const StyledTitleContainer = styled.div`

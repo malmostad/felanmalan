@@ -60,7 +60,7 @@ export const StyledOutlineButtonGreen = styled(StyledButton)`
 export const StyledOutlineButtonWhite = styled(StyledButton)`
   z-index: 50;
   margin: 0 auto;
-  width: 100%;
+  width: 90%;
   color: ${({ theme }) => theme.colors.White};
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   border: 2px solid ${({ theme }) => theme.colors.White};
