@@ -9,8 +9,8 @@ const CurrentLocationButton = () => {
   const { isLoading } = state
 
   useEffect(() => {
-    if (window.navigator) {
-      navigator.permissions.query({ name: 'geolocation' }).then(function (permission) {
+    if (window.navigator.permissions) {
+      window.navigator.permissions.query({ name: 'geolocation' }).then(function (permission) {
         permission.state === 'denied' && dispatch({ type: 'handleDisableButton' })
       })
     }
