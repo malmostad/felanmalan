@@ -22,6 +22,7 @@ const MapBox = () => {
   const mapRef = useRef()
   const [address, setAddress] = useState('')
   const [updateUserLocation, setUpdateUserLocation] = useState(false)
+  const [renderPrefix, setRenderPrefix] = useState(false)
   const { state, dispatch } = useContext(MapContext)
   const { viewport, userLocation, showPositionMarker, showLocationButton } = state
 
@@ -70,13 +71,27 @@ const MapBox = () => {
     dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 400 } })
   }
 
+  const onResultSelect = (payload) => {
+    setRenderPrefix(false)
+    setAddress(payload.address)
+    dispatch({
+      type: 'handleViewportChange',
+      payload: {
+        ...viewport,
+        longitude: payload.longitude,
+        latitude: payload.latitude,
+        transitionDuration: 400,
+      },
+    })
+  }
+
   const handleTransitionEnd = () => {
     dispatch({ type: 'handleViewportChange', payload: { ...viewport, transitionDuration: 0 } })
   }
 
   const updateAddress = async () => {
     const fetchAddress = await fetchAddressMapBoxAPI(viewport)
-
+    setRenderPrefix(true)
     if (fetchAddress.number === undefined) {
       setAddress(fetchAddress.address)
     } else {
@@ -102,7 +117,7 @@ const MapBox = () => {
   return (
     <>
       <div className="map-style">
-        <SearchBar address={address} />
+        <SearchBar address={address} renderPrefix={renderPrefix} onResultSelect={onResultSelect} />
         <ReactMapGl
           {...viewport}
           ref={mapRef}
