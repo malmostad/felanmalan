@@ -34,7 +34,7 @@ const StyledImageIcon = styled.div`
 `
 export const Dropzone = styled.div`
   width: 100%;
-  max-width: 560px;
+  max-width: 520px;
   height: 230px;
   margin: 50px auto;
   color: ${({ theme }) => theme.colors.PrimaryGreen};

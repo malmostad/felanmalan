@@ -23,9 +23,6 @@ const Grid = ({ images, handleImages }) => {
       <StyledTable>
         <StyledFlexTheContainer>
           <StyledRow>
-            {images.map((img, index) => (
-              <PreviewImage key={index} image={img} />
-            ))}{' '}
             <StyledAddImage>
               <>
                 <input
@@ -48,6 +45,9 @@ const Grid = ({ images, handleImages }) => {
                 </StyledButtonImage>
               </>
             </StyledAddImage>
+            {images.map((img, index) => (
+              <PreviewImage key={index} image={img} />
+            ))}{' '}
           </StyledRow>
         </StyledFlexTheContainer>
       </StyledTable>
