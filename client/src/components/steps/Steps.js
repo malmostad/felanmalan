@@ -12,10 +12,11 @@ const Steps = () => {
   const [cookies, setCookie] = useCookies(['cookieConsent'])
   const { error, errorMessenger, errorStatusCode } = useUpdate()
   const { state } = useContext(NavigationContext)
+  const { currentViewIndex, lastViewIndex } = state
 
   return (
     <>
-      <MainContainer>
+      <MainContainer currentViewIndex={currentViewIndex} lastViewIndex={lastViewIndex}>
         {cookies.cookieConsent ? (
           <>
             {formViews[state.currentViewIndex].type.name != 'MapView' && <HeaderSection />}

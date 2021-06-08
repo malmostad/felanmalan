@@ -2,12 +2,15 @@ import styled from 'styled-components/macro'
 import { flexCenterColumn, flexCenter } from '../mixins'
 
 export const MainContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  background-color: ${({ currentViewIndex, lastViewIndex, theme }) =>
+    currentViewIndex === lastViewIndex ? theme.colors.PrimaryGreen : theme.colors.White};
 `
 
 export const StyledFlexCenter = styled.div`
@@ -34,26 +37,29 @@ export const StyledOuter = styled.div`
 `
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
-  min-height: calc(100vh - 337px);
+  min-height: calc(100vh - 398px);
   @media (max-width: 560px) {
-    min-height: calc(100vh - 268px);
+    min-height: calc(100vh - 352px);
   }
   @media (max-width: 560px) and (max-height: 620px) {
-    min-height: calc(100vh - 256px);
+    min-height: calc(100vh - 315px);
   }
 `
-
 // button containers
 export const StyledButtonOuter = styled.div`
   transition: transform 0.3s ease-out;
   display: flex;
-  position: absolute;
-  height: 70px;
   width: 100%;
   bottom: 0;
   right: 0;
-  background-color: ${({ green, theme }) =>
-    green ? theme.colors.PrimaryGreen : theme.colors.White};
+  position: fixed;
+  background-color: ${({ windowWidth, currentViewIndex, lastViewIndex, formState, theme }) =>
+    (windowWidth < 560 && currentViewIndex === 0) || currentViewIndex === lastViewIndex
+      ? theme.colors.PrimaryGreen
+      : theme.colors.White};
+  background-color: ${({ formState, theme }) => formState > 0 && theme.colors.White};
+  background-color: ${({ currentViewIndex, lastViewIndex, theme }) =>
+    currentViewIndex === lastViewIndex && theme.colors.PrimaryGreen};
 `
 export const StyledButtonOuterFirstPage = styled(StyledButtonOuter)`
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
@@ -74,13 +80,14 @@ export const StyledButtonOuterGreenBg = styled.div`
 `
 export const StyledButtonInner = styled.div`
   display: flex;
-  margin: 0;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
-  padding: 10px 16px;
+  padding: 16px 0px;
   width: 100%;
   height: 100%;
   flex-direction: row-reverse;
+  max-width: 560px;
 `
 export const StyledButtonInnerFirstPage = styled.div`
   display: flex;
@@ -156,9 +163,10 @@ export const StyledContentFollowUpView = styled.div`
   color: white;
   font-size: 22px;
   z-index: 50;
-  height: 415px;
+  height: 220px;
+  align-self: center;
+  justify-content: center;
   @media (max-width: 560px) {
-    height: auto;
     margin: 0 auto;
   }
 `
@@ -199,8 +207,6 @@ export const StyledHeaderContainer = styled.div`
   align-content: center;
   height: auto;
   min-height: 270px;
-  padding-bottom: 40px;
-  margin-bottom: -0.1rem;
   @media (max-height: 620px) {
     min-height: 225px;
   }
@@ -212,7 +218,7 @@ export const StyledHeaderContainerText = styled.div`
   width: 100%;
 `
 export const StyledHeroContainer = styled.div`
-  padding-top: 90px;
+  padding-top: 60px;
   @media (max-width: 560px) {
     padding-top: 33px;
     padding-left: 12px;
@@ -304,6 +310,7 @@ export const StyledAddImage = styled.div`
   color: yellow;
   width: 250px;
   height: 250px;
+  margin-right: 10px;
   @media (max-height: 595px) {
     width: 210px;
     height: 210px;

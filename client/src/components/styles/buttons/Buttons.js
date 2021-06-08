@@ -5,7 +5,6 @@ export const StyledButton = styled.button`
   background-color: ${({ theme, bgGreen }) => (bgGreen ? theme.colors.PrimaryGreen : 'inherit')};
   font-size: ${({ theme }) => theme.FontSizes.ButtonText};
   margin: 0 10px;
-  max-width: 380px;
   height: 50px;
   color: ${({ theme }) => theme.colors.PrimaryWhite};
   width: 270px;
@@ -15,6 +14,8 @@ export const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   color: white;
+  width: 100%;
+  max-width: 520px;
   @media (max-width: 560px) {
     height: 50px;
     font-family: 'MyriadPro';
@@ -23,9 +24,9 @@ export const StyledButton = styled.button`
 `
 
 export const StyledButtonSkip = styled(StyledButton)`
-  margin: 0;
-  max-width: 500px;
-  width: 90%;
+  border: 2px solid
+    ${({ windowWidth, theme }) =>
+      windowWidth < 560 ? theme.colors.White : theme.colors.PrimaryGreen};
 `
 
 export const StyledFetchButton = styled.button`
@@ -48,6 +49,8 @@ export const StyledFetchButton = styled.button`
 `
 
 export const StyledOutlineButtonGreen = styled(StyledButton)`
+  width: 100%;
+  max-width: 530px;
   color: ${({ theme }) => theme.colors.PrimaryGreen};
   background-color: ${({ theme }) => theme.colors.White};
 
@@ -58,9 +61,6 @@ export const StyledOutlineButtonGreen = styled(StyledButton)`
 `
 
 export const StyledOutlineButtonWhite = styled(StyledButton)`
-  z-index: 50;
-  margin: 0 auto;
-  width: 90%;
   color: ${({ theme }) => theme.colors.White};
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   border: 2px solid ${({ theme }) => theme.colors.White};
@@ -72,17 +72,22 @@ export const StyledOutlineButtonWhite = styled(StyledButton)`
 `
 export const StyledOutlineButtonWhiteFirstPage = styled(StyledButton)`
   margin: 0 auto;
-  max-width: 485px;
-  width: 83%;
+  width: 100%;
+  max-width: 560px;
   color: ${({ theme }) => theme.colors.White};
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   border: 2px solid ${({ theme }) => theme.colors.White};
+  @media (max-width: 560px) {
+    max-width: 485px;
+    width: 83%;
+  }
 `
-export const StyledButtonAddImg = styled(StyledOutlineButtonWhite)`
+export const StyledButtonAddImg = styled(StyledButton)`
+  width: 95%;
   bottom: 90px;
+  left: 0;
   position: absolute;
-  max-width: 485px;
-  width: 83%;
+  border: 2px solid ${({ theme }) => theme.colors.White};
   @media (min-width: 560px) {
     display: none;
   }
