@@ -4,8 +4,8 @@ export const MapContext = createContext();
 
 const initialState = {
   viewport: {
-    latitude: "",
-    longitude: "",
+    latitude: 55.6051458,
+    longitude: 13.003365,
     zoom: 13,
   },
   maxBounds: [
@@ -15,8 +15,8 @@ const initialState = {
     55.6585718499375,
   ],
   userLocation: {
-    latitude: "",
-    longitude: "",
+    latitude: undefined,
+    longitude: undefined,
   },
   showPositionMarker: false,
   showLocationButton: true,
