@@ -1,4 +1,4 @@
-import http from '../http-common'
+import http from "../http-common";
 
 export const postImages = async (endpoint, file, callback) => {
   // const getBase64 = (photo, callback) => {
@@ -9,67 +9,72 @@ export const postImages = async (endpoint, file, callback) => {
 
   let responseData = {
     data: null,
-  }
+  };
 
-  const formData = new FormData()
-  formData.append('file', file)
+  const formData = new FormData();
+  formData.append("file", file);
 
   try {
     const response = await http.post(endpoint, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
+      headers: { "Content-Type": "multipart/form-data" },
       onUploadProgress: callback,
-    })
+    });
     if (response) {
-      const UploadedImageId = await response.data.id
-      responseData.data = UploadedImageId
+      const UploadedImageId = await response.data.id;
+      responseData.data = UploadedImageId;
     }
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
 
-  return responseData
-}
+  return responseData;
+};
 
 export const postReport = async (endpoint, data) => {
   try {
     const response = await http.post(endpoint, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       report: data,
-    })
+    });
     if (response.status === 201) {
-      return response
+      return response;
     }
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 export const fetchAddressMapBoxAPI = async (viewport) => {
   try {
     const response = await http.get(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${viewport.longitude},${viewport.latitude}.json?access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
-    )
+    );
     return {
       address: response.data.features[0].text,
       number: response.data.features[0].address,
-    }
+    };
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 export const fetchSearchResultMapBoxApi = async (address) => {
-  const maxBounds = [12.855952171065837, 55.49066310369751, 13.17594041283428, 55.6585718499375]
+  const maxBounds = [
+    12.855952171065837,
+    55.49066310369751,
+    13.17594041283428,
+    55.6585718499375,
+  ];
   try {
     const response = await http.get(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?types=address&bbox=${maxBounds.join(
-        ','
+        ","
       )}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
-    )
-    return response.data.features
+    );
+    return response.data.features;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};

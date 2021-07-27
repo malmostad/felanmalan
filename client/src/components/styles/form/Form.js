@@ -1,5 +1,5 @@
-import styled from 'styled-components/macro'
-import checkIcon from '../../../assets/img/checked.png'
+import styled from "styled-components/macro";
+import checkIcon from "../../../assets/img/checked.png";
 
 export const StyledFormWrapper = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ export const StyledFormWrapper = styled.div`
   @media (max-height: 568px) {
     margin-top: 10px;
   }
-`
+`;
 
 export const StyledInput = styled.input`
   border-radius: 0;
@@ -22,7 +22,7 @@ export const StyledInput = styled.input`
   width: 100%;
   padding: 5px 0 0;
   margin-bottom: 20px;
-`
+`;
 
 export const StyledCheckBox = styled.input`
   cursor: pointer;
@@ -44,10 +44,10 @@ export const StyledCheckBox = styled.input`
     background-position: center;
     box-shadow: 0 0 0 white;
   }
-`
+`;
 export const StyledFollowUpBox = styled.div`
   display: flex;
-`
+`;
 
 export const StyledError = styled.div`
   margin-top: 10px;
@@ -56,18 +56,18 @@ export const StyledError = styled.div`
   margin-bottom: 2px;
   font-family: MyriadPro, Open sans, Verdana;
   font-weight: lighter;
-`
+`;
 export const DescriptionSpan = styled.span`
   color: red;
   font-size: 21px;
-`
+`;
 export const StyledLabel = styled.label`
   font-size: 16px;
   line-height: 16px;
   color: #000;
   margin-bottom: 5px;
   font-weight: 700;
-`
+`;
 
 export const StyledTextArea = styled.textarea`
   margin-top: 5px;
@@ -81,8 +81,8 @@ export const StyledTextArea = styled.textarea`
   @media (max-height: 580px) {
     height: 160px;
   }
-`
+`;
 
 export const StyledFormDescription = styled.form`
   padding: 0px 20px;
-`
+`;

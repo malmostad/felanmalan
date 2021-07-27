@@ -4,7 +4,7 @@ import {
   StyledResultUl,
   StyledPrimaryAddress,
   StyledSecondaryAddress,
-} from '../styles/searchbar/Searchbar'
+} from "../styles/searchbar/Searchbar";
 
 const SearchResult = ({ searchResults, handleClickAddress }) => {
   return (
@@ -12,21 +12,25 @@ const SearchResult = ({ searchResults, handleClickAddress }) => {
       <StyledResultUl>
         {searchResults.map((address) => {
           return (
-            <StyledSearchResult key={address.id} onClick={() => handleClickAddress(address.id)}>
+            <StyledSearchResult
+              key={address.id}
+              onClick={() => handleClickAddress(address.id)}
+            >
               <StyledListButton>
                 <StyledPrimaryAddress>
                   {address.text} {address.address}
                 </StyledPrimaryAddress>
                 <StyledSecondaryAddress>
-                  {address.properties.address} {address.context[0].text} {address.context[1].text}
+                  {address.properties.address} {address.context[0].text}{" "}
+                  {address.context[1].text}
                 </StyledSecondaryAddress>
               </StyledListButton>
             </StyledSearchResult>
-          )
+          );
         })}
       </StyledResultUl>
     </>
-  )
-}
+  );
+};
 
-export default SearchResult
+export default SearchResult;

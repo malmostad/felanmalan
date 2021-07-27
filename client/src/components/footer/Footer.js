@@ -1,7 +1,7 @@
-import Navigation from '../navigation/Navigation'
+import Navigation from "../navigation/Navigation";
 
 const Footer = () => {
-  return <Navigation />
-}
+  return <Navigation />;
+};
 
-export default Footer
+export default Footer;

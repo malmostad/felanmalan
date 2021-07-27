@@ -1,5 +1,5 @@
-import styled from 'styled-components/macro'
-import { flexCenterColumn, flexCenter } from '../mixins'
+import styled from "styled-components/macro";
+import { flexCenterColumn, flexCenter } from "../mixins";
 
 export const MainContainer = styled.div`
   min-height: 100vh;
@@ -10,16 +10,18 @@ export const MainContainer = styled.div`
   justify-content: space-between;
   position: relative;
   background-color: ${({ currentViewIndex, lastViewIndex, theme }) =>
-    currentViewIndex === lastViewIndex ? theme.colors.PrimaryGreen : theme.colors.White};
-`
+    currentViewIndex === lastViewIndex
+      ? theme.colors.PrimaryGreen
+      : theme.colors.White};
+`;
 
 export const StyledFlexCenter = styled.div`
   ${flexCenter}
-`
+`;
 
 export const StyledFlexCenterColumn = styled.div`
   ${flexCenterColumn}
-`
+`;
 export const StyledOuter = styled.div`
   width: 100vw;
   min-height: 100vh;
@@ -34,7 +36,7 @@ export const StyledOuter = styled.div`
       : bgSecondary
       ? theme.colors.SecondaryGreen
       : theme.colors.PrimaryGreen};
-`
+`;
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
   min-height: calc(100vh - 398px);
@@ -44,7 +46,7 @@ export const StyledOuterFollowUpView = styled(StyledOuter)`
   @media (max-width: 560px) and (max-height: 620px) {
     min-height: calc(100vh - 315px);
   }
-`
+`;
 // button containers
 export const StyledButtonOuter = styled.div`
   transition: transform 0.3s ease-out;
@@ -53,21 +55,29 @@ export const StyledButtonOuter = styled.div`
   bottom: 0;
   right: 0;
   position: fixed;
-  background-color: ${({ windowWidth, currentViewIndex, lastViewIndex, formState, theme }) =>
-    (windowWidth < 560 && currentViewIndex === 0) || currentViewIndex === lastViewIndex
+  background-color: ${({
+    windowWidth,
+    currentViewIndex,
+    lastViewIndex,
+    formState,
+    theme,
+  }) =>
+    (windowWidth < 560 && currentViewIndex === 0) ||
+    currentViewIndex === lastViewIndex
       ? theme.colors.PrimaryGreen
       : theme.colors.White};
-  background-color: ${({ formState, theme }) => formState > 0 && theme.colors.White};
+  background-color: ${({ formState, theme }) =>
+    formState > 0 && theme.colors.White};
   background-color: ${({ currentViewIndex, lastViewIndex, theme }) =>
     currentViewIndex === lastViewIndex && theme.colors.PrimaryGreen};
-`
+`;
 export const StyledButtonOuterFirstPage = styled(StyledButtonOuter)`
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   align-self: center;
   @media (min-width: 560px) {
     background-color: ${({ theme }) => theme.colors.White};
   }
-`
+`;
 export const StyledButtonOuterGreenBg = styled.div`
   transition: transform 0.3s ease-out;
   display: flex;
@@ -77,7 +87,7 @@ export const StyledButtonOuterGreenBg = styled.div`
   bottom: 0;
   right: 0;
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
-`
+`;
 export const StyledButtonInner = styled.div`
   display: flex;
   margin: 0 auto;
@@ -88,7 +98,7 @@ export const StyledButtonInner = styled.div`
   height: 100%;
   flex-direction: row-reverse;
   max-width: 560px;
-`
+`;
 export const StyledButtonInnerFirstPage = styled.div`
   display: flex;
   margin: 0;
@@ -99,7 +109,7 @@ export const StyledButtonInnerFirstPage = styled.div`
   height: 100%;
   flex-direction: row-reverse;
   background-color: #037540;
-`
+`;
 // loading container
 
 // ??
@@ -111,7 +121,7 @@ export const StyledCookieContainer = styled.div`
   @media (max-width: 560px) {
     padding: 15px;
   }
-`
+`;
 export const StyledButtonContainer = styled.div`
   flex-direction: column;
   display: flex;
@@ -121,11 +131,11 @@ export const StyledButtonContainer = styled.div`
   height: 160px;
   justify-content: end;
   margin-bottom: 20px;
-`
+`;
 // inner for what?
 export const StyledInnerWrapper = styled.div`
   ${flexCenterColumn}
-`
+`;
 
 export const StyledFooterContainer = styled.div`
   ${flexCenter}
@@ -140,7 +150,7 @@ export const StyledFooterContainer = styled.div`
   width: 100%;
   z-index: 2300;
   overflow: hidden;
-`
+`;
 export const StyledFullContainer = styled.div`
   position: absolute;
   z-index: 1001;
@@ -149,7 +159,7 @@ export const StyledFullContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const StyledContentFollowUpView = styled.div`
   display: flex;
@@ -169,7 +179,7 @@ export const StyledContentFollowUpView = styled.div`
   @media (max-width: 560px) {
     margin: 0 auto;
   }
-`
+`;
 
 export const StyledGrid = styled.div`
   max-width: 100vw;
@@ -187,7 +197,7 @@ export const StyledGrid = styled.div`
   @media screen and (min-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
   }
-`
+`;
 export const StyledSearchBarContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -197,7 +207,7 @@ export const StyledSearchBarContainer = styled.div`
   top: 20px;
   margin: 0 15px;
   z-index: 19;
-`
+`;
 
 export const StyledHeaderContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
@@ -210,13 +220,13 @@ export const StyledHeaderContainer = styled.div`
   @media (max-height: 620px) {
     min-height: 225px;
   }
-`
+`;
 export const StyledHeaderContainerText = styled.div`
   max-width: 560px;
   margin: 0 auto;
   overflow: hidden;
   width: 100%;
-`
+`;
 export const StyledHeroContainer = styled.div`
   padding-top: 60px;
   @media (max-width: 560px) {
@@ -227,7 +237,7 @@ export const StyledHeroContainer = styled.div`
     margin: 0 auto;
     max-width: 296px;
   }
-`
+`;
 
 export const StyledTable = styled.div`
   width: fit-content;
@@ -239,7 +249,7 @@ export const StyledTable = styled.div`
     overflow: hidden;
     align-content: space-evenly;
   }
-`
+`;
 export const StyledFlexTheContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -252,7 +262,7 @@ export const StyledFlexTheContainer = styled.div`
     justify-content: center;
     margin-right: 0;
   }
-`
+`;
 
 export const StyledRow = styled.div`
   display: flex;
@@ -261,7 +271,7 @@ export const StyledRow = styled.div`
     flex-wrap: wrap;
     margin-bottom: 40px;
   }
-`
+`;
 export const StyledCell = styled.img`
   width: 250px;
   max-height: 250px;
@@ -274,7 +284,7 @@ export const StyledCell = styled.img`
     max-height: 210px;
     min-height: 210px;
   }
-`
+`;
 
 export const StyledCellUpload = styled.div`
   width: 250px;
@@ -290,7 +300,7 @@ export const StyledCellUpload = styled.div`
     max-height: 210px;
     min-height: 210px;
   }
-`
+`;
 export const StyledImagesSize = styled.div`
   max-width: 250px;
   min-width: 250px;
@@ -303,7 +313,7 @@ export const StyledImagesSize = styled.div`
     max-width: 210px;
     min-width: 210px;
   }
-`
+`;
 
 export const StyledAddImage = styled.div`
   margin-top: 10px;
@@ -315,7 +325,7 @@ export const StyledAddImage = styled.div`
     width: 210px;
     height: 210px;
   }
-`
+`;
 export const StyledButtonImage = styled.button`
   border: none;
   -webkit-appearance: none;
@@ -333,7 +343,7 @@ export const StyledButtonImage = styled.button`
   &:hover {
     background-color: #a6a6a6;
   }
-`
+`;
 export const StyledTouchCharter = styled.div`
   overflow-y: hidden;
   overflow-x: auto;
@@ -348,7 +358,7 @@ export const StyledTouchCharter = styled.div`
     height: 58vh;
     padding-bottom: 22px;
   }
-`
+`;
 
 export const StyledImg = styled.img`
   padding-top: 10px;
@@ -360,7 +370,7 @@ export const StyledImg = styled.img`
     width: 210px;
     height: 210px;
   }
-`
+`;
 export const StyledAddImages = styled.div`
   padding-top: 10px;
   padding-right: 10px;
@@ -372,7 +382,7 @@ export const StyledAddImages = styled.div`
     width: 210px;
     height: 210px;
   }
-`
+`;
 
 export const StyledUploadContainer = styled.div`
   width: 100vw;
@@ -382,8 +392,8 @@ export const StyledUploadContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.White};
     height: calc(100vh - 360px);
   }
-`
+`;
 export const StyledImageContainer = styled.div`
   display: flex;
   justify-content: center;
-`
+`;

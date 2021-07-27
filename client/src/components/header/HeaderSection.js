@@ -1,9 +1,12 @@
-import { useUpdate } from '../../contexts/UpdateContext'
-import { StyledHeaderContainer, StyledHeaderContainerText } from '../styles/containers/Containers'
-import { StyledHeroHeadingThin } from '../styles/Typography/Typography'
+import { useUpdate } from "../../contexts/UpdateContext";
+import {
+  StyledHeaderContainer,
+  StyledHeaderContainerText,
+} from "../styles/containers/Containers";
+import { StyledHeroHeadingThin } from "../styles/Typography/Typography";
 
 const HeaderSection = () => {
-  const { currentViewHeading } = useUpdate()
+  const { currentViewHeading } = useUpdate();
   return (
     <>
       <StyledHeaderContainer>
@@ -12,7 +15,7 @@ const HeaderSection = () => {
         </StyledHeaderContainerText>
       </StyledHeaderContainer>
     </>
-  )
-}
+  );
+};
 
-export default HeaderSection
+export default HeaderSection;

@@ -1,32 +1,32 @@
-import { useRef, useEffect, useState, useContext, useCallback } from 'react'
-import { NavigationContext } from '../../../contexts/NavigationContext'
-import { useDropzone } from 'react-dropzone'
-import { IoArrowUpCircle } from 'react-icons/io5'
-import { StyledUploadContainer } from '../../../components/styles/containers/Containers'
-import { Dropzone } from '../styles/styles'
-import { useReport } from '../../../contexts/ReportContext'
-import { StyledImageContainer } from '../../../components/styles/containers/Containers'
-import { StyledButtonAddImg } from '../../../components/styles/buttons/Buttons'
+import { useRef, useEffect, useState, useContext, useCallback } from "react";
+import { NavigationContext } from "../../../contexts/NavigationContext";
+import { useDropzone } from "react-dropzone";
+import { IoArrowUpCircle } from "react-icons/io5";
+import { StyledUploadContainer } from "../../../components/styles/containers/Containers";
+import { Dropzone } from "../styles/styles";
+import { useReport } from "../../../contexts/ReportContext";
+import { StyledImageContainer } from "../../../components/styles/containers/Containers";
+import { StyledButtonAddImg } from "../../../components/styles/buttons/Buttons";
 
 const UploadImageForm = ({ handleImagesDropZone }) => {
-  const { dispatch: navigationDispatch } = useContext(NavigationContext)
-  const { formState } = useReport()
-  const fileInput = useRef(null)
+  const { dispatch: navigationDispatch } = useContext(NavigationContext);
+  const { formState } = useReport();
+  const fileInput = useRef(null);
 
   useEffect(() => {
     if (formState.images.length === 0) {
-      navigationDispatch({ type: 'disableNext' })
-      navigationDispatch({ type: 'enableSkip' })
+      navigationDispatch({ type: "disableNext" });
+      navigationDispatch({ type: "enableSkip" });
     }
     if (formState.images.length > 0) {
-      navigationDispatch({ type: 'enableNext' })
+      navigationDispatch({ type: "enableNext" });
     }
-  }, [formState.images])
+  }, [formState.images]);
 
   const onDrop = useCallback((acceptedFiles) => {
-    handleImagesDropZone(acceptedFiles)
-  }, [])
-  const { getRootProps, getInputProps, isDragAccept } = useDropzone({ onDrop })
+    handleImagesDropZone(acceptedFiles);
+  }, []);
+  const { getRootProps, getInputProps, isDragAccept } = useDropzone({ onDrop });
 
   return (
     <>
@@ -38,11 +38,14 @@ const UploadImageForm = ({ handleImagesDropZone }) => {
             id="upload-button"
             multiple
             ref={fileInput}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             accept="image/*"
             {...getInputProps()}
           />
-          <IoArrowUpCircle size="3rem" style={{ color: '#037540', marginBottom: '10px' }} />
+          <IoArrowUpCircle
+            size="3rem"
+            style={{ color: "#037540", marginBottom: "10px" }}
+          />
           Klicka eller dra hit för att starta uppladdning
         </Dropzone>
         <StyledImageContainer>
@@ -61,7 +64,7 @@ const UploadImageForm = ({ handleImagesDropZone }) => {
         </StyledImageContainer>
       </StyledUploadContainer>
     </>
-  )
-}
+  );
+};
 
-export default UploadImageForm
+export default UploadImageForm;

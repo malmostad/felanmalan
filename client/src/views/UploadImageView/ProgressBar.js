@@ -1,12 +1,12 @@
-import styled from 'styled-components'
-import { StyledFlexCenter } from '../../components/styles/containers/Containers'
+import styled from "styled-components";
+import { StyledFlexCenter } from "../../components/styles/containers/Containers";
 
 const StyledProgressBarOuter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 100%;
-`
+`;
 
 const StyledProgressBar = styled.progress`
   width: 250px;
@@ -34,7 +34,7 @@ const StyledProgressBar = styled.progress`
   }
   ::-webkit-progress-inner-element {
   }
-`
+`;
 const ProgressBar = ({ max, progress }) => {
   return (
     <StyledProgressBarOuter>
@@ -42,7 +42,7 @@ const ProgressBar = ({ max, progress }) => {
         <StyledProgressBar value={progress} max={max}></StyledProgressBar>
       </StyledFlexCenter>
     </StyledProgressBarOuter>
-  )
-}
+  );
+};
 
-export default ProgressBar
+export default ProgressBar;

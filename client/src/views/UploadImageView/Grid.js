@@ -5,18 +5,18 @@ import {
   StyledTouchCharter,
   StyledButtonImage,
   StyledFlexTheContainer,
-} from '../../components/styles/containers/Containers'
-import PreviewImage from './PreviewImage'
-import { useEffect, useState, useRef } from 'react'
-import { CgMathPlus as OutlinePlus } from 'react-icons/cg'
+} from "../../components/styles/containers/Containers";
+import PreviewImage from "./PreviewImage";
+import { useEffect, useState, useRef } from "react";
+import { CgMathPlus as OutlinePlus } from "react-icons/cg";
 
 const Grid = ({ images, handleImages }) => {
-  const [gridImages, setGridImages] = useState(images)
-  const fileInput = useRef(null)
+  const [gridImages, setGridImages] = useState(images);
+  const fileInput = useRef(null);
 
   useEffect(() => {
-    setGridImages(images)
-  }, [images])
+    setGridImages(images);
+  }, [images]);
 
   return (
     <StyledTouchCharter>
@@ -32,14 +32,14 @@ const Grid = ({ images, handleImages }) => {
                   multiple
                   onChange={handleImages}
                   ref={fileInput}
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                   accept="image/*"
                 />
                 <StyledButtonImage onClick={() => fileInput.current.click()}>
                   <OutlinePlus
                     size="2.4rem"
                     style={{
-                      color: '#046a38',
+                      color: "#046a38",
                     }}
                   />
                 </StyledButtonImage>
@@ -47,12 +47,12 @@ const Grid = ({ images, handleImages }) => {
             </StyledAddImage>
             {images.map((img, index) => (
               <PreviewImage key={index} image={img} />
-            ))}{' '}
+            ))}{" "}
           </StyledRow>
         </StyledFlexTheContainer>
       </StyledTable>
     </StyledTouchCharter>
-  )
-}
+  );
+};
 
-export default Grid
+export default Grid;

@@ -1,5 +1,5 @@
-import GlobalStyle from './globalstyles/GlobalStyle'
-import Steps from './components/steps/Steps'
+import GlobalStyle from "./globalstyles/GlobalStyle";
+import Steps from "./components/steps/Steps";
 
 const App = () => {
   return (
@@ -7,7 +7,7 @@ const App = () => {
       <GlobalStyle />
       <Steps />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -1,5 +1,5 @@
-import MapBox from '../../components/mapBox/MapBox'
-import { MapProvider } from '../../contexts/MapContext'
+import MapBox from "../../components/mapBox/MapBox";
+import { MapProvider } from "../../contexts/MapContext";
 
 const MapView = () => {
   return (
@@ -8,7 +8,7 @@ const MapView = () => {
         <MapBox />
       </MapProvider>
     </>
-  )
-}
+  );
+};
 
-export default MapView
+export default MapView;

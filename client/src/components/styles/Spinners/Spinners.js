@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components/macro'
+import styled, { keyframes } from "styled-components/macro";
 
 export const StyledLoadingSpinner = styled.div`
   display: inline-block;
@@ -8,7 +8,7 @@ export const StyledLoadingSpinner = styled.div`
   border: 8px solid ${({ theme }) => theme.colors.PrimaryGreen};
   border-top: 8px solid ${({ theme }) => theme.colors.SecondaryGreen};
   margin-bottom: 8rem;
-`
+`;
 const rotate360 = keyframes`
   from {
     transform: rotate(0deg);
@@ -16,7 +16,7 @@ const rotate360 = keyframes`
   to {
     transform: rotate(360deg);
   }
-`
+`;
 export const LoadingSpinner = styled.div`
   animation: ${rotate360} 1s linear infinite;
   transform: translateZ(0);
@@ -29,4 +29,4 @@ export const LoadingSpinner = styled.div`
   height: 24px;
   border-radius: 50%;
   margin: auto;
-`
+`;

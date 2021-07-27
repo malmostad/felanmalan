@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from "styled-components/macro";
 
 export const StyledLabelSearchBar = styled.div`
   font-size: 15px;
@@ -10,12 +10,12 @@ export const StyledLabelSearchBar = styled.div`
   width: 100%;
   margin: 0;
   z-index: 98;
-`
+`;
 export const StyledSearchLabel = styled.div`
   margin: 10px 16px;
   box-shadow: 0 2px 7px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
   line-height: 24px;
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
   position: relative;
   background-color: #fff;
   min-width: 240px;
@@ -27,10 +27,10 @@ export const StyledSearchLabel = styled.div`
   input:focus {
     outline: none;
   }
-`
+`;
 export const StyledDivBar = styled.div`
   display: flex;
-`
+`;
 
 export const StyledInputSearchBar = styled.input`
   font-size: 0.9rem;
@@ -46,22 +46,22 @@ export const StyledInputSearchBar = styled.input`
     font-size: 1rem;
     height: 50px;
   }
-`
+`;
 export const StyledSearchResultList = styled.div`
   width: 100%;
   height: auto;
   background-color: white;
-`
+`;
 export const StyledResultUl = styled.ul`
   list-style: none;
   :focus {
     outline: none;
   }
-`
+`;
 
 export const StyledSearchResult = styled.li`
   border-top: 1px solid #e4e4e4;
-`
+`;
 
 export const StyledListButton = styled.button`
   padding: 20px 15px 20px 20px;
@@ -79,18 +79,18 @@ export const StyledListButton = styled.button`
     background-color: #f3f3f3;
     cursor: pointer;
   }
-`
+`;
 
 export const StyledPrimaryAddress = styled.span`
   font-size: 0.9rem;
   color: #12181f;
   font-weight: 400;
   display: block;
-`
+`;
 export const StyledSecondaryAddress = styled.span`
   font-size: 0.8rem;
   color: #8a8a8d;
-`
+`;
 export const StyledNoResult = styled(StyledSecondaryAddress)`
   border-top: 1px solid #e4e4e4;
   font-size: 1rem;
@@ -98,4 +98,4 @@ export const StyledNoResult = styled(StyledSecondaryAddress)`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;

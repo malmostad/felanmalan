@@ -1,8 +1,8 @@
-import { createGlobalStyle } from 'styled-components'
-import MalmoRubikRegularWoff2 from '../assets/fonts/MalmoRubrik/MalmoRubrik-Regular.woff2'
-import MyriadProRegular from '../assets/fonts/Myriad/MyriadPro-Regular.otf'
-import MyriadProLight from '../assets/fonts/Myriad/MyriadPro-Light.otf'
-import MyriadProBold from '../assets/fonts/Myriad/MyriadPro-Bold.otf'
+import { createGlobalStyle } from "styled-components";
+import MalmoRubikRegularWoff2 from "../assets/fonts/MalmoRubrik/MalmoRubrik-Regular.woff2";
+import MyriadProRegular from "../assets/fonts/Myriad/MyriadPro-Regular.otf";
+import MyriadProLight from "../assets/fonts/Myriad/MyriadPro-Light.otf";
+import MyriadProBold from "../assets/fonts/Myriad/MyriadPro-Bold.otf";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -49,6 +49,6 @@ a {
   color: white;
 }
 
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;

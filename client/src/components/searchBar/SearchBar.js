@@ -1,7 +1,7 @@
-import { useState, useContext, useRef, useEffect } from 'react'
-import { fetchSearchResultMapBoxApi } from '../../api/api'
-import { debounce } from 'lodash'
-import { AiOutlineSearch as SearchIcon } from 'react-icons/ai'
+import { useState, useContext, useRef, useEffect } from "react";
+import { fetchSearchResultMapBoxApi } from "../../api/api";
+import { debounce } from "lodash";
+import { AiOutlineSearch as SearchIcon } from "react-icons/ai";
 import {
   StyledLabelSearchBar,
   StyledInputSearchBar,
@@ -9,61 +9,64 @@ import {
   StyledSearchLabel,
   StyledDivBar,
   StyledNoResult,
-} from '../styles/searchbar/Searchbar'
-import SearchResult from './SearchResult'
+} from "../styles/searchbar/Searchbar";
+import SearchResult from "./SearchResult";
 
 const SearchBar = ({ address, renderPrefix, onResultSelect }) => {
-  const [searchResults, setSearchResults] = useState([])
-  const [noResult, setNoResult] = useState(false)
-  const [value, setValue] = useState('')
+  const [searchResults, setSearchResults] = useState([]);
+  const [noResult, setNoResult] = useState(false);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     if (address && renderPrefix) {
-      setValue(`I närheten av: ${address}`)
+      setValue(`I närheten av: ${address}`);
     } else {
-      setValue(address)
+      setValue(address);
     }
-  }, [address])
+  }, [address]);
 
   const updateSearchResults = async (e) => {
     if (e.target.value.length >= 1) {
-      const response = await fetchSearchResultMapBoxApi(e.target.value)
+      const response = await fetchSearchResultMapBoxApi(e.target.value);
 
       if (response.length === 0) {
-        setNoResult(true)
+        setNoResult(true);
       }
       if (response.length >= 1) {
-        setNoResult(false)
+        setNoResult(false);
       }
-      setSearchResults(response)
+      setSearchResults(response);
     }
     if (value === 0) {
-      setSearchResults([])
-      setNoResult(false)
+      setSearchResults([]);
+      setNoResult(false);
     }
-  }
-  const updateSearchResultsDebounced = debounce((e) => updateSearchResults(e), 800)
+  };
+  const updateSearchResultsDebounced = debounce(
+    (e) => updateSearchResults(e),
+    800
+  );
   const onChange = (e) => {
-    setValue(e.target.value)
-    updateSearchResultsDebounced(e)
-  }
+    setValue(e.target.value);
+    updateSearchResultsDebounced(e);
+  };
   const clearSearchbar = () => {
-    setSearchResults([])
-    setValue('')
-    setNoResult(false)
-  }
+    setSearchResults([]);
+    setValue("");
+    setNoResult(false);
+  };
 
   const handleClickAddress = (id) => {
-    const result = searchResults.find((address) => address.id === id)
+    const result = searchResults.find((address) => address.id === id);
     const payload = {
       latitude: result.center[1],
       longitude: result.center[0],
-      address: [result.text, result.address].join(' '),
+      address: [result.text, result.address].join(" "),
       zoom: 16,
-    }
-    onResultSelect(payload)
-    setSearchResults([])
-  }
+    };
+    onResultSelect(payload);
+    setSearchResults([]);
+  };
 
   return (
     <StyledLabelSearchBar>
@@ -83,12 +86,15 @@ const SearchBar = ({ address, renderPrefix, onResultSelect }) => {
           <StyledNoResult>Inga resultat hittade</StyledNoResult>
         ) : (
           <StyledSearchResultList>
-            <SearchResult searchResults={searchResults} handleClickAddress={handleClickAddress} />
+            <SearchResult
+              searchResults={searchResults}
+              handleClickAddress={handleClickAddress}
+            />
           </StyledSearchResultList>
         )}
       </StyledSearchLabel>
     </StyledLabelSearchBar>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;

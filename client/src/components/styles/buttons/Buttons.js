@@ -1,8 +1,9 @@
-import styled from 'styled-components/macro'
+import styled from "styled-components/macro";
 
 export const StyledButton = styled.button`
   cursor: pointer;
-  background-color: ${({ theme, bgGreen }) => (bgGreen ? theme.colors.PrimaryGreen : 'inherit')};
+  background-color: ${({ theme, bgGreen }) =>
+    bgGreen ? theme.colors.PrimaryGreen : "inherit"};
   font-size: ${({ theme }) => theme.FontSizes.ButtonText};
   margin: 0 10px;
   height: 50px;
@@ -18,16 +19,16 @@ export const StyledButton = styled.button`
   max-width: 520px;
   @media (max-width: 560px) {
     height: 50px;
-    font-family: 'MyriadPro';
+    font-family: "MyriadPro";
     font-weight: bold;
   }
-`
+`;
 
 export const StyledButtonSkip = styled(StyledButton)`
   border: 2px solid
     ${({ windowWidth, theme }) =>
       windowWidth < 560 ? theme.colors.White : theme.colors.PrimaryGreen};
-`
+`;
 
 export const StyledFetchButton = styled.button`
   appearance: none;
@@ -46,7 +47,7 @@ export const StyledFetchButton = styled.button`
   bottom: 140px;
   right: 5px;
   cursor: pointer;
-`
+`;
 
 export const StyledOutlineButtonGreen = styled(StyledButton)`
   width: 100%;
@@ -58,7 +59,7 @@ export const StyledOutlineButtonGreen = styled(StyledButton)`
     background-color: ${({ theme }) => theme.colors.PrimaryGreen};
     color: ${({ theme }) => theme.colors.White};
   }
-`
+`;
 
 export const StyledOutlineButtonWhite = styled(StyledButton)`
   color: ${({ theme }) => theme.colors.White};
@@ -69,7 +70,7 @@ export const StyledOutlineButtonWhite = styled(StyledButton)`
     background-color: ${({ theme }) => theme.colors.White};
     color: ${({ theme }) => theme.colors.PrimaryGreen};
   }
-`
+`;
 export const StyledOutlineButtonWhiteFirstPage = styled(StyledButton)`
   margin: 0 auto;
   width: 100%;
@@ -81,7 +82,7 @@ export const StyledOutlineButtonWhiteFirstPage = styled(StyledButton)`
     max-width: 485px;
     width: 83%;
   }
-`
+`;
 export const StyledButtonAddImg = styled(StyledButton)`
   width: 95%;
   bottom: 90px;
@@ -91,14 +92,14 @@ export const StyledButtonAddImg = styled(StyledButton)`
   @media (min-width: 560px) {
     display: none;
   }
-`
+`;
 
 export const StyledReadMoreButton = styled(StyledButton)`
   margin: 10px auto;
   color: white;
   max-width: 100px;
   border: none;
-  font-family: 'MyriadPro';
+  font-family: "MyriadPro";
   font-weight: lighter;
   -moz-osx-font-smoothing: grayscale;
   &:hover {
@@ -106,7 +107,7 @@ export const StyledReadMoreButton = styled(StyledButton)`
     text-decoration: underline;
     color: white;
   }
-`
+`;
 
 export const StyledDropzoneContainer = styled.div`
   display: flex;
@@ -114,7 +115,7 @@ export const StyledDropzoneContainer = styled.div`
   align-items: center;
   width: 100vw;
   height: 55vh;
-`
+`;
 
 export const StyledDropzone = styled.button`
   background-color: transparent;
@@ -131,4 +132,4 @@ export const StyledDropzone = styled.button`
   @media (max-width: 560px) {
     display: none;
   }
-`
+`;
