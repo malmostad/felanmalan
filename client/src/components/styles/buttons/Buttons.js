@@ -44,7 +44,7 @@ export const StyledFetchButton = styled.button`
   position: absolute;
   width: 62px;
   height: 62px;
-  bottom: 140px;
+  bottom: 110px;
   right: 5px;
   cursor: pointer;
 `;

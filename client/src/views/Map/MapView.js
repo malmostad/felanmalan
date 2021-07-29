@@ -143,7 +143,7 @@ const MapView = () => {
           <NavigationControl
             showCompass={false}
             onViewportChange={onZoom}
-            style={{ right: 30, bottom: 80 }}
+            style={{ right: 30, bottom: 30 }}
           />
           <CurrentLocationButton onUserLocation={onUserLocation} />
           {userLocation && (
