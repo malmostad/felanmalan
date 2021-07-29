@@ -9,7 +9,7 @@ import Error from "../errors/Error";
 import { formViews } from "../../views/index";
 import { MainContainer } from "../styles/containers/Containers";
 const Steps = () => {
-  const [cookies, setCookie] = useCookies(["cookieConsent"]);
+  const [cookies] = useCookies(["cookieConsent"]);
   const { error, errorMessenger, errorStatusCode } = useUpdate();
   const { state } = useContext(NavigationContext);
   const { currentViewIndex, lastViewIndex } = state;
@@ -22,7 +22,7 @@ const Steps = () => {
       >
         {cookies.cookieConsent ? (
           <>
-            {formViews[state.currentViewIndex].type.name != "MapView" && (
+            {formViews[state.currentViewIndex].type.name !== "MapView" && (
               <HeaderSection />
             )}
             {error ? (
