@@ -2,13 +2,10 @@ import styled from "styled-components/macro";
 import { flexCenterColumn, flexCenter } from "../mixins";
 
 export const MainContainer = styled.div`
-  min-height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
   display: flex;
+  height: 100vh;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
   background-color: ${({ currentViewIndex, lastViewIndex, theme }) =>
     currentViewIndex === lastViewIndex
       ? theme.colors.PrimaryGreen
@@ -51,10 +48,6 @@ export const StyledOuterFollowUpView = styled(StyledOuter)`
 export const StyledButtonOuter = styled.div`
   transition: transform 0.3s ease-out;
   display: flex;
-  width: 100%;
-  bottom: 0;
-  right: 0;
-  position: fixed;
   background-color: ${({
     windowWidth,
     currentViewIndex,
@@ -385,8 +378,7 @@ export const StyledAddImages = styled.div`
 `;
 
 export const StyledUploadContainer = styled.div`
-  width: 100vw;
-  height: calc(100vh - 225px);
+  flex: 1;
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   @media (min-width: 560px) {
     background-color: ${({ theme }) => theme.colors.White};
