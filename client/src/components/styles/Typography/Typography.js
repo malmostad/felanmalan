@@ -1,10 +1,5 @@
 import styled from "styled-components/macro";
 
-export const StyledHeading = styled.h1`
-  font-size: 2rem;
-  color: white;
-  font-family: "MalmoRubik Regular", Arial, Helvetica, sans-serif;
-`;
 export const StyledHeroHeading = styled.h1`
   overflow: hidden;
   padding-top: 90px;
@@ -99,9 +94,6 @@ export const StyledTitleContainer = styled.div`
 export const StyledBoldHeader = styled.span`
   font-family: MyriadPro, Open sans, Verdana;
   font-weight: bold;
-`;
-export const StyledThinHeader = styled(StyledBoldHeader)`
-  font-weight: lighter;
 `;
 
 export const Errand = styled.span`
