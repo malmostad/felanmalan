@@ -51,7 +51,7 @@ const Navigation = () => {
               windowWidth={windowWidth}
               onClick={() => {
                 navigationDispatch({ type: "next" });
-                navigationDispatch({ type: "enableNext" });
+                navigationDispatch({ type: "disableNext" });
               }}
             >
               Hoppa över

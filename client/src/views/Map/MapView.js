@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ReactMapGl, {
   Marker,
   NavigationControl,
@@ -8,6 +8,7 @@ import ReactMapGl, {
 import CurrentLocationButton from "../../components/CurrentLocation/CurrentLocationButton";
 import SearchBar from "../../components/searchBar/SearchBar";
 import { useReport } from "../../contexts/ReportContext";
+import { NavigationContext } from "../../contexts/NavigationContext";
 import "./MapView.css";
 import { fetchAddressMapBoxAPI } from "../../api/api";
 import { ReactComponent as MarkerIcon } from "./pin.svg";
@@ -25,6 +26,7 @@ const MAX_BOUNDS = [
 
 const MapView = () => {
   const { handelSetFormInfo, formState } = useReport();
+  const { dispatch: navigationDispatch } = useContext(NavigationContext);
   const [address, setAddress] = useState("");
   const [userLocation, setUserLocation] = useState();
   const [renderPrefix, setRenderPrefix] = useState(false);
@@ -32,13 +34,14 @@ const MapView = () => {
 
   useEffect(() => {
     const { latitude, longitude, address } = formState;
-    if (latitude && longitude) {
+    if (latitude && longitude && address) {
       setViewport({
         ...viewport,
         latitude,
         longitude,
       });
       setAddress(address);
+      navigationDispatch({ type: "enableNext" });
     }
   }, []);
 
@@ -115,6 +118,7 @@ const MapView = () => {
     const displayAddress = [address, number].join(" ").trim();
     setRenderPrefix(true);
     setAddress(displayAddress);
+    navigationDispatch({ type: "enableNext" });
     handelSetFormInfo("address", displayAddress);
   };
 
