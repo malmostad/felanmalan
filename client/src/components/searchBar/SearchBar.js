@@ -12,7 +12,7 @@ import {
 } from "../styles/searchbar/Searchbar";
 import SearchResult from "./SearchResult";
 
-const SearchBar = ({ address, renderPrefix, onResultSelect }) => {
+const SearchBar = ({ address, renderPrefix, onResultSelect, maxBounds }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [noResult, setNoResult] = useState(false);
   const [value, setValue] = useState("");
@@ -27,7 +27,10 @@ const SearchBar = ({ address, renderPrefix, onResultSelect }) => {
 
   const updateSearchResults = async (e) => {
     if (e.target.value.length >= 3) {
-      const response = await fetchSearchResultMapBoxApi(e.target.value);
+      const response = await fetchSearchResultMapBoxApi(
+        e.target.value,
+        maxBounds
+      );
 
       if (response.length === 0) {
         setNoResult(true);

@@ -110,7 +110,7 @@ const MapView = () => {
   };
 
   const updateAddress = async () => {
-    const response = await fetchAddressMapBoxAPI(viewport);
+    const response = await fetchAddressMapBoxAPI(viewport, MAX_BOUNDS);
     const { address, number } = response;
     const displayAddress = [address, number].join(" ").trim();
     setRenderPrefix(true);
@@ -125,6 +125,7 @@ const MapView = () => {
           address={address}
           renderPrefix={renderPrefix}
           onResultSelect={onResultSelect}
+          maxBounds={MAX_BOUNDS}
         />
         <ReactMapGl
           {...viewport}
