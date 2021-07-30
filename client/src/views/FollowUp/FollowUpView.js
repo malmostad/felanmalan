@@ -1,4 +1,5 @@
 import { useUpdate } from "../.././contexts/UpdateContext";
+import { useReport } from "../../contexts/ReportContext";
 import { AiOutlineExclamationCircle as Exclamation } from "react-icons/ai";
 import {
   StyledHeroHeadingThin,
@@ -20,6 +21,7 @@ import "../../globalstyles/GlobalStyle";
 
 const FollowUpView = () => {
   const { setCurrentViewHeading } = useUpdate();
+  const { formState } = useReport();
 
   useEffect(() => {
     setCurrentViewHeading(
@@ -30,7 +32,7 @@ const FollowUpView = () => {
         </StyledHeroHeadingThin>
         <StyledDescription>
           Den hjälper oss hålla vår vackra stad iordning.{" "}
-          <Errand href="#">Ärende: 5624805</Errand>
+          <Errand>Ärende: {formState.external_id}</Errand>
         </StyledDescription>
       </StyledHeroContainer>
     );

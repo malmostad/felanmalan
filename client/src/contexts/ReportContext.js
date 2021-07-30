@@ -5,8 +5,8 @@ export const useReport = () => useContext(ReportContext);
 
 const initialReportData = {
   images: [],
-  latitude: 55.6051458,
-  longitude: 13.003365,
+  latitude: undefined,
+  longitude: undefined,
   description: "",
   address: "",
   name: "",
@@ -49,14 +49,14 @@ export const ReportProvider = ({ children }) => {
     });
   };
 
-  const reportvalues = {
+  const reportValues = {
     formState,
     handelSetFormInfo,
     dispatch,
   };
 
   return (
-    <ReportContext.Provider value={reportvalues}>
+    <ReportContext.Provider value={reportValues}>
       {children}
     </ReportContext.Provider>
   );

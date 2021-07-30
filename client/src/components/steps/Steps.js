@@ -8,6 +8,7 @@ import { useContext } from "react";
 import Error from "../errors/Error";
 import { formViews } from "../../views/index";
 import { MainContainer } from "../styles/containers/Containers";
+
 const Steps = () => {
   const [cookies] = useCookies(["cookieConsent"]);
   const { error, errorMessenger, errorStatusCode } = useUpdate();

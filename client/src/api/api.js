@@ -1,12 +1,10 @@
 import http from "../http-common";
 
-export const postImages = async (endpoint, file, callback) => {
-  // const getBase64 = (photo, callback) => {
-  //   const reader = new FileReader()
-  //   reader.addEventListener('load', () => callback(reader.result))
-  //   reader.readAsDataURL(file)
-  // }
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const PHOTOS_ENDPOINT = process.env.REACT_APP_API_POST_PHOTOS_ENDPOINT;
+const REPORTS_ENDPOINT = process.env.REACT_APP_API_POST_REPORTS_ENDPOINT;
 
+export const postImages = async (endpoint, file, callback) => {
   let responseData = {
     data: null,
   };
@@ -30,9 +28,9 @@ export const postImages = async (endpoint, file, callback) => {
   return responseData;
 };
 
-export const postReport = async (endpoint, data) => {
+export const postReport = async (data) => {
   try {
-    const response = await http.post(endpoint, {
+    const response = await http.post(BASE_URL + REPORTS_ENDPOINT, {
       headers: {
         "Content-Type": "application/json",
       },

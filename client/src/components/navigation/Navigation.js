@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { NavigationContext } from "../../contexts/NavigationContext";
 import { useReport } from "../../contexts/ReportContext";
 import { useUpdate } from "../../contexts/UpdateContext";
+import { postReport } from "../../api/api";
 import {
   StyledButton,
   StyledOutlineButtonGreen,
@@ -67,7 +68,13 @@ const Navigation = () => {
           )}
           {currentViewIndex === submitViewIndex && !disableSubmit && (
             <StyledButton
-              onClick={() => {
+              onClick={async () => {
+                const response = await postReport(formState);
+                reportDispatch({
+                  type: "setFormInfo",
+                  field: "external_id",
+                  payload: response.data.external_id,
+                });
                 navigationDispatch({ type: "submit" });
               }}
             >

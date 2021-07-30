@@ -104,9 +104,7 @@ export const StyledThinHeader = styled(StyledBoldHeader)`
   font-weight: lighter;
 `;
 
-export const Errand = styled.a`
-  overflow: hidden;
-  cursor: pointer;
+export const Errand = styled.span`
   color: white;
   font-family: MyriadPro, Open sans, Verdana;
   font-weight: bold;
