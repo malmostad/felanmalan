@@ -5,6 +5,7 @@ export const StyledHeroHeading = styled.h1`
   padding-top: 90px;
   font-size: 4rem;
   color: white;
+  font-family: MyriadPro, Open sans, Verdana;
   font-weight: 700;
   @media (max-width: 560px) {
     padding: 15px 0px;
@@ -28,11 +29,12 @@ export const StyledHeroHeadingThin = styled(StyledHeroHeading)`
 `;
 
 export const StyledSpanWord = styled.span`
+  font-family: MyriadPro, Open sans, Verdana;
   font-weight: bold;
 `;
 export const StyledTextFollowUp = styled.p`
   align-self: flex-end;
-  font-family: "Titillium Web", Arial, Helvetica, sans-serif;
+  font-family: MyriadPro, Open sans, Verdana;
   color: #8f8787;
 `;
 
@@ -40,7 +42,7 @@ export const StyledSpanText = styled.p`
   font-size: 1.06rem;
   font-weight: 700;
   color: white;
-  font-family: "MyriadPro";
+  font-family: MyriadPro, Open sans, Verdana;
   margin: 20px 0;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5715;
@@ -48,7 +50,7 @@ export const StyledSpanText = styled.p`
 export const StyledInfoText = styled.p`
   font-size: 1.06rem;
   color: white;
-  font-family: "MyriadPro";
+  font-family: MyriadPro, Open sans, Verdana;
   font-weight: lighter;
   line-height: 1.5715;
   -moz-osx-font-smoothing: grayscale;
@@ -107,7 +109,7 @@ export const StyledDescription = styled.a`
   font-size: 26px;
   line-height: 27px;
   color: white;
-  font-family: "MyriadPro";
+  font-family: MyriadPro, Open sans, Verdana;
   font-weight: lighter;
   -moz-osx-font-smoothing: grayscale;
   display: flex;

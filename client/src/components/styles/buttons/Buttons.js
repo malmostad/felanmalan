@@ -5,6 +5,8 @@ export const StyledButton = styled.button`
   background-color: ${({ theme, bgGreen }) =>
     bgGreen ? theme.colors.PrimaryGreen : "inherit"};
   font-size: ${({ theme }) => theme.FontSizes.ButtonText};
+  font-family: MyriadPro, Open sans, Verdana;
+  font-weight: 700;
   margin: 0 10px;
   height: 50px;
   color: ${({ theme }) => theme.colors.PrimaryWhite};
@@ -19,8 +21,6 @@ export const StyledButton = styled.button`
   max-width: 520px;
   @media (max-width: 560px) {
     height: 50px;
-    font-family: "MyriadPro";
-    font-weight: bold;
   }
 `;
 
