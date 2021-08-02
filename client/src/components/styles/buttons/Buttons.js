@@ -34,7 +34,7 @@ export const StyledFetchButton = styled.button`
   appearance: none;
   outline: none;
   background-size: 20px;
-  background-color: #046a38;
+  background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   background-position: 19px;
   border: none;
   border-radius: 31px;

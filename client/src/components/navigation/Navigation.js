@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { NavigationContext } from "../../contexts/NavigationContext";
 import { useReport } from "../../contexts/ReportContext";
 import { useUpdate } from "../../contexts/UpdateContext";
+import { LoadingSpinner } from "../styles/Spinners/Spinners";
 import { postReport } from "../../api/api";
 import {
   StyledButton,
@@ -17,6 +18,7 @@ import {
 const Navigation = () => {
   const { formState, dispatch: reportDispatch } = useReport();
   const [windowWidth, setWindowWidth] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const { setImagesToBeUploaded } = useUpdate();
   const { state, dispatch: navigationDispatch } = useContext(NavigationContext);
   const {
@@ -69,16 +71,22 @@ const Navigation = () => {
           {currentViewIndex === submitViewIndex && !disableSubmit && (
             <StyledButton
               onClick={async () => {
+                if (isLoading) {
+                  return;
+                } else {
+                  setIsLoading(true);
+                }
                 const response = await postReport(formState);
                 reportDispatch({
                   type: "setFormInfo",
                   field: "external_id",
                   payload: response.data.external_id,
                 });
+                setIsLoading(false);
                 navigationDispatch({ type: "submit" });
               }}
             >
-              Skicka in
+              {isLoading ? <LoadingSpinner /> : <span>Skicka in </span>}
             </StyledButton>
           )}
           {currentViewIndex === lastViewIndex && (
