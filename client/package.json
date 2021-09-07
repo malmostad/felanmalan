@@ -8,7 +8,6 @@
     "@testing-library/react-hooks": "^5.0.3",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
-    "http-proxy-middleware": "^1.0.6",
     "loadash": "^1.0.0",
     "react": "^17.0.1",
     "react-cookie": "^4.0.3",
@@ -35,6 +34,7 @@
       "plugin:prettier/recommended"
     ]
   },
+  "proxy": "http://fgkextern.test.malmo.se/api",
   "browserslist": {
     "production": [
       ">0.2%",

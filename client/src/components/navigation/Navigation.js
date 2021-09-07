@@ -80,7 +80,7 @@ const Navigation = () => {
                 reportDispatch({
                   type: "setFormInfo",
                   field: "external_id",
-                  payload: response.data.external_id,
+                  payload: response.data.IssueId,
                 });
                 setIsLoading(false);
                 navigationDispatch({ type: "submit" });

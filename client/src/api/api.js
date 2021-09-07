@@ -18,7 +18,7 @@ export const postImages = async (endpoint, file, callback) => {
       onUploadProgress: callback,
     });
     if (response) {
-      const UploadedImageId = await response.data.id;
+      const UploadedImageId = await response.data.tempId;
       responseData.data = UploadedImageId;
     }
   } catch (error) {
@@ -29,14 +29,29 @@ export const postImages = async (endpoint, file, callback) => {
 };
 
 export const postReport = async (data) => {
+  const SMS = 1;
+  const EMAIL = 2;
+
+  const payload = {
+    IssueRegistrator: data.name,
+    IssueDescription: data.description,
+    IssueEasting: 1,
+    IssueNorthing: 1,
+    IssueDocuments: data.images,
+    IssueRegisterContactEmail: data.email,
+    IssueRegisterContactPhone: data.phone,
+  };
+  if (data.enable_tracking && data.email.length > 0) {
+    payload.IssueRegistratorFeedbackType = EMAIL;
+  } else if (data.enable_tracking && data.phone.length > 0) {
+    payload.IssueRegistratorFeedbackType = SMS;
+  }
+
   try {
     const response = await http.post(BASE_URL + REPORTS_ENDPOINT, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      report: data,
+      ...payload,
     });
-    if (response.status === 201) {
+    if (response.status === 200) {
       return response;
     }
   } catch (error) {
