@@ -35,8 +35,8 @@ export const postReport = async (data) => {
   const payload = {
     IssueRegistrator: data.name,
     IssueDescription: data.description,
-    IssueEasting: 1,
-    IssueNorthing: 1,
+    IssueLatitude: data.latitude,
+    IssueLongitude: data.longitude,
     IssueDocuments: data.images,
     IssueRegisterContactEmail: data.email,
     IssueRegisterContactPhone: data.phone,
@@ -48,7 +48,7 @@ export const postReport = async (data) => {
   }
 
   try {
-    const response = await http.post(BASE_URL + REPORTS_ENDPOINT, {
+    const response = await http.post(REPORTS_ENDPOINT, {
       ...payload,
     });
     if (response.status === 200) {
