@@ -20,6 +20,7 @@ import { StyledBoldHeader } from "../../components/styles/Typography/Typography"
 import { useUpdate } from "../.././contexts/UpdateContext";
 
 const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// eslint-disable-next-line
 const mobilePattern = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/;
 
 const ContactInfoView = () => {
@@ -48,6 +49,7 @@ const ContactInfoView = () => {
         </StyledHeroHeadingThin>
       </StyledHeroContainer>
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -69,6 +71,7 @@ const ContactInfoView = () => {
     } else {
       dispatch({ type: "disableSubmit" });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     enable_tracking.current.checked,
     email.current.value,

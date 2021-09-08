@@ -1,7 +1,6 @@
 import http from "../http-common";
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL;
-const PHOTOS_ENDPOINT = process.env.REACT_APP_API_POST_PHOTOS_ENDPOINT;
+// const PHOTOS_ENDPOINT = process.env.REACT_APP_API_POST_PHOTOS_ENDPOINT;
 const REPORTS_ENDPOINT = process.env.REACT_APP_API_POST_REPORTS_ENDPOINT;
 
 export const postImages = async (endpoint, file, callback) => {

@@ -11,6 +11,7 @@ import { useEffect, useState, useRef } from "react";
 import { CgMathPlus as OutlinePlus } from "react-icons/cg";
 
 const Grid = ({ images, handleImages }) => {
+  // eslint-disable-next-line no-unused-vars
   const [gridImages, setGridImages] = useState(images);
   const fileInput = useRef(null);
 

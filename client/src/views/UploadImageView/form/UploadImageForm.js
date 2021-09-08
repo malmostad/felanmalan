@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, useContext, useCallback } from "react";
+import { useRef, useEffect, useContext, useCallback } from "react";
 import { NavigationContext } from "../../../contexts/NavigationContext";
 import { useDropzone } from "react-dropzone";
 import { IoArrowUpCircle } from "react-icons/io5";
@@ -21,12 +21,14 @@ const UploadImageForm = ({ handleImagesDropZone }) => {
     if (formState.images.length > 0) {
       navigationDispatch({ type: "enableNext" });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState.images]);
 
   const onDrop = useCallback((acceptedFiles) => {
     handleImagesDropZone(acceptedFiles);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const { getRootProps, getInputProps, isDragAccept } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
     <>

@@ -37,6 +37,7 @@ const MapView = () => {
   const [renderPrefix, setRenderPrefix] = useState(false);
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const { latitude, longitude, address } = formState;
     if (latitude && longitude && address) {
@@ -48,6 +49,7 @@ const MapView = () => {
       setAddress(address);
       navigationDispatch({ type: "enableNext" });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isCoordinatesOutOfBounds = (coordinates, maxBounds) => {

@@ -17,12 +17,11 @@ import { BsTrash } from "react-icons/bs";
 const PreviewImage = ({ image }) => {
   let uploadRef = useRef(image);
   const [isHovering, setIsHoovering] = useState(false);
-  const currentFile = uploadRef.current;
   const [uploadProgress, setUploadProgress] = useState(
     uploadRef.current.uploadStatus
   );
   const [showProgressBar, setShowProgressBar] = useState(false);
-  const { dispatch, formState } = useReport();
+  const { dispatch } = useReport();
   const { setImagesToBeUploaded, imagesToBeUploaded } = useUpdate();
 
   const Upload = async (file) => {
@@ -47,11 +46,12 @@ const PreviewImage = ({ image }) => {
 
   const memoizedUploadTask = useCallback(() => {
     Upload(image);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
 
   useEffect(() => {
     memoizedUploadTask(image);
-  }, []);
+  });
 
   const handleRemoveImage = (image) => {
     setImagesToBeUploaded(

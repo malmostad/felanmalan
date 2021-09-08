@@ -36,7 +36,7 @@ const FollowUpView = () => {
         </StyledDescription>
       </StyledHeroContainer>
     );
-  }, []);
+  });
 
   return (
     <>

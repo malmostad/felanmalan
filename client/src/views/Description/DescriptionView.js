@@ -29,13 +29,14 @@ const DescriptionView = () => {
         </StyledHeroHeadingThin>
       </StyledHeroContainer>
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     formState.description
       ? dispatch({ type: "enableNext" })
       : dispatch({ type: "disableNext" });
-  }, []);
+  });
 
   const handleFormInfo = (e) => {
     handelSetFormInfo("description", e.target.value);

@@ -18,6 +18,7 @@ import { AiOutlineQuestionCircle as Icon } from "react-icons/ai";
 import ReadMore from "../readmore/ReadMore";
 
 const Cookie = () => {
+  // eslint-disable-next-line no-unused-vars
   const [cookies, setCookie] = useCookies(["cookieConsent"]);
   const [readMore, setReadMore] = useState(false);
 

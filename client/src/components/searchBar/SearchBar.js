@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { fetchSearchResultMapBoxApi } from "../../api/api";
 import { debounce } from "lodash";
 import { AiOutlineSearch as SearchIcon } from "react-icons/ai";
@@ -23,7 +23,7 @@ const SearchBar = ({ address, renderPrefix, onResultSelect, maxBounds }) => {
     } else {
       setValue(address);
     }
-  }, [address]);
+  }, [address, renderPrefix]);
 
   const updateSearchResults = async (e) => {
     if (e.target.value.length >= 3) {

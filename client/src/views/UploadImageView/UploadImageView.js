@@ -29,6 +29,7 @@ const UploadImageView = () => {
         </StyledHeroHeadingThin>
       </StyledHeroContainer>
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -40,6 +41,7 @@ const UploadImageView = () => {
       setUploading(false);
       navigationDispatch({ type: "disableNext" });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imagesToBeUploaded]);
 
   const handleImagesDropZone = (acceptedFiles) => {
@@ -68,7 +70,7 @@ const UploadImageView = () => {
   };
 
   const revokeFileURLs = (fileArray) => {
-    fileArray.map((file) => {
+    fileArray.forEach((file) => {
       URL.revokeObjectURL(file);
     });
   };
