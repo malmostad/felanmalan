@@ -35,8 +35,8 @@ export const postReport = async (data) => {
   const payload = {
     IssueRegistrator: data.name,
     IssueDescription: data.description,
-    IssueLatitude: data.latitude,
-    IssueLongitude: data.longitude,
+    IssueEasting: data.longitude,
+    IssueNorthing: data.latitude,
     IssueDocuments: data.images,
     IssueRegisterContactEmail: data.email,
     IssueRegisterContactPhone: data.phone,
