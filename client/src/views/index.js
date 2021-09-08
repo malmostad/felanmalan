@@ -6,11 +6,11 @@ import ContactInfoView from "./ContactInfo/ContactInfoView";
 import FollowUpView from "./FollowUp/FollowUpView";
 
 export const formViews = [
-  <UploadImageView />,
-  <MapView />,
-  <DescriptionView />,
-  <ContactInfoView />,
-  <FollowUpView />,
+  { component: <UploadImageView />, name: "UploadImageView" },
+  { component: <MapView />, name: "MapView" },
+  { component: <DescriptionView />, name: "DescriptionView" },
+  { component: <ContactInfoView />, name: "ContactInfoView" },
+  { component: <FollowUpView />, name: "FollowUpView" },
 ];
 
 export { UploadImageView, MapView, DescriptionView, ContactInfoView };

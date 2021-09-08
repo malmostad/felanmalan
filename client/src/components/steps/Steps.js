@@ -23,7 +23,7 @@ const Steps = () => {
       >
         {cookies.cookieConsent ? (
           <>
-            {formViews[state.currentViewIndex].type.name !== "MapView" && (
+            {formViews[state.currentViewIndex].name !== "MapView" && (
               <HeaderSection />
             )}
             {error ? (
@@ -32,7 +32,7 @@ const Steps = () => {
                 statusCode={errorStatusCode}
               />
             ) : (
-              <>{formViews[state.currentViewIndex]}</>
+              <>{formViews[state.currentViewIndex].component}</>
             )}
             <Footer />
           </>
