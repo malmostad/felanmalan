@@ -1,9 +1,15 @@
 import styled from "styled-components/macro";
-import { flexCenterColumn, flexCenter } from "../mixins";
+
+const onResize = () => {
+  const doc = document.documentElement;
+  doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+};
+window.addEventListener("resize", onResize);
+onResize();
 
 export const MainContainer = styled.div`
   display: flex;
-  height: 100vh;
+  height: var(--app-height);
   flex-direction: column;
   justify-content: space-between;
   background-color: ${({ currentViewIndex, lastViewIndex, theme }) =>
@@ -13,13 +19,14 @@ export const MainContainer = styled.div`
 `;
 
 export const StyledFlexCenter = styled.div`
-  ${flexCenter}
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const StyledOuter = styled.div`
   width: 100vw;
-  min-height: 100vh;
-  height: auto;
+  height: var(--app-height);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

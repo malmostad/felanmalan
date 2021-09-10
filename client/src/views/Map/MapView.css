@@ -1,5 +1,5 @@
 .map-style {
-  height: calc(100vh - 82px);
+  height: calc(var(--app-height) - 82px);
 }
 
 .pin-marker {
