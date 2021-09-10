@@ -36,7 +36,8 @@ const DescriptionView = () => {
     formState.description
       ? dispatch({ type: "enableNext" })
       : dispatch({ type: "disableNext" });
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleFormInfo = (e) => {
     handelSetFormInfo("description", e.target.value);
