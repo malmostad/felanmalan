@@ -256,7 +256,6 @@ export const StyledButtonImage = styled.button`
   }
 `;
 export const StyledTouchCharter = styled.div`
-  overflow-y: hidden;
   overflow-x: auto;
   width: 100%;
   background: transparent;
@@ -265,7 +264,6 @@ export const StyledTouchCharter = styled.div`
   height: 58vh;
   padding-top: 12px;
   @media (min-width: 560px) {
-    overflow: revert;
     height: 58vh;
     padding-bottom: 22px;
   }
