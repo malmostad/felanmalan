@@ -47,43 +47,66 @@ const UploadImageView = () => {
     }
   }, [imagesToBeUploaded, navigationDispatch]);
 
-  const onImagesAdded = (images) => {
+  const onImagesAdd = (images) => {
     images.forEach((image) => {
-      processImage(image);
+      processFile(image);
     });
   };
 
-  const processImage = (file) => {
-    const imageMetaData = {
+  const processFile = (file) => {
+    const image = createImage(file);
+
+    setImagesToBeUploaded((previous) => previous.concat(image));
+    upload(file, image);
+  };
+
+  const onImageRemove = (id) => {
+    const image = imagesToBeUploaded.find((image) => {
+      return image.id === id;
+    });
+    const { externalId } = image;
+
+    dispatch({
+      type: "removeImage",
+      payload: externalId,
+    });
+    setImagesToBeUploaded((previous) => {
+      return previous.filter((image) => {
+        return image.id !== id;
+      });
+    });
+  };
+
+  const createImage = (file) => {
+    return {
       preview_URL: URL.createObjectURL(file),
       id: uuidv4(),
       uploadProgress: 0,
     };
-    setImagesToBeUploaded((previous) => previous.concat(imageMetaData));
-    upload(file, imageMetaData);
   };
-
   const upload = async (file, imageMetaData) => {
     setUploadingCount(uploadingCount + 1);
     try {
       const resp = await postImages(file, (progressEvent) => {
         imageMetaData.uploadProgress =
           (progressEvent.loaded * 100) / progressEvent.total;
-        updateProgress(imageMetaData);
+        updateImage(imageMetaData);
       });
       setUploadingCount(uploadingCount - 1);
 
       dispatch({
-        type: "uploadImages",
-        field: "images",
+        type: "addImage",
         payload: resp.imageId,
       });
+
+      imageMetaData.externalId = resp.imageId;
+      updateImage(imageMetaData);
     } catch (error) {
       setUploadingCount(uploadingCount - 1);
     }
   };
 
-  const updateProgress = (updatedImageMetaData, progress) => {
+  const updateImage = (updatedImageMetaData) => {
     const index = imagesToBeUploaded.findIndex((imageMetaData) => {
       return updatedImageMetaData.id === imageMetaData.id;
     });
@@ -96,8 +119,15 @@ const UploadImageView = () => {
 
   return (
     <>
-      <Grid onImagesAdded={onImagesAdded} images={imagesToBeUploaded} />
-      <UploadImageForm onImagesAdded={onImagesAdded} />
+      {imagesToBeUploaded.length > 0 ? (
+        <Grid
+          onImagesAdd={onImagesAdd}
+          onImageRemove={onImageRemove}
+          images={imagesToBeUploaded}
+        />
+      ) : (
+        <UploadImageForm onImagesAdd={onImagesAdd} />
+      )}
     </>
   );
 };

@@ -1,10 +1,4 @@
-//hooks
-import { useCallback, useEffect, useRef, useState } from "react";
-//api
-import { postImages } from "../../api/api";
-// global state
-import { useReport } from "../../contexts/ReportContext";
-import { useUpdate } from "../../contexts/UpdateContext";
+import { useState } from "react";
 import {
   StyledCell,
   StyledImagesSize,
@@ -14,27 +8,8 @@ import ProgressBar from "./ProgressBar";
 import { RemoveImg } from "./styles/styles";
 import { BsTrash } from "react-icons/bs";
 
-const PreviewImage = ({ image }) => {
+const PreviewImage = ({ image, onImageRemove }) => {
   const [isHovering, setIsHoovering] = useState(false);
-  const { dispatch } = useReport();
-  const { setImagesToBeUploaded, imagesToBeUploaded } = useUpdate();
-
-  const handleRemoveImage = (image) => {
-    setImagesToBeUploaded(
-      imagesToBeUploaded.filter((item) => item.id !== image.id)
-    );
-    const removeImageFromArray = imagesToBeUploaded.filter(
-      (item) => item.id !== image.id
-    );
-    const transformToIdOnly = removeImageFromArray.map((item) => {
-      return item.id;
-    });
-    dispatch({
-      type: "removeImage",
-      field: "images",
-      payload: transformToIdOnly,
-    });
-  };
 
   const onMouseEnter = () => {
     setIsHoovering(true);
@@ -58,7 +33,7 @@ const PreviewImage = ({ image }) => {
           </StyledCellUpload>
         )}
         {isHovering && (
-          <RemoveImg onClick={() => handleRemoveImage(image)}>
+          <RemoveImg onClick={() => onImageRemove(image.id)}>
             <BsTrash
               style={{ margin: "10px auto", display: "flex" }}
               size="2rem"

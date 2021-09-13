@@ -10,7 +10,7 @@ import PreviewImage from "./PreviewImage";
 import { useRef } from "react";
 import { CgMathPlus as OutlinePlus } from "react-icons/cg";
 
-const Grid = ({ images, onImagesAdded }) => {
+const Grid = ({ images, onImagesAdd, onImageRemove }) => {
   const fileInput = useRef(null);
 
   return (
@@ -26,7 +26,7 @@ const Grid = ({ images, onImagesAdded }) => {
                   id="upload-button"
                   multiple
                   onChange={(e) => {
-                    onImagesAdded(Array.from(e.target.files));
+                    onImagesAdd(Array.from(e.target.files));
                   }}
                   ref={fileInput}
                   style={{ display: "none" }}
@@ -43,7 +43,11 @@ const Grid = ({ images, onImagesAdded }) => {
               </>
             </StyledAddImage>
             {images.map((img, index) => (
-              <PreviewImage key={img.id} image={img} />
+              <PreviewImage
+                key={img.id}
+                image={img}
+                onImageRemove={onImageRemove}
+              />
             ))}{" "}
           </StyledRow>
         </StyledFlexTheContainer>
