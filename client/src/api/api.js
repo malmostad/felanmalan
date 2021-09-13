@@ -1,24 +1,24 @@
 import http from "../http-common";
 
-// const PHOTOS_ENDPOINT = process.env.REACT_APP_API_POST_PHOTOS_ENDPOINT;
+const PHOTOS_ENDPOINT = process.env.REACT_APP_API_POST_PHOTOS_ENDPOINT;
 const REPORTS_ENDPOINT = process.env.REACT_APP_API_POST_REPORTS_ENDPOINT;
 
-export const postImages = async (endpoint, file, callback) => {
+export const postImages = async (file, onUploadProgress) => {
   let responseData = {
-    data: null,
+    imageId: null,
   };
 
   const formData = new FormData();
   formData.append("file", file);
 
   try {
-    const response = await http.post(endpoint, formData, {
+    const response = await http.post(PHOTOS_ENDPOINT, formData, {
       headers: { "Content-Type": "multipart/form-data" },
-      onUploadProgress: callback,
+      onUploadProgress,
     });
     if (response) {
-      const UploadedImageId = await response.data.tempId;
-      responseData.data = UploadedImageId;
+      const imageId = await response.data.tempId;
+      responseData.imageId = imageId;
     }
   } catch (error) {
     throw new Error(error);

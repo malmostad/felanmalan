@@ -8,7 +8,7 @@ import { useReport } from "../../../contexts/ReportContext";
 import { StyledImageContainer } from "../../../components/styles/containers/Containers";
 import { StyledButtonAddImg } from "../../../components/styles/buttons/Buttons";
 
-const UploadImageForm = ({ handleImagesDropZone }) => {
+const UploadImageForm = ({ onImagesAdded }) => {
   const { dispatch: navigationDispatch } = useContext(NavigationContext);
   const { formState } = useReport();
   const fileInput = useRef(null);
@@ -25,7 +25,7 @@ const UploadImageForm = ({ handleImagesDropZone }) => {
   }, [formState.images]);
 
   const onDrop = useCallback((acceptedFiles) => {
-    handleImagesDropZone(acceptedFiles);
+    onImagesAdded(acceptedFiles);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { getRootProps, getInputProps } = useDropzone({ onDrop });

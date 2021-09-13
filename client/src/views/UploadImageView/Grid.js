@@ -7,17 +7,11 @@ import {
   StyledFlexTheContainer,
 } from "../../components/styles/containers/Containers";
 import PreviewImage from "./PreviewImage";
-import { useEffect, useState, useRef } from "react";
+import { useRef } from "react";
 import { CgMathPlus as OutlinePlus } from "react-icons/cg";
 
-const Grid = ({ images, handleImages }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [gridImages, setGridImages] = useState(images);
+const Grid = ({ images, onImagesAdded }) => {
   const fileInput = useRef(null);
-
-  useEffect(() => {
-    setGridImages(images);
-  }, [images]);
 
   return (
     <StyledTouchCharter>
@@ -31,7 +25,9 @@ const Grid = ({ images, handleImages }) => {
                   type="file"
                   id="upload-button"
                   multiple
-                  onChange={handleImages}
+                  onChange={(e) => {
+                    onImagesAdded(Array.from(e.target.files));
+                  }}
                   ref={fileInput}
                   style={{ display: "none" }}
                   accept="image/*"
@@ -47,7 +43,7 @@ const Grid = ({ images, handleImages }) => {
               </>
             </StyledAddImage>
             {images.map((img, index) => (
-              <PreviewImage key={index} image={img} />
+              <PreviewImage key={img.id} image={img} />
             ))}{" "}
           </StyledRow>
         </StyledFlexTheContainer>

@@ -23,15 +23,16 @@ export const ReportProvider = ({ children }) => {
           ...formState,
           [field]: payload,
         };
-      case "uploadImages":
+      case "addImage":
         return {
           ...formState,
           images: [...formState.images, payload],
         };
-      case "removeImages":
+      case "removeImage":
+        const { images } = formState;
         return {
           ...formState,
-          images: payload,
+          images: images.filter((image) => image !== payload),
         };
       case "clearFormInfo":
         return { ...initialReportData };

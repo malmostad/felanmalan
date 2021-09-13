@@ -15,43 +15,9 @@ import { RemoveImg } from "./styles/styles";
 import { BsTrash } from "react-icons/bs";
 
 const PreviewImage = ({ image }) => {
-  let uploadRef = useRef(image);
   const [isHovering, setIsHoovering] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(
-    uploadRef.current.uploadStatus
-  );
-  const [showProgressBar, setShowProgressBar] = useState(false);
   const { dispatch } = useReport();
   const { setImagesToBeUploaded, imagesToBeUploaded } = useUpdate();
-
-  const Upload = async (file) => {
-    setShowProgressBar(true);
-    const resp = await postImages(
-      process.env.REACT_APP_API_POST_PHOTOS_ENDPOINT,
-      file.data,
-      (progressEvent) => {
-        let progress = Math.round(
-          (progressEvent.loaded * 100) / progressEvent.total
-        );
-        setUploadProgress(progress);
-      }
-    );
-    setShowProgressBar(false);
-    dispatch({
-      type: "uploadImages",
-      field: "images",
-      payload: resp.data,
-    });
-  };
-
-  const memoizedUploadTask = useCallback(() => {
-    Upload(image);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [image]);
-
-  useEffect(() => {
-    memoizedUploadTask(image);
-  });
 
   const handleRemoveImage = (image) => {
     setImagesToBeUploaded(
@@ -64,11 +30,12 @@ const PreviewImage = ({ image }) => {
       return item.id;
     });
     dispatch({
-      type: "removeImages",
+      type: "removeImage",
       field: "images",
       payload: transformToIdOnly,
     });
   };
+
   const onMouseEnter = () => {
     setIsHoovering(true);
   };
@@ -77,7 +44,6 @@ const PreviewImage = ({ image }) => {
     setIsHoovering(false);
   };
 
-  // check if the current file
   return (
     <>
       <StyledImagesSize
@@ -86,9 +52,9 @@ const PreviewImage = ({ image }) => {
         onMouseEnter={onMouseEnter}
       >
         <StyledCell id={image.id} src={image.preview_URL} alt="alt" />
-        {showProgressBar && (
+        {image.uploadProgress < 100 && (
           <StyledCellUpload>
-            <ProgressBar max={100} progress={uploadProgress} />
+            <ProgressBar max={100} progress={image.uploadProgress} />
           </StyledCellUpload>
         )}
         {isHovering && (

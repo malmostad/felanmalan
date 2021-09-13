@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import { useUpdate } from "../../contexts/UpdateContext";
 import Grid from "./Grid";
 import { NavigationContext } from "../../contexts/NavigationContext";
+import { postImages } from "../../api/api";
+import { useReport } from "../../contexts/ReportContext";
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
@@ -16,8 +18,9 @@ const UploadImageView = () => {
     imagesToBeUploaded,
     setImagesToBeUploaded,
   } = useUpdate();
-  const [uploading, setUploading] = useState(false);
+  const [uploadingCount, setUploadingCount] = useState(0);
   const { dispatch: navigationDispatch } = useContext(NavigationContext);
+  const { dispatch } = useReport();
 
   useEffect(() => {
     setCurrentViewHeading(
@@ -33,55 +36,68 @@ const UploadImageView = () => {
   }, []);
 
   useEffect(() => {
-    if (imagesToBeUploaded.length) {
-      navigationDispatch({ type: "disableSkip" });
-      navigationDispatch({ type: "enableNext" });
-      setUploading(true);
-    } else {
-      setUploading(false);
-      navigationDispatch({ type: "disableNext" });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imagesToBeUploaded]);
-
-  const handleImagesDropZone = (acceptedFiles) => {
-    createStatefulArrayOfObjectsFromTheFilesArray(acceptedFiles);
-    revokeFileURLs(acceptedFiles);
-  };
-
-  const handleImages = (e) => {
-    const stagedImagesArray = Array.from(e.target.files);
-    return handleImagesDropZone(stagedImagesArray);
-  };
-
-  const createStatefulArrayOfObjectsFromTheFilesArray = (fileArray) => {
-    const files = fileArray.map((file) => {
-      return {
-        preview_URL: URL.createObjectURL(file),
-        id: uuidv4(),
-        data: file,
-        uploadStatus: 0,
-      };
+    navigationDispatch({
+      type: uploadingCount ? "disableNext" : "enableNext",
     });
-    setImagesToBeUploaded((previousPreviewURLs) => [
-      ...previousPreviewURLs,
-      ...files,
-    ]);
+  }, [uploadingCount, navigationDispatch]);
+
+  useEffect(() => {
+    if (imagesToBeUploaded.length > 0) {
+      navigationDispatch({ type: "disableSkip" });
+    }
+  }, [imagesToBeUploaded, navigationDispatch]);
+
+  const onImagesAdded = (images) => {
+    images.forEach((image) => {
+      processImage(image);
+    });
   };
 
-  const revokeFileURLs = (fileArray) => {
-    fileArray.forEach((file) => {
-      URL.revokeObjectURL(file);
+  const processImage = (file) => {
+    const imageMetaData = {
+      preview_URL: URL.createObjectURL(file),
+      id: uuidv4(),
+      uploadProgress: 0,
+    };
+    setImagesToBeUploaded((previous) => previous.concat(imageMetaData));
+    upload(file, imageMetaData);
+  };
+
+  const upload = async (file, imageMetaData) => {
+    setUploadingCount(uploadingCount + 1);
+    try {
+      const resp = await postImages(file, (progressEvent) => {
+        imageMetaData.uploadProgress =
+          (progressEvent.loaded * 100) / progressEvent.total;
+        updateProgress(imageMetaData);
+      });
+      setUploadingCount(uploadingCount - 1);
+
+      dispatch({
+        type: "uploadImages",
+        field: "images",
+        payload: resp.imageId,
+      });
+    } catch (error) {
+      setUploadingCount(uploadingCount - 1);
+    }
+  };
+
+  const updateProgress = (updatedImageMetaData, progress) => {
+    const index = imagesToBeUploaded.findIndex((imageMetaData) => {
+      return updatedImageMetaData.id === imageMetaData.id;
+    });
+
+    setImagesToBeUploaded((previous) => {
+      previous[index] = updatedImageMetaData;
+      return [...previous];
     });
   };
 
   return (
     <>
-      {uploading ? (
-        <Grid handleImages={handleImages} images={imagesToBeUploaded} />
-      ) : (
-        <UploadImageForm handleImagesDropZone={handleImagesDropZone} />
-      )}
+      <Grid onImagesAdded={onImagesAdded} images={imagesToBeUploaded} />
+      <UploadImageForm onImagesAdded={onImagesAdded} />
     </>
   );
 };
