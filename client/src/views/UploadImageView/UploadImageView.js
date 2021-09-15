@@ -36,16 +36,19 @@ const UploadImageView = () => {
   }, []);
 
   useEffect(() => {
-    navigationDispatch({
-      type: uploadingCount ? "disableNext" : "enableNext",
-    });
-  }, [uploadingCount, navigationDispatch]);
-
-  useEffect(() => {
     if (imagesToBeUploaded.length > 0) {
       navigationDispatch({ type: "disableSkip" });
+
+      navigationDispatch({
+        type: uploadingCount ? "disableNext" : "enableNext",
+      });
+    } else if (imagesToBeUploaded.length === 0 && uploadingCount === 0) {
+      navigationDispatch({ type: "enableSkip" });
+      navigationDispatch({
+        type: "disableNext",
+      });
     }
-  }, [imagesToBeUploaded, navigationDispatch]);
+  }, [uploadingCount, imagesToBeUploaded, navigationDispatch]);
 
   const onImagesAdd = (images) => {
     images.forEach((image) => {
@@ -84,15 +87,22 @@ const UploadImageView = () => {
       uploadProgress: 0,
     };
   };
+
   const upload = async (file, imageMetaData) => {
-    setUploadingCount(uploadingCount + 1);
+    setUploadingCount((prev) => {
+      return prev + 1;
+    });
+
     try {
       const resp = await postImages(file, (progressEvent) => {
         imageMetaData.uploadProgress =
           (progressEvent.loaded * 100) / progressEvent.total;
         updateImage(imageMetaData);
       });
-      setUploadingCount(uploadingCount - 1);
+
+      setUploadingCount((prev) => {
+        return prev - 1;
+      });
 
       dispatch({
         type: "addImage",
@@ -102,7 +112,11 @@ const UploadImageView = () => {
       imageMetaData.externalId = resp.imageId;
       updateImage(imageMetaData);
     } catch (error) {
-      setUploadingCount(uploadingCount - 1);
+      console.log("not really orherew");
+
+      setUploadingCount((prev) => {
+        return prev - 1;
+      });
     }
   };
 
