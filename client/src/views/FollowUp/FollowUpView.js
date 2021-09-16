@@ -31,7 +31,7 @@ const FollowUpView = () => {
           <StyledSpanWord>felanmälan</StyledSpanWord>
         </StyledHeroHeadingThin>
         <StyledDescription>
-          Den hjälper oss hålla vår vackra stad iordning.{" "}
+          Den hjälper oss hålla vår vackra stad i ordning.{" "}
           <Errand>Ärende: {formState.external_id}</Errand>
         </StyledDescription>
       </StyledHeroContainer>

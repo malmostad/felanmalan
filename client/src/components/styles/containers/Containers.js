@@ -40,12 +40,12 @@ export const StyledOuter = styled.div`
 `;
 export const StyledOuterFollowUpView = styled(StyledOuter)`
   overflow-y: hidden;
-  min-height: calc(100vh - 398px);
+  min-height: calc(var(--app-height) - 398px);
   @media (max-width: 560px) {
-    min-height: calc(100vh - 352px);
+    min-height: calc(var(--app-height) - 352px);
   }
   @media (max-width: 560px) and (max-height: 620px) {
-    min-height: calc(100vh - 315px);
+    min-height: calc(var(--app-height) - 315px);
   }
 `;
 // button containers
