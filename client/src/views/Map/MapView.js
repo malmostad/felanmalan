@@ -36,6 +36,7 @@ const MapView = () => {
   const [userLocation, setUserLocation] = useState();
   const [renderPrefix, setRenderPrefix] = useState(false);
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
+  let isScrolling = false;
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -76,7 +77,15 @@ const MapView = () => {
     if (isOutOfBounds(bounds, MAX_BOUNDS)) {
       return;
     }
-    setViewport(nextViewport);
+    if (isScrolling) {
+      setViewport({
+        ...nextViewport,
+        longitude: viewport.longitude,
+        latitude: viewport.latitude,
+      });
+    } else {
+      setViewport(nextViewport);
+    }
     handelSetFormInfo("longitude", viewport.longitude);
     handelSetFormInfo("latitude", viewport.latitude);
   };
@@ -94,6 +103,9 @@ const MapView = () => {
       return;
     }
     setViewport({ ...nextViewport, transitionDuration: 400 });
+  };
+  const onScroll = (event) => {
+    isScrolling = true;
   };
 
   const onUserLocation = (payload) => {
@@ -156,6 +168,7 @@ const MapView = () => {
           onMouseUp={updateAddress}
           onTouchStart={transitionEnd}
           onTouchEnd={updateAddress}
+          onWheel={onScroll}
         >
           <NavigationControl
             showCompass={false}
