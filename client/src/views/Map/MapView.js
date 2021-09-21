@@ -13,7 +13,7 @@ import "./MapView.css";
 import { fetchAddressMapBoxAPI } from "../../api/api";
 import { ReactComponent as MarkerIcon } from "./pin.svg";
 
-import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
+import mapboxgl from "mapbox-gl";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -110,9 +110,14 @@ const MapView = () => {
 
   const onResultSelect = (payload) => {
     setRenderPrefix(false);
+    handelSetFormInfo("longitude", payload.longitude);
+    handelSetFormInfo("latitude", payload.latitude);
+    handelSetFormInfo("address", payload.address);
+    navigationDispatch({ type: "enableNext" });
     setAddress(payload.address);
     setViewport({
       ...viewport,
+      zoom: 17,
       longitude: payload.longitude,
       latitude: payload.latitude,
       transitionDuration: 400,
