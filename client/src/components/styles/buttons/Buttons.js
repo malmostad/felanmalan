@@ -11,7 +11,6 @@ export const StyledButton = styled.button`
   height: 50px;
   color: ${({ theme, secondary }) =>
     secondary ? theme.colors.PrimaryGreen : theme.colors.White};
-  width: 270px;
   border-radius: 2px;
   border: 2px solid ${({ theme }) => theme.colors.PrimaryGreen};
   justify-content: center;

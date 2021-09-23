@@ -215,7 +215,6 @@ export const StyledImagesSize = styled.div`
 
 export const StyledAddImage = styled.div`
   margin-top: 10px;
-  color: yellow;
   width: 250px;
   height: 250px;
   margin-right: 10px;
@@ -232,7 +231,7 @@ export const StyledButtonImage = styled.button`
   display: block;
   justify-content: center;
   align-items: center;
-  background-color: #d5d5d5;
+  background-color: ${({ theme }) => theme.colors.Gray};
   width: 100%;
   height: 100%;
   margin: 0 10px;
@@ -273,10 +272,11 @@ export const StyledUploadContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
   @media (min-width: 560px) {
     background-color: ${({ theme }) => theme.colors.White};
-    height: calc(100vh - 360px);
+    height: calc(var(--app-height) - 360px);
   }
 `;
 export const StyledImageContainer = styled.div`
   display: flex;
+  height: calc(var(--app-height) - 360px);
   justify-content: center;
 `;
