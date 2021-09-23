@@ -80,10 +80,6 @@ export const StyledOutlineButtonWhiteFirstPage = styled(StyledButton)`
   }
 `;
 export const StyledButtonAddImg = styled(StyledButton)`
-  width: 95%;
-  bottom: 90px;
-  left: 0;
-  position: absolute;
   border: 2px solid ${({ theme }) => theme.colors.White};
   @media (min-width: 560px) {
     display: none;

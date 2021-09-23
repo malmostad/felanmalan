@@ -1,9 +1,13 @@
 import { useRef, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { IoArrowUpCircle } from "react-icons/io5";
-import { StyledUploadContainer } from "../../../components/styles/containers/Containers";
 import { Dropzone } from "../styles/styles";
-import { StyledImageContainer } from "../../../components/styles/containers/Containers";
+import {
+  StyledButtonOuter,
+  StyledButtonInnerUploadImageView,
+  StyledImageContainer,
+  StyledUploadContainer,
+} from "../../../components/styles/containers/Containers";
 import { StyledButtonAddImg } from "../../../components/styles/buttons/Buttons";
 
 const UploadImageForm = ({ onImagesAdd }) => {
@@ -37,18 +41,22 @@ const UploadImageForm = ({ onImagesAdd }) => {
           Klicka eller dra hit för att starta uppladdning
         </Dropzone>
         <StyledImageContainer>
-          <StyledButtonAddImg {...getRootProps()}>
-            <input
-              name="images"
-              type="file"
-              id="upload-button"
-              multiple
-              ref={fileInput}
-              accept="image/*"
-              {...getInputProps()}
-            />
-            Lägg till bild
-          </StyledButtonAddImg>
+          <StyledButtonOuter>
+            <StyledButtonInnerUploadImageView>
+              <StyledButtonAddImg {...getRootProps()}>
+                <input
+                  name="images"
+                  type="file"
+                  id="upload-button"
+                  multiple
+                  ref={fileInput}
+                  accept="image/*"
+                  {...getInputProps()}
+                />
+                Lägg till bild
+              </StyledButtonAddImg>
+            </StyledButtonInnerUploadImageView>
+          </StyledButtonOuter>
         </StyledImageContainer>
       </StyledUploadContainer>
     </>
