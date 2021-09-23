@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import ReactMapGl, {
   Marker,
   NavigationControl,
+  AttributionControl,
   FlyToInterpolator,
   WebMercatorViewport,
 } from "react-map-gl";
@@ -180,7 +181,9 @@ const MapView = () => {
           onTouchStart={transitionEnd}
           onTouchEnd={updateAddress}
           onWheel={onScroll}
+          attributionControl={false}
         >
+          <AttributionControl compact={true} style={{ bottom: 0, left: 90 }} />
           <NavigationControl
             showCompass={false}
             onViewportChange={onZoom}
