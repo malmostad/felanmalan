@@ -9,20 +9,13 @@ if (!UpdateContext) {
 export const useUpdate = () => useContext(UpdateContext);
 
 export const UpdateProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorStatusCode, setErrorStatusCode] = useState(null);
   const [errorMessenger, setErrorMessenger] = useState(null);
   const [currentViewHeading, setCurrentViewHeading] = useState("");
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [imageURI, setImageURI] = useState(null);
-  const [uploadStatus, setUploadStatus] = useState(false);
-  const [uploading, setUploading] = useState(false);
   const [imagesToBeUploaded, setImagesToBeUploaded] = useState([]);
 
   const updateValues = {
-    setLoading,
-    loading,
     error,
     setError,
     errorStatusCode,
@@ -31,14 +24,6 @@ export const UpdateProvider = ({ children }) => {
     setErrorMessenger,
     setCurrentViewHeading,
     currentViewHeading,
-    setUploadProgress,
-    uploadProgress,
-    imageURI,
-    setImageURI,
-    uploadStatus,
-    setUploadStatus,
-    uploading,
-    setUploading,
     imagesToBeUploaded,
     setImagesToBeUploaded,
   };
