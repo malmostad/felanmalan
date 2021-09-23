@@ -2,7 +2,6 @@ import { useUpdate } from "../../contexts/UpdateContext";
 import { NavigationContext } from "../../contexts/NavigationContext";
 import { useCookies } from "react-cookie";
 import Cookie from "../cookie/Cookie";
-import Footer from "../footer/Footer";
 import HeaderSection from "../header/HeaderSection";
 import { useContext } from "react";
 import Error from "../errors/Error";
@@ -34,7 +33,6 @@ const Steps = () => {
             ) : (
               <>{formViews[state.currentViewIndex].component}</>
             )}
-            <Footer />
           </>
         ) : (
           <Cookie />

@@ -1,3 +1,4 @@
+import { NavigationContext } from "../../contexts/NavigationContext";
 import { useUpdate } from "../.././contexts/UpdateContext";
 import { useReport } from "../../contexts/ReportContext";
 import { AiOutlineExclamationCircle as Exclamation } from "react-icons/ai";
@@ -11,17 +12,24 @@ import {
   StyledBorder,
   StyledTitleContainer,
 } from "../../components/styles/Typography/Typography";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import {
   StyledOuterFollowUpView,
   StyledContentFollowUpView,
   StyledHeroContainer,
 } from "../../components/styles/containers/Containers";
+import { StyledOutlineButtonWhite } from "../../components/styles/buttons/Buttons";
+
+import {
+  StyledButtonOuter,
+  StyledButtonInner,
+} from "../../components/styles/containers/Containers";
 import "../../globalstyles/GlobalStyle";
 
 const FollowUpView = () => {
-  const { setCurrentViewHeading } = useUpdate();
-  const { formState } = useReport();
+  const { setCurrentViewHeading, setImagesToBeUploaded } = useUpdate();
+  const { formState, dispatch: reportDispatch } = useReport();
+  const { dispatch: navigationDispatch } = useContext(NavigationContext);
 
   useEffect(() => {
     setCurrentViewHeading(
@@ -36,7 +44,7 @@ const FollowUpView = () => {
         </StyledDescription>
       </StyledHeroContainer>
     );
-  });
+  }, [formState, setCurrentViewHeading]);
 
   return (
     <>
@@ -64,6 +72,19 @@ const FollowUpView = () => {
           </StyledBorder>
         </StyledContentFollowUpView>
       </StyledOuterFollowUpView>
+      <StyledButtonOuter>
+        <StyledButtonInner>
+          <StyledOutlineButtonWhite
+            onClick={() => {
+              setImagesToBeUploaded([]);
+              reportDispatch({ type: "clearFormInfo" });
+              navigationDispatch({ type: "reset" });
+            }}
+          >
+            Skapa Ny
+          </StyledOutlineButtonWhite>
+        </StyledButtonInner>
+      </StyledButtonOuter>
     </>
   );
 };

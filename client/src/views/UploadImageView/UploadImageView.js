@@ -10,7 +10,15 @@ import {
   StyledHeroHeadingThin,
   StyledSpanWord,
 } from "../../components/styles/Typography/Typography";
+import { LoadingSpinner } from "../../components/styles/Spinners/Spinners";
 import { StyledHeroContainer } from "../../components/styles/containers/Containers";
+
+import { StyledButtonUploadImageView } from "../../components/styles/buttons/Buttons";
+
+import {
+  StyledButtonOuterUploadImageView,
+  StyledButtonInner,
+} from "../../components/styles/containers/Containers";
 
 const UploadImageView = () => {
   const {
@@ -34,21 +42,6 @@ const UploadImageView = () => {
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    if (imagesToBeUploaded.length > 0) {
-      navigationDispatch({ type: "disableSkip" });
-
-      navigationDispatch({
-        type: uploadingCount ? "disableNext" : "enableNext",
-      });
-    } else if (imagesToBeUploaded.length === 0 && uploadingCount === 0) {
-      navigationDispatch({ type: "enableSkip" });
-      navigationDispatch({
-        type: "disableNext",
-      });
-    }
-  }, [uploadingCount, imagesToBeUploaded, navigationDispatch]);
 
   const onImagesAdd = (images) => {
     images.forEach((image) => {
@@ -112,8 +105,6 @@ const UploadImageView = () => {
       imageMetaData.externalId = resp.imageId;
       updateImage(imageMetaData);
     } catch (error) {
-      console.log("not really orherew");
-
       setUploadingCount((prev) => {
         return prev - 1;
       });
@@ -131,6 +122,14 @@ const UploadImageView = () => {
     });
   };
 
+  const buttonText = () => {
+    if (uploadingCount > 0) {
+      return <LoadingSpinner gray />;
+    } else {
+      return imagesToBeUploaded.length > 0 ? "Nästa steg" : "Hoppa över";
+    }
+  };
+
   return (
     <>
       {imagesToBeUploaded.length > 0 ? (
@@ -142,6 +141,20 @@ const UploadImageView = () => {
       ) : (
         <UploadImageForm onImagesAdd={onImagesAdd} />
       )}
+      <StyledButtonOuterUploadImageView
+        toggleColor={imagesToBeUploaded.length > 0}
+      >
+        <StyledButtonInner>
+          <StyledButtonUploadImageView
+            disabled={uploadingCount > 0}
+            onClick={() => {
+              navigationDispatch({ type: "next" });
+            }}
+          >
+            {buttonText()}
+          </StyledButtonUploadImageView>
+        </StyledButtonInner>
+      </StyledButtonOuterUploadImageView>
     </>
   );
 };

@@ -42,13 +42,15 @@ const Grid = ({ images, onImagesAdd, onImageRemove }) => {
                 </StyledButtonImage>
               </>
             </StyledAddImage>
-            {images.map((img, index) => (
-              <PreviewImage
-                key={img.id}
-                image={img}
-                onImageRemove={onImageRemove}
-              />
-            ))}{" "}
+            {images
+              .map((img) => (
+                <PreviewImage
+                  key={img.id}
+                  image={img}
+                  onImageRemove={onImageRemove}
+                />
+              ))
+              .reverse()}{" "}
           </StyledRow>
         </StyledFlexTheContainer>
       </StyledTable>

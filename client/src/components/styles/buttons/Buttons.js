@@ -2,32 +2,41 @@ import styled from "styled-components/macro";
 
 export const StyledButton = styled.button`
   cursor: pointer;
-  background-color: ${({ theme, bgGreen }) =>
-    bgGreen ? theme.colors.PrimaryGreen : "inherit"};
+  background-color: ${({ theme, secondary }) =>
+    secondary ? theme.colors.White : theme.colors.PrimaryGreen};
   font-size: ${({ theme }) => theme.FontSizes.ButtonText};
   font-family: MyriadPro, Open sans, Verdana;
   font-weight: 700;
   margin: 0 10px;
   height: 50px;
-  color: ${({ theme }) => theme.colors.PrimaryWhite};
+  color: ${({ theme, secondary }) =>
+    secondary ? theme.colors.PrimaryGreen : theme.colors.White};
   width: 270px;
-  background: ${({ theme }) => theme.colors.PrimaryGreen};
   border-radius: 2px;
   border: 2px solid ${({ theme }) => theme.colors.PrimaryGreen};
   justify-content: center;
   align-items: center;
-  color: white;
   width: 100%;
   max-width: 520px;
   @media (max-width: 560px) {
     height: 50px;
   }
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.Gray};
+    border: 2px solid ${({ theme }) => theme.colors.Gray};
+    color: ${({ theme }) => theme.colors.White};
+  }
+  &:hover:enabled {
+    background-color: ${({ theme }) => theme.colors.PrimaryGreen};
+    color: ${({ theme }) => theme.colors.White};
+  }
 `;
 
-export const StyledButtonSkip = styled(StyledButton)`
-  border: 2px solid
-    ${({ windowWidth, theme }) =>
-      windowWidth < 560 ? theme.colors.White : theme.colors.PrimaryGreen};
+export const StyledButtonUploadImageView = styled(StyledButton)`
+  border: 2px solid ${({ theme }) => theme.colors.PrimaryGreen};
+  @media (max-width: 560px) {
+    border: 2px solid ${({ theme }) => theme.colors.White};
+  }
 `;
 
 export const StyledFetchButton = styled.button`
@@ -47,18 +56,6 @@ export const StyledFetchButton = styled.button`
   bottom: 110px;
   right: 5px;
   cursor: pointer;
-`;
-
-export const StyledOutlineButtonGreen = styled(StyledButton)`
-  width: 100%;
-  max-width: 530px;
-  color: ${({ theme }) => theme.colors.PrimaryGreen};
-  background-color: ${({ theme }) => theme.colors.White};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.PrimaryGreen};
-    color: ${({ theme }) => theme.colors.White};
-  }
 `;
 
 export const StyledOutlineButtonWhite = styled(StyledButton)`

@@ -48,25 +48,15 @@ export const StyledOuterFollowUpView = styled(StyledOuter)`
     min-height: calc(var(--app-height) - 315px);
   }
 `;
-// button containers
 export const StyledButtonOuter = styled.div`
   transition: transform 0.3s ease-out;
   display: flex;
-  background-color: ${({
-    windowWidth,
-    currentViewIndex,
-    lastViewIndex,
-    formState,
-    theme,
-  }) =>
-    (windowWidth < 560 && currentViewIndex === 0) ||
-    currentViewIndex === lastViewIndex
-      ? theme.colors.PrimaryGreen
-      : theme.colors.White};
-  background-color: ${({ formState, theme }) =>
-    formState > 0 && theme.colors.White};
-  background-color: ${({ currentViewIndex, lastViewIndex, theme }) =>
-    currentViewIndex === lastViewIndex && theme.colors.PrimaryGreen};
+`;
+export const StyledButtonOuterUploadImageView = styled(StyledButtonOuter)`
+  @media (max-width: 560px) {
+    background-color: ${({ theme, toggleColor }) =>
+      toggleColor ? theme.colors.White : theme.colors.PrimaryGreen};
+  }
 `;
 export const StyledButtonInner = styled.div`
   display: flex;

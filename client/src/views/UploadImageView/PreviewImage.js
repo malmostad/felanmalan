@@ -32,14 +32,18 @@ const PreviewImage = ({ image, onImageRemove }) => {
             <ProgressBar max={100} progress={image.uploadProgress} />
           </StyledCellUpload>
         )}
-        {isHovering && (
+        {
           <RemoveImg onClick={() => onImageRemove(image.id)}>
             <BsTrash
-              style={{ margin: "10px auto", display: "flex" }}
+              style={{
+                margin: "10px auto",
+                display: "flex",
+                alignSelf: "center",
+              }}
               size="2rem"
             />
           </RemoveImg>
-        )}
+        }
       </StyledImagesSize>
     </>
   );

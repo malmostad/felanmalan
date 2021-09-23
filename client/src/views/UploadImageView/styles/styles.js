@@ -54,6 +54,7 @@ export const Dropzone = styled.div`
   }
 `;
 export const RemoveImg = styled.div`
+  display: flex;
   width: 52px;
   height: 52px;
   background-color: ${({ theme }) => theme.colors.PrimaryGreen};
@@ -63,9 +64,6 @@ export const RemoveImg = styled.div`
   bottom: 0;
   right: -10px;
   cursor: pointer;
-  /* @media (min-width: 560px) {
-    display: none;
-  } */
 `;
 
 export { StyledImageContainer, StyledImageOverlay, StyledImageIcon };

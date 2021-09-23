@@ -1,11 +1,24 @@
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext, useState } from "react";
 import { useReport } from "../.././contexts/ReportContext";
+import { useUpdate } from "../.././contexts/UpdateContext";
+import { NavigationContext } from "../../contexts/NavigationContext";
+import { postReport } from "../../api/api";
+
+import { StyledButton } from "../../components/styles/buttons/Buttons";
+import { LoadingSpinner } from "../../components/styles/Spinners/Spinners";
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
+  StyledBoldHeader,
   StyledTextFollowUp,
 } from "../../components/styles/Typography/Typography";
-import { NavigationContext } from "../../contexts/NavigationContext";
+
+import {
+  StyledButtonOuter,
+  StyledButtonInner,
+  StyledHeroContainer,
+} from "../../components/styles/containers/Containers";
+
 import {
   StyledError,
   StyledFormWrapper,
@@ -15,9 +28,6 @@ import {
   StyledFollowUpBox,
   StyledFormDescription,
 } from "../../components/styles/form/Form";
-import { StyledHeroContainer } from "../../components/styles/containers/Containers";
-import { StyledBoldHeader } from "../../components/styles/Typography/Typography";
-import { useUpdate } from "../.././contexts/UpdateContext";
 
 const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 // eslint-disable-next-line
@@ -29,7 +39,12 @@ const ContactInfoView = () => {
   const email = useRef("");
   const phone = useRef("");
   const enable_tracking = useRef(false);
-  const { handelSetFormInfo, formState } = useReport();
+  const {
+    handelSetFormInfo,
+    formState,
+    dispatch: reportDispatch,
+  } = useReport();
+  const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useContext(NavigationContext);
 
   const handelFormInfo = (e) => {
@@ -51,32 +66,6 @@ const ContactInfoView = () => {
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    const phoneOrEmailSet =
-      [!isEmptyPhoneNumberInput, !isEmptyEmailInput].filter((isSet) => isSet)
-        .length > 0;
-
-    if (
-      (isEmptyEmailInput || isValidEmail) &&
-      (isEmptyPhoneNumberInput || isValidPhoneNumber)
-    ) {
-      if (enable_tracking.current.checked && phoneOrEmailSet) {
-        dispatch({ type: "enableSubmit" });
-      } else if (!enable_tracking.current.checked) {
-        dispatch({ type: "enableSubmit" });
-      } else {
-        dispatch({ type: "disableSubmit" });
-      }
-    } else {
-      dispatch({ type: "disableSubmit" });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    enable_tracking.current.checked,
-    email.current.value,
-    phone.current.value,
-  ]);
 
   const isEmptyPhoneNumberInput =
     !phone.current.value ||
@@ -114,6 +103,28 @@ const ContactInfoView = () => {
       return true;
     }
   };
+
+  const isDisabled = () => {
+    const phoneOrEmailSet =
+      [!isEmptyPhoneNumberInput, !isEmptyEmailInput].filter((isSet) => isSet)
+        .length > 0;
+
+    if (
+      (isEmptyEmailInput || isValidEmail) &&
+      (isEmptyPhoneNumberInput || isValidPhoneNumber)
+    ) {
+      if (enable_tracking.current.checked && phoneOrEmailSet) {
+        return false;
+      } else if (!enable_tracking.current.checked) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+  };
+
   return (
     <>
       <StyledFormWrapper>
@@ -182,6 +193,38 @@ const ContactInfoView = () => {
             )}
         </StyledFormDescription>
       </StyledFormWrapper>
+      <StyledButtonOuter>
+        <StyledButtonInner>
+          <StyledButton
+            disabled={isDisabled()}
+            onClick={async () => {
+              if (isLoading) {
+                return;
+              } else {
+                setIsLoading(true);
+              }
+              const response = await postReport(formState);
+              reportDispatch({
+                type: "setFormInfo",
+                field: "external_id",
+                payload: response.data.IssueId,
+              });
+              setIsLoading(false);
+              dispatch({ type: "next" });
+            }}
+          >
+            {isLoading ? <LoadingSpinner /> : <span>Skicka in </span>}
+          </StyledButton>
+          <StyledButton
+            secondary
+            onClick={() => {
+              dispatch({ type: "previous" });
+            }}
+          >
+            Tillbaka
+          </StyledButton>
+        </StyledButtonInner>
+      </StyledButtonOuter>
     </>
   );
 };

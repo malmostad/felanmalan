@@ -1,6 +1,8 @@
 import { useEffect, useContext } from "react";
 import { useReport } from "../../contexts/ReportContext";
 import { NavigationContext } from "../../contexts/NavigationContext";
+import { useUpdate } from "../.././contexts/UpdateContext";
+import { StyledButton } from "../../components/styles/buttons/Buttons";
 import {
   StyledFormWrapper,
   StyledTextArea,
@@ -8,13 +10,16 @@ import {
   StyledLabel,
   StyledFormDescription,
 } from "../../components/styles/form/Form";
-import { StyledBoldHeader } from "../../components/styles/Typography/Typography";
 import {
   StyledHeroHeadingThin,
   StyledSpanWord,
+  StyledBoldHeader,
 } from "../../components/styles/Typography/Typography";
-import { StyledHeroContainer } from "../../components/styles/containers/Containers";
-import { useUpdate } from "../.././contexts/UpdateContext";
+import {
+  StyledButtonOuter,
+  StyledButtonInner,
+  StyledHeroContainer,
+} from "../../components/styles/containers/Containers";
 
 const DescriptionView = () => {
   const { setCurrentViewHeading } = useUpdate();
@@ -32,18 +37,8 @@ const DescriptionView = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    formState.description
-      ? dispatch({ type: "enableNext" })
-      : dispatch({ type: "disableNext" });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const handleFormInfo = (e) => {
     handelSetFormInfo("description", e.target.value);
-    e.target.value
-      ? dispatch({ type: "enableNext" })
-      : dispatch({ type: "disableNext" });
   };
 
   return (
@@ -64,6 +59,26 @@ const DescriptionView = () => {
           />
         </StyledFormDescription>
       </StyledFormWrapper>
+      <StyledButtonOuter>
+        <StyledButtonInner>
+          <StyledButton
+            disabled={!formState.description}
+            onClick={() => {
+              dispatch({ type: "next" });
+            }}
+          >
+            Nästa steg
+          </StyledButton>
+          <StyledButton
+            secondary
+            onClick={() => {
+              dispatch({ type: "previous" });
+            }}
+          >
+            Tillbaka
+          </StyledButton>
+        </StyledButtonInner>
+      </StyledButtonOuter>
     </>
   );
 };

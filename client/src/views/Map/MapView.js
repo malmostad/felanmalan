@@ -13,6 +13,13 @@ import "./MapView.css";
 import { fetchAddressMapBoxAPI } from "../../api/api";
 import { ReactComponent as MarkerIcon } from "./pin.svg";
 
+import { StyledButton } from "../../components/styles/buttons/Buttons";
+
+import {
+  StyledButtonOuter,
+  StyledButtonInner,
+} from "../../components/styles/containers/Containers";
+
 import mapboxgl from "mapbox-gl";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -48,7 +55,6 @@ const MapView = () => {
         longitude,
       });
       setAddress(address);
-      navigationDispatch({ type: "enableNext" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -146,6 +152,11 @@ const MapView = () => {
     handelSetFormInfo("address", displayAddress);
   };
 
+  const isDisabled = () => {
+    const { latitude, longitude, address } = formState;
+    return !(latitude && longitude && address);
+  };
+
   return (
     <>
       <div className="map-style">
@@ -189,6 +200,26 @@ const MapView = () => {
           <MarkerIcon className="pin-marker" />
         </ReactMapGl>
       </div>
+      <StyledButtonOuter>
+        <StyledButtonInner>
+          <StyledButton
+            disabled={isDisabled()}
+            onClick={() => {
+              navigationDispatch({ type: "next" });
+            }}
+          >
+            Nästa steg
+          </StyledButton>
+          <StyledButton
+            secondary
+            onClick={() => {
+              navigationDispatch({ type: "previous" });
+            }}
+          >
+            Tillbaka
+          </StyledButton>
+        </StyledButtonInner>
+      </StyledButtonOuter>
     </>
   );
 };
