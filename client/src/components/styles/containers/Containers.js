@@ -50,6 +50,7 @@ export const StyledOuterFollowUpView = styled(StyledOuter)`
   }
 `;
 export const StyledButtonOuter = styled.div`
+  width: 100%;
   transition: transform 0.3s ease-out;
   display: flex;
 `;
@@ -63,12 +64,16 @@ export const StyledButtonInner = styled.div`
   display: flex;
   margin: 0 auto;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   padding: 16px 0px;
   width: 100%;
   height: 100%;
   flex-direction: row-reverse;
   max-width: 560px;
+`;
+
+export const StyledButtonInnerUploadImageView = styled(StyledButtonInner)`
+  padding-bottom: 0px;
 `;
 
 export const StyledCookieContainer = styled.div`
@@ -278,6 +283,10 @@ export const StyledUploadContainer = styled.div`
   }
 `;
 export const StyledImageContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
+  @media (max-width: 560px) {
+    height: 100%;
+  }
 `;
