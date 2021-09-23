@@ -1,19 +1,6 @@
 import styled from "styled-components";
 
-const StyledImageContainer = styled.div`
-  position: relative;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-
-  opacity: ${({ progress }) => progress};
-  img {
-    object-fit: contain;
-    width: 230px;
-    height: 230px;
-  }
-`;
-const StyledImageOverlay = styled.div`
+export const StyledImageOverlay = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
@@ -22,7 +9,7 @@ const StyledImageOverlay = styled.div`
   height: inherit;
   width: inherit;
 `;
-const StyledImageIcon = styled.div`
+export const StyledImageIcon = styled.div`
   color: red;
   font-size: 24px;
   position: absolute;
@@ -65,5 +52,3 @@ export const RemoveImg = styled.div`
   right: -10px;
   cursor: pointer;
 `;
-
-export { StyledImageContainer, StyledImageOverlay, StyledImageIcon };
