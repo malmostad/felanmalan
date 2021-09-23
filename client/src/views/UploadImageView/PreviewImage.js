@@ -1,3 +1,4 @@
+//hooks
 import { useState } from "react";
 import {
   StyledCell,
@@ -32,7 +33,7 @@ const PreviewImage = ({ image, onImageRemove }) => {
             <ProgressBar max={100} progress={image.uploadProgress} />
           </StyledCellUpload>
         )}
-        {
+        {isHovering && (
           <RemoveImg onClick={() => onImageRemove(image.id)}>
             <BsTrash
               style={{
@@ -43,7 +44,7 @@ const PreviewImage = ({ image, onImageRemove }) => {
               size="2rem"
             />
           </RemoveImg>
-        }
+        )}
       </StyledImagesSize>
     </>
   );
