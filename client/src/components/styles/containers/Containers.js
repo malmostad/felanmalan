@@ -39,6 +39,7 @@ export const StyledOuter = styled.div`
       : theme.colors.PrimaryGreen};
 `;
 export const StyledOuterFollowUpView = styled(StyledOuter)`
+  height: auto;
   overflow-y: hidden;
   min-height: calc(var(--app-height) - 398px);
   @media (max-width: 560px) {
@@ -97,17 +98,13 @@ export const StyledContentFollowUpView = styled.div`
   max-width: 560px;
   margin: 0px auto;
   flex-direction: column;
-  align-items: center;
-  background-color: #037540;
+  align-items: flex-start;
   color: white;
   font-size: 22px;
   z-index: 50;
   height: 220px;
   align-self: center;
   justify-content: center;
-  @media (max-width: 560px) {
-    margin: 0 auto;
-  }
 `;
 
 export const StyledHeaderContainer = styled.div`
