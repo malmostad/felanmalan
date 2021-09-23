@@ -249,8 +249,10 @@ export const StyledTouchCharter = styled.div`
   left: 0;
   height: 58vh;
   padding-top: 12px;
+  @media (max-width: 560px) {
+    overflow-y: hidden;
+  }
   @media (min-width: 560px) {
-    height: 58vh;
     padding-bottom: 22px;
   }
 `;
@@ -277,6 +279,5 @@ export const StyledUploadContainer = styled.div`
 `;
 export const StyledImageContainer = styled.div`
   display: flex;
-  height: calc(var(--app-height) - 360px);
   justify-content: center;
 `;
