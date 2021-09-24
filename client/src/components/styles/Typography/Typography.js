@@ -102,8 +102,9 @@ export const Errand = styled.span`
   color: white;
   font-family: MyriadPro, Open sans, Verdana;
   font-weight: bold;
-  text-decoration: underline;
+  margin-top: 5px;
 `;
+
 export const StyledDescription = styled.a`
   margin-top: 1.5rem !important;
   font-size: 26px;
