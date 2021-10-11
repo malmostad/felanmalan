@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  StyledReadMoreButton,
-  StyledOutlineButtonWhiteFirstPage,
-} from "../styles/buttons/Buttons";
+import { StyledOutlineButtonWhiteFirstPage } from "../styles/buttons/Buttons";
 import {
   StyledCookieContainer,
   StyledOuter,
@@ -12,10 +9,9 @@ import { useCookies } from "react-cookie";
 import {
   StyledHeroHeading,
   StyledSpanText,
+  ConsentHeading,
   StyledInfoText,
 } from "../styles/Typography/Typography";
-import { AiOutlineQuestionCircle as Icon } from "react-icons/ai";
-import ReadMore from "../readmore/ReadMore";
 
 const Cookie = () => {
   // eslint-disable-next-line no-unused-vars
@@ -34,30 +30,22 @@ const Cookie = () => {
     <>
       <StyledOuter>
         <StyledCookieContainer>
-          <StyledHeroHeading>Malmö stads felanmälan</StyledHeroHeading>
+          <StyledHeroHeading>Malmö stads anmälan</StyledHeroHeading>
           <StyledSpanText>
-            Här anmäler du fel på Malmös gator, torg och parker.
+            Här anmäler du fel och synpunkter på Malmös gator, torg och parker.
           </StyledSpanText>
-          {readMore ? (
-            <ReadMore />
-          ) : (
-            <>
-              <StyledInfoText>
-                Vi vill att tjänsten ska fungera så bra som möjligt för dig som
-                besökare. För att kunna ta reda på vad vi kan göra bättre
-                analyserar vi hur våra besökare använder tjänsten med webbkakor
-                (cookies)
-              </StyledInfoText>
-            </>
-          )}
+          <>
+            <ConsentHeading>Hantering av personuppgifter</ConsentHeading>
+            <StyledInfoText>
+              För att kunna hantera ditt ärende sparar vi de personuppgifter du
+              lämnar till oss.
+            </StyledInfoText>
+          </>
+          <a href="https://malmo.se/personuppgifter">
+            Information om hur Malmö stad hanterar personuppgifter
+          </a>
         </StyledCookieContainer>
         <StyledButtonContainer>
-          {!readMore && (
-            <StyledReadMoreButton onClick={handleReadMore}>
-              <Icon /> Läs mer
-            </StyledReadMoreButton>
-          )}
-
           <StyledOutlineButtonWhiteFirstPage onClick={handleSetCookie}>
             Acceptera
           </StyledOutlineButtonWhiteFirstPage>

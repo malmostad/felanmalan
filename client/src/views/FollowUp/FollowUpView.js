@@ -36,7 +36,7 @@ const FollowUpView = () => {
       <StyledHeroContainer>
         <StyledHeroHeadingThin>
           <StyledSpanWord>Tack</StyledSpanWord> för din{" "}
-          <StyledSpanWord>felanmälan</StyledSpanWord>
+          <StyledSpanWord>anmälan</StyledSpanWord>
         </StyledHeroHeadingThin>
         <StyledDescription>
           Den hjälper oss hålla vår vackra stad i ordning.{" "}

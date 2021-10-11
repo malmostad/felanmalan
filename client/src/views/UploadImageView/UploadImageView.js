@@ -35,7 +35,7 @@ const UploadImageView = () => {
       <StyledHeroContainer>
         <StyledHeroHeadingThin>
           Lägg till <StyledSpanWord>bilder</StyledSpanWord> på{" "}
-          <StyledSpanWord>problemet</StyledSpanWord> &
+          <StyledSpanWord>ärendet</StyledSpanWord> &
           <StyledSpanWord> platsen</StyledSpanWord>
         </StyledHeroHeadingThin>
       </StyledHeroContainer>

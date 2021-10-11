@@ -86,21 +86,6 @@ export const StyledButtonAddImg = styled(StyledButton)`
   }
 `;
 
-export const StyledReadMoreButton = styled(StyledButton)`
-  margin: 10px auto;
-  color: white;
-  max-width: 100px;
-  border: none;
-  font-family: "MyriadPro";
-  font-weight: lighter;
-  -moz-osx-font-smoothing: grayscale;
-  &:hover {
-    filter: brightness(100%);
-    text-decoration: underline;
-    color: white;
-  }
-`;
-
 export const StyledDropzoneContainer = styled.div`
   display: flex;
   justify-content: center;

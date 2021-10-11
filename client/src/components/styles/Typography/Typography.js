@@ -47,6 +47,10 @@ export const StyledSpanText = styled.p`
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5715;
 `;
+export const ConsentHeading = styled(StyledSpanText)`
+  margin-bottom: 0;
+`;
+
 export const StyledInfoText = styled.p`
   font-size: 1.06rem;
   color: white;

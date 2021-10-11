@@ -30,7 +30,7 @@ const DescriptionView = () => {
     setCurrentViewHeading(
       <StyledHeroContainer>
         <StyledHeroHeadingThin>
-          <StyledSpanWord>Beskriv problemet </StyledSpanWord>
+          <StyledSpanWord>Beskriv ärendet</StyledSpanWord>
         </StyledHeroHeadingThin>
       </StyledHeroContainer>
     );
