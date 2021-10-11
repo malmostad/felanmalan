@@ -90,11 +90,13 @@ const MapView = () => {
         longitude: viewport.longitude,
         latitude: viewport.latitude,
       });
+      handelSetFormInfo("longitude", viewport.longitude);
+      handelSetFormInfo("latitude", viewport.latitude);
     } else {
       setViewport(nextViewport);
+      handelSetFormInfo("longitude", nextViewport.longitude);
+      handelSetFormInfo("latitude", nextViewport.latitude);
     }
-    handelSetFormInfo("longitude", viewport.longitude);
-    handelSetFormInfo("latitude", viewport.latitude);
   };
 
   const transitionEnd = () => {
@@ -132,7 +134,6 @@ const MapView = () => {
     handelSetFormInfo("longitude", payload.longitude);
     handelSetFormInfo("latitude", payload.latitude);
     handelSetFormInfo("address", payload.address);
-    navigationDispatch({ type: "enableNext" });
     setAddress(payload.address);
     setViewport({
       ...viewport,
@@ -149,7 +150,6 @@ const MapView = () => {
     const displayAddress = [address, number].join(" ").trim();
     setRenderPrefix(true);
     setAddress(displayAddress);
-    navigationDispatch({ type: "enableNext" });
     handelSetFormInfo("address", displayAddress);
   };
 
