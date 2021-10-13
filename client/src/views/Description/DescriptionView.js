@@ -47,7 +47,7 @@ const DescriptionView = () => {
         <StyledFormDescription>
           <StyledLabel htmlFor="Beskrivning">
             <StyledBoldHeader>
-              Beskriv problemet du vill felanmäla
+              Beskriv problemet eller din synpunkt
             </StyledBoldHeader>
             <DescriptionSpan> * </DescriptionSpan>
           </StyledLabel>
