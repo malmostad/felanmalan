@@ -166,7 +166,7 @@ const ContactInfoView = () => {
               )}
               <StyledInput
                 placeholder="Skriv ditt telefonnummer"
-                type="phone"
+                type="tel"
                 name="phone"
                 defaultValue={formState.phone}
                 ref={phone}
