@@ -9,7 +9,7 @@ export const StyledLabelSearchBar = styled.div`
   justify-content: center;
   width: 100%;
   margin: 0;
-  z-index: 98;
+  z-index: 99;
 `;
 export const StyledSearchLabel = styled.div`
   margin: 10px 16px;
