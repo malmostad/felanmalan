@@ -75,7 +75,7 @@ export const fetchAddressMapBoxAPI = async (viewport) => {
 export const fetchSearchResultMapBoxApi = async (address, maxBounds) => {
   try {
     const response = await http.get(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?types=address&bbox=${maxBounds.join(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?types=address,poi&bbox=${maxBounds.join(
         ","
       )}&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`
     );
