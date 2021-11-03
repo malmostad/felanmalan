@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { fetchSearchResultMapBoxApi } from "../../api/api";
 import { debounce } from "lodash";
 import { AiOutlineSearch as SearchIcon } from "react-icons/ai";
@@ -45,10 +45,11 @@ const SearchBar = ({ address, renderPrefix, onResultSelect, maxBounds }) => {
       setNoResult(false);
     }
   };
-  const updateSearchResultsDebounced = debounce(
-    (e) => updateSearchResults(e),
-    800
+  const updateSearchResultsDebounced = useCallback(
+    debounce((e) => updateSearchResults(e), 300),
+    []
   );
+
   const onChange = (e) => {
     setValue(e.target.value);
     updateSearchResultsDebounced(e);
