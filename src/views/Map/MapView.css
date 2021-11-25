@@ -1,0 +1,63 @@
+.map-style {
+  height: calc(var(--app-height) - 82px);
+}
+
+.pin-marker {
+  position: fixed;
+  z-index: 98;
+  height: 36px;
+  width: 30px;
+  top: calc(50% - 77px);
+  left: calc(50% - 15px);
+}
+
+.blob {
+  position: relative;
+  background: #199bff;
+  border-radius: 50%;
+  border: 3.5px solid white;
+  height: 25px;
+  width: 25px;
+  box-shadow: 0 0 0 0 rgb(118, 168, 243, 1);
+}
+
+.pulsating-circle {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1890ff;
+  border: 3px solid white;
+  box-shadow: 0 0 0 rgba(24, 144, 255, 0.4);
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(24, 144, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 50px rgba(24, 144, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(24, 144, 255, 0);
+  }
+}
+
+.search-icon {
+  display: flex;
+  align-self: center;
+  color: #757575;
+  margin-left: 10px;
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 560px) {
+  .search-icon {
+    font-size: 2rem;
+  }
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib.mapboxgl-compact {
+  box-sizing: content-box;
+}

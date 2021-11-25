@@ -1,7 +1,0 @@
-require: rubocop-rspec
-Metrics/BlockLength:
-  Exclude:
-    - rubocop-rspec.gemspec
-    - Rakefile
-    - '**/*.rake'
-    - spec/**/*.rb

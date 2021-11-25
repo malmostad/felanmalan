@@ -1,0 +1,684 @@
+/************************************************************************/
+/* 	CSS Linotype Library						*/
+/*----------------------------------------------------------------------*/
+/*		LM/omeco, 12/2002					*/
+/*		WICHTIG: Bitte Gross- und Kleinschreibung beachten !	*/
+/************************************************************************/
+body {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: #ffffff;
+}
+
+.table {
+  padding: 0px;
+  border-spacing: 0px;
+  border-width: 0px;
+}
+
+.table100 {
+  padding: 0px;
+  border-spacing: 0px;
+  border-width: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.page100 {
+  padding: 0px;
+  border-spacing: 0px;
+  border-width: 0px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+}
+
+/******************************************************************************/
+/*  Content Navigation oben rechts					      */
+/******************************************************************************/
+
+.ContentNaviAktiv {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #cc0000;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+.ContentNaviAktivBig {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: #cc0000;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+a.ContentNaviEmpty {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #c0c0c0;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+.ContentNavi {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+.ContentNaviBig {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: #505050;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+a.ContentNavi {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 16px;
+  font-weight: bold;
+}
+a.ContentNavi:link {
+  color: #505050;
+}
+a.ContentNavi:visited {
+  color: #505050;
+}
+a.ContentNavi:active {
+  color: #cc0000;
+}
+a.ContentNavi:hover {
+  color: #cc0000;
+}
+
+a.ContentNaviAktivBig:link {
+  color: #cc0000;
+}
+a.ContentNaviAktivBig:visited {
+  color: #cc0000;
+}
+a.ContentNaviAktivBig:active {
+  color: #cc0000;
+}
+a.ContentNaviAktivBig:hover {
+  color: #cc0000;
+}
+
+a.ListNavi:link {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+a.ListNavi:visited {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+a.ListNavi:active {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+a.ListNavi:hover {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #cc0000;
+  line-height: 16px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.ListNaviAktiv {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #cc0000;
+  line-height: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.AlphaNaviBig {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #505050;
+  line-height: 25px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.AlphaNaviBig:link {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #505050;
+  line-height: 25px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.AlphaNaviBig:hover {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #cc0000;
+  line-height: 25px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.AlphaNaviBig:visited {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #505050;
+  line-height: 25px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.AlphaNaviAktivBig {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #cc0000;
+  line-height: 25px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.AlphaNaviAktivBig:link {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #cc0000;
+  line-height: 25px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.AlphaNaviAktivBig:hover {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #cc0000;
+  line-height: 25px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.AlphaNaviAktivBig:visited {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #cc0000;
+  line-height: 25px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.AlphaNaviDisabledBig {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #aaaaaa;
+  line-height: 25px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+/*************** Fabian Uehlin ***************/
+.contentfont_dkl_9 {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+span.contentfont_dkl_9 a {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 18px;
+  text-decoration: underline;
+}
+
+a.contentfont_dkl_9 {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 18px;
+  text-decoration: underline;
+}
+
+.contentfont_hell_9 {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: none;
+}
+
+span.contentfont_dkl_bold_9 a {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 18px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.contentfont_dkl_bold_9 {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+span.contentfont_dkl_bold_11 {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.noBorder img {
+  border: none;
+}
+
+span.BodyheadLink a {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 18px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+font.ListLink a {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 18px;
+  text-decoration: underline;
+}
+
+.head1 {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  color: #505050;
+  line-height: 18px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.contentfont_hell_bold_9 {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+span.contentfont_hell_9 a {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: underline;
+}
+
+.contentfont_hell_11 {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: none;
+}
+
+span.contentfont_hell_bold_11 {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+td.BodyText a {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+.BodyText p {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.BodyText div {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+td.BodyheadLink a {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 18px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+div.BodyText a {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #505050;
+  line-height: 14px;
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+td {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9pt;
+  line-height: 130%;
+  text-decoration: none;
+  font-weight: normal;
+}
+/*************** Fabian Uehlin ***************/
+
+/* eCD display */
+.cdListingU {
+  border-bottom: 1pt solid #cccccc;
+}
+
+.cdListingUL {
+  border-bottom: 1pt solid #cccccc;
+  border-left: 1pt solid #cccccc;
+}
+
+.cdListingL {
+  border-left: 1pt solid #cccccc;
+}
+
+a:link {
+  color: #505050;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #505050;
+  text-decoration: underline;
+}
+a:active {
+  color: #505050;
+}
+
+a:hover {
+  color: #cc0000;
+}
+
+/* top navigation bar - text version */
+.TopNav {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #222222;
+  text-transform: uppercase;
+  background-color: #afaaa7;
+  vertical-align: middle;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.TopNavAktiv {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #cc0000;
+  text-transform: uppercase;
+  vertical-align: middle;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+a.TopNav:link {
+  color: #222222;
+  text-decoration: none;
+}
+
+a.TopNav:active {
+  color: #222222;
+  text-decoration: none;
+}
+
+a.TopNav:visited {
+  color: #222222;
+  text-decoration: none;
+}
+
+a.TopNav:hover {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.TopNavLower {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  text-transform: lowercase;
+  background-color: #afaaa7;
+  vertical-align: middle;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.TopNavAktiv:link {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.TopNavAktiv:active {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.TopNavAktiv:visited {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.TopNavAktiv:hover {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+/* left side subnavigation - text version */
+.SubNav {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #222222;
+  /* text-transform: uppercase; */
+  background-color: #d2d1cc;
+  /* vertical-align: middle; */
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.SubNavAktiv {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #cc0000;
+  /* text-transform: uppercase; */
+  background-color: #d2d1cc;
+  /* vertical-align: middle; */
+  text-decoration: none;
+  font-weight: normal;
+}
+
+a.SubNav:link {
+  color: #222222;
+  text-decoration: none;
+}
+
+a.SubNav:active {
+  color: #222222;
+  text-decoration: none;
+}
+
+a.SubNav:visited {
+  color: #222222;
+  text-decoration: none;
+}
+
+a.SubNav:hover {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.SubNavAktiv:link {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.SubNavAktiv:active {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.SubNavAktiv:visited {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+.SubNavAktiv:hover {
+  color: #cc0000;
+  text-decoration: none;
+}
+
+/************************************************************************/
+/* 	Manuals				*/
+/************************************************************************/
+
+#manual {
+  color: #000000;
+}
+
+#manual h1 {
+  padding: 5px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-right-color: #000000;
+  border-bottom-color: #000000;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 11pt;
+  color: #000000;
+}
+#manual h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 10pt;
+}
+#manual h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 9pt;
+}
+
+#manual p {
+  font-size: 9pt;
+  color: #000000;
+  line-height: 130%;
+}
+#manual hr {
+  height: 1px;
+  border-top: 1px dotted #000000;
+  border-right-style: dotted;
+  border-bottom-style: dotted;
+  border-left-style: dotted;
+}
+
+#manual ul {
+  list-style: square;
+  font-size: 10pt;
+  margin: 0;
+  padding: 0 16 0 16;
+}
+
+#manual ol {
+  font-size: 10pt;
+  margin: 3;
+  padding: 0 20 0 20;
+}
+
+#manual li {
+  font-family: Arial, Helvetica, sans-serif;
+
+  line-height: 130%;
+}
+.backtoc {
+  background-image: url(backtoc.gif);
+  background-repeat: repeat-y;
+  background-position: right;
+  font-size: 10pt;
+  font-weight: bold;
+  padding-right: 10px;
+  padding-top: 6px;
+}
+
+.infotxt {
+  padding-top: 9px;
+  font-size: 8pt;
+  line-height: 130%;
+}
+
+.tablinie {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #cccccc;
+}
+
+.h2spacer {
+  float: left;
+  margin-right: 14px;
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
+
+.h3spacer {
+  float: left;
+  margin-right: 13px;
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
