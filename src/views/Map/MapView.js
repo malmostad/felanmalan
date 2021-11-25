@@ -172,7 +172,7 @@ const MapView = () => {
           transitionInterpolator={new FlyToInterpolator()}
           onViewportChange={(payload) => onViewportChange(payload)}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-          mapStyle="mapbox://styles/iandwe/ck0i4nprb08w91cmkp1939q6z"
+          mapStyle={process.env.REACT_APP_MAPBOX_STYLE}
           width="100vw"
           height="100%"
           onTransitionEnd={transitionEnd}
