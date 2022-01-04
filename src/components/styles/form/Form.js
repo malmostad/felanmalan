@@ -13,7 +13,6 @@ export const StyledFormWrapper = styled.div`
 `;
 
 export const StyledInput = styled.input`
-  font-family: MyriadPro, Open sans, Verdana;
   border-radius: 0;
   font-size: 18px;
   background: none;
@@ -55,16 +54,13 @@ export const StyledError = styled.div`
   font-size: 15px;
   color: red;
   margin-bottom: 2px;
-  font-family: MyriadPro, Open sans, Verdana;
   font-weight: lighter;
 `;
 export const DescriptionSpan = styled.span`
-  font-family: MyriadPro, Open sans, Verdana;
   color: red;
   font-size: 21px;
 `;
 export const StyledLabel = styled.label`
-  font-family: MyriadPro, Open sans, Verdana;
   font-size: 16px;
   line-height: 16px;
   color: #000;
@@ -80,13 +76,11 @@ export const StyledTextArea = styled.textarea`
   padding: 2px 2px 2px 4px;
   resize: none;
   border: 1px solid #888;
-  font-family: MyriadPro, Open sans, Verdana;
   @media (max-height: 580px) {
     height: 160px;
   }
 `;
 
 export const StyledFormDescription = styled.form`
-  font-family: MyriadPro, Open sans, Verdana;
   padding: 0px 20px;
 `;

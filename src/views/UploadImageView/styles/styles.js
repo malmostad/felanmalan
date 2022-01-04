@@ -20,7 +20,6 @@ export const StyledImageIcon = styled.div`
   cursor: pointer;
 `;
 export const Dropzone = styled.div`
-  font-family: MyriadPro, Open sans, Verdana;
   width: 100%;
   max-width: 520px;
   height: 230px;

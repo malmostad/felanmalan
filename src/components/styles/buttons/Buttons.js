@@ -5,7 +5,6 @@ export const StyledButton = styled.button`
   background-color: ${({ theme, secondary }) =>
     secondary ? theme.colors.White : theme.colors.PrimaryGreen};
   font-size: ${({ theme }) => theme.FontSizes.ButtonText};
-  font-family: MyriadPro, Open sans, Verdana;
   font-weight: 700;
   margin: 0 10px;
   height: 50px;

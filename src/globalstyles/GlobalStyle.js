@@ -1,23 +1,23 @@
 import { createGlobalStyle } from "styled-components";
-import MyriadProRegular from "../assets/fonts/Myriad/MyriadPro-Regular.otf";
-import MyriadProLight from "../assets/fonts/Myriad/MyriadPro-Light.otf";
-import MyriadProBold from "../assets/fonts/Myriad/MyriadPro-Bold.otf";
+import OpenSansBold from "../assets/fonts/Open_Sans/static/OpenSans/OpenSans-Bold.ttf";
+import OpenSansRegular from "../assets/fonts/Open_Sans/static/OpenSans/OpenSans-Regular.ttf";
+import OpenSansLight from "../assets/fonts/Open_Sans/static/OpenSans/OpenSans-Light.ttf";
 
 const GlobalStyle = createGlobalStyle`
 
 @font-face {
-  font-family: 'MyriadPro';
-  src: local('MyriadPro'), url(${MyriadProRegular}) format('opentype');
+  font-family: 'Open sans';
+  src: local('Open sans'), url(${OpenSansRegular}) format('opentype');
   font-weight: normal;
 }
 @font-face {
-  font-family: 'MyriadPro';
-  src: local('MyriadPro'), url(${MyriadProLight}) format('opentype');
+  font-family: 'Open sans';
+  src: local('Open sans'), url(${OpenSansLight}) format('opentype');
   font-weight: lighter;
 }
 @font-face {
-  font-family: 'MyriadPro';
-  src: local('MyriadPro'), url(${MyriadProBold}) format('opentype');
+  font-family: 'Open sans';
+  src: local('Open sans'), url(${OpenSansBold}) format('opentype');
   font-weight: bold;
 }
 
@@ -27,8 +27,8 @@ const GlobalStyle = createGlobalStyle`
   padding: 0;
 }
 
-body {
-  font-family: MyriadPro, Open sans, Verdana;
+html * {
+  font-family: Open sans, sans-serif !important;
 }
 
 html {
