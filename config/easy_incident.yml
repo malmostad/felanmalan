@@ -1,5 +1,0 @@
-production:
-  base_url: http://fgkextern.test.malmo.se/api
-development:
-  base_url: http://fgkextern.test.malmo.se/api  
-

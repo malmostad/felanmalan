@@ -1,8 +1,0 @@
-sv:
-  report:
-    registered: "ej registrerat"
-    reviewed: "registrerat "
-    ongoing: "pågående"
-    forwarded: "vidarebefordrat"
-    fixed: "åtgärdat"
-    rejected: "avslutat/avvisat senare behandling"
