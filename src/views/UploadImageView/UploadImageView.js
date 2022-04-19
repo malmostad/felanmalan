@@ -21,11 +21,8 @@ import {
 } from "../../components/styles/containers/Containers";
 
 const UploadImageView = () => {
-  const {
-    setCurrentViewHeading,
-    imagesToBeUploaded,
-    setImagesToBeUploaded,
-  } = useUpdate();
+  const { setCurrentViewHeading, imagesToBeUploaded, setImagesToBeUploaded } =
+    useUpdate();
   const [uploadingCount, setUploadingCount] = useState(0);
   const { dispatch: navigationDispatch } = useContext(NavigationContext);
   const { dispatch } = useReport();
