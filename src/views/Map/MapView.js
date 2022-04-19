@@ -21,11 +21,6 @@ import {
   StyledButtonInner,
 } from "../../components/styles/containers/Containers";
 
-import mapboxgl from "mapbox-gl";
-
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
-
 const DEFAULT_VIEWPORT = {
   latitude: 55.6051458,
   longitude: 13.003365,
