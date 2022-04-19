@@ -21,6 +21,13 @@ import {
   StyledButtonInner,
 } from "../../components/styles/containers/Containers";
 
+import mapboxgl from "mapbox-gl";
+
+// fixes bundling issues resulting in the Map not loading in the built version of the codebade https://github.com/mapbox/mapbox-gl-js/issues/10173
+mapboxgl.workerClass =
+  // eslint-disable-next-line import/no-webpack-loader-syntax
+  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+
 const DEFAULT_VIEWPORT = {
   latitude: 55.6051458,
   longitude: 13.003365,
